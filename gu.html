@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>プロの株式分析 | 専門家による診断</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E50012; /* Japanese red */
+            --secondary-color: #1A1A1A;
+            --accent-color: #0075C2; /* Japanese blue */
+            --light-color: #F5F5F5;
+            --button-color: #FF6B00;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .dark {
+            --primary-color: #FF4B4B;
+            --secondary-color: #121212;
+            --accent-color: #4A90E2;
+            --light-color: #1F1F1F;
+            --button-color: #FF9500;
+        }
+
+        .cta-button {
+            background-color: var(--button-color);
+            transition: all 0.3s ease;
+            transform: scale(1);
+            box-shadow: 0 4px 14px rgba(255, 107, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .countdown-item {
+            background-color: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-icon {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50% 0 0 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            cursor: pointer;
+            animation: pulse-animation 2s infinite;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            background-color: white;
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .input-stock {
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .input-stock:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(229, 0, 18, 0.25);
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .stock-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .stock-form {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <!-- Notification Icon -->
+    <div class="notification-icon" onclick="openSite()">
+        <span class="notification-badge">1</span>
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <!-- Section 1: Hero / Pain Point -->
+    <section class="section bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900">
+        <div class="container mx-auto px-4 py-12">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    <span class="text-red-600">最新AIテクノロジー</span>で<br>
+                    あなたの株を診断
+                </h1>
+                <p class="text-xl mb-6">市場の不確実性に悩んでいませんか？</p>
+                <div class="flex justify-center gap-4 mb-8">
+                    <div class="countdown-item">
+                        <span class="text-2xl font-bold" id="days">00</span>
+                        <span class="text-xs">日</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="text-2xl font-bold" id="hours">00</span>
+                        <span class="text-xs">時</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="text-2xl font-bold" id="minutes">00</span>
+                        <span class="text-xs">分</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="text-2xl font-bold" id="seconds">00</span>
+                        <span class="text-xs">秒</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-lg mx-auto">
+                    <p class="text-lg mb-4 font-semibold">あなたの株式コードを入力して、<span class="text-red-600">無料診断</span>を受けましょう</p>
+                    <div class="stock-form">
+                        <input type="text" id="stockCode1" placeholder="株式コードまたは名前を入力" class="input-stock p-3 text-base rounded-l-lg w-full focus:outline-none text-gray-800" required>
+                        <button onclick="checkStock(1)" class="cta-button px-6 py-3 text-white font-bold rounded-r-lg pulse">
+                            今すぐ診断
+                        </button>
+                    </div>
+                    <p class="text-sm mt-3">
+                        <i class="fas fa-users mr-1"></i> <strong>今日だけで</strong> 
+                        <span class="text-accent-color font-bold" id="analysisCount">283</span>人が利用しました
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap -mx-4 justify-center">
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="card bg-white dark:bg-gray-800 p-6 h-full">
+                        <div class="text-center">
+                            <i class="fas fa-chart-line text-4xl text-red-600 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">市場の先読み</h3>
+                            <p>相場の動きを予測し、最適なタイミングで売買判断</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="card bg-white dark:bg-gray-800 p-6 h-full">
+                        <div class="text-center">
+                            <i class="fas fa-shield-alt text-4xl text-red-600 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">リスク管理</h3>
+                            <p>資産を守りながら、効率的な投資戦略をサポート</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="card bg-white dark:bg-gray-800 p-6 h-full">
+                        <div class="text-center">
+                            <i class="fas fa-brain text-4xl text-red-600 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">AI分析技術</h3>
+                            <p>最新テクノロジーで複雑な市場動向を解析</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Authority & Social Proof -->
+    <section class="section bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="text-red-600">業界トップアナリスト</span>による専門分析
+                </h2>
+                <p class="text-xl mb-8">
+                    <span class="font-bold">10年以上</span>の市場経験を持つ専門家チームが
+                    あなたの投資をサポート
+                </p>
+            </div>
+            
+            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 mb-12">
+                <h3 class="text-2xl font-bold mb-4 text-center">実績ある予測力</h3>
+                <p class="mb-4 text-center">これまで日本の主要企業の株価動向を<span class="text-red-600 font-bold">高い精度</span>で予測してきました</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">トヨタ自動車</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">ソニーグループ</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">ソフトバンクグループ</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">任天堂</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">パナソニック</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">日産自動車</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">三菱UFJ</div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded shadow-md">ホンダ</div>
+                </div>
+            </div>
+            
+            <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <p class="text-lg mb-4 font-semibold">あなたの株を分析します</p>
+                <div class="stock-form">
+                    <input type="text" id="stockCode2" placeholder="株式コードまたは名前を入力" class="input-stock p-3 text-base rounded-l-lg w-full focus:outline-none text-gray-800" required>
+                    <button onclick="checkStock(2)" class="cta-button px-6 py-3 text-white font-bold rounded-r-lg pulse">
+                        今すぐ診断
+                    </button>
+                </div>
+                <p class="text-sm mt-3">
+                    <i class="fas fa-lock mr-1"></i> 個人情報は厳重に保護されます
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Features & Benefits -->
+    <section class="section bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="text-red-600">プロの戦略</span>を学び実践する
+                </h2>
+                <p class="text-xl mb-6">市場のあらゆる状況に対応する戦略を身につける</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="card bg-white dark:bg-gray-800 p-6">
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-red-100 dark:bg-red-900 p-3 mr-4">
+                            <i class="fas fa-graduation-cap text-2xl text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">テクニカル分析マスター</h3>
+                            <p>チャートパターンから市場心理を読み取り、高確率の取引機会を特定</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white dark:bg-gray-800 p-6">
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-red-100 dark:bg-red-900 p-3 mr-4">
+                            <i class="fas fa-building text-2xl text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">ファンダメンタル分析</h3>
+                            <p>企業の本質的価値を評価し、長期的な成長と安定性を見極める</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white dark:bg-gray-800 p-6">
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-red-100 dark:bg-red-900 p-3 mr-4">
+                            <i class="fas fa-robot text-2xl text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">AI予測モデル</h3>
+                            <p>最新のAIアルゴリズムを活用した市場予測と分析レポート</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white dark:bg-gray-800 p-6">
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-red-100 dark:bg-red-900 p-3 mr-4">
+                            <i class="fas fa-users-cog text-2xl text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">専門家コミュニティ</h3>
+                            <p>経験豊富なトレーダーとの交流で知識と経験を共有</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <p class="text-lg mb-4 font-semibold text-center">あなたの株式ポートフォリオを最適化</p>
+                <div class="stock-form">
+                    <input type="text" id="stockCode3" placeholder="株式コードまたは名前を入力" class="input-stock p-3 text-base rounded-l-lg w-full focus:outline-none text-gray-800" required>
+                    <button onclick="checkStock(3)" class="cta-button px-6 py-3 text-white font-bold rounded-r-lg pulse">
+                        無料診断を受ける
+                    </button>
+                </div>
+                <p class="text-sm mt-3 text-center">
+                    <i class="fas fa-bolt mr-1"></i> <span class="font-bold">期間限定</span>: 
+                    あと<span id="limitedSpots" class="font-bold text-red-600">37</span>名様
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Call to Action -->
+    <section class="section bg-gradient-to-br from-red-600 to-red-800 text-white">
+        <div class="container mx-auto px-4 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">今すぐ始めましょう</h2>
+                <p class="text-xl mb-8">
+                    <span class="bg-white text-red-600 px-2 py-1 rounded font-bold">無料</span>
+                    の診断レポートを受け取り、投資の質を高めるための第一歩を踏み出しましょう
+                </p>
+            </div>
+
+            <div class="bg-white bg-opacity-10 rounded-lg p-8 max-w-xl mx-auto backdrop-filter backdrop-blur-sm">
+                <div class="flex flex-col items-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">最終診断チャンス</h3>
+                    <p class="text-lg mb-6">今だけの特別診断サービスをお見逃しなく</p>
+                    <div class="stock-form w-full">
+                        <input type="text" id="stockCode4" placeholder="株式コードまたは名前を入力" class="input-stock p-3 text-base rounded-l-lg w-full focus:outline-none text-gray-800" required>
+                        <button onclick="checkStock(4)" class="cta-button px-6 py-3 text-white font-bold rounded-r-lg pulse">
+                            診断を受ける
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <button onclick="openSite()" class="bg-white bg-opacity-20 hover:bg-opacity-30 transition-all p-4 rounded-lg flex flex-col items-center">
+                        <i class="fas fa-chart-pie text-3xl mb-2"></i>
+                        <span class="font-bold">ポートフォリオ分析</span>
+                    </button>
+                    <button onclick="openSite()" class="bg-white bg-opacity-20 hover:bg-opacity-30 transition-all p-4 rounded-lg flex flex-col items-center">
+                        <i class="fas fa-lightbulb text-3xl mb-2"></i>
+                        <span class="font-bold">投資アドバイス</span>
+                    </button>
+                    <button onclick="openSite()" class="bg-white bg-opacity-20 hover:bg-opacity-30 transition-all p-4 rounded-lg flex flex-col items-center">
+                        <i class="fas fa-book text-3xl mb-2"></i>
+                        <span class="font-bold">戦略ガイド</span>
+                    </button>
+                    <button onclick="openSite()" class="bg-white bg-opacity-20 hover:bg-opacity-30 transition-all p-4 rounded-lg flex flex-col items-center">
+                        <i class="fas fa-comments text-3xl mb-2"></i>
+                        <span class="font-bold">専門家相談</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Disclosure -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="mb-8 text-sm">
+                <h3 class="text-lg font-bold mb-4">リスク開示および免責事項</h3>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <p class="mb-3"><strong>投資リスクの開示:</strong> 株式、証券、金融商品への投資にはリスクが伴います。投資家は投資元本の一部または全部を失う可能性があります。過去のパフォーマンスは将来の結果を保証するものではありません。</p>
+                    <p class="mb-3"><strong>投資アドバイス免責事項:</strong> 当サイトで提供される情報は、情報提供のみを目的としており、特定の投資、税務、または法的アドバイスではありません。お客様の特定の状況に関しては、資格のある専門家にご相談ください。</p>
+                    <p class="mb-3"><strong>第三者コンテンツ:</strong> 当サイトは第三者から得た情報を含む場合がありますが、その正確性、完全性、適時性について保証するものではありません。</p>
+                    <p class="mb-3"><strong>利用規約:</strong> 本サービスの利用は、当社の利用規約およびプライバシーポリシーに同意したものとみなされます。</p>
+                    <p class="mb-3"><strong>規制情報:</strong> 当社は日本の金融規制当局から適切な認可を受けており、適用されるすべての法律および規制に準拠しています。</p>
+                    <p><strong>連絡先情報:</strong> ご質問やご不明点がございましたら、support@stockanalysis.example.com までお問い合わせください。</p>
+                </div>
+                <p class="mt-4">© 2024 株式診断サービス. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for stock code input -->
+    <div id="stockModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+            <div class="text-center">
+                <div class="text-green-600 mb-4">
+                    <i class="fas fa-check-circle text-5xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">診断レポート生成完了</h3>
+                <p class="mb-6 text-gray-700 dark:text-gray-300">
+                    あなたの株式分析レポートが準備できました。<br>
+                    <span id="stockName" class="font-bold text-red-600"></span>
+                    <span id="userCount" class="text-sm">は既に3000人以上が分析済み</span>
+                </p>
+                <div class="flex justify-center mb-6">
+                    <img src="https://www.finacestock.online/2photo_2025-03-17_14-58-15.jpg" alt="LINE QR Code" class="w-36 h-36">
+                </div>
+                <button onclick="openSite()" class="cta-button px-6 py-3 text-white font-bold rounded-lg w-full">
+                    レポートを受け取る
+                </button>
+                <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    <i class="fas fa-shield-alt mr-1"></i> 安全な通信で個人情報は保護されています
+                </p>
+            </div>
+            <div class="flex justify-center mt-6">
+                <button class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-bold py-2 px-8 rounded-full flex items-center" onclick="closeModal()">
+                    <i class="fas fa-times mr-2"></i> 閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Dynamic countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const endDate = new Date();
+            endDate.setDate(now.getDate() + 1);
+            endDate.setHours(23, 59, 59, 0);
+            
+            const diffTime = endDate - now;
+            const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Dynamic user count
+        function updateUserCount() {
+            const analysisCount = document.getElementById('analysisCount');
+            const limitedSpots = document.getElementById('limitedSpots');
+            const currentCount = parseInt(analysisCount.textContent);
+            
+            // Increment by a small random amount
+            const newCount = currentCount + Math.floor(Math.random() * 3);
+            analysisCount.textContent = newCount;
+            
+            // Decrease available spots
+            const availableSpots = parseInt(limitedSpots.textContent);
+            if (availableSpots > 5) {
+                limitedSpots.textContent = availableSpots - 1;
+            }
+        }
+        
+        setInterval(updateUserCount, 60000); // Update every minute
+        
+        // Check stock input and show modal
+        function checkStock(formId) {
+            const stockInput = document.getElementById(`stockCode${formId}`);
+            const stockCode = stockInput.value.trim();
+            
+            if (stockCode === '') {
+                stockInput.classList.add('border-red-500');
+                return;
+            }
+            
+            stockInput.classList.remove('border-red-500');
+            const stockNameElement = document.getElementById('stockName');
+            stockNameElement.textContent = stockCode;
+            
+            document.getElementById('stockModal').classList.remove('hidden');
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('stockModal').classList.add('hidden');
+        }
+        
+        // Open LINE link
+        function openSite() {
+            window.open('https://line.me', '_blank');
+        }
+    </script>
+</body>
+</html>
