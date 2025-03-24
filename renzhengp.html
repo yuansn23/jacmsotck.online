@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stock Market Insights 2025 - Expert Analysis & Predictions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0A2342;
+            --secondary-color: #2CA58D;
+            --accent-color: #F24C4E;
+            --light-color: #F6F8FF;
+            --dark-color: #1A1A2E;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0A2342 0%, #174873 100%);
+        }
+        
+        .cta-button {
+            background-color: var(--accent-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(242, 76, 78, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(242, 76, 78, 0.5);
+        }
+        
+        .cta-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover::after {
+            left: 100%;
+        }
+        
+        .secondary-button {
+            background-color: var(--secondary-color);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 165, 141, 0.3);
+        }
+        
+        .secondary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(44, 165, 141, 0.4);
+        }
+        
+        .insight-card {
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .notification-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--accent-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ffcc00;
+            color: var(--dark-color);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(242, 76, 78, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(242, 76, 78, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(242, 76, 78, 0);
+            }
+        }
+        
+        .ticker-highlight {
+            background: linear-gradient(90deg, #2CA58D, #4CAF50);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stock-up {
+            color: #4CAF50;
+        }
+        
+        .stock-down {
+            color: #F24C4E;
+        }
+        
+        .chart-animation {
+            animation: chartGrow 1.5s ease-out;
+            transform-origin: bottom;
+        }
+        
+        @keyframes chartGrow {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+        
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.3s ease-out;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close-popup:hover {
+            color: #F24C4E;
+        }
+        
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .limited-spots {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: var(--dark-color);
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .chart-container {
+            background-image: url('https://www.stockprofa.online/img/1.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .chart-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 35, 66, 0.7);
+            z-index: 1;
+        }
+        
+        .chart-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pain-point {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Icon -->
+    <div class="notification-icon pulse" onclick="openPopup()">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+    
+    <!-- Popup -->
+    <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closePopup()">&times;</span>
+            <div class="text-center mb-4">
+                <h3 class="text-2xl font-bold mb-2">🔥 2025 US Stock Boom List LEAKED! 🔥</h3>
+                <p class="text-gray-700 mb-4">Get FREE access to our list of 10 potential high-growth stocks for 2025.</p>
+                <div class="mb-4 p-2 bg-yellow-100 rounded-lg">
+                    <p class="font-bold">Already claimed by 3,922 investors today</p>
+                    <p class="text-red-600 font-bold">Only 20 free spots remaining today!</p>
+                </div>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg text-base">
+                </div>
+                <div>
+                    <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg text-base">
+                </div>
+                <button type="button" class="cta-button w-full py-3 rounded-lg text-lg font-bold" onclick="opensite()">
+                    Get My Free Stock Picks Now
+                </button>
+            </form>
+            <p class="text-sm text-gray-500 mt-4 text-center">Your information is secure and will never be shared with third parties.</p>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="mb-4 inline-block px-3 py-1 bg-yellow-400 text-gray-900 rounded-full font-bold text-sm">
+                        EXCLUSIVE MARKET INSIGHTS
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Are You Missing Out on the <span class="ticker-highlight">Next Big Market Boom?</span></h1>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="pain-point">
+                            <i class="fas fa-times-circle mr-2 text-red-400"></i>
+                            <span>Feeling overwhelmed by confusing stock market information?</span>
+                        </div>
+                        <div class="pain-point">
+                            <i class="fas fa-times-circle mr-2 text-red-400"></i>
+                            <span>Tired of missing out on great opportunities while others profit?</span>
+                        </div>
+                        <div class="pain-point">
+                            <i class="fas fa-times-circle mr-2 text-red-400"></i>
+                            <span>Unsure which stocks have genuine growth potential in 2025?</span>
+                        </div>
+                    </div>
+                    
+                    <div class="limited-spots mb-6">
+                        Today's spots remaining: 20
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="cta-button text-lg font-bold py-3 px-6 rounded-lg" onclick="openPopup()">
+                            Get 10 High-Potential Stocks FREE
+                        </button>
+                        <button class="secondary-button text-lg font-bold py-3 px-6 rounded-lg" onclick="openPopup()">
+                            Join Expert Community
+                        </button>
+                    </div>
+                    
+                    <p class="text-sm mt-4 text-gray-300">
+                        <i class="fas fa-users mr-1"></i> 3,922 investors have already claimed this offer today
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="chart-container p-4 flex items-center justify-center">
+                        <div class="chart-content text-center">
+                            <h2 class="text-3xl font-bold mb-4">2025 Market Forecast</h2>
+                            <p class="text-xl mb-6">Discover which sectors will lead the next bull run</p>
+                            <button class="cta-button py-3 px-6 rounded-lg font-bold" onclick="openPopup()">
+                                Reveal Top Picks
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Track Record Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Our Track Record Speaks for Itself</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    We've successfully identified these high-performing stocks before their major moves
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Stock 1 -->
+                <div class="insight-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Apple (AAPL)</h3>
+                        <span class="stock-up font-bold">+124%</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Recommended before their services expansion and AI integration</p>
+                    <div class="h-20 bg-gray-100 rounded flex items-end p-2">
+                        <div class="w-1/5 h-4 bg-green-200 chart-animation"></div>
+                        <div class="w-1/5 h-8 bg-green-300 chart-animation"></div>
+                        <div class="w-1/5 h-12 bg-green-400 chart-animation"></div>
+                        <div class="w-1/5 h-16 bg-green-500 chart-animation"></div>
+                        <div class="w-1/5 h-20 bg-green-600 chart-animation"></div>
+                    </div>
+                </div>
+                
+                <!-- Stock 2 -->
+                <div class="insight-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Microsoft (MSFT)</h3>
+                        <span class="stock-up font-bold">+156%</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Identified before their cloud and AI revenue explosion</p>
+                    <div class="h-20 bg-gray-100 rounded flex items-end p-2">
+                        <div class="w-1/5 h-6 bg-green-200 chart-animation"></div>
+                        <div class="w-1/5 h-8 bg-green-300 chart-animation"></div>
+                        <div class="w-1/5 h-12 bg-green-400 chart-animation"></div>
+                        <div class="w-1/5 h-16 bg-green-500 chart-animation"></div>
+                        <div class="w-1/5 h-20 bg-green-600 chart-animation"></div>
+                    </div>
+                </div>
+                
+                <!-- Stock 3 -->
+                <div class="insight-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Tesla (TSLA)</h3>
+                        <span class="stock-up font-bold">+213%</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Recommended before their production scale-up and energy expansion</p>
+                    <div class="h-20 bg-gray-100 rounded flex items-end p-2">
+                        <div class="w-1/5 h-2 bg-green-200 chart-animation"></div>
+                        <div class="w-1/5 h-6 bg-green-300 chart-animation"></div>
+                        <div class="w-1/5 h-10 bg-green-400 chart-animation"></div>
+                        <div class="w-1/5 h-14 bg-green-500 chart-animation"></div>
+                        <div class="w-1/5 h-20 bg-green-600 chart-animation"></div>
+                    </div>
+                </div>
+                
+                <!-- Stock 4 -->
+                <div class="insight-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">NVIDIA (NVDA)</h3>
+                        <span class="stock-up font-bold">+318%</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Highlighted before the AI computing boom took off</p>
+                    <div class="h-20 bg-gray-100 rounded flex items-end p-2">
+                        <div class="w-1/5 h-3 bg-green-200 chart-animation"></div>
+                        <div class="w-1/5 h-5 bg-green-300 chart-animation"></div>
+                        <div class="w-1/5 h-9 bg-green-400 chart-animation"></div>
+                        <div class="w-1/5 h-14 bg-green-500 chart-animation"></div>
+                        <div class="w-1/5 h-20 bg-green-600 chart-animation"></div>
+                    </div>
+                </div>
+                
+                <!-- Stock 5 -->
+                <div class="insight-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Amazon (AMZN)</h3>
+                        <span class="stock-up font-bold">+142%</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Selected before their AWS expansion and retail domination</p>
+                    <div class="h-20 bg-gray-100 rounded flex items-end p-2">
+                        <div class="w-1/5 h-5 bg-green-200 chart-animation"></div>
+                        <div class="w-1/5 h-8 bg-green-300 chart-animation"></div>
+                        <div class="w-1/5 h-12 bg-green-400 chart-animation"></div>
+                        <div class="w-1/5 h-16 bg-green-500 chart-animation"></div>
+                        <div class="w-1/5 h-20 bg-green-600 chart-animation"></div>
+                    </div>
+                </div>
+                
+                <!-- Stock 6 -->
+                <div class="insight-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">AMD (AMD)</h3>
+                        <span class="stock-up font-bold">+187%</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Recommended before their server market share gains</p>
+                    <div class="h-20 bg-gray-100 rounded flex items-end p-2">
+                        <div class="w-1/5 h-4 bg-green-200 chart-animation"></div>
+                        <div class="w-1/5 h-7 bg-green-300 chart-animation"></div>
+                        <div class="w-1/5 h-11 bg-green-400 chart-animation"></div>
+                        <div class="w-1/5 h-15 bg-green-500 chart-animation"></div>
+                        <div class="w-1/5 h-20 bg-green-600 chart-animation"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="limited-spots mb-6">
+                    Only 20 free spots remaining today!
+                </div>
+                <button class="cta-button text-xl font-bold py-3 px-8 rounded-lg pulse" onclick="openPopup()">
+                    Reveal Our 10 Stocks for 2025
+                </button>
+                <p class="text-sm mt-4 text-gray-500">
+                    <i class="fas fa-lock mr-1"></i> This information is typically reserved for our premium members
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Us Section -->
+    <section class="py-16 px-4 bg-gray-100">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://www.stockprofa.online/img/2.jpg" alt="Stock analysis" class="rounded-lg shadow-xl">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold mb-6">Why Join Our Investment Community?</h2>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-white text-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-semibold">Data-Driven Analysis</h3>
+                                <p class="text-gray-600">Our team uses advanced algorithms and technical analysis to identify high-potential stocks</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-white text-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-semibold">Fundamental Research</h3>
+                                <p class="text-gray-600">We evaluate companies based on financial health, competitive advantage, and growth prospects</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-white text-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-semibold">Expert Community</h3>
+                                <p class="text-gray-600">Connect with like-minded investors and learn from our team of market analysts</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-white text-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-semibold">Educational Resources</h3>
+                                <p class="text-gray-600">Access guides, webinars, and resources to improve your investment knowledge</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button py-3 px-6 rounded-lg font-bold" onclick="openPopup()">
+                        Join Our Community Today
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-16 px-4" style="background-image: linear-gradient(135deg, #0A2342 0%, #174873 100%);">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">What Our Members Say</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Join thousands of investors who have improved their investment results</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white">
+                            <span class="font-bold">JD</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">James D.</h4>
+                            <p class="text-sm text-gray-600">New York, NY</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"I was always intimidated by the stock market until I found this community. Their analysis is clear and actionable. I've seen a 34% increase in my portfolio in just 6 months!"</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white">
+                            <span class="font-bold">SL</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Sarah L.</h4>
+                            <p class="text-sm text-gray-600">Chicago, IL</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Their stock picks are incredible! I bought NVDA based on their recommendation and it's up over 200%. The educational resources have also helped me understand what I'm investing in."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white">
+                            <span class="font-bold">MT</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Michael T.</h4>
+                            <p class="text-sm text-gray-600">Austin, TX</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"As a beginner investor, I was making costly mistakes. This group helped me develop a strategy and stick to it. The community is supportive and the analysis is top-notch."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="cta-button text-xl font-bold py-3 px-8 rounded-lg" onclick="openPopup()">
+                    Join 3,922+ Investors Today
+                </button>
+                <p class="text-sm mt-4 text-gray-300">
+                    <i class="fas fa-clock mr-1"></i> Limited-time offer: Only 20 free spots remaining
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="bg-gray-100 rounded-lg p-8 text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Investment Strategy?</h2>
+                <p class="text-xl text-gray-700 mb-6 max-w-3xl mx-auto">Get our exclusive list of 10 high-potential stocks for 2025, completely FREE.</p>
+                
+                <div class="limited-spots mb-6 text-lg">
+                    HURRY: Only 20 free spots left today!
+                </div>
+                
+                <button class="cta-button text-xl font-bold py-4 px-10 rounded-lg pulse" onclick="openPopup()">
+                    Get My FREE Stock Picks Now
+                </button>
+                
+                <p class="text-sm mt-6 text-gray-500 max-w-2xl mx-auto">
+                    By joining our community, you'll receive our newsletter with market insights and stock recommendations. 
+                    Your information is secure and you can unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-10 px-4 bg-gray-800 text-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between mb-8">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-lg font-bold mb-4">Stock Market Insights</h3>
+                    <p class="text-gray-400 max-w-md">Helping investors make informed decisions with data-driven analysis and market research.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Important Information</h3>
+                    <p class="text-gray-400 max-w-md">All investments involve risk. Past performance is not indicative of future results. Always do your own research before investing.</p>
+                </div>
+            </div>
+            
+            <hr class="border-gray-700 mb-6">
+            
+            <div class="text-gray-400 text-sm">
+                <p class="mb-4">Disclaimer: The information provided on this website is for educational purposes only and does not constitute investment advice. We do not guarantee any particular outcome or profit. Investing in securities involves risks, and there is always the potential of losing money when you invest in securities. Before investing, consider your investment objectives and risks.</p>
+                
+                <p class="mb-4">The historical stock performance information is provided for informational purposes only, and is not intended as investment advice or as a recommendation to buy or sell any security. Past performance does not guarantee future results.</p>
+                
+                <p class="mt-6">&copy; 2023 Stock Market Insights. All rights reserved. <a href="#" class="text-gray-300 hover:underline">Privacy Policy</a> | <a href="#" class="text-gray-300 hover:underline">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Function to open popup
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+        
+        // Function to close popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+        
+        // Function to open WhatsApp
+        function opensite() {
+            window.open('https://wa.me/yourphonenumberhere', '_blank');
+        }
+        
+        // Close popup when clicking outside
+        window.onclick = function(event) {
+            const popup = document.getElementById('popup');
+            if (event.target === popup) {
+                closePopup();
+            }
+        }
+    </script>
+</body>
+</html>
