@@ -124,22 +124,22 @@
             50% { opacity: 0; }
         }
         
-        /* Animation for stock table */
-        @keyframes slideUpDown {
-            0%, 20% { transform: translateY(0); }
-            25%, 45% { transform: translateY(-100%); }
-            50%, 70% { transform: translateY(-200%); }
-            75%, 95% { transform: translateY(-300%); }
-            100% { transform: translateY(-400%); }
+        /* 改善された株価テーブルのアニメーション */
+        @keyframes slideUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
         }
         
         .stock-table-container {
-            height: 80px;
+            height: 250px;
             overflow: hidden;
+            position: relative;
         }
         
-        .stock-table-slide {
-            animation: slideUpDown 20s infinite;
+        .stock-table-scroll {
+            animation: slideUp 15s linear infinite;
+            position: absolute;
+            width: 100%;
         }
         
         /* Modal styles */
@@ -212,65 +212,6 @@
             to { width: 100% }
         }
         
-        .chart-animation {
-            width: 100%;
-            height: 200px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .chart-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, transparent),
-                        linear-gradient(to right, rgba(0, 123, 255, 0.2), rgba(6, 199, 85, 0.2));
-            background-size: 200% 100%;
-            background-position: 100% 0;
-            animation: chartMove 4s infinite;
-        }
-        
-        @keyframes chartMove {
-            0% { background-position: 100% 0; }
-            50% { background-position: 0% 0; }
-            100% { background-position: 100% 0; }
-        }
-        
-        .chart-bars {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding: 0 20px;
-        }
-        
-        .chart-bar {
-            width: 15px;
-            background-color: var(--line-green);
-            border-radius: 3px 3px 0 0;
-            animation: barGrow 4s infinite;
-        }
-        
-        .chart-bar:nth-child(odd) {
-            background-color: var(--accent-blue);
-        }
-        
-        @keyframes barGrow {
-            0% { height: 30%; }
-            20% { height: 60%; }
-            40% { height: 40%; }
-            60% { height: 80%; }
-            80% { height: 50%; }
-            100% { height: 30%; }
-        }
-        
         .analysis-icon {
             display: inline-block;
             animation: rotateIcon 2s infinite linear;
@@ -279,6 +220,150 @@
         @keyframes rotateIcon {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        /* 新しい酷炫なアニメーション */
+        .cool-chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-20px, -20px); }
+        }
+        
+        .chart-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            transform: translateY(50%);
+        }
+        
+        .chart-line-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 4s forwards, pulseLine 3s 4s infinite;
+        }
+        
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes pulseLine {
+            0% { stroke-opacity: 1; }
+            50% { stroke-opacity: 0.5; }
+            100% { stroke-opacity: 1; }
+        }
+        
+        .data-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4f8fff;
+            box-shadow: 0 0 10px #4f8fff, 0 0 20px #4f8fff;
+            opacity: 0;
+            animation: fadeInPoint 0.5s forwards;
+        }
+        
+        @keyframes fadeInPoint {
+            to { opacity: 1; }
+        }
+        
+        .data-value {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            background: rgba(0, 123, 255, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            transform: translate(-50%, -130%);
+            opacity: 0;
+            animation: fadeInValue 0.5s forwards;
+        }
+        
+        @keyframes fadeInValue {
+            to { opacity: 0.9; }
+        }
+        
+        .prediction-arrow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            right: 30px;
+            top: 30%;
+            opacity: 0;
+            animation: fadeInArrow 1s 3s forwards, floatArrow 2s 4s infinite;
+        }
+        
+        @keyframes fadeInArrow {
+            to { opacity: 1; }
+        }
+        
+        @keyframes floatArrow {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .ai-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #4f8fff, transparent);
+            animation: scanMove 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes scanMove {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(295px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .data-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: floatParticle 10s linear infinite;
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
         }
     </style>
 </head>
@@ -385,22 +470,30 @@
                 </div>
                 
                 <div class="w-full md:w-1/2">
-                    <div class="relative">
-                        <div class="chart-animation rounded-lg shadow-lg bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm border border-gray-700">
-                            <div class="chart-line"></div>
-                            <div class="chart-bars">
-                                <div class="chart-bar" style="height: 60%;"></div>
-                                <div class="chart-bar" style="height: 40%;"></div>
-                                <div class="chart-bar" style="height: 80%;"></div>
-                                <div class="chart-bar" style="height: 30%;"></div>
-                                <div class="chart-bar" style="height: 70%;"></div>
-                                <div class="chart-bar" style="height: 50%;"></div>
-                                <div class="chart-bar" style="height: 90%;"></div>
-                                <div class="chart-bar" style="height: 45%;"></div>
-                            </div>
-                        </div>
-                        <img src="https://www.goodmja.online/rigu/516287.jpg" alt="AI株式診断" class="w-full rounded-lg shadow-xl mt-4">
+                    <div class="cool-chart-container">
+                        <div class="chart-grid"></div>
+                        <div class="data-particles" id="particles"></div>
+                        <div class="ai-scan"></div>
+                        
+                        <svg class="chart-line" viewBox="0 0 600 200" preserveAspectRatio="none">
+                            <path id="chartPath" class="chart-line-path" d="M0,150 C50,120 100,170 150,90 S250,40 300,70 S400,150 450,80 S550,60 600,100" fill="none" stroke="#4f8fff" stroke-width="3"></path>
+                        </svg>
+                        
+                        <div class="data-point" style="left: 25%; bottom: 45%;"></div>
+                        <div class="data-value" style="left: 25%; bottom: 45%;">+12.8%</div>
+                        
+                        <div class="data-point" style="left: 50%; bottom: 65%;"></div>
+                        <div class="data-value" style="left: 50%; bottom: 65%;">+15.3%</div>
+                        
+                        <div class="data-point" style="left: 75%; bottom: 60%;"></div>
+                        <div class="data-value" style="left: 75%; bottom: 60%;">+19.1%</div>
+                        
+                        <svg class="prediction-arrow" viewBox="0 0 24 24">
+                            <path d="M7 14l5-5 5 5" fill="none" stroke="#4f8fff" stroke-width="2"></path>
+                        </svg>
                     </div>
+                    
+                    <img src="https://www.goodmja.online/rigu/516287.jpg" alt="AI株式診断" class="w-full rounded-lg shadow-xl mt-4">
                 </div>
             </div>
         </div>
@@ -416,7 +509,7 @@
                 </p>
             </div>
             
-            <div class="bg-gray-100 rounded-lg p-4 shadow-md mx-auto max-w-4xl overflow-hidden">
+            <div class="bg-gray-100 rounded-lg p-4 shadow-md mx-auto max-w-4xl">
                 <table class="w-full text-left">
                     <thead>
                         <tr class="bg-gray-200">
@@ -428,7 +521,7 @@
                 </table>
                 
                 <div class="stock-table-container">
-                    <div class="stock-table-slide">
+                    <div class="stock-table-scroll">
                         <table class="w-full text-left">
                             <tbody>
                                 <tr class="border-b border-gray-200">
@@ -451,16 +544,36 @@
                                     <td class="py-3 px-4">株価下落確率が高い</td>
                                     <td class="py-3 px-4 down font-bold">-7.05%</td>
                                 </tr>
-                                <tr>
+                                <tr class="border-b border-gray-200">
                                     <td class="py-3 px-4 font-medium">7273</td>
                                     <td class="py-3 px-4">株価上昇確率が高い</td>
                                     <td class="py-3 px-4 up font-bold">+19.08%</td>
                                 </tr>
-                                <!-- Duplicate for animation -->
+                                <!-- 同じデータを繰り返してシームレスな滚动を実現 -->
                                 <tr class="border-b border-gray-200">
                                     <td class="py-3 px-4 font-medium">5243</td>
                                     <td class="py-3 px-4">株価上昇確率が高い</td>
                                     <td class="py-3 px-4 up font-bold">+14.70%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">3807</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+12.80%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">303A</td>
+                                    <td class="py-3 px-4">株価下落確率が高い</td>
+                                    <td class="py-3 px-4 down font-bold">-9.89%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">7590</td>
+                                    <td class="py-3 px-4">株価下落確率が高い</td>
+                                    <td class="py-3 px-4 down font-bold">-7.05%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">7273</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+19.08%</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -668,12 +781,45 @@
             setTimeout(typeWriter, typingSpeed);
         }
         
-        // Start typing effect
+        // パーティクル生成
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // ランダムな位置と動きを設定
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                // アニメーション開始を遅延
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Start effects
         window.onload = function() {
             typeWriter();
+            createParticles();
         };
         
         // Modal functionality
+        function showModal() {
+            document.getElementById('progressModal').style.display = 'flex';
+            animateProgress();
+        }
+        
         function showProgressModal() {
             document.getElementById('progressModal').style.display = 'flex';
             animateProgress();
