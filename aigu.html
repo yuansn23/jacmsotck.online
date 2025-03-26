@@ -52,23 +52,16 @@
             z-index: 1000;
             cursor: pointer;
             transition: all 0.3s ease;
+            background-color: var(--line-green);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
         
         .float-icon:hover {
             transform: translateY(-50%) scale(1.05);
             box-shadow: 0 5px 15px rgba(6, 199, 85, 0.4);
-        }
-        
-        .float-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         
         .notification-badge {
@@ -372,20 +365,13 @@
             50% { opacity: 1; }
             100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
         }
-        
-        .line-icon-sm {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            border-radius: 5px;
-        }
     </style>
 </head>
 
 <body>
-    <!-- Floating LINE Icon -->
+    <!-- Floating Message Icon -->
     <div class="float-icon" onclick="showModal()">
-        <img src="https://i.pinimg.com/736x/b5/d1/84/b5d18429e258ccc5341ed9bc2c5e2630.jpg" alt="LINE">
+        <i class="fas fa-comment-dots text-white text-3xl"></i>
         <div class="notification-badge">1</div>
     </div>
 
@@ -438,7 +424,7 @@
             </div>
             
             <button onclick="opensite()" class="w-full line-btn text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center">
-                <img src="https://i.pinimg.com/736x/b5/d1/84/b5d18429e258ccc5341ed9bc2c5e2630.jpg" alt="LINE" class="line-icon-sm">
+                <i class="fas fa-comment-dots text-white mr-2"></i>
                 LINE友達追加して報告書を受け取る
             </button>
         </div>
@@ -478,7 +464,7 @@
                     </div>
                     
                     <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-6 rounded-full flex items-center">
-                        <img src="https://i.pinimg.com/736x/b5/d1/84/b5d18429e258ccc5341ed9bc2c5e2630.jpg" alt="LINE" class="line-icon-sm">
+                        <i class="fas fa-comment-dots text-white mr-2"></i>
                         無料でAI株式診断を受ける
                     </button>
                 </div>
@@ -597,7 +583,7 @@
             
             <div class="text-center mt-8">
                 <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-8 rounded-full flex items-center mx-auto">
-                    <img src="https://i.pinimg.com/736x/b5/d1/84/b5d18429e258ccc5341ed9bc2c5e2630.jpg" alt="LINE" class="line-icon-sm">
+                    <i class="fas fa-comment-dots text-white mr-2"></i>
                     あなたの銘柄を診断する
                 </button>
             </div>
@@ -648,7 +634,7 @@
             
             <div class="text-center mt-10">
                 <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-8 rounded-full flex items-center mx-auto">
-                    <img src="https://i.pinimg.com/736x/b5/d1/84/b5d18429e258ccc5341ed9bc2c5e2630.jpg" alt="LINE" class="line-icon-sm">
+                    <i class="fas fa-comment-dots text-white mr-2"></i>
                     今すぐAI診断を試す
                 </button>
             </div>
@@ -713,7 +699,7 @@
             
             <div class="text-center mt-10">
                 <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-8 rounded-full flex items-center mx-auto">
-                    <img src="https://i.pinimg.com/736x/b5/d1/84/b5d18429e258ccc5341ed9bc2c5e2630.jpg" alt="LINE" class="line-icon-sm">
+                    <i class="fas fa-comment-dots text-white mr-2"></i>
                     今すぐ無料診断を受ける
                 </button>
             </div>
