@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片网页</title>
-    <style>
-        body {
+ <style>
+        html, body {
             margin: 0; /* 去除默认边距 */
             padding: 0; /* 去除默认内边距 */
+            height: 100%; /* 使html和body的高度为100% */
+            overflow: hidden; /* 隐藏滚动条 */
+        }
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             background-color: #f0f0f0;
         }
         img {
