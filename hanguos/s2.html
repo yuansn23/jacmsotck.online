@@ -1,38 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图片网页</title>
-<style>
-        html, body {
-            margin: 0; /* 去除默认边距 */
-            padding: 0; /* 去除默认内边距 */
-            height: 100%; /* 使html和body的高度为100% */
-            overflow: hidden; /* 隐藏滚动条 */
+    <title>Single Screen Image</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        body {
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .image-container {
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
-            line-height: 0; /* 进一步消除行高影响 */
+            background-color: #000; /* 备用背景色 */
         }
-        img {
+
+        .clickable-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             cursor: pointer;
-            max-width: 100%;
-            height: auto;
-            display: block; /* 去除底部空白 */
+            display: block;
         }
     </style>
-    <script>
-        function handleClick() {
-            console.log("图片被点击了！");
-            window.location.href = "https://www.google.com";
-        }
-    </script>
 </head>
 <body>
-    <img src="https://www.jacmsotck.online/hanguos/555250326-202807.png" alt="图片" onclick="handleClick()">
+    <div class="image-container">
+        <img 
+            src="https://www.jacmsotck.online/hanguos/555250326-202807.png" 
+            alt="Clickable Image"
+            class="clickable-image"
+            onclick="handleImageClick(event)"
+        >
+    </div>
+
+    <script>
+        function handleImageClick(event) {
+            // 触发点击事件
+            console.log('Image clicked - redirecting to Google');
+            
+            // 跳转逻辑（新标签页打开）
+            window.open('https://www.google.com', '_blank');
+            
+            // 阻止默认行为（如果有）
+            event.preventDefault();
+        }
+    </script>
 </body>
 </html>
