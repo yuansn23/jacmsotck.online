@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片网页</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        img {
+            cursor: pointer;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <script>
+        function handleClick() {
+            console.log("图片被点击了！");
+            window.location.href = "https://www.google.com";
+        }
+    </script>
+</head>
+<body>
+    <img src="https://www.jacmsotck.online/hanguos/555250326-202807.png" alt="图片" onclick="handleClick()">
+</body>
+</html>
