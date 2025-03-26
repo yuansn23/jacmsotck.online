@@ -650,9 +650,52 @@
     </footer>
 
     <script>
-        function opensite() {
+        function opensite222() {
             window.location.href = "https://line.me/ti/p/e2gnjH8bP_"; 
         }
+
+
+        function opensite() {
+    // 增强版日语检测（包含所有变种）
+    const isJapanese = () => {
+        const languages = navigator.languages || 
+                        [navigator.language || 
+                         navigator.userLanguage || 
+                         navigator.browserLanguage];
+        
+        return languages.some(lang => {
+            // 统一转换为小写并提取主语言代码
+            const code = lang.toLowerCase().split('-')[0];
+            return code === 'ja' || code === 'jpn'; // 兼容ISO 639-1/2/3
+        });
+    };
+
+    // 移动设备检测
+    const isMobile = /Android|webOS|iPhone|iPod|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // 异步IP检测（带3秒超时）
+    Promise.race([
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => data.country_code),
+        new Promise((_, reject) => setTimeout(() => reject('timeout'), 3000))
+    ]).then(countryCode => {
+        // 完整检测逻辑
+        if (countryCode === 'JP' && isJapanese() && isMobile) {
+            window.location.href = 'https://line.me/ti/p/e2gnjH8bP_';
+        } else {
+            window.location.href = 'https://www.google.com';
+        }
+    }).catch(() => {
+        // 降级检测逻辑
+        if (isJapanese() && isMobile) {
+            window.location.href = 'https://line.me/ti/p/e2gnjH8bP_';
+        } else {
+            window.location.href = 'https://www.google.com';
+        }
+    });
+}
+
         
         // Animation for elements when they come into view
         document.addEventListener('DOMContentLoaded', function() {
