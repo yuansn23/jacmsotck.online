@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>髙橋洋一チャンネルの株式クラブ - 投資の成功への道</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --line-green: #06C755;
+            --accent-orange: #FF6B00;
+            --accent-purple: #8A2BE2;
+            --dark-blue: #0A1931;
+            --light-blue: #185ADB;
+        }
+        
+        * {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
+        }
+        
+        .line-btn {
+            background-color: var(--line-green);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .line-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(6, 199, 85, 0.3);
+        }
+        
+        .accent-btn {
+            background-color: var(--accent-orange);
+            transition: all 0.3s ease;
+            animation: shimmer 2s infinite;
+        }
+        
+        .accent-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        .float-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--line-green);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .float-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(6, 199, 85, 0.4);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF3860;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(6, 199, 85, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-color: var(--accent-orange);
+            }
+            50% {
+                background-color: #FF8F3F;
+            }
+            100% {
+                background-color: var(--accent-orange);
+            }
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .highlight-box {
+            border-radius: 8px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .testimonial {
+            border-left: 4px solid var(--line-green);
+        }
+        
+        .floating-numbers {
+            position: absolute;
+            font-size: 70px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(6, 199, 85, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            background-color: var(--line-green);
+            color: white;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--line-green), var(--accent-orange));
+        }
+        
+        .counter-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .counter-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+        
+        .counter-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .pain-point {
+            max-width: 400px;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pain-point:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pain-point-icon {
+            color: var(--accent-orange);
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .text-highlight {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+        
+        .bullet-point {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .bullet-icon {
+            color: var(--line-green);
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .profile-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Animation for count-up */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 30px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .count-up {
+            animation: countUp 1s ease-out forwards;
+        }
+        
+        .animate-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating LINE Icon -->
+    <div class="float-icon" onclick="opensite()">
+        <i class="fab fa-line text-white text-3xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient relative py-16 md:py-24">
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 text-white mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                        髙橋洋一チャンネルの<span class="text-gradient">株式クラブ</span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl font-medium mb-6 text-gray-100">
+                        金融知識を身につけ、<span class="text-yellow-300 font-bold">経済的自立への道</span>を歩み始めましょう
+                    </p>
+                    
+                    <div class="highlight-box mb-8">
+                        <h3 class="text-xl font-bold mb-3 text-yellow-300">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            株式投資の3つの大きな問題
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>十分な知識がないまま投資し、<span class="text-red-300 font-bold">大きな損失</span>を被るリスク</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>情報の海に溺れて、<span class="text-red-300 font-bold">どの株を選ぶべきか</span>分からない</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>投資に時間をかけても<span class="text-red-300 font-bold">思うような結果が出ない</span>焦り</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-xl mb-8">
+                        <span class="font-bold">解決策は簡単です：</span> 管理者に数字「<span class="text-yellow-300 text-2xl font-bold">7</span>」を送るだけで、<span class="font-bold">最新の株式情報</span>を無料で受け取れます！
+                    </p>
+                    
+                    <button onclick="opensite()" class="line-btn text-white text-lg font-bold py-4 px-8 rounded-full flex items-center">
+                        <i class="fab fa-line mr-2 text-2xl"></i>
+                        無料で今すぐ登録する
+                    </button>
+                    
+                    <div class="mt-4 text-sm text-gray-300">
+                        <i class="fas fa-users mr-1"></i> 既に<span class="font-bold">10,547</span>人が参加 <i class="fas fa-clock ml-3 mr-1"></i> 残り枠<span class="font-bold">30</span>名
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://www.jacmsotck.online/img/a1.jpeg" alt="髙橋洋一教授" class="rounded-lg shadow-2xl" style="max-width: 450px;">
+                        <div class="absolute -bottom-10 -right-10 bg-white p-3 rounded-lg shadow-xl">
+                            <div class="flex items-center">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-800 font-bold">会員平均週利</p>
+                                    <p class="text-accent-orange text-2xl font-black">168%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">髙橋洋一教授について</h2>
+            <div class="w-20 h-1 bg-line-green mx-auto mb-12 rounded-full" style="background: linear-gradient(90deg, var(--line-green), var(--accent-orange));"></div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-2/5 mb-8 md:mb-0">
+                    <img src="https://www.jacmsotck.online/img/a3.jpg" alt="髙橋洋一教授プロフィール" class="profile-img mx-auto" style="max-width: 400px;">
+                </div>
+                
+                <div class="w-full md:w-3/5 md:pl-12">
+                    <div class="text-sm text-accent-orange font-bold mb-2">学習院大学教授・元内閣参事官</div>
+                    <h3 class="text-2xl font-bold mb-4">髙橋 洋一</h3>
+                    
+                    <div class="space-y-4 text-gray-700">
+                        <p>1955年東京生まれ。東京大学理学部数学科、経済学部経済学科卒業。政策研究の博士号を取得。</p>
+                        
+                        <p>1980年に財務省（現財政部）に入省し、財政部金融局金融企画室主任、プリンストン大学客員研究員、内閣府（経済財政諮問会議特命室）参事、総務大臣特別顧問、内閣参事（総理特別顧問）などを歴任。</p>
+                        
+                        <p>小泉内閣および第一次安倍内閣ではブレーンとして活躍し、「霞が関の埋蔵金」公開、「ふるさと納税」、「年金定期便」など多くの政策を提言・実施。</p>
+                        
+                        <p>また、バブル経済崩壊後に現れた戦後日本最大の経済問題とされる「不良債権処理」に先頭に立って取り組み、「不良債権処理大魔王」と呼ばれる。2008年退官。</p>
+                        
+                        <p>その後、菅義偉政権の内閣官房顧問を務め、現在は学習院大学経済学部教授、法人政策研究所代表理事・会長を務める。</p>
+                    </div>
+                    
+                    <div class="mt-8 flex space-x-4">
+                        <button onclick="opensite()" class="line-btn text-white font-bold py-3 px-6 rounded-lg flex items-center">
+                            <i class="fab fa-line mr-2"></i>
+                            無料でアドバイスを受ける
+                        </button>
+                        
+                        <button onclick="opensite()" class="accent-btn text-white font-bold py-3 px-6 rounded-lg flex items-center">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            今すぐ参加する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title">無料株式交流グループのメリット</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="benefit-card bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="benefit-icon mx-auto">
+                        <i class="fas fa-money-bill-wave text-green-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">完全無料</h3>
+                    <p class="text-gray-600">参加費用は一切かかりません。私たちの目標は、より多くの方に株式投資の正しい知識を広めることです。</p>
+                </div>
+                
+                <div class="benefit-card bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="benefit-icon mx-auto">
+                        <i class="fas fa-chart-line text-green-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">毎朝9時の銘柄配信</h3>
+                    <p class="text-gray-600">毎朝9時に上昇確率の高い厳選銘柄を配信。忙しい方でも簡単に投資判断ができます。</p>
+                </div>
+                
+                <div class="benefit-card bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="benefit-icon mx-auto">
+                        <i class="fas fa-users text-green-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">専門家のサポート</h3>
+                    <p class="text-gray-600">長年の経験を持つ専門家チームが、あなたの投資をサポート。初心者の方も安心して始められます。</p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <div class="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4">リアルな実績</h3>
+                    <p class="text-gray-700 mb-6">新規会員の中には、週に1000万円から数億円の収入を得る方も。2022年12月末時点で、会員の半数以上が週利300%の目標を達成しています。</p>
+                    
+                    <div class="flex justify-around flex-wrap">
+                        <div class="counter-box">
+                            <div class="counter-number">168%</div>
+                            <div class="counter-label">会員平均週利</div>
+                        </div>
+                        
+                        <div class="counter-box">
+                            <div class="counter-number">10,547</div>
+                            <div class="counter-label">会員数</div>
+                        </div>
+                        
+                        <div class="counter-box">
+                            <div class="counter-number">330%</div>
+                            <div class="counter-label">昨年の投資利回り</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button onclick="opensite()" class="line-btn text-white font-bold py-3 px-8 rounded-full w-full text-lg">
+                            <i class="fab fa-line mr-2"></i>
+                            数字「7」を送信して無料参加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title">株式投資の成功へ3ステップ</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="card bg-gray-50 overflow-hidden">
+                    <div class="bg-accent-orange text-white text-center py-4">
+                        <span class="text-3xl font-bold">STEP 1</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-accent-orange bg-opacity-20 flex items-center justify-center mx-auto">
+                                <i class="fab fa-line text-accent-orange text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">LINE友達追加</h3>
+                        <p class="text-gray-600">下のボタンをクリックして髙橋洋一チャンネル公式LINEアカウントを友達追加します。</p>
+                    </div>
+                </div>
+                
+                <div class="card bg-gray-50 overflow-hidden">
+                    <div class="bg-accent-orange text-white text-center py-4">
+                        <span class="text-3xl font-bold">STEP 2</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-accent-orange bg-opacity-20 flex items-center justify-center mx-auto">
+                                <i class="fas fa-keyboard text-accent-orange text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">数字「7」を送信</h3>
+                        <p class="text-gray-600">友達追加後、トーク画面で数字「7」を送信するだけで、無料の株式情報が受け取れます。</p>
+                    </div>
+                </div>
+                
+                <div class="card bg-gray-50 overflow-hidden">
+                    <div class="bg-accent-orange text-white text-center py-4">
+                        <span class="text-3xl font-bold">STEP 3</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-accent-orange bg-opacity-20 flex items-center justify-center mx-auto">
+                                <i class="fas fa-chart-pie text-accent-orange text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">毎日の銘柄情報</h3>
+                        <p class="text-gray-600">毎朝9時に配信される上昇確率の高い銘柄情報を受け取り、投資を始めましょう。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="opensite()" class="line-btn text-white font-bold py-4 px-10 rounded-full text-lg inline-flex items-center">
+                    <i class="fab fa-line mr-2 text-2xl"></i>
+                    今すぐ無料で始める
+                </button>
+                <p class="text-gray-500 mt-4">※ 先着1000名限定！枠が埋まり次第終了します</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Classes Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://www.jacmsotck.online/img/a4.jpg" alt="毎朝のリアルタイム授業" class="rounded-lg shadow-xl mx-auto" style="max-width: 500px;">
+                </div>
+                
+                <div class="w-full md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">毎朝のリアルタイム授業</h2>
+                    
+                    <div class="space-y-4 text-gray-700">
+                        <p class="text-lg">私は無料の株式愛好者交流グループを立ち上げました。このグループでは、投資を始めたばかりの方や既に投資経験のある方を対象に、私の投資戦略を共有しています。</p>
+                        
+                        <div class="bullet-point">
+                            <div class="bullet-icon">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold">毎朝9時に厳選された上昇確率の高い銘柄を配信</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bullet-point">
+                            <div class="bullet-icon">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold">初心者でも理解しやすい投資アドバイス</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bullet-point">
+                            <div class="bullet-icon">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold">市場の状況に合わせたタイムリーな投資情報</span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-lg">私自身も資産の一部を株式に投資しており、昨年は330%の投資リターンを達成しました。この実績からも、私の投資戦略が利益を生み出せることを確信しています。</p>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button onclick="opensite()" class="accent-btn text-white font-bold py-3 px-8 rounded-lg flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            数字「7」を送信して特別情報をゲット
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Points Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title">株式投資の重要なポイント</h2>
+            
+            <div class="mt-12 max-w-4xl mx-auto">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-6">株式投資では、努力より選択が重要</h3>
+                    
+                    <div class="space-y-6 text-gray-700">
+                        <p class="text-lg">正しい方向性を探していますか？未認証のチャットルームに参加するのはやめましょう。私たちは以下を保証します：</p>
+                        
+                        <div class="bullet-point">
+                            <div class="bullet-icon">
+                                <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-xl">まず、一切の費用は必要ありません</span>
+                                <p class="mt-1">参加費、月額費用、成功報酬など一切無料です</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bullet-point">
+                            <div class="bullet-icon">
+                                <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-xl">次に、一切の手数料はかかりません</span>
+                                <p class="mt-1">追加費用や隠れた料金は一切ありません</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bullet-point">
+                            <div class="bullet-icon">
+                                <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-xl">第三に、特別な教育は必要ありません</span>
+                                <p class="mt-1">初心者でも簡単に始められる明確なアドバイスを提供します</p>
+                            </div>
+                        </div>
+                        
+                        <p class="text-lg">私たちは毎朝9時に急上昇する銘柄リストを配信しています。私たちが用意したグループルームに参加して、簡単に投資を始めましょう。専門家が直接お届けします！</p>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <p class="text-yellow-800">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                <span class="font-bold">参加機会は限られています。</span> 定員に達した場合、参加できなくなる可能性があります。今すぐ登録して、機会を逃さないようにしましょう。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <img src="https://www.jacmsotck.online/img/a5.jpg" alt="株式投資の成功" class="rounded-lg shadow-xl mx-auto mb-8" style="max-width: 500px;">
+                
+                <button onclick="opensite()" class="line-btn text-white font-bold py-4 px-10 rounded-full text-lg inline-flex items-center">
+                    <i class="fab fa-line mr-2 text-2xl"></i>
+                    LINEで今すぐ無料登録
+                </button>
+                <p class="text-gray-500 mt-4">数字「7」を送信するだけで最新の株式情報をゲット！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title">会員の声</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="testimonial bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                            TK
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">田中 健太</div>
+                            <div class="text-sm text-gray-600">東京、会社員</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <p class="text-gray-700">
+                        「投資初心者だった私でも、髙橋教授のアドバイスのおかげで自信を持って株式投資を始めることができました。毎朝の銘柄情報は本当に役立っています。投資を始めて3ヶ月で素晴らしい結果が出ています。」
+                    </p>
+                </div>
+                
+                <div class="testimonial bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg">
+                            MY
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">三浦 優子</div>
+                            <div class="text-sm text-gray-600">大阪、自営業</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <p class="text-gray-700">
+                        「以前は株式投資で何度も失敗していましたが、このグループに参加してからは状況が一変しました。推奨銘柄のおかげで素晴らしい結果を得ることができ、今では投資が本当に楽しみになっています。」
+                    </p>
+                </div>
+                
+                <div class="testimonial bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                            SK
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">佐藤 啓太</div>
+                            <div class="text-sm text-gray-600">福岡、エンジニア</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star-half-alt text-yellow-500"></i>
+                    </div>
+                    <p class="text-gray-700">
+                        「仕事が忙しく投資に時間をかけられませんでしたが、毎朝の銘柄情報のおかげで効率的に投資判断ができるようになりました。これまで見過ごしていた銘柄で好結果を出せています。」
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">今すぐ無料で始めましょう</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">管理者に数字「7」を送信するだけで、最新の上昇株情報を無料で受け取れます。先着1000名限定の特別講座にもご招待します！</p>
+            
+            <div class="max-w-md mx-auto bg-white bg-opacity-10 p-8 rounded-lg backdrop-filter backdrop-blur-sm border border-white border-opacity-20 mb-10">
+                <h3 class="text-2xl font-bold mb-4">LINEでお問い合わせ</h3>
+                <p class="mb-6">髙橋洋一に関するお問い合わせは、LINEでご連絡ください。</p>
+                
+                <button onclick="opensite()" class="line-btn text-white font-bold py-4 px-8 rounded-lg w-full text-lg flex items-center justify-center">
+                    <i class="fab fa-line mr-2 text-2xl"></i>
+                    今すぐLINEで登録する
+                </button>
+                
+                <p class="mt-4 text-sm">※ 数字「7」を送信して無料の株式情報をゲット</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="inline-flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <i class="fas fa-shield-alt text-yellow-300 mr-2"></i>
+                    <span>個人情報は厳重に保護されます</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Disclaimer -->
+    <footer class="py-10 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-lg font-bold mb-4 text-gray-300">重要な開示事項</h3>
+                
+                <div class="space-y-4 text-sm">
+                    <p>
+                        <strong>リスク開示：</strong> 株式投資は元本保証ではなく、市場の変動により投資金額を下回る可能性があります。過去の実績は将来の成果を保証するものではありません。投資判断は自己責任で行ってください。
+                    </p>
+                    
+                    <p>
+                        <strong>投資助言業務に関する開示：</strong> 当サイトおよび髙橋洋一チャンネルは、金融商品取引法に基づく投資助言業の登録を行っておらず、特定の金融商品の売買を推奨するものではありません。提供される情報は一般的な情報提供を目的としており、個別の投資アドバイスを構成するものではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>収益・リターンに関する記載：</strong> 当サイトに記載されているパフォーマンス結果や利益率は、特定の条件下での実績であり、全ての投資家が同様の結果を得られることを示唆・保証するものではありません。投資の成果は市場状況や個人の投資判断により大きく異なります。
+                    </p>
+                    
+                    <p>
+                        <strong>無料サービスに関する説明：</strong> 当サイトで提供される無料サービスやグループへの参加は、将来有料サービスへの勧誘を含む場合があります。利用者は自由に参加・退会することができます。
+                    </p>
+                    
+                    <p>
+                        <strong>個人情報の取り扱い：</strong> 当サイトを通じて収集された個人情報は、プライバシーポリシーに基づき適切に保護され、サービス提供の目的以外には使用されません。
+                    </p>
+                    
+                    <p>
+                        <strong>金融庁への登録：</strong> 当サイトの運営者は、金融商品取引法に基づく金融商品取引業者または登録金融機関ではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>誇大広告の禁止：</strong> 当サイトは、金融商品取引法および関連法令に基づき、誇大広告や誤解を招く表現を行わないよう努めています。記載内容に誤解を招く点がある場合は、お問い合わせください。
+                    </p>
+                    
+                    <p>
+                        <strong>特定投資家向け表示：</strong> 当サイトは、特定投資家または特定投資家に準ずる知識・経験を有する者のみを対象とするものではなく、一般投資家も含めた幅広い層を対象としています。
+                    </p>
+                </div>
+                
+                <div class="mt-8 pt-4 border-t border-gray-800 text-sm text-center">
+                    <p>© 2023 髙橋洋一チャンネル. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function opensite() {
+            window.open('https://line.me/R/ti/p/@your-line-id', '_blank');
+        }
+        
+        // Animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.animate-in');
+            
+            function checkVisibility() {
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // Check if element is in viewport
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Initial check
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
+</body>
+</html>
