@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <script>
+!function(f,b,e,v,n,t,s) {
+    if(f.fbq) return;
+    n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+    };
+    if(!f._fbq) f._fbq=n;
+    n.push=n;
+    n.loaded=!0;
+    n.version='2.0';
+    n.queue=[];
+
+    t=b.createElement(e);
+    t.async=!0;
+    t.src=v;
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+// 提取 URL 中的 fbid 参数
+function getQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+var fbid = getQueryParam('fbid');
+if (fbid) {
+    fbq('init', fbid);
+    fbq('track', 'PageView');
+}
+</script>
+   
    <meta name="viewport" content="
     width=device-width, 
     initial-scale=1.0, 
@@ -58,7 +90,9 @@
             console.log('Image clicked - redirecting to Google');
             
             // 跳转逻辑（新标签页打开）
-            window.location.href = "https://www.google.com";
+             fbq('track', 'AddToCart');
+  fbq('track', 'Purchase');
+            window.location.href = "https://lihi3.com/3A51O";
             
             // 阻止默认行为（如果有）
             event.preventDefault();
