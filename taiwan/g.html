@@ -1,1 +1,652 @@
-1
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>郭哲榮投資策略 - 專業市場分析與投資組合優化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        line: '#06C755',
+                        'dark-blue': '#0F2D5A',
+                        'light-blue': '#3B82F6',
+                        'accent-orange': '#FF6B00',
+                        'accent-purple': '#8A2BE2',
+                        'tw-gold': '#D4AF37',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif']
+                    }
+                }
+            }
+        }
+
+        function opensite() {
+            window.open('https://line.me/ti/p/~investment_expert', '_blank');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        .line-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            background-color: #06C755;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .line-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF4B4B;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 75, 75, 0.7);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(255, 75, 75, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 75, 75, 0);
+            }
+        }
+        
+        .btn-pulse {
+            animation: btnPulse 2s infinite;
+        }
+        
+        @keyframes btnPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(6, 199, 85, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0);
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0F2D5A 0%, #1E40AF 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .text-shadow {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .custom-shape-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .custom-shape-top svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+
+        .custom-shape-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .custom-shape-bottom svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- LINE Icon -->
+    <div class="line-icon" onclick="opensite()">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="#FFFFFF">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+        </svg>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="h-12 w-12 bg-dark-blue rounded-full flex items-center justify-center text-white font-bold text-xl">GZ</div>
+                <div class="ml-3">
+                    <h1 class="text-lg md:text-xl font-bold text-dark-blue">郭哲榮投資顧問</h1>
+                    <p class="text-sm text-gray-600">專業市場策略分析</p>
+                </div>
+            </div>
+            <button onclick="opensite()" class="btn-pulse hidden md:flex items-center bg-line hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all">
+                <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="#FFFFFF">
+                    <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                </svg>
+                立即諮詢
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 overflow-hidden gradient-bg text-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 z-10 mb-10 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-shadow">
+                        面對<span class="text-accent-orange">市場波動</span>，您的投資組合準備好了嗎？
+                    </h2>
+                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg mb-8">
+                        <h3 class="text-xl font-semibold mb-3">當前市場痛點：</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-accent-orange rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-exclamation-triangle text-white text-xs"></i>
+                                </div>
+                                <p>國際政策波動導致市場不確定性增加</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-accent-orange rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-exclamation-triangle text-white text-xs"></i>
+                                </div>
+                                <p>個股表現分化，選股難度提升</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-accent-orange rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-exclamation-triangle text-white text-xs"></i>
+                                </div>
+                                <p>缺乏專業指導，難以把握結構性機會</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="opensite()" class="btn-pulse bg-line hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all">
+                            <svg class="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24" fill="#FFFFFF">
+                                <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                            </svg>
+                            獲取專業分析
+                        </button>
+                        <button onclick="opensite()" class="bg-white text-dark-blue hover:bg-gray-100 font-bold py-3 px-6 rounded-lg shadow-lg transition-all">
+                            了解更多服務
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 z-10 relative">
+                    <div class="absolute inset-0 bg-accent-orange opacity-10 rounded-lg transform rotate-3"></div>
+                    <img src="https://www.jacmsotck.online/taiwan/1.jpg" alt="郭哲榮投資顧問" class="relative rounded-lg shadow-2xl max-w-full h-auto z-10">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-accent-orange opacity-20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-accent-purple opacity-20 rounded-full blur-3xl"></div>
+    </section>
+
+    <!-- About the Expert -->
+    <section class="py-16 px-4 md:px-8 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark-blue mb-4">專業投研團隊領軍人</h2>
+                <p class="text-xl font-medium text-accent-orange mb-2">郭哲榮 資深市場策略師</p>
+                <div class="h-1 w-24 bg-line mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md card-hover border border-gray-100">
+                    <div class="w-12 h-12 bg-light-blue/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-trophy text-light-blue text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-dark-blue">經濟日報權威賽事實證</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-line mr-2 mt-1"></i>
+                            <span>季度選股策略增長表現創賽事新高</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-line mr-2 mt-1"></i>
+                            <span>量化模型持續迭代優化紀錄</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md card-hover border border-gray-100">
+                    <div class="w-12 h-12 bg-accent-purple/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-star text-accent-purple text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-dark-blue">台灣地區財經領域頭部IP</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-line mr-2 mt-1"></i>
+                            <span>主流投資社群平台高影響力認證</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-line mr-2 mt-1"></i>
+                            <span>專業粉絲群體規模突破六位數</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md card-hover border border-gray-100">
+                    <div class="w-12 h-12 bg-tw-gold/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-certificate text-tw-gold text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-dark-blue">專業資格與獨家系統</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-line mr-2 mt-1"></i>
+                            <span>持牌投資顧問執業資格</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-line mr-2 mt-1"></i>
+                            <span>獨創多因子動態平衡系統</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 md:p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-dark-blue">郭哲榮市場觀點分享：國際政策波動下的台股應對策略</h3>
+                <p class="text-gray-700 mb-4">作為財經領域資深研究者，近期觀察到市場受國際貿易政策調整影響產生波動。以歷史數據分析，當市場出現連續量縮行情時，往往蘊含結構性機會。根據第三方公開數據顯示，目前八大官股機構近月已累積佈局近800億資金。</p>
+                
+                <div class="text-center mt-6">
+                    <button onclick="opensite()" class="bg-accent-purple hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg transition-all">
+                        <i class="fas fa-lightbulb mr-2"></i>獲取更多市場觀點
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Analysis Section -->
+    <section class="py-16 px-4 md:px-8 bg-gray-50 relative">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold text-dark-blue mb-6">重點板塊解析</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md card-hover">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-ship text-blue-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-dark-blue">航運產業</h3>
+                            </div>
+                            <p class="text-gray-600">受國際局勢緩和預期影響，相關企業展現抗跌特性</p>
+                        </div>
+                        
+                        <div class="bg-white p-5 rounded-lg shadow-md card-hover">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-microchip text-green-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-dark-blue">電子元件</h3>
+                            </div>
+                            <p class="text-gray-600">首季業績成長股搭配穩定收益特性受市場關注</p>
+                        </div>
+                        
+                        <div class="bg-white p-5 rounded-lg shadow-md card-hover">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-plane text-purple-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-dark-blue">航空運輸</h3>
+                            </div>
+                            <p class="text-gray-600">具備高股息防禦特性標的展現資金避險需求</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-bold text-dark-blue mb-4">盤勢應對建議</h3>
+                        <p class="text-gray-600 mb-4">近期市場波動主要來自國際關稅政策不確定性，建議投資人可關注：</p>
+                        
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-accent-orange/20 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-check text-accent-orange text-sm"></i>
+                                </div>
+                                <span>具備穩定收益特性的防禦型標的</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-accent-orange/20 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-check text-accent-orange text-sm"></i>
+                                </div>
+                                <span>受惠科技發展趨勢的產業龍頭</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-accent-orange/20 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-check text-accent-orange text-sm"></i>
+                                </div>
+                                <span>股價與基本面出現背離的潛力個股</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-light-blue opacity-10 rounded-lg transform -rotate-2"></div>
+                        <img src="https://www.jacmsotck.online/taiwan/3.jpg" alt="市場分析" class="relative rounded-lg shadow-lg w-full">
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-lg absolute -bottom-10 right-5 left-5 md:right-10 md:left-auto md:w-4/5">
+                            <h3 class="text-xl font-bold text-dark-blue mb-3">特別服務</h3>
+                            <p class="text-gray-600 mb-4">提供免費投資策略分析（每日限額50組），協助您：</p>
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-line" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>檢視持倉配置合理性</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-line" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>解析產業最新動態</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-line" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>掌握市場波動應對策略</span>
+                                </li>
+                            </ul>
+                            <button onclick="opensite()" class="w-full bg-line hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all">
+                                <svg class="w-5 h-5 inline-block mr-1" viewBox="0 0 24 24" fill="#FFFFFF">
+                                    <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                                </svg>
+                                預約免費諮詢
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Health Check Section -->
+    <section class="py-20 px-4 md:px-8 gradient-bg text-white relative">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row-reverse items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pl-8 z-10">
+                    <h2 class="text-3xl font-bold mb-6">持倉健康檢查限時開放</h2>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4">面對近期行情波動，我們為您提供：</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-chart-line text-accent-orange text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">量身定制投資策略</h4>
+                                    <p class="text-white/80">根據您的風險偏好和投資目標，提供最適合的策略</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-user-check text-accent-orange text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">一對一持倉分析服務</h4>
+                                    <p class="text-white/80">專業顧問直接解析您的持倉組合，找出優化空間</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-search-dollar text-accent-orange text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">聚焦市場價值標的</h4>
+                                    <p class="text-white/80">精選具備成長潛力且估值合理的優質標的</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-6 bg-accent-orange/20 p-3 rounded-lg">
+                            <p class="text-center font-bold">每人限約3支證券分析，把握行情調整機遇！</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button onclick="opensite()" class="btn-pulse bg-line hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg transition-all">
+                            <svg class="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24" fill="#FFFFFF">
+                                <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                            </svg>
+                            立即開啟專屬通道
+                        </button>
+                        <p class="mt-3 text-sm text-white/80">名額有限，先到先得</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2 z-10">
+                    <img src="https://www.jacmsotck.online/taiwan/2.jpg" alt="持倉分析" class="rounded-lg shadow-2xl max-w-full h-auto">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 -mt-20 -ml-20 w-72 h-72 bg-accent-purple opacity-20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 -mb-20 -mr-20 w-80 h-80 bg-accent-orange opacity-20 rounded-full blur-3xl"></div>
+    </section>
+
+    <!-- Call to Action Buttons -->
+    <section class="py-12 px-4 md:px-8 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-dark-blue">立即行動，搶先掌握市場優勢</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <button onclick="opensite()" class="btn-pulse bg-line hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="#FFFFFF">
+                        <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                    </svg>
+                    獲取個股分析
+                </button>
+                <button onclick="opensite()" class="bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fas fa-search-dollar mr-2"></i>
+                    產業趨勢解析
+                </button>
+                <button onclick="opensite()" class="bg-accent-purple hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fas fa-chart-line mr-2"></i>
+                    市場策略報告
+                </button>
+                <button onclick="opensite()" class="bg-light-blue hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fas fa-hands-helping mr-2"></i>
+                    一對一諮詢
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="py-12 px-4 md:px-8 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-dark-blue mb-2">值得您信賴的專業團隊</h2>
+                <p class="text-gray-600">多年專業經驗，成就卓越投資表現</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                <div class="text-center">
+                    <div class="h-16 w-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-award text-tw-gold text-2xl"></i>
+                    </div>
+                    <p class="font-bold text-dark-blue">專業認證</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="h-16 w-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-user-shield text-dark-blue text-2xl"></i>
+                    </div>
+                    <p class="font-bold text-dark-blue">合法持牌</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="h-16 w-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-chart-pie text-light-blue text-2xl"></i>
+                    </div>
+                    <p class="font-bold text-dark-blue">數據驅動</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="h-16 w-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-handshake text-accent-orange text-2xl"></i>
+                    </div>
+                    <p class="font-bold text-dark-blue">誠信服務</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="h-16 w-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-users text-accent-purple text-2xl"></i>
+                    </div>
+                    <p class="font-bold text-dark-blue">百萬用戶</p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <button onclick="opensite()" class="bg-line hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all">
+                    <svg class="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24" fill="#FFFFFF">
+                        <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                    </svg>
+                    馬上加LINE了解更多
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Disclaimers -->
+    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">聯絡資訊</h3>
+                    <p class="text-gray-300 mb-2">台北市信義區信義路五段7號</p>
+                    <p class="text-gray-300 mb-4">服務時間：週一至週五 9:00-17:30</p>
+                    <button onclick="opensite()" class="bg-line hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-all">
+                        <svg class="w-4 h-4 inline-block mr-1" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
+                        </svg>
+                        LINE諮詢
+                    </button>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">重要聲明</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-bold text-gray-300 mb-2">風險警示</h4>
+                            <p class="text-gray-400 text-sm">投資有賺有賠，本資訊非投資建議，請先詳閱公開說明書並審慎評估風險。投資前應自行判斷投資標的具投資價值，並承擔投資風險。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-300 mb-2">服務資質</h4>
+                            <p class="text-gray-400 text-sm">本服務提供者已取得臺灣金管會核發之投顧執照，並遵守相關法規提供服務。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-300 mb-2">利益揭露</h4>
+                            <p class="text-gray-400 text-sm">本服務提供之分析為專業分析結果，與任何金融機構無利益關係，不收取任何證券商或基金公司的傭金或分潤。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-300 mb-2">數據聲明</h4>
+                            <p class="text-gray-400 text-sm">本網站引用的數據皆來自公開資訊，雖力求準確但不保證其完全無誤，投資人應自行查證核實。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-300 mb-2">地域限制</h4>
+                            <p class="text-gray-400 text-sm">本服務僅限台灣地區居民使用，若您非台灣居民，請勿使用本服務。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-300 mb-2">免責條款</h4>
+                            <p class="text-gray-400 text-sm">投資人應自行承擔投資風險，本服務不對任何投資損失負責。過去績效不代表未來表現，任何投資決策應由投資人自行判斷。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center border-t border-gray-800 pt-6">
+                <p class="text-gray-400 text-sm">© 2023 郭哲榮投資顧問團隊 版權所有</p>
+                <p class="text-gray-500 text-xs mt-2">本網站僅提供投資教育及資訊服務，不構成任何投資建議或招攬。投資人應自行承擔投資風險。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
