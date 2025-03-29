@@ -1,0 +1,70 @@
+window.PageSDK = {
+                loadFacebookSDK: function () {
+            !(function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod
+                        ? n.callMethod.apply(n, arguments)
+                        : n.queue.push(arguments);
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = "2.0";
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            })(
+                window,
+                document,
+                "script",
+                "https://connect.facebook.net/en_US/fbevents.js"
+            );
+            fbq("init", "1990890038101341");
+            fbq("track", "PageView");
+        },
+        
+                                sendEvent: function () {
+                                                fbq("track", "Contact");
+                                    
+            
+                    },
+        handleJump: function (index = 1) {
+            let url = "https://fx.tttwg.com/RVzS-VtcQ";
+            let url2 = "https://fx.tttwg.com/RVzS-VtcQ";
+
+            if (index == 2 && url2) {
+                url = url2
+            }
+
+                            try {
+                //获取当前页面域名
+                fetch(location.origin + '/ap/addClick')
+                this.sendEvent()
+            } catch (e) {
+            }
+            location.href = url
+            return false;
+        },
+        loadJs: function (url, callback) {
+            const script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = url;
+            script.onload = callback;
+            document.body.appendChild(script);
+        },
+        loadStyle: function (url) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = url;
+            document.head.appendChild(link);
+        },
+            }
+
+    window.addEventListener("load", function () {
+                PageSDK.loadFacebookSDK();
+                                    });
