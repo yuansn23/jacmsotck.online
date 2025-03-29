@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直播平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        'yellow-light': '#FFF8E1',
+                        'blue-light': '#E1F5FE',
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+        
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(to right, #FFD54F, #FFB74D);
+        }
+        
+        .nav-indicator {
+            width: 24px;
+            height: 3px;
+            background-color: #000;
+            border-radius: 3px;
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .category-tag {
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 14px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .streamer-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1/1.05;
+        }
+        
+        .streamer-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .streamer-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+        }
+        
+        .viewer-count {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .badge.green {
+            background-color: rgba(46, 204, 113, 0.8);
+        }
+        
+        .badge.blue {
+            background-color: rgba(52, 152, 219, 0.8);
+        }
+        
+        .badge.pink {
+            background-color: rgba(231, 76, 60, 0.8);
+        }
+        
+        .location-tag {
+            position: absolute;
+            bottom: 40px;
+            left: 8px;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .tag-yellow {
+            background-color: #FFF8E1;
+            color: #FF9800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+        
+        .tag-blue {
+            background-color: #E1F5FE;
+            color: #03A9F4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #eee;
+            z-index: 100;
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .bottom-nav-item.active {
+            color: #5D5CDE;
+        }
+        
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dark .bottom-nav,
+        .dark body {
+            background-color: #181818;
+            color: #e0e0e0;
+        }
+        
+        .dark .bottom-nav {
+            border-top-color: #333;
+        }
+        
+        .dark .category-tag {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        
+        .dark .streamer-card-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+        
+        .banner {
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px 16px;
+        }
+    </style>
+</head>
+<body class="pb-16 dark:bg-gray-900">
+    <!-- Status Bar -->
+    <div class="flex justify-between items-center px-4 py-2 text-xs text-gray-600 dark:text-gray-400">
+        <div>9:37 | 43.0K/s</div>
+        <div class="flex items-center gap-1">
+            <i class="ri-bluetooth-line"></i>
+            <i class="ri-signal-wifi-3-line"></i>
+            <i class="ri-battery-charge-line"></i>
+            <span class="ml-1">87%</span>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="flex justify-between items-center px-4 mb-2">
+        <div class="flex gap-6 relative">
+            <div class="pb-2 text-gray-400 dark:text-gray-500">语音</div>
+            <div class="pb-2 font-medium relative">
+                直播
+                <div class="nav-indicator dark:bg-white"></div>
+            </div>
+            <div class="pb-2 text-gray-400 dark:text-gray-500">畅聊圈</div>
+        </div>
+        <div class="flex gap-4">
+            <i class="ri-search-line text-xl dark:text-gray-300"></i>
+            <div class="relative">
+                <i class="ri-message-3-line text-xl dark:text-gray-300"></i>
+                <div class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Categories -->
+    <div class="overflow-x-auto whitespace-nowrap px-2 mb-2">
+        <div class="inline-block mx-1">
+            <div class="category-tag bg-yellow-light text-yellow-600 dark:bg-gray-800 dark:text-yellow-400">热门</div>
+        </div>
+        <div class="inline-block mx-1">
+            <div class="category-tag bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">新秀</div>
+        </div>
+        <div class="inline-block mx-1">
+            <div class="category-tag bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">关注</div>
+        </div>
+        <div class="inline-block mx-1">
+            <div class="category-tag bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">舞蹈</div>
+        </div>
+        <div class="inline-block mx-1">
+            <div class="category-tag bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">湘潭</div>
+        </div>
+        <div class="inline-block mx-1">
+            <div class="category-tag bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">金牌主播</div>
+        </div>
+    </div>
+    
+    <!-- Stream Cards -->
+    <div class="grid grid-cols-2 gap-2 px-2">
+        <!-- Card 1 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 1">
+            <div class="badge green"><i class="ri-live-line"></i> 12</div>
+            <div class="location-tag">赤峰</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">不许叫我老婆</div>
+            </div>
+            <div class="viewer-count">765</div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 2">
+            <div class="badge blue"><i class="ri-cloud-line"></i> 29</div>
+            <div class="location-tag">东莞</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">天气预报说你会来！</div>
+            </div>
+            <div class="viewer-count">721</div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 3">
+            <div class="tag-yellow">小时榜冠军</div>
+            <div class="badge pink"><i class="ri-heart-line"></i> 41</div>
+            <div class="location-tag">哈尔滨</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">待人接物，无愧于心</div>
+            </div>
+            <div class="viewer-count">845</div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 4">
+            <div class="tag-blue">小时榜亚军</div>
+            <div class="badge blue"><i class="ri-map-pin-line"></i> 31</div>
+            <div class="location-tag">成都</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">距离你0.7km</div>
+            </div>
+            <div class="viewer-count">897</div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 5">
+            <div class="badge green"><i class="ri-live-line"></i> 11</div>
+            <div class="location-tag">德阳</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">新人没大哥</div>
+            </div>
+            <div class="viewer-count">706</div>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 6">
+            <div class="badge blue"><i class="ri-vidicon-line"></i> 37</div>
+            <div class="location-tag">武汉</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">再靠近一点点</div>
+            </div>
+            <div class="viewer-count">903</div>
+        </div>
+    </div>
+    
+    <!-- Banner -->
+    <div class="banner my-4">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='60' viewBox='0 0 300 60' fill='none'%3E%3Crect width='300' height='60' fill='%2324C173'/%3E%3Ctext x='150' y='35' font-family='Arial' font-size='16' fill='white' text-anchor='middle'%3E绿色直播生态行动%3C/text%3E%3C/svg%3E" alt="Banner" class="w-full">
+    </div>
+    
+    <!-- More Stream Cards -->
+    <div class="grid grid-cols-2 gap-2 px-2">
+        <!-- Card 7 -->
+        <div class="streamer-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 300' fill='none'%3E%3Crect width='300' height='300' fill='%23F0F0F0'/%3E%3Cpath d='M150 100 C117 100 90 127 90 160 C90 193 117 220 150 220 C183 220 210 193 210 160 C210 127 183 100 150 100 Z' fill='%23D0D0D0'/%3E%3Ccircle cx='150' cy='140' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M120 180 C120 180 135 200 150 200 C165 200 180 180 180 180 L120 180 Z' fill='%23A0A0A0'/%3E%3C/svg%3E" alt="Streamer 7">
+            <div class="badge blue"><i class="ri-star-line"></i> 38</div>
+            <div class="location-tag">大庆</div>
+            <div class="streamer-card-overlay">
+                <div class="text-white text-sm font-medium">柚子</div>
+            </div>
+            <div class="viewer-count">835</div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav dark:bg-gray-800 dark:border-gray-700">
+        <div class="bottom-nav-item">
+            <i class="ri-user-heart-line bottom-nav-icon"></i>
+            <span>交友</span>
+        </div>
+        <div class="bottom-nav-item">
+            <i class="ri-movie-line bottom-nav-icon"></i>
+            <span>娱乐</span>
+        </div>
+        <div class="bottom-nav-item">
+            <i class="ri-store-line bottom-nav-icon"></i>
+            <span>广场</span>
+        </div>
+        <div class="bottom-nav-item active relative">
+            <i class="ri-user-line bottom-nav-icon"></i>
+            <div class="notification-badge">4</div>
+            <span>我</span>
+        </div>
+    </div>
+    
+    <script>
+        // Add touch feedback on cards
+        document.querySelectorAll('.streamer-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.opacity = '0.8';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, 150);
+            });
+        });
+        
+        // Add horizontal scroll to categories
+        const categoryScroll = document.querySelector('.overflow-x-auto');
+        let isScrolling = false;
+        let startX;
+        let scrollLeft;
+        
+        categoryScroll.addEventListener('mousedown', (e) => {
+            isScrolling = true;
+            startX = e.pageX - categoryScroll.offsetLeft;
+            scrollLeft = categoryScroll.scrollLeft;
+        });
+        
+        categoryScroll.addEventListener('mouseleave', () => {
+            isScrolling = false;
+        });
+        
+        categoryScroll.addEventListener('mouseup', () => {
+            isScrolling = false;
+        });
+        
+        categoryScroll.addEventListener('mousemove', (e) => {
+            if(!isScrolling) return;
+            e.preventDefault();
+            const x = e.pageX - categoryScroll.offsetLeft;
+            const walk = (x - startX) * 2;
+            categoryScroll.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
