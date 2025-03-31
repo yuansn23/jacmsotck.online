@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>投資教育プラットフォーム</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a365d',
+                        secondary: '#00B900',
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .line-button {
+            animation: pulse 2s infinite;
+            background-color: #00B900;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff4757;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="relative min-h-screen w-[375px] mx-auto overflow-x-hidden pb-20">
+        <header class="bg-white shadow-sm fixed top-0 w-full z-50">
+            <div class="px-4 py-3 flex items-center justify-between">
+                <h1 class="text-xl font-['Pacifico']">logo</h1>
+            </div>
+        </header>
+
+        <main class="mt-16 px-4">
+            <section class="mb-8">
+                <div class="rounded-lg overflow-hidden shadow-lg bg-white p-6">
+                    <img src="https://www.cfrancmym.online/a1.jpg" alt="前澤友作" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold mb-4">前澤友作からのメッセージ</h2>
+                    <p class="text-gray-700 mb-4">お金の管理について皆様とお話ししたいと思います。銀行預金だけでは資産が目減りする可能性があります。賢明な投資配分こそが、真の資産成長への鍵となります。</p>
+                    <button onclick="opensite()" class="line-button w-full text-white font-bold py-3 px-6 rounded-button shadow-lg hover:opacity-90 transition-all cursor-pointer">
+                        <i class="ri-line-fill mr-2"></i>LINEで詳細を確認
+                    </button>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <h3 class="text-lg font-bold mb-4">無料投資教育コース</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="ri-check-line text-secondary mr-2"></i>
+                            資産配分の基本原則
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="ri-check-line text-secondary mr-2"></i>
+                            市場変動への対応戦略
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="ri-check-line text-secondary mr-2"></i>
+                            長期的価値投資の方法論
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="ri-check-line text-secondary mr-2"></i>
+                            リスク管理の重要ポイント
+                        </li>
+                    </ul>
+                    <button onclick="opensite()" class="line-button w-full text-white font-bold py-3 px-6 mt-6 rounded-button shadow-lg hover:opacity-90 transition-all cursor-pointer">
+                        <i class="ri-line-fill mr-2"></i>今すぐ参加する
+                    </button>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <img src="https://www.goodmja.online/rigu/3.jpg" alt="コミュニティ" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-lg font-bold mb-4">活発なコミュニティ</h3>
+                    <p class="text-gray-700 mb-4">今日だけで3,492人が参加！株式投資の知識共有と学習のための理想的な環境です。</p>
+                    <button onclick="opensite()" class="line-button w-full text-white font-bold py-3 px-6 rounded-button shadow-lg hover:opacity-90 transition-all cursor-pointer">
+                        <i class="ri-line-fill mr-2"></i>コミュニティに参加
+                    </button>
+                </div>
+            </section>
+
+            <section class="text-sm text-gray-500 mb-8">
+                <p class="mb-2">免責事項：本プラットフォームは教育目的のみで提供されており、特定の投資結果を保証するものではありません。</p>
+                <p>投資家の皆様は、ご自身の判断と責任において投資をお決めください。市場リスクにご注意ください。</p>
+            </section>
+        </main>
+
+        <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 cursor-pointer" onclick="opensite()">
+            <div class="w-[60px] h-[60px] bg-secondary rounded-full flex items-center justify-center shadow-lg relative">
+                <i class="ri-line-fill text-white text-3xl"></i>
+                <span class="notification-badge">1</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function opensite() {
+            window.location.href = 'https://line.me/';
+        }
+    </script>
+</body>
+</html>
