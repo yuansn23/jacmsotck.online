@@ -77,6 +77,66 @@
             font-weight: bold;
         }
         
+        /* Banner Styles */
+        .banner {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Category Icons */
+        .category-container {
+            background-color: #fff;
+            padding: 15px 10px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(255, 182, 193, 0.15);
+        }
+        
+        .category-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .category-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+        }
+        
+        .category-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff99cc, #ff6699);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 6px rgba(255, 102, 153, 0.3);
+        }
+        
+        .category-name {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
         /* Card Grid Styles */
         .card-grid {
             display: grid;
@@ -233,6 +293,81 @@
             <div class="tab">专属语音</div>
         </div>
     </header>
+    
+    <!-- Banner Image -->
+    <div class="banner">
+        <img src="https://picsum.photos/800/300?random=20" alt="相亲活动推广">
+    </div>
+    
+    <!-- Category Icons -->
+    <div class="container">
+        <div class="category-container">
+            <div class="category-row">
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="category-name">相亲推荐</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="category-name">同城约会</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="category-name">视频聊天</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="category-name">语音交友</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="category-name">礼物互送</div>
+                </div>
+            </div>
+            <div class="category-row">
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="category-name">VIP会员</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="category-name">活动日历</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="category-name">兴趣群组</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="category-name">恋爱话题</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="category-name">月老牵线</div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div class="card-grid">
         <div class="profile-card">
