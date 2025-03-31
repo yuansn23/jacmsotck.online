@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>社交匹配应用</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fff5f8;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #fff;
+            border-bottom: 1px solid #ffe6ee;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: linear-gradient(to right, #fff3f8, #fffbfc);
+        }
+        
+        .title-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+        
+        .active-title {
+            color: #ff6699;
+            border-bottom: 2px solid #ff6699;
+            padding-bottom: 5px;
+        }
+        
+        .search-filter {
+            color: #ff87b0;
+        }
+        
+        .tabs {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #ffdfeb;
+            background: linear-gradient(to right, #fff8fa, #fff);
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+            padding: 5px 0;
+            color: #999;
+        }
+        
+        .active-tab {
+            color: #ff6699;
+            font-weight: bold;
+        }
+        
+        /* Card Grid Styles */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 8px;
+        }
+        
+        .profile-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(255, 182, 193, 0.2);
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 0;
+            padding-bottom: 133%; /* Aspect ratio of the cards in the image */
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .profile-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-details {
+            font-size: 12px;
+        }
+        
+        .user-details .name {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .verification {
+            font-size: 11px;
+            color: #fff;
+            background-color: rgba(255, 102, 153, 0.7);
+            padding: 3px 6px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .verification i {
+            margin-right: 3px;
+        }
+        
+        /* Floating button */
+        .floating-button {
+            position: fixed;
+            right: 20px;
+            bottom: 70px;
+            width: 100px;
+            height: 36px;
+            background: linear-gradient(45deg, #ff6699, #ff99cc);
+            color: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(255, 102, 153, 0.4);
+            font-size: 12px;
+            z-index: 5;
+        }
+        
+        .floating-button .avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(to right, #fff5f8, #fff);
+            padding: 8px 0 5px;
+            border-top: 1px solid #ffdfeb;
+            z-index: 5;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        
+        .nav-item.active {
+            color: #ff6699;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 25%;
+            background-color: #ff3b78;
+            color: white;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="title-section">
+                <div class="title active-title">相亲</div>
+                <div class="title">聚会脱单</div>
+            </div>
+            <div class="search-filter">
+                <i class="fas fa-search"></i>
+                <span>申请月老</span>
+            </div>
+        </div>
+        <div class="tabs">
+            <div class="tab active-tab">全部</div>
+            <div class="tab">附近</div>
+            <div class="tab">专属视频</div>
+            <div class="tab">专属语音</div>
+        </div>
+    </header>
+    
+    <div class="card-grid">
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=1')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">思念是一种病</div>
+                        <div>云南 27岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=2')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">大外甥</div>
+                        <div>广东 29岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=3')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">晓月</div>
+                        <div>江苏 30岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=4')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">留长发女孩</div>
+                        <div>湖北 30岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=5')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">小婉</div>
+                        <div>云南 32岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=6')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">小小</div>
+                        <div>云南 31岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=7')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">晓梦</div>
+                        <div>四川 28岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=8')">
+                <div class="profile-info">
+                    <div class="user-details">
+                        <div class="name">花开</div>
+                        <div>广东 26岁</div>
+                    </div>
+                    <div class="verification">
+                        <i class="fas fa-check-circle"></i>视频相亲
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-button">
+        <div class="avatar">
+            <i class="fas fa-user"></i>
+        </div>
+        <div>与你匹配的</div>
+    </div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-video"></i>
+            <span>视频表白</span>
+        </div>
+        <div class="nav-item" style="position: relative;">
+            <div class="notification-badge">3</div>
+            <i class="fas fa-comment"></i>
+            <span>消息</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>我</span>
+        </div>
+    </div>
+</body>
+</html>
