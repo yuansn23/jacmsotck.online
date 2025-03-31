@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>社交匹配应用</title>
+    <title>视频分类</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,217 +14,85 @@
         }
         
         body {
-            background-color: #fff5f8;
+            background-color: #fff8fa;
             color: #333;
             line-height: 1.5;
+            padding-bottom: 60px;
         }
         
-        /* Header Styles */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
+        .container {
+            padding: 15px;
+        }
+        
+        /* Video Category Section */
+        .video-section {
+            margin-bottom: 30px;
             background-color: #fff;
-            border-bottom: 1px solid #ffe6ee;
+            border-radius: 10px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            padding: 15px;
         }
         
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            background: linear-gradient(to right, #fff3f8, #fffbfc);
-        }
-        
-        .title-section {
-            display: flex;
-            align-items: center;
-        }
-        
-        .title {
+        .section-title {
+            font-size: 18px;
             font-weight: bold;
-            font-size: 16px;
-            margin-right: 15px;
+            margin-bottom: 10px;
+            color: #222;
         }
         
-        .active-title {
-            color: #ff6699;
-            border-bottom: 2px solid #ff6699;
-            padding-bottom: 5px;
-        }
-        
-        .search-filter {
-            color: #ff87b0;
-        }
-        
-        .tabs {
+        .category-tags {
             display: flex;
-            padding: 10px 0;
-            border-bottom: 1px solid #ffdfeb;
-            background: linear-gradient(to right, #fff8fa, #fff);
-        }
-        
-        .tab {
-            flex: 1;
-            text-align: center;
-            font-size: 14px;
-            padding: 5px 0;
-            color: #999;
-        }
-        
-        .active-tab {
-            color: #ff6699;
-            font-weight: bold;
-        }
-        
-        /* Banner Styles */
-        .banner {
-            width: 100%;
-            height: 150px;
-            overflow: hidden;
             margin-bottom: 15px;
         }
         
-        .banner img {
+        .tag {
+            background-color: #f1a5d2;
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+        
+        .thumbnail-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            background-color: #f0f0f0;
+            filter: brightness(0.9);
         }
         
-        /* Category Icons */
-        .category-container {
-            background-color: #fff;
-            padding: 15px 10px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(255, 182, 193, 0.15);
-        }
-        
-        .category-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .category-row:last-child {
-            margin-bottom: 0;
-        }
-        
-        .category-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 20%;
-        }
-        
-        .category-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff99cc, #ff6699);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            margin-bottom: 5px;
-            box-shadow: 0 2px 6px rgba(255, 102, 153, 0.3);
-        }
-        
-        .category-name {
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-        }
-        
-        /* Card Grid Styles */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            padding: 8px;
-        }
-        
-        .profile-card {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(255, 182, 193, 0.2);
-        }
-        
-        .profile-image {
-            width: 100%;
-            height: 0;
-            padding-bottom: 133%; /* Aspect ratio of the cards in the image */
-            background-position: center;
-            background-size: cover;
-            position: relative;
-        }
-        
-        .profile-info {
+        .play-button {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 8px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .user-details {
-            font-size: 12px;
-        }
-        
-        .user-details .name {
-            font-weight: bold;
-            margin-bottom: 2px;
-        }
-        
-        .verification {
-            font-size: 11px;
-            color: #fff;
-            background-color: rgba(255, 102, 153, 0.7);
-            padding: 3px 6px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .verification i {
-            margin-right: 3px;
-        }
-        
-        /* Floating button */
-        .floating-button {
-            position: fixed;
-            right: 20px;
-            bottom: 70px;
-            width: 100px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
             height: 36px;
-            background: linear-gradient(45deg, #ff6699, #ff99cc);
-            color: white;
-            border-radius: 18px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 10px rgba(255, 102, 153, 0.4);
-            font-size: 12px;
-            z-index: 5;
         }
         
-        .floating-button .avatar {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            margin-right: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .play-button i {
+            color: #ff6699;
+            font-size: 16px;
+            margin-left: 3px; /* For centering the triangle icon */
         }
         
         /* Bottom Navigation */
@@ -235,7 +103,7 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background: linear-gradient(to right, #fff5f8, #fff);
+            background: #fff;
             padding: 8px 0 5px;
             border-top: 1px solid #ffdfeb;
             z-index: 5;
@@ -257,256 +125,169 @@
         .nav-item.active {
             color: #ff6699;
         }
-        
-        .notification-badge {
-            position: absolute;
-            top: 0;
-            right: 25%;
-            background-color: #ff3b78;
-            color: white;
-            font-size: 10px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-top">
-            <div class="title-section">
-                <div class="title active-title">相亲</div>
-                <div class="title">聚会脱单</div>
-            </div>
-            <div class="search-filter">
-                <i class="fas fa-search"></i>
-                <span>申请月老</span>
-            </div>
-        </div>
-        <div class="tabs">
-            <div class="tab active-tab">全部</div>
-            <div class="tab">附近</div>
-            <div class="tab">专属视频</div>
-            <div class="tab">专属语音</div>
-        </div>
-    </header>
-    
-    <!-- Banner Image -->
-    <div class="banner">
-        <img src="https://picsum.photos/800/300?random=20" alt="相亲活动推广">
-    </div>
-    
-    <!-- Category Icons -->
     <div class="container">
-        <div class="category-container">
-            <div class="category-row">
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="category-name">相亲推荐</div>
-                </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="category-name">同城约会</div>
-                </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="category-name">视频聊天</div>
-                </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <div class="category-name">语音交友</div>
-                </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="category-name">礼物互送</div>
-                </div>
+        <!-- First Video Section -->
+        <div class="video-section">
+            <h2 class="section-title">丝袜西装 黑框</h2>
+            <div class="category-tags">
+                <div class="tag">眼镜</div>
+                <div class="tag">制服</div>
             </div>
-            <div class="category-row">
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-star"></i>
+            <div class="video-grid">
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=11" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
-                    <div class="category-name">VIP会员</div>
                 </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-calendar-alt"></i>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=12" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
-                    <div class="category-name">活动日历</div>
                 </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-users"></i>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=13" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
-                    <div class="category-name">兴趣群组</div>
                 </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-comments"></i>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=14" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
-                    <div class="category-name">恋爱话题</div>
                 </div>
-                <div class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-hands-helping"></i>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=15" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
-                    <div class="category-name">月老牵线</div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="card-grid">
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=1')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">思念是一种病</div>
-                        <div>云南 27岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=16" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=2')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">大外甥</div>
-                        <div>广东 29岁</div>
+        <!-- Second Video Section -->
+        <div class="video-section">
+            <h2 class="section-title">场景民宿下班回家</h2>
+            <div class="category-tags">
+                <div class="tag">场景</div>
+                <div class="tag">名宿</div>
+            </div>
+            <div class="video-grid">
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=21" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                </div>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=22" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=23" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=24" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=25" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=26" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=3')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">晓月</div>
-                        <div>江苏 30岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+        <!-- Third Video Section -->
+        <div class="video-section">
+            <h2 class="section-title">热门推荐</h2>
+            <div class="category-tags">
+                <div class="tag">精选</div>
+                <div class="tag">推荐</div>
+            </div>
+            <div class="video-grid">
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=31" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=4')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">留长发女孩</div>
-                        <div>湖北 30岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=32" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=5')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">小婉</div>
-                        <div>云南 32岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=33" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=6')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">小小</div>
-                        <div>云南 31岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=34" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=7')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">晓梦</div>
-                        <div>四川 28岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=35" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="profile-card">
-            <div class="profile-image" style="background-image: url('https://picsum.photos/200/266?random=8')">
-                <div class="profile-info">
-                    <div class="user-details">
-                        <div class="name">花开</div>
-                        <div>广东 26岁</div>
-                    </div>
-                    <div class="verification">
-                        <i class="fas fa-check-circle"></i>视频相亲
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/300/170?random=36" alt="视频缩略图" class="thumbnail-img">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="floating-button">
-        <div class="avatar">
-            <i class="fas fa-user"></i>
-        </div>
-        <div>与你匹配的</div>
-    </div>
-    
+    <!-- Bottom Navigation -->
     <div class="bottom-nav">
-        <div class="nav-item active">
+        <div class="nav-item">
             <i class="fas fa-home"></i>
             <span>首页</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item active">
             <i class="fas fa-video"></i>
-            <span>视频表白</span>
+            <span>视频</span>
         </div>
-        <div class="nav-item" style="position: relative;">
-            <div class="notification-badge">3</div>
-            <i class="fas fa-comment"></i>
-            <span>消息</span>
+        <div class="nav-item">
+            <i class="fas fa-heart"></i>
+            <span>收藏</span>
         </div>
         <div class="nav-item">
             <i class="fas fa-user"></i>
-            <span>我</span>
+            <span>我的</span>
         </div>
     </div>
 </body>
