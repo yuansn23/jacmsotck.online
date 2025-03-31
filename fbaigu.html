@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AIによる株式診断 - プロフェッショナルな投資分析</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --line-green: #06C755;
+            --accent-blue: #007bff;
+            --accent-red: #ff3860;
+            --dark-blue: #0a1930;
+            --chart-green: #25c19c;
+            --chart-red: #ff3b6a;
+        }
+        
+        * {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: #f5f7fa;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #050f2e 0%, #122c69 100%);
+        }
+        
+        .line-btn {
+            background-color: var(--line-green);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .line-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(6, 199, 85, 0.3);
+        }
+        
+        .float-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--line-green);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .float-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(6, 199, 85, 0.4);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-red);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(6, 199, 85, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0);
+            }
+        }
+        
+        .testimonial {
+            border-left: 4px solid var(--line-green);
+        }
+        
+        .stock-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stock-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .up {
+            color: var(--chart-red);
+        }
+        
+        .down {
+            color: var(--chart-green);
+        }
+        
+        .typing-effect::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* 改善された株価テーブルのアニメーション */
+        @keyframes slideUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        
+        .stock-table-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stock-table-scroll {
+            animation: slideUp 15s linear infinite;
+            position: absolute;
+            width: 100%;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1010;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalFadeIn 0.4s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--line-green);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 1.5s ease;
+        }
+        
+        /* Animation for analysis typing effect */
+        .analysis-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .analysis-text {
+            display: inline-block;
+            margin: 0;
+            animation: typing 3.5s steps(40, end);
+            white-space: nowrap;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        .analysis-icon {
+            display: inline-block;
+            animation: rotateIcon 2s infinite linear;
+        }
+        
+        @keyframes rotateIcon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 新しい酷炫なアニメーション */
+        .cool-chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-20px, -20px); }
+        }
+        
+        .chart-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            transform: translateY(50%);
+        }
+        
+        .chart-line-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 4s forwards, pulseLine 3s 4s infinite;
+        }
+        
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes pulseLine {
+            0% { stroke-opacity: 1; }
+            50% { stroke-opacity: 0.5; }
+            100% { stroke-opacity: 1; }
+        }
+        
+        .data-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4f8fff;
+            box-shadow: 0 0 10px #4f8fff, 0 0 20px #4f8fff;
+            opacity: 0;
+            animation: fadeInPoint 0.5s forwards;
+        }
+        
+        @keyframes fadeInPoint {
+            to { opacity: 1; }
+        }
+        
+        .data-value {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            background: rgba(0, 123, 255, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            transform: translate(-50%, -130%);
+            opacity: 0;
+            animation: fadeInValue 0.5s forwards;
+        }
+        
+        @keyframes fadeInValue {
+            to { opacity: 0.9; }
+        }
+        
+        .prediction-arrow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            right: 30px;
+            top: 30%;
+            opacity: 0;
+            animation: fadeInArrow 1s 3s forwards, floatArrow 2s 4s infinite;
+        }
+        
+        @keyframes fadeInArrow {
+            to { opacity: 1; }
+        }
+        
+        @keyframes floatArrow {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .ai-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #4f8fff, transparent);
+            animation: scanMove 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes scanMove {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(295px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .data-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: floatParticle 10s linear infinite;
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Message Icon -->
+    <div class="float-icon" onclick="showModal()">
+        <i class="fas fa-comment-dots text-white text-3xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content">
+            <h3 class="text-xl font-bold mb-3 text-center">分析中...</h3>
+            <div class="flex space-x-2 justify-center mb-3">
+                <div id="analysis1" class="text-sm">市場分析</div>
+                <div id="analysis2" class="text-sm hidden">最新ニュース分析</div>
+                <div id="analysis3" class="text-sm hidden">過去のデータ分析</div>
+            </div>
+            <div class="progress-bar">
+                <div id="progressBar" class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content">
+            <span class="absolute top-3 right-3 text-2xl cursor-pointer" onclick="closeResultsModal()">&times;</span>
+            <div class="text-center">
+                <div class="inline-block p-3 rounded-full bg-green-100 mb-3">
+                    <i class="fas fa-check-circle text-2xl text-green-600"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">AIシステムは、今後上昇が予想される5つの株を予測しました</h3>
+            </div>
+            
+            <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                <div class="flex items-center mb-2">
+                    <i class="far fa-file-pdf text-red-500 text-2xl mr-2"></i>
+                    <div>
+                        <p class="font-semibold">詳細な予測レポート</p>
+                        <p class="text-sm text-gray-600">市場動向と分析の完全なブレークダウン</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <i class="far fa-file-pdf text-red-500 text-2xl mr-2"></i>
+                    <div>
+                        <p class="font-semibold">10銘柄の有望株リスト</p>
+                        <p class="text-sm text-gray-600">AIが選んだ上昇の可能性が高い銘柄</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-sm mb-4">
+                LINEで担当者を友達追加し、予測コード「<span class="font-bold">6723</span>」を送信して無料の詳細予測レポートを入手してください。
+            </div>
+            
+            <button onclick="opensite()" class="w-full line-btn text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center">
+                <i class="fas fa-comment-dots text-white mr-2"></i>
+                LINE友達追加して報告書を受け取る
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient relative overflow-hidden py-16">
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 text-white mb-8 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                        <span class="text-yellow-400">AI技術</span>で株式市場を<br>一歩先読みする
+                    </h1>
+                    
+                    <div class="analysis-container mb-6">
+                        <div id="typingText" class="text-xl typing-effect">市場分析中...</div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6">
+                        従来の分析では見逃されてきた投資機会を、最先端のAI技術で発掘します。あなたの投資判断をサポートする次世代の株式診断ツールです。
+                    </p>
+                    
+                    <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-lg p-4 mb-6 border border-gray-700">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-yellow-400 mr-2"></i>
+                                <span class="text-yellow-400 font-bold">本日: <span class="text-xl">3922</span>人が利用</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-yellow-400 mr-2"></i>
+                                <span class="text-yellow-400 font-bold">残り<span class="text-xl">30</span>名</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div class="bg-yellow-400 h-full rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-6 rounded-full flex items-center">
+                        <i class="fas fa-comment-dots text-white mr-2"></i>
+                        無料でAI株式診断を受ける
+                    </button>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                    <div class="cool-chart-container">
+                        <div class="chart-grid"></div>
+                        <div class="data-particles" id="particles"></div>
+                        <div class="ai-scan"></div>
+                        
+                        <svg class="chart-line" viewBox="0 0 600 200" preserveAspectRatio="none">
+                            <path id="chartPath" class="chart-line-path" d="M0,150 C50,120 100,170 150,90 S250,40 300,70 S400,150 450,80 S550,60 600,100" fill="none" stroke="#4f8fff" stroke-width="3"></path>
+                        </svg>
+                        
+                        <div class="data-point" style="left: 25%; bottom: 45%;"></div>
+                        <div class="data-value" style="left: 25%; bottom: 45%;">+12.8%</div>
+                        
+                        <div class="data-point" style="left: 50%; bottom: 65%;"></div>
+                        <div class="data-value" style="left: 50%; bottom: 65%;">+15.3%</div>
+                        
+                        <div class="data-point" style="left: 75%; bottom: 60%;"></div>
+                        <div class="data-value" style="left: 75%; bottom: 60%;">+19.1%</div>
+                        
+                        <svg class="prediction-arrow" viewBox="0 0 24 24">
+                            <path d="M7 14l5-5 5 5" fill="none" stroke="#4f8fff" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    
+                    <img src="https://www.goodmja.online/rigu/516287.jpg" alt="AI株式診断" class="w-full rounded-lg shadow-xl mt-4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stock Performance Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">AIによる株価予測の実績</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    当社のAIシステムは、複雑な市場パターンを分析し、高い精度で株価の動きを予測します。以下は最近の実績の一部です。
+                </p>
+            </div>
+            
+            <div class="bg-gray-100 rounded-lg p-4 shadow-md mx-auto max-w-4xl">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-3 px-4 font-semibold">銘柄コード</th>
+                            <th class="py-3 px-4 font-semibold">昨日の診断</th>
+                            <th class="py-3 px-4 font-semibold">今日の株価変動</th>
+                        </tr>
+                    </thead>
+                </table>
+                
+                <div class="stock-table-container">
+                    <div class="stock-table-scroll">
+                        <table class="w-full text-left">
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">5243</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+14.70%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">3807</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+12.80%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">303A</td>
+                                    <td class="py-3 px-4">株価下落確率が高い</td>
+                                    <td class="py-3 px-4 down font-bold">-9.89%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">7590</td>
+                                    <td class="py-3 px-4">株価下落確率が高い</td>
+                                    <td class="py-3 px-4 down font-bold">-7.05%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">7273</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+19.08%</td>
+                                </tr>
+                                <!-- 同じデータを繰り返してシームレスな滚动を実現 -->
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">5243</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+14.70%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">3807</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+12.80%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">303A</td>
+                                    <td class="py-3 px-4">株価下落確率が高い</td>
+                                    <td class="py-3 px-4 down font-bold">-9.89%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">7590</td>
+                                    <td class="py-3 px-4">株価下落確率が高い</td>
+                                    <td class="py-3 px-4 down font-bold">-7.05%</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-4 font-medium">7273</td>
+                                    <td class="py-3 px-4">株価上昇確率が高い</td>
+                                    <td class="py-3 px-4 up font-bold">+19.08%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-8 rounded-full flex items-center mx-auto">
+                    <i class="fas fa-comment-dots text-white mr-2"></i>
+                    あなたの銘柄を診断する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">AIによる株式診断の仕組み</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    最新のテクノロジーを駆使して、市場の動きを分析し、将来の見通しを予測します。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-accent-blue text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">市場データ分析</h3>
+                    <p class="text-gray-600">
+                        膨大な量の市場データを分析し、価格パターン、ボリューム変化、市場センチメントなどの指標から有意義な洞察を導き出します。
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-accent-blue text-4xl mb-4">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">機械学習アルゴリズム</h3>
+                    <p class="text-gray-600">
+                        当社の専有アルゴリズムは過去の株価データから学習し、市場の複雑なパターンを理解して、将来の動きを予測します。
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-accent-blue text-4xl mb-4">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ニュースと感情分析</h3>
+                    <p class="text-gray-600">
+                        最新のニュース、ソーシャルメディアのトレンド、アナリストの意見を分析して、株価に影響を与える可能性のある要因を特定します。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-8 rounded-full flex items-center mx-auto">
+                    <i class="fas fa-comment-dots text-white mr-2"></i>
+                    今すぐAI診断を試す
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">利用者の声</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    当社のAI株式診断サービスを利用したユーザーからの声をご紹介します。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="testimonial bg-gray-100 p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                            SK
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold text-lg">佐藤 健太</div>
+                            <div class="text-sm text-gray-600">東京、会社員</div>
+                        </div>
+                        <div class="ml-auto flex">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        「AIの予測に基づいて投資判断をしたところ、素晴らしい結果が出ました。これまでの自分の分析では見逃していた銘柄を発見できて感謝しています。非常に信頼性の高い分析だと思います。」
+                    </p>
+                </div>
+                
+                <div class="testimonial bg-gray-100 p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg">
+                            MY
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold text-lg">三浦 悠子</div>
+                            <div class="text-sm text-gray-600">大阪、自営業</div>
+                        </div>
+                        <div class="ml-auto flex">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        「投資初心者の私でも理解しやすい分析レポートで、安心して投資を始めることができました。AIの診断結果に基づいて複数の銘柄に投資し、予想通りの結果が得られています。」
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <button onclick="showProgressModal()" class="line-btn text-white font-bold py-3 px-8 rounded-full flex items-center mx-auto">
+                    <i class="fas fa-comment-dots text-white mr-2"></i>
+                    今すぐ無料診断を受ける
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <footer class="py-8 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-lg font-bold mb-4 text-gray-700">重要な開示事項</h3>
+                <div class="text-sm text-gray-600 space-y-4">
+                    <p>
+                        <strong>投資リスクに関する開示：</strong> 株式投資にはリスクが伴い、元本を失う可能性があります。過去のパフォーマンスは将来の結果を保証するものではありません。本サービスで提供される情報は、教育および情報提供の目的のみであり、投資アドバイスとして解釈されるべきではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>登録投資アドバイザーではない：</strong> 当社は登録された投資アドバイザーではなく、提供される情報は専門的な金融アドバイスを構成するものではありません。投資判断を行う前に、常に独自の調査を行い、資格を持つ専門家に相談してください。
+                    </p>
+                    
+                    <p>
+                        <strong>パフォーマンスの主張：</strong> 説明されているパフォーマンス結果は典型的なものではなく、個人によって異なります。市場は予測不可能であり、個人の結果はタイミング、市場状況、個人の財務状況などのさまざまな要因によって異なります。
+                    </p>
+                    
+                    <p>
+                        <strong>証券開示：</strong> 本ウェブサイトの所有者は、サイトに掲載されるコンテンツの公開前、公開中、または公開後に、議論される証券を購入、保有、または売却する場合があります。コンテンツは、いかなる証券の購入、売却、または保有の推奨として解釈されるべきではありません。議論される証券の購入、売却、または保有の決定は、個々の投資家の裁量に委ねられています。
+                    </p>
+                    
+                    <p>
+                        <strong>金融商品取引法に基づく開示：</strong> 当社は金融商品取引法に基づく登録を受けておらず、投資判断の助言や推奨を行うものではありません。本サービスは一般的な情報提供を目的としており、特定の投資行動を促すものではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>収益予測の免責事項：</strong> 本サービスで提供される株価の上昇または下落の予測は、確実性を保証するものではなく、市場の不確実性により実際の結果は大きく異なる場合があります。いかなる収益や利益も保証されません。
+                    </p>
+                </div>
+                
+                <div class="text-xs text-gray-500 mt-6 text-center">
+                    © 2023 AI株式分析サービス. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typing effect
+        const texts = [
+            "市場分析中...",
+            "過去のパターンを分析しています...",
+            "最新ニュースを評価中...",
+            "AIが株価動向を予測しています..."
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingElement = document.getElementById("typingText");
+        
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                }, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+            
+            let typingSpeed = isDeleting ? 50 : 150;
+            setTimeout(typeWriter, typingSpeed);
+        }
+        
+        // パーティクル生成
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // ランダムな位置と動きを設定
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                // アニメーション開始を遅延
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Start effects
+        window.onload = function() {
+            typeWriter();
+            createParticles();
+        };
+        
+        // Modal functionality
+        function showModal() {
+            document.getElementById('progressModal').style.display = 'flex';
+            animateProgress();
+        }
+        
+        function showProgressModal() {
+            document.getElementById('progressModal').style.display = 'flex';
+            animateProgress();
+        }
+        
+        function closeProgressModal() {
+            document.getElementById('progressModal').style.display = 'none';
+        }
+        
+        function showResultsModal() {
+            closeProgressModal();
+            document.getElementById('resultsModal').style.display = 'flex';
+        }
+        
+        function closeResultsModal() {
+            document.getElementById('resultsModal').style.display = 'none';
+        }
+        
+        function animateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const analysis1 = document.getElementById('analysis1');
+            const analysis2 = document.getElementById('analysis2');
+            const analysis3 = document.getElementById('analysis3');
+            
+            // Reset progress
+            progressBar.style.width = '0%';
+            
+            // Stage 1
+            setTimeout(() => {
+                progressBar.style.width = '33%';
+            }, 100);
+            
+            // Stage 2
+            setTimeout(() => {
+                analysis1.classList.add('text-green-600', 'font-bold');
+                analysis2.classList.remove('hidden');
+                progressBar.style.width = '66%';
+            }, 700);
+            
+            // Stage 3
+            setTimeout(() => {
+                analysis2.classList.add('text-green-600', 'font-bold');
+                analysis3.classList.remove('hidden');
+                progressBar.style.width = '100%';
+            }, 1300);
+            
+            // Show results
+            setTimeout(() => {
+                showResultsModal();
+            }, 2000);
+        }
+        
+        // LINE redirect
+        function opensite() {
+            window.open('https://line.me/R/ti/p/@yourlineaccount', '_blank');
+            closeResultsModal();
+        }
+    </script>
+</body>
+</html>
