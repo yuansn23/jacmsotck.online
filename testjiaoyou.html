@@ -24,13 +24,78 @@
             padding: 15px;
         }
         
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Category Icons */
+        .category-icons {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        
+        .icon-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .icon-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 22%;
+        }
+        
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff99cc, #ff6699);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(255, 102, 153, 0.2);
+        }
+        
+        .icon-circle i {
+            color: white;
+            font-size: 22px;
+        }
+        
+        .icon-name {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
         /* Video Category Section */
         .video-section {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 1px 5px rgba(0,0,0,0.05);
             padding: 15px;
+            position: relative;
         }
         
         .section-title {
@@ -95,6 +160,82 @@
             margin-left: 3px; /* For centering the triangle icon */
         }
         
+        .view-count {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        /* Social Proof Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 70px;
+            left: 15px;
+            z-index: 10;
+            max-width: 70%;
+        }
+        
+        .toast {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            animation: fadeInOut 5s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        
+        .toast:nth-child(1) { animation-delay: 0s; }
+        .toast:nth-child(2) { animation-delay: 6s; }
+        .toast:nth-child(3) { animation-delay: 12s; }
+        
+        /* Live Counter */
+        .live-counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff3b78;
+            color: white;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .live-counter i {
+            margin-right: 5px;
+            font-size: 10px;
+        }
+        
+        .live-counter .dot {
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
         /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
@@ -125,13 +266,98 @@
         .nav-item.active {
             color: #ff6699;
         }
+        
+        /* Floating Member Count */
+        .member-count {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .member-count i {
+            color: #ff6699;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Banner -->
+        <div class="banner">
+            <img src="https://picsum.photos/800/300?random=100" alt="促销活动" />
+        </div>
+        
+        <!-- Category Icons -->
+        <div class="category-icons">
+            <div class="icon-row">
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="icon-name">情感互动</div>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="icon-name">私密照片</div>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="icon-name">视频互动</div>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="icon-name">同城交友</div>
+                </div>
+            </div>
+            <div class="icon-row">
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <div class="icon-name">在线聊天</div>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="icon-name">礼物中心</div>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="icon-name">会员特权</div>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="icon-name">排行榜</div>
+                </div>
+            </div>
+        </div>
+        
         <!-- First Video Section -->
         <div class="video-section">
             <h2 class="section-title">丝袜西装 黑框</h2>
+            <div class="live-counter">
+                <div class="dot"></div>
+                <span>2873人正在观看</span>
+            </div>
             <div class="category-tags">
                 <div class="tag">眼镜</div>
                 <div class="tag">制服</div>
@@ -142,11 +368,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 8.2万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=12" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 5.7万
                     </div>
                 </div>
                 <div class="video-thumbnail">
@@ -154,11 +386,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 12.3万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=14" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 6.9万
                     </div>
                 </div>
                 <div class="video-thumbnail">
@@ -166,11 +404,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 9.5万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=16" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 7.8万
                     </div>
                 </div>
             </div>
@@ -179,6 +423,10 @@
         <!-- Second Video Section -->
         <div class="video-section">
             <h2 class="section-title">场景民宿下班回家</h2>
+            <div class="live-counter">
+                <div class="dot"></div>
+                <span>1659人正在观看</span>
+            </div>
             <div class="category-tags">
                 <div class="tag">场景</div>
                 <div class="tag">名宿</div>
@@ -189,11 +437,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 4.3万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=22" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 6.7万
                     </div>
                 </div>
                 <div class="video-thumbnail">
@@ -201,11 +455,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 3.2万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=24" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 5.1万
                     </div>
                 </div>
                 <div class="video-thumbnail">
@@ -213,11 +473,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 7.2万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=26" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 4.8万
                     </div>
                 </div>
             </div>
@@ -226,6 +492,10 @@
         <!-- Third Video Section -->
         <div class="video-section">
             <h2 class="section-title">热门推荐</h2>
+            <div class="live-counter">
+                <div class="dot"></div>
+                <span>3245人正在观看</span>
+            </div>
             <div class="category-tags">
                 <div class="tag">精选</div>
                 <div class="tag">推荐</div>
@@ -236,11 +506,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 15.3万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=32" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 9.7万
                     </div>
                 </div>
                 <div class="video-thumbnail">
@@ -248,11 +524,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 11.2万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=34" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
+                    </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 8.6万
                     </div>
                 </div>
                 <div class="video-thumbnail">
@@ -260,15 +542,39 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 13.8万
+                    </div>
                 </div>
                 <div class="video-thumbnail">
                     <img src="https://picsum.photos/300/170?random=36" alt="视频缩略图" class="thumbnail-img">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <div class="view-count">
+                        <i class="fas fa-eye"></i> 10.5万
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    
+    <!-- Social Proof Toasts -->
+    <div class="toast-container">
+        <div class="toast">
+            <i class="fas fa-user-plus"></i> 李明 3秒前加入了私密会员
+        </div>
+        <div class="toast">
+            <i class="fas fa-gift"></i> 王小红 刚刚解锁了高级特权
+        </div>
+        <div class="toast">
+            <i class="fas fa-heart"></i> 张伟 1分钟前开启了私密聊天
+        </div>
+    </div>
+    
+    <!-- Floating Member Count -->
+    <div class="member-count">
+        <i class="fas fa-users"></i> 134,528人已加入
     </div>
     
     <!-- Bottom Navigation -->
@@ -290,5 +596,44 @@
             <span>我的</span>
         </div>
     </div>
+    
+    <script>
+        // Generate random social proof toasts
+        function generateToasts() {
+            const names = ["张三", "李四", "王五", "赵六", "陈七", "周八", "吴九", "郑十", "刘明", "黄华"];
+            const actions = [
+                "刚刚加入了私密会员",
+                "购买了高级VIP",
+                "解锁了私密视频",
+                "进入了私聊房间",
+                "获得了优惠券",
+                "参与了互动体验",
+                "开通了年度会员"
+            ];
+            const times = ["刚刚", "3秒前", "10秒前", "30秒前", "1分钟前", "2分钟前"];
+            const icons = ["user-plus", "gift", "crown", "heart", "star", "unlock"];
+            
+            const toastContainer = document.querySelector('.toast-container');
+            toastContainer.innerHTML = '';
+            
+            for (let i = 0; i < 3; i++) {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const action = actions[Math.floor(Math.random() * actions.length)];
+                const time = times[Math.floor(Math.random() * times.length)];
+                const icon = icons[Math.floor(Math.random() * icons.length)];
+                
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-${icon}"></i> ${name} ${time}${action}`;
+                toast.style.animationDelay = `${i * 6}s`;
+                
+                toastContainer.appendChild(toast);
+            }
+        }
+        
+        // Initialize and refresh toasts periodically
+        generateToasts();
+        setInterval(generateToasts, 18000);
+    </script>
 </body>
 </html>
