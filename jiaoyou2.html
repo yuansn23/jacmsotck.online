@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>精品 白色纱裙</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fff8fa;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #ffdfeb;
+        }
+        
+        .back-button {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .earn-button {
+            background-color: #f1a5d2;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .earn-button i {
+            margin-right: 3px;
+        }
+        
+        /* Content Styles */
+        .container {
+            padding: 15px;
+        }
+        
+        .notice {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            color: #ff6699;
+        }
+        
+        /* Button Styles */
+        .button-container {
+            margin-bottom: 20px;
+        }
+        
+        .unlock-button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: white;
+            background-color: #ff7ba9;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .member-button {
+            background-color: #ff6699;
+        }
+        
+        /* Profile Info */
+        .profile-info {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        /* Gallery Styles */
+        .gallery {
+            margin-top: 15px;
+        }
+        
+        .preview-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .preview-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            display: block;
+            filter: blur(3px);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(255, 102, 153, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-button i {
+            color: white;
+            font-size: 30px;
+            margin-left: 5px;
+        }
+        
+        .locked-image {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            aspect-ratio: 3/4;
+            background-color: #f0f0f0;
+        }
+        
+        .locked-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(15px);
+        }
+        
+        .lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .lock-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .lock-text {
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        /* Social Proof Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 15px;
+            z-index: 10;
+            max-width: 70%;
+        }
+        
+        .toast {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            animation: fadeInOut 5s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        
+        .toast:nth-child(1) { animation-delay: 0s; }
+        .toast:nth-child(2) { animation-delay: 6s; }
+        
+        /* Member Count */
+        .member-count {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            z-index: 5;
+        }
+        
+        .member-count i {
+            color: #ff6699;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="back-button">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="page-title">精品 白色纱裙</div>
+        <div class="earn-button">
+            <i class="fas fa-yen-sign"></i> 赚钱
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="notice">
+            更加私密内容，不直公开，你可单独解锁她。<br>
+            或者开通会员解锁全部，更能享受女团私密等服务！
+        </div>
+        
+        <div class="button-container">
+            <button class="unlock-button">9.90元单独解锁她</button>
+            <button class="unlock-button member-button">开通会员解锁全部</button>
+        </div>
+        
+        <div class="profile-info">
+            成员名字：精品 白色纱裙<br>
+            共计真集：11张
+        </div>
+        
+        <div class="gallery">
+            <!-- Video thumbnail with play button -->
+            <div class="video-thumbnail">
+                <img src="https://picsum.photos/600/800?random=101" alt="视频缩略图">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+            
+            <!-- Unlocked image - visible -->
+            <div class="preview-image">
+                <img src="https://picsum.photos/600/800?random=102" alt="预览图片">
+            </div>
+            
+            <!-- Unlocked image - visible -->
+            <div class="preview-image">
+                <img src="https://picsum.photos/600/800?random=103" alt="预览图片">
+            </div>
+            
+            <!-- Locked images -->
+            <div class="locked-image">
+                <img src="https://picsum.photos/600/800?random=104" alt="加密图片">
+                <div class="lock-overlay">
+                    <i class="fas fa-lock lock-icon"></i>
+                    <div class="lock-text">付费解锁查看</div>
+                </div>
+            </div>
+            
+            <div class="locked-image">
+                <img src="https://picsum.photos/600/800?random=105" alt="加密图片">
+                <div class="lock-overlay">
+                    <i class="fas fa-lock lock-icon"></i>
+                    <div class="lock-text">付费解锁查看</div>
+                </div>
+            </div>
+            
+            <div class="locked-image">
+                <img src="https://picsum.photos/600/800?random=106" alt="加密图片">
+                <div class="lock-overlay">
+                    <i class="fas fa-lock lock-icon"></i>
+                    <div class="lock-text">付费解锁查看</div>
+                </div>
+            </div>
+            
+            <div class="locked-image">
+                <img src="https://picsum.photos/600/800?random=107" alt="加密图片">
+                <div class="lock-overlay">
+                    <i class="fas fa-lock lock-icon"></i>
+                    <div class="lock-text">付费解锁查看</div>
+                </div>
+            </div>
+            
+            <div class="locked-image">
+                <img src="https://picsum.photos/600/800?random=108" alt="加密图片">
+                <div class="lock-overlay">
+                    <i class="fas fa-lock lock-icon"></i>
+                    <div class="lock-text">付费解锁查看</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Social Proof Toasts -->
+    <div class="toast-container">
+        <div class="toast">
+            <i class="fas fa-user-plus"></i> 李强 3秒前解锁了白色纱裙
+        </div>
+        <div class="toast">
+            <i class="fas fa-crown"></i> 王小明 刚刚开通了会员
+        </div>
+    </div>
+    
+    <!-- Floating Member Count -->
+    <div class="member-count">
+        <i class="fas fa-eye"></i> 3,429人正在浏览
+    </div>
+    
+    <script>
+        // Generate random social proof toasts
+        function generateToasts() {
+            const names = ["张小华", "李强", "王小明", "赵丽", "陈晓", "周华", "吴思", "郑亮", "刘芳", "黄智"];
+            const actions = [
+                "刚刚解锁了白色纱裙",
+                "3秒前解锁了全部内容",
+                "1分钟前开通了会员",
+                "2分钟前购买了私密视频",
+                "刚刚加入了VIP"
+            ];
+            const icons = ["user-plus", "gift", "crown", "heart", "star", "unlock"];
+            
+            const toastContainer = document.querySelector('.toast-container');
+            toastContainer.innerHTML = '';
+            
+            for (let i = 0; i < 2; i++) {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const action = actions[Math.floor(Math.random() * actions.length)];
+                const icon = icons[Math.floor(Math.random() * icons.length)];
+                
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-${icon}"></i> ${name} ${action}`;
+                toast.style.animationDelay = `${i * 6}s`;
+                
+                toastContainer.appendChild(toast);
+            }
+        }
+        
+        // Initialize and refresh toasts periodically
+        generateToasts();
+        setInterval(generateToasts, 12000);
+        
+        // Randomly update view count
+        function updateViewCount() {
+            const viewCountElement = document.querySelector('.member-count');
+            const baseCount = 3429;
+            const randomVariation = Math.floor(Math.random() * 30) - 15; // -15 to +15
+            const newCount = baseCount + randomVariation;
+            viewCountElement.innerHTML = `<i class="fas fa-eye"></i> ${newCount.toLocaleString()}人正在浏览`;
+        }
+        
+        // Update view count every 5 seconds
+        setInterval(updateViewCount, 5000);
+    </script>
+</body>
+</html>
