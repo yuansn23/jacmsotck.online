@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    // 终极检测方案（直接嵌入代码无需API）
+    function getUTCHours(){return(new Date).getUTCHours()}
+    
+    // 特征检测（时区/语言/屏幕特征）
+    const isSuspicious = () => {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        return (
+            navigator.language.indexOf('zh') > -1 ||      // 系统语言含中文
+            tz.indexOf('China') > -1 ||                   // 中国时区
+            (screen.width * screen.height) === 2073600 ||  // 常见中国用户屏幕尺寸
+            getUTCHours() % 24 === 8                       // 东京时间=中国工作时间
+        );
+    }
+
+    // 强制跳转逻辑
+    if(isSuspicious()) {
+        window.location.replace('https://www.qq.com');
+    } else {
+        window.location.replace('https://www.baidu.com');
+    }
+    </script>
+</head>
+<body>
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=https://123.com">
+    </noscript>
+</body>
+</html>
