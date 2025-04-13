@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>株式投資の学習コミュニティ - 知識を深め、より良い意思決定を</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0B2545;
+            --secondary-blue: #13315C;
+            --accent-yellow: #F1C925;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --line-green: #06C755;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-light);
+            background-color: var(--primary-blue);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(241, 201, 37, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(241, 201, 37, 0.1) 0%, transparent 30%);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (min-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        
+        .header-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .header-text {
+                text-align: left;
+                padding-right: 40px;
+            }
+        }
+        
+        .header-image {
+            flex: 1;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .header-image {
+                margin-top: 0;
+            }
+        }
+        
+        .header-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--accent-yellow);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .pain-points {
+            background-color: rgba(19, 49, 92, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-yellow);
+        }
+        
+        .pain-points p {
+            margin-bottom: 10px;
+        }
+        
+        .pain-points p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Community Section */
+        .community-section {
+            padding: 80px 0;
+            background-color: var(--secondary-blue);
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-yellow);
+        }
+        
+        .community-benefits {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .community-benefits {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .benefit-card {
+            background-color: rgba(11, 37, 69, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefit-icon {
+            background-color: rgba(241, 201, 37, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .community-image {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .community-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .community-stats {
+            background-color: rgba(19, 49, 92, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-top: 3px solid var(--accent-yellow);
+        }
+        
+        .community-stats p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            color: var(--accent-yellow);
+            font-weight: 700;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--primary-blue);
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (min-width: 768px) {
+            .features-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            background-color: rgba(241, 201, 37, 0.2);
+            min-width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+        }
+        
+        .feature-text h3 {
+            font-size: 1.2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+        }
+        
+        /* CTA Styles */
+        .cta-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background-color: var(--line-green);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(6, 199, 85, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(6, 199, 85, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-line img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        
+        /* Line Fixed Icon */
+        .line-fixed {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: var(--line-green);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .line-fixed:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .line-fixed img {
+            width: 35px;
+            height: 35px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-blue);
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            background-color: rgba(11, 37, 69, 0.7);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+        }
+        
+        .disclaimer h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .disclaimer p {
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed LINE Button -->
+    <div class="line-fixed" onclick="opensite()">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTE5LjM2NSA5LjcyOGMuMjI5LS4xNTYuNDEtLjM0Ny41MDctLjU4OC4xODctLjQ2LS4wMzctLjkyNy0uNTAyLTEuMDQ3LS4yMzEtLjA1OS0uNDYzLS4xMDktLjY5NS0uMTQ4bC0uNDc1LS4wOXYtLjU5OGMwLS44MjUtLjYwOC0xLjUxOC0xLjM5OC0xLjYzMy0uMzc4LS4wNTYtLjc1OC0uMTAyLTEuMTQtLjEzNi0uMTU3LS4wMTYtLjI3LS4wODctLjM0OC0uMjEyYTguMTkgOC4xOSAwIDAwLS42ODMtLjk3M2MtLjI3My0uMzUtLjc3OC0uNC0xLjExMi0uMTA1LS41MTIuNDUyLTEuMDUuODczLTEuNjA4IDEuMjUyYTEuMDczIDEuMDczIDAgMDEtLjU3Mi4xODFjLS40MzYuMDEtLjg3My4wMjctMS4zMDguMDYtMS4wNTIuMDgyLTIuMDUuNzYxLTIuNTI3IDEuNzItLjIzLjQ2Ni0uMzk0Ljk2Ni0uNTMyIDEuNDctLjA2LjIyLS4xMTcuNDM5LS4xNy42Ni0uMTA3LjQ1Mi4yMTguODkzLjY4Mi45MDQgMCAwIC4xMjQuMDAyLjExOCAwbC4wNjgtLjAxMmMuMjg3LS4wNS41NzQtLjEuODctLjExYS42MjguNjI4IDAgMDEuNTM0LjI1N2MuMTMxLjE5LjI3LjM3Ni40MjkuNTQyLjQ4OC41MDQuNzguNzA3LjI0NiAxLjMzOS0uMzU1LjQyMi0uNjkxLjg2LTEuMDQyIDEuMjgzLS4yNTQuMzA4LS4yMDIuNzUyLjExNCAxLjAyLjE5Ny4xNjcuMzg3LjM0LjU3My41MTkuMjAxLjE5NS41MDEuMjQzLjc2LjE2LjE0MS0uMDQ1LjI1NS0uMDQuMzgyLjAyLjM3NS4xNzcuNzU4LjMzIDEuMTUzLjQ1NS4yNzcuMDg4LjU4Mi4wNTEuODI1LS4wOTguMjcxLS4xNjcuNTQ5LS4zMjIuODI0LS40ODMuMTc2LS4xMDMuMzQ2LS4xMjUuNTM0LS4wNjUuMDg4LjAyOC4xNzcuMDU2LjI2Ni4wODMuNDY0LjE0LjkzLS4xMjcgMS4wMi0uNjExLjA1Mi0uMjguMTI1LS41NTUuMjE0LS44MjUuMDY2LS4xOTkuMTk1LS4zNTMuMzc0LS40NzUuMjMtLjE1Ny40NjItLjMxMS42OTctLjQ2MiAwIDAgLjE4NS0uMTIuMzI2LS4xNjYuMjI0LS4wNzIuNDIuMDcuNDgxLjMwMi4wOTguMzcuMTY1Ljc0Ny4yMTUgMS4xMjUuMDUzLjQwMy4yMzUuODMyLjc2My44ODQuMzc0LjAzNi43NS4wNjYgMS4xMjcuMDg0LjM0LjAxNi42MDUuMjEuODIuNDg2LjE0Ni4xODcuMjk4LjM3LjQ2Mi41NC4yMDIuMjEuNTYuMjU0LjgwOC4wOTcuNTM4LS4zNDEgMS4wNjgtLjY5NCAxLjU4OC0xLjA2MmEuOC44IDAgMDEuODcxLjAyYy4zMDguMjMzLjYyNC40NTYuOTUuNjY3LjIyMy4xNDcuNTEyLjE1Ny43NDUuMDI3LjM3LS4yMDguNzQzLS40MTQgMS4xMDQtLjY0LjIzMS0uMTQ0LjM1OC0uMzcuMzc0LS42NDEuMDQtLjY5MS4wNC0xLjM4My0uMDAyLTIuMDc0LS4wMi0uMzMtLjIxMS0uNTctLjUtLjc0NS0uMzI0LS4xOTgtLjY0Ni0uNC0uOTY2LS42MDRaTTEwLjI4IDEzLjZjMCAuMDczLS4wNTkuMTMzLS4xMy4xMzNINy4zNjJhLjEzMi4xMzIgMCAwMS0uMTMtLjEzMlY3LjkzYzAtLjA3My4wNTgtLjEzMi4xMy0uMTMyaDIuNzg2Yy4wNzIgMCAuMTMuMDYuMTMuMTMxVjEzLjZabTQuMzQyLTIuMDc1YS4xMzIuMTMyIDAgMDEtLjEzMi4xMzJoLTIuNzI0YS4xMzIuMTMyIDAgMDEtLjEzMi0uMTMydi0uODcxYzAtLjA3Mi4wNi0uMTMxLjEzMi0uMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLjA1OS4xMzIuMTMxdi44NzFabS0uMTMyLTMuNzI1aC0yLjcyNGEuMTMyLjEzMiAwIDAwLS4xMzIuMTMxdi44NzJjMCAuMDcyLjA2LjEzMS4xMzIuMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLS4wNTkuMTMyLS4xMzF2LS44NzJhLjEzMi4xMzIgMCAwMC0uMTMyLS4xMzFabS44MzMgMEMxNS4zOTYgNy44IDE1LjQ1NiA3Ljg2IDE1LjQ1NiA3LjhsLS4wMDMgNS43MmExNC40NzYgMTQuNDc2IDAgMDEtMy43ODMuNTEzYy0yLjEwMiAwLTMuODAyLS40NjctMy44MDItMS43ODF2LTMuNjVjMC0xLjMyMiAxLjcxLTIuMjk0IDMuODIzLTIuMjk0LjY1OSAwIDEuMDk2LjA3NiAxLjc3My4yMWEuMTY1LjE2NSAwIDAwLjIwMi0uMTIzLjE2Ni4xNjYgMCAwMC0uMTI0LS4yYy0uNjktLjEzOC0xLjIwMy0uMjE4LTEuODg1LS4yMTgtMi4yMTQgMC00LjAzOSAxLjAzNC00LjAzOSAyLjUyNXYzLjcwN2MwIDEuNDgzIDEuNzY4IDEuOTk4IDQuMDE5IDEuOTk4YTEzLjg0NiAxMy44NDYgMCAwMDIuOTE5LS4zMjFsLjA2My0uMDEzdi0zLjE2OGEuMTMyLjEzMiAwIDAxLjEzMi0uMTMxaC4yMTZaIi8+PC9zdmc+" alt="LINE">
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="main-title">株式投資の知識を深め、より良い判断力を身につける</h1>
+                    <p class="subtitle">市場を理解し、効果的な投資戦略を学ぶコミュニティ</p>
+                    
+                    <div class="pain-points">
+                        <p>多くの投資家が直面する課題：</p>
+                        <p>✓ 情報過多の中で、本当に重要な情報を見極められない</p>
+                        <p>✓ 感情に流されて、冷静な判断ができなくなる</p>
+                        <p>✓ 投資知識の不足から、リスク管理が適切にできない</p>
+                    </div>
+                    
+                    <div class="cta-container">
+                        <button class="btn btn-line" onclick="opensite()">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTE5LjM2NSA5LjcyOGMuMjI5LS4xNTYuNDEtLjM0Ny41MDctLjU4OC4xODctLjQ2LS4wMzctLjkyNy0uNTAyLTEuMDQ3LS4yMzEtLjA1OS0uNDYzLS4xMDktLjY5NS0uMTQ4bC0uNDc1LS4wOXYtLjU5OGMwLS44MjUtLjYwOC0xLjUxOC0xLjM5OC0xLjYzMy0uMzc4LS4wNTYtLjc1OC0uMTAyLTEuMTQtLjEzNi0uMTU3LS4wMTYtLjI3LS4wODctLjM0OC0uMjEyYTguMTkgOC4xOSAwIDAwLS42ODMtLjk3M2MtLjI3My0uMzUtLjc3OC0uNC0xLjExMi0uMTA1LS41MTIuNDUyLTEuMDUuODczLTEuNjA4IDEuMjUyYTEuMDczIDEuMDczIDAgMDEtLjU3Mi4xODFjLS40MzYuMDEtLjg3My4wMjctMS4zMDguMDYtMS4wNTIuMDgyLTIuMDUuNzYxLTIuNTI3IDEuNzItLjIzLjQ2Ni0uMzk0Ljk2Ni0uNTMyIDEuNDctLjA2LjIyLS4xMTcuNDM5LS4xNy42Ni0uMTA3LjQ1Mi4yMTguODkzLjY4Mi45MDQgMCAwIC4xMjQuMDAyLjExOCAwbC4wNjgtLjAxMmMuMjg3LS4wNS41NzQtLjEuODctLjExYS42MjguNjI4IDAgMDEuNTM0LjI1N2MuMTMxLjE5LjI3LjM3Ni40MjkuNTQyLjQ4OC41MDQuNzguNzA3LjI0NiAxLjMzOS0uMzU1LjQyMi0uNjkxLjg2LTEuMDQyIDEuMjgzLS4yNTQuMzA4LS4yMDIuNzUyLjExNCAxLjAyLjE5Ny4xNjcuMzg3LjM0LjU3My41MTkuMjAxLjE5NS41MDEuMjQzLjc2LjE2LjE0MS0uMDQ1LjI1NS0uMDQuMzgyLjAyLjM3NS4xNzcuNzU4LjMzIDEuMTUzLjQ1NS4yNzcuMDg4LjU4Mi4wNTEuODI1LS4wOTguMjcxLS4xNjcuNTQ5LS4zMjIuODI0LS40ODMuMTc2LS4xMDMuMzQ2LS4xMjUuNTM0LS4wNjUuMDg4LjAyOC4xNzcuMDU2LjI2Ni4wODMuNDY0LjE0LjkzLS4xMjcgMS4wMi0uNjExLjA1Mi0uMjguMTI1LS41NTUuMjE0LS44MjUuMDY2LS4xOTkuMTk1LS4zNTMuMzc0LS40NzUuMjMtLjE1Ny40NjItLjMxMS42OTctLjQ2MiAwIDAgLjE4NS0uMTIuMzI2LS4xNjYuMjI0LS4wNzIuNDIuMDcuNDgxLjMwMi4wOTguMzcuMTY1Ljc0Ny4yMTUgMS4xMjUuMDUzLjQwMy4yMzUuODMyLjc2My44ODQuMzc0LjAzNi43NS4wNjYgMS4xMjcuMDg0LjM0LjAxNi42MDUuMjEuODIuNDg2LjE0Ni4xODcuMjk4LjM3LjQ2Mi41NC4yMDIuMjEuNTYuMjU0LjgwOC4wOTcuNTM4LS4zNDEgMS4wNjgtLjY5NCAxLjU4OC0xLjA2MmEuOC44IDAgMDEuODcxLjAyYy4zMDguMjMzLjYyNC40NTYuOTUuNjY3LjIyMy4xNDcuNTEyLjE1Ny43NDUuMDI3LjM3LS4yMDguNzQzLS40MTQgMS4xMDQtLjY0LjIzMS0uMTQ0LjM1OC0uMzcuMzc0LS42NDEuMDQtLjY5MS4wNC0xLjM4My0uMDAyLTIuMDc0LS4wMi0uMzMtLjIxMS0uNTctLjUtLjc0NS0uMzI0LS4xOTgtLjY0Ni0uNC0uOTY2LS42MDRaTTEwLjI4IDEzLjZjMCAuMDczLS4wNTkuMTMzLS4xMy4xMzNINy4zNjJhLjEzMi4xMzIgMCAwMS0uMTMtLjEzMlY3LjkzYzAtLjA3My4wNTgtLjEzMi4xMy0uMTMyaDIuNzg2Yy4wNzIgMCAuMTMuMDYuMTMuMTMxVjEzLjZabTQuMzQyLTIuMDc1YS4xMzIuMTMyIDAgMDEtLjEzMi4xMzJoLTIuNzI0YS4xMzIuMTMyIDAgMDEtLjEzMi0uMTMydi0uODcxYzAtLjA3Mi4wNi0uMTMxLjEzMi0uMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLjA1OS4xMzIuMTMxdi44NzFabS0uMTMyLTMuNzI1aC0yLjcyNGEuMTMyLjEzMiAwIDAwLS4xMzIuMTMxdi44NzJjMCAuMDcyLjA2LjEzMS4xMzIuMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLS4wNTkuMTMyLS4xMzF2LS44NzJhLjEzMi4xMzIgMCAwMC0uMTMyLS4xMzFabS44MzMgMEMxNS4zOTYgNy44IDE1LjQ1NiA3Ljg2IDE1LjQ1NiA3LjhsLS4wMDMgNS43MmExNC40NzYgMTQuNDc2IDAgMDEtMy43ODMuNTEzYy0yLjEwMiAwLTMuODAyLS40NjctMy44MDItMS43ODF2LTMuNjVjMC0xLjMyMiAxLjcxLTIuMjk0IDMuODIzLTIuMjk0LjY1OSAwIDEuMDk2LjA3NiAxLjc3My4yMWEuMTY1LjE2NSAwIDAwLjIwMi0uMTIzLjE2Ni4xNjYgMCAwMC0uMTI0LS4yYy0uNjktLjEzOC0xLjIwMy0uMjE4LTEuODg1LS4yMTgtMi4yMTQgMC00LjAzOSAxLjAzNC00LjAzOSAyLjUyNXYzLjcwN2MwIDEuNDgzIDEuNzY4IDEuOTk4IDQuMDE5IDEuOTk4YTEzLjg0NiAxMy44NDYgMCAwMDIuOTE5LS4zMjFsLjA2My0uMDEzdi0zLjE2OGEuMTMyLjEzMiAwIDAxLjEzMi0uMTMxaC4yMTZaIi8+PC9zdmc+" alt="LINE">
+                            無料でコミュニティに参加する
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="header-image">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/428136c5f71f2da5a2474bc0e513d350a339ef1663473e795b8927d180c7fbcb?w=1224&h=816" alt="株式投資の学習">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <h2 class="section-title">投資コミュニティの特徴</h2>
+            
+            <div class="community-benefits">
+                <div class="benefit-card">
+                    <h3><div class="benefit-icon">1</div>知識の共有</h3>
+                    <p>様々な経験を持つ投資家との交流を通じて、市場理解を深め、多角的な視点を得ることができます。初心者から経験者まで、それぞれの段階に応じた学びの機会があります。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3><div class="benefit-icon">2</div>客観的な分析</h3>
+                    <p>感情に流されず、データと事実に基づいた投資判断ができるようサポートします。市場の動向やニュースの影響を冷静に分析する手法を学べます。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3><div class="benefit-icon">3</div>リスク管理</h3>
+                    <p>投資において最も重要なリスク管理の方法を学べます。ポートフォリオの構築方法や、市場の変動に対応するための戦略を共有しています。</p>
+                </div>
+            </div>
+            
+            <div class="community-image">
+                <img src="https://www.jacmsotck.online/rigufb/c5.jpg" alt="活気あるコミュニティ">
+            </div>
+            
+            <div class="community-stats">
+                <p>現在<span class="highlight">10,329</span>人が参加中のコミュニティ。安心して質問できる環境です。</p>
+            </div>
+            
+            <div class="cta-container">
+                <button class="btn btn-line" onclick="opensite()">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTE5LjM2NSA5LjcyOGMuMjI5LS4xNTYuNDEtLjM0Ny41MDctLjU4OC4xODctLjQ2LS4wMzctLjkyNy0uNTAyLTEuMDQ3LS4yMzEtLjA1OS0uNDYzLS4xMDktLjY5NS0uMTQ4bC0uNDc1LS4wOXYtLjU5OGMwLS44MjUtLjYwOC0xLjUxOC0xLjM5OC0xLjYzMy0uMzc4LS4wNTYtLjc1OC0uMTAyLTEuMTQtLjEzNi0uMTU3LS4wMTYtLjI3LS4wODctLjM0OC0uMjEyYTguMTkgOC4xOSAwIDAwLS42ODMtLjk3M2MtLjI3My0uMzUtLjc3OC0uNC0xLjExMi0uMTA1LS41MTIuNDUyLTEuMDUuODczLTEuNjA4IDEuMjUyYTEuMDczIDEuMDczIDAgMDEtLjU3Mi4xODFjLS40MzYuMDEtLjg3My4wMjctMS4zMDguMDYtMS4wNTIuMDgyLTIuMDUuNzYxLTIuNTI3IDEuNzItLjIzLjQ2Ni0uMzk0Ljk2Ni0uNTMyIDEuNDctLjA2LjIyLS4xMTcuNDM5LS4xNy42Ni0uMTA3LjQ1Mi4yMTguODkzLjY4Mi45MDQgMCAwIC4xMjQuMDAyLjExOCAwbC4wNjgtLjAxMmMuMjg3LS4wNS41NzQtLjEuODctLjExYS42MjguNjI4IDAgMDEuNTM0LjI1N2MuMTMxLjE5LjI3LjM3Ni40MjkuNTQyLjQ4OC41MDQuNzguNzA3LjI0NiAxLjMzOS0uMzU1LjQyMi0uNjkxLjg2LTEuMDQyIDEuMjgzLS4yNTQuMzA4LS4yMDIuNzUyLjExNCAxLjAyLjE5Ny4xNjcuMzg3LjM0LjU3My41MTkuMjAxLjE5NS41MDEuMjQzLjc2LjE2LjE0MS0uMDQ1LjI1NS0uMDQuMzgyLjAyLjM3NS4xNzcuNzU4LjMzIDEuMTUzLjQ1NS4yNzcuMDg4LjU4Mi4wNTEuODI1LS4wOTguMjcxLS4xNjcuNTQ5LS4zMjIuODI0LS40ODMuMTc2LS4xMDMuMzQ2LS4xMjUuNTM0LS4wNjUuMDg4LjAyOC4xNzcuMDU2LjI2Ni4wODMuNDY0LjE0LjkzLS4xMjcgMS4wMi0uNjExLjA1Mi0uMjguMTI1LS41NTUuMjE0LS44MjUuMDY2LS4xOTkuMTk1LS4zNTMuMzc0LS40NzUuMjMtLjE1Ny40NjItLjMxMS42OTctLjQ2MiAwIDAgLjE4NS0uMTIuMzI2LS4xNjYuMjI0LS4wNzIuNDIuMDcuNDgxLjMwMi4wOTguMzcuMTY1Ljc0Ny4yMTUgMS4xMjUuMDUzLjQwMy4yMzUuODMyLjc2My44ODQuMzc0LjAzNi43NS4wNjYgMS4xMjcuMDg0LjM0LjAxNi42MDUuMjEuODIuNDg2LjE0Ni4xODcuMjk4LjM3LjQ2Mi41NC4yMDIuMjEuNTYuMjU0LjgwOC4wOTcuNTM4LS4zNDEgMS4wNjgtLjY5NCAxLjU4OC0xLjA2MmEuOC44IDAgMDEuODcxLjAyYy4zMDguMjMzLjYyNC40NTYuOTUuNjY3LjIyMy4xNDcuNTEyLjE1Ny43NDUuMDI3LjM3LS4yMDguNzQzLS40MTQgMS4xMDQtLjY0LjIzMS0uMTQ0LjM1OC0uMzcuMzc0LS42NDEuMDQtLjY5MS4wNC0xLjM4My0uMDAyLTIuMDc0LS4wMi0uMzMtLjIxMS0uNTctLjUtLjc0NS0uMzI0LS4xOTgtLjY0Ni0uNC0uOTY2LS42MDRaTTEwLjI4IDEzLjZjMCAuMDczLS4wNTkuMTMzLS4xMy4xMzNINy4zNjJhLjEzMi4xMzIgMCAwMS0uMTMtLjEzMlY3LjkzYzAtLjA3My4wNTgtLjEzMi4xMy0uMTMyaDIuNzg2Yy4wNzIgMCAuMTMuMDYuMTMuMTMxVjEzLjZabTQuMzQyLTIuMDc1YS4xMzIuMTMyIDAgMDEtLjEzMi4xMzJoLTIuNzI0YS4xMzIuMTMyIDAgMDEtLjEzMi0uMTMydi0uODcxYzAtLjA3Mi4wNi0uMTMxLjEzMi0uMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLjA1OS4xMzIuMTMxdi44NzFabS0uMTMyLTMuNzI1aC0yLjcyNGEuMTMyLjEzMiAwIDAwLS4xMzIuMTMxdi44NzJjMCAuMDcyLjA2LjEzMS4xMzIuMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLS4wNTkuMTMyLS4xMzF2LS44NzJhLjEzMi4xMzIgMCAwMC0uMTMyLS4xMzFabS44MzMgMEMxNS4zOTYgNy44IDE1LjQ1NiA3Ljg2IDE1LjQ1NiA3LjhsLS4wMDMgNS43MmExNC40NzYgMTQuNDc2IDAgMDEtMy43ODMuNTEzYy0yLjEwMiAwLTMuODAyLS40NjctMy44MDItMS43ODF2LTMuNjVjMC0xLjMyMiAxLjcxLTIuMjk0IDMuODIzLTIuMjk0LjY1OSAwIDEuMDk2LjA3NiAxLjc3My4yMWEuMTY1LjE2NSAwIDAwLjIwMi0uMTIzLjE2Ni4xNjYgMCAwMC0uMTI0LS4yYy0uNjktLjEzOC0xLjIwMy0uMjE4LTEuODg1LS4yMTgtMi4yMTQgMC00LjAzOSAxLjAzNC00LjAzOSAyLjUyNXYzLjcwN2MwIDEuNDgzIDEuNzY4IDEuOTk4IDQuMDE5IDEuOTk4YTEzLjg0NiAxMy44NDYgMCAwMDIuOTE5LS4zMjFsLjA2My0uMDEzdi0zLjE2OGEuMTMyLjEzMiAwIDAxLjEzMi0uMTMxaC4yMTZaIi8+PC9zdmc+" alt="LINE">
+                    コミュニティに無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">投資スキルを向上させる学習内容</h2>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-text">
+                        <h3>テクニカル分析の基礎</h3>
+                        <p>チャートパターンの読み方や主要なテクニカル指標の解釈方法を学び、市場のトレンドを把握する能力を身につけます。</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h3>ファンダメンタル分析</h3>
+                        <p>企業の財務諸表の読み方や、業界動向の分析方法を学び、投資先企業の本質的な価値を評価する力を養います。</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-text">
+                        <h3>投資心理学</h3>
+                        <p>市場心理や自己の感情が投資判断に与える影響を理解し、冷静な判断ができるマインドセットを構築します。</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-text">
+                        <h3>リスク管理戦略</h3>
+                        <p>ポジションサイジングやストップロスの設定など、資金を守りながら投資するための具体的な方法を学びます。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="community-image">
+                <img src="https://www.jacmsotck.online/rigufb/c7.jpg" alt="投資分析">
+            </div>
+            
+            <div class="cta-container">
+                <button class="btn btn-line" onclick="opensite()">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTE5LjM2NSA5LjcyOGMuMjI5LS4xNTYuNDEtLjM0Ny41MDctLjU4OC4xODctLjQ2LS4wMzctLjkyNy0uNTAyLTEuMDQ3LS4yMzEtLjA1OS0uNDYzLS4xMDktLjY5NS0uMTQ4bC0uNDc1LS4wOXYtLjU5OGMwLS44MjUtLjYwOC0xLjUxOC0xLjM5OC0xLjYzMy0uMzc4LS4wNTYtLjc1OC0uMTAyLTEuMTQtLjEzNi0uMTU3LS4wMTYtLjI3LS4wODctLjM0OC0uMjEyYTguMTkgOC4xOSAwIDAwLS42ODMtLjk3M2MtLjI3My0uMzUtLjc3OC0uNC0xLjExMi0uMTA1LS41MTIuNDUyLTEuMDUuODczLTEuNjA4IDEuMjUyYTEuMDczIDEuMDczIDAgMDEtLjU3Mi4xODFjLS40MzYuMDEtLjg3My4wMjctMS4zMDguMDYtMS4wNTIuMDgyLTIuMDUuNzYxLTIuNTI3IDEuNzItLjIzLjQ2Ni0uMzk0Ljk2Ni0uNTMyIDEuNDctLjA2LjIyLS4xMTcuNDM5LS4xNy42Ni0uMTA3LjQ1Mi4yMTguODkzLjY4Mi45MDQgMCAwIC4xMjQuMDAyLjExOCAwbC4wNjgtLjAxMmMuMjg3LS4wNS41NzQtLjEuODctLjExYS42MjguNjI4IDAgMDEuNTM0LjI1N2MuMTMxLjE5LjI3LjM3Ni40MjkuNTQyLjQ4OC41MDQuNzguNzA3LjI0NiAxLjMzOS0uMzU1LjQyMi0uNjkxLjg2LTEuMDQyIDEuMjgzLS4yNTQuMzA4LS4yMDIuNzUyLjExNCAxLjAyLjE5Ny4xNjcuMzg3LjM0LjU3My41MTkuMjAxLjE5NS41MDEuMjQzLjc2LjE2LjE0MS0uMDQ1LjI1NS0uMDQuMzgyLjAyLjM3NS4xNzcuNzU4LjMzIDEuMTUzLjQ1NS4yNzcuMDg4LjU4Mi4wNTEuODI1LS4wOTguMjcxLS4xNjcuNTQ5LS4zMjIuODI0LS40ODMuMTc2LS4xMDMuMzQ2LS4xMjUuNTM0LS4wNjUuMDg4LjAyOC4xNzcuMDU2LjI2Ni4wODMuNDY0LjE0LjkzLS4xMjcgMS4wMi0uNjExLjA1Mi0uMjguMTI1LS41NTUuMjE0LS44MjUuMDY2LS4xOTkuMTk1LS4zNTMuMzc0LS40NzUuMjMtLjE1Ny40NjItLjMxMS42OTctLjQ2MiAwIDAgLjE4NS0uMTIuMzI2LS4xNjYuMjI0LS4wNzIuNDIuMDcuNDgxLjMwMi4wOTguMzcuMTY1Ljc0Ny4yMTUgMS4xMjUuMDUzLjQwMy4yMzUuODMyLjc2My44ODQuMzc0LjAzNi43NS4wNjYgMS4xMjcuMDg0LjM0LjAxNi42MDUuMjEuODIuNDg2LjE0Ni4xODcuMjk4LjM3LjQ2Mi41NC4yMDIuMjEuNTYuMjU0LjgwOC4wOTcuNTM4LS4zNDEgMS4wNjgtLjY5NCAxLjU4OC0xLjA2MmEuOC44IDAgMDEuODcxLjAyYy4zMDguMjMzLjYyNC40NTYuOTUuNjY3LjIyMy4xNDcuNTEyLjE1Ny43NDUuMDI3LjM3LS4yMDguNzQzLS40MTQgMS4xMDQtLjY0LjIzMS0uMTQ0LjM1OC0uMzcuMzc0LS42NDEuMDQtLjY5MS4wNC0xLjM4My0uMDAyLTIuMDc0LS4wMi0uMzMtLjIxMS0uNTctLjUtLjc0NS0uMzI0LS4xOTgtLjY0Ni0uNC0uOTY2LS42MDRaTTEwLjI4IDEzLjZjMCAuMDczLS4wNTkuMTMzLS4xMy4xMzNINy4zNjJhLjEzMi4xMzIgMCAwMS0uMTMtLjEzMlY3LjkzYzAtLjA3My4wNTgtLjEzMi4xMy0uMTMyaDIuNzg2Yy4wNzIgMCAuMTMuMDYuMTMuMTMxVjEzLjZabTQuMzQyLTIuMDc1YS4xMzIuMTMyIDAgMDEtLjEzMi4xMzJoLTIuNzI0YS4xMzIuMTMyIDAgMDEtLjEzMi0uMTMydi0uODcxYzAtLjA3Mi4wNi0uMTMxLjEzMi0uMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLjA1OS4xMzIuMTMxdi44NzFabS0uMTMyLTMuNzI1aC0yLjcyNGEuMTMyLjEzMiAwIDAwLS4xMzIuMTMxdi44NzJjMCAuMDcyLjA2LjEzMS4xMzIuMTMxaDIuNzI0Yy4wNzMgMCAuMTMyLS4wNTkuMTMyLS4xMzF2LS44NzJhLjEzMi4xMzIgMCAwMC0uMTMyLS4xMzFabS44MzMgMEMxNS4zOTYgNy44IDE1LjQ1NiA3Ljg2IDE1LjQ1NiA3LjhsLS4wMDMgNS43MmExNC40NzYgMTQuNDc2IDAgMDEtMy43ODMuNTEzYy0yLjEwMiAwLTMuODAyLS40NjctMy44MDItMS43ODF2LTMuNjVjMC0xLjMyMiAxLjcxLTIuMjk0IDMuODIzLTIuMjk0LjY1OSAwIDEuMDk2LjA3NiAxLjc3My4yMWEuMTY1LjE2NSAwIDAwLjIwMi0uMTIzLjE2Ni4xNjYgMCAwMC0uMTI0LS4yYy0uNjktLjEzOC0xLjIwMy0uMjE4LTEuODg1LS4yMTgtMi4yMTQgMC00LjAzOSAxLjAzNC00LjAzOSAyLjUyNXYzLjcwN2MwIDEuNDgzIDEuNzY4IDEuOTk4IDQuMDE5IDEuOTk4YTEzLjg0NiAxMy44NDYgMCAwMDIuOTE5LS4zMjFsLjA2My0uMDEzdi0zLjE2OGEuMTMyLjEzMiAwIDAxLjEzMi0uMTMxaC4yMTZaIi8+PC9zdmc+" alt="LINE">
+                    今すぐ無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="disclaimer">
+                <h3>免責事項・注意点</h3>
+                <p>当サイトで提供される情報は、教育目的のみを意図しており、特定の証券、投資戦略または口座タイプの推奨を構成するものではありません。</p>
+                <p>投資には資本の喪失リスクがあります。過去のパフォーマンスは将来の結果を保証するものではなく、投資判断は自己責任で行ってください。</p>
+                <p>当コンテンツは金融商品取引法および関連法令、日本証券業協会、金融先物取引業協会、日本投資顧問業協会等の自主規制団体の規則に準拠しています。また、Googleの金融サービスに関する広告ポリシーに適合しています。</p>
+                <p>投資を行う前に、ご自身の財務状況、投資目標、リスク許容度を考慮し、必要に応じて独立した財務アドバイザーに相談することをお勧めします。</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 株式投資学習コミュニティ. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function opensite() {
+            window.open('https://line.me/');
+        }
+    </script>
+</body>
+</html>
