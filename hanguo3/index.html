@@ -155,6 +155,24 @@
             100% { transform: scale(1); }
         }
         
+        .limited-spots {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(255, 76, 76, 0.4);
+            animation: highlight 2s infinite;
+        }
+        
+        @keyframes highlight {
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 76, 76, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255, 76, 76, 0.7); }
+        }
+        
         .header-image {
             flex: 1;
             position: relative;
@@ -360,10 +378,65 @@
             flex-grow: 1;
         }
         
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 60px 0;
+            background-color: var(--card-bg);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 76, 76, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 76, 76, 0.2);
+            position: relative;
+        }
+        
+        .testimonial-text {
+            color: var(--light-text);
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 2rem;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .testimonial-info {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
         /* Social Proof Section */
         .social-proof-section {
             padding: 60px 0;
-            background-color: var(--card-bg);
+            background-color: rgba(10, 21, 37, 0.5);
         }
         
         .social-proof-grid {
@@ -414,7 +487,7 @@
         /* KakaoTalk Button Styles */
         .kakao-btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 15px 30px;
             background-color: var(--kakao-color);
             color: #3C1E1E;
             font-weight: 700;
@@ -425,9 +498,7 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
             margin: 20px 0;
         }
         
@@ -438,53 +509,6 @@
         
         .kakao-btn:active {
             transform: translateY(1px);
-        }
-        
-        .kakao-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-        }
-        
-        /* KakaoTalk Fixed Button */
-        .kakao-fixed {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background-color: var(--kakao-color);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-        
-        .kakao-fixed:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .kakao-notification {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: var(--primary-color);
-            color: white;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border: 2px solid var(--dark-bg);
         }
         
         /* Bottom Floating Button */
@@ -554,12 +578,9 @@
 </head>
 
 <body>
-   
-
     <!-- Bottom Floating Button -->
     <div class="bottom-float-btn">
         <button class="kakao-btn" onclick="opensite()">
-           
             무료 주식 분석 가이드 받기
         </button>
     </div>
@@ -575,13 +596,12 @@
                     <h1 class="main-title">금융 전문가 <span class="highlight">김영익</span>과 함께하는 특별한 기회</h1>
                     <p class="subtitle">안녕하세요, 저는 김영익입니다. 자산 관리와 금융 기술에 대한 깊은 통찰력을 가진 금융 분야의 전문가입니다. 이번 기회에 귀하의 자산을 정리하고 포괄적인 전략을 제공해 드립니다. 오늘은 블루칩 주식에 대한 무료 기회를 얻을 수 있습니다. 카카오 그룹에 가입하시면 저와 제 팀이 최선을 다해 도와드리겠습니다.</p>
                     
-                    <div class="remain-seats">
-                        <p style="font-weight: 700; color: var(--primary-color);">오늘 이미 4,755명이 가입했습니다. 무료 자리가 35명만 남았습니다!</p>
+                    <div class="limited-spots">
+                        <p>오늘 이미 4,755명이 가입했습니다! 무료 자리가 35명만 남았습니다!</p>
                     </div>
                     
                     <div style="text-align: center;">
                         <button class="kakao-btn" onclick="opensite()">
-                           
                             카카오톡 그룹 가입하기
                         </button>
                     </div>
@@ -604,12 +624,11 @@
                     <p style="margin-bottom: 20px; color: var(--gray-text);">최근 활동은 투자자들의 광범위한 관심을 받고 있습니다:</p>
                     <p style="margin-bottom: 20px;">금융 전문가 김영익이 공유한 시장 분석 방법은 참가자들에게 투자 전략 참고 자료를 제공합니다. 블루칩 주식 분석 문서와 투자 가이드가 계속 배포되고 있으며 현재 진행 상황은 다음과 같습니다.</p>
                     
-                    <div class="remain-seats" style="margin: 30px 0;">
-                        <p style="font-weight: 700; color: var(--primary-color);">카카오 커뮤니티가 곧 만원이 됩니다. 무료 자리가 35명만 남았습니다!</p>
+                    <div class="limited-spots" style="margin: 30px 0;">
+                        <p>오늘 이미 4,755명이 가입했습니다! 무료 자리가 35명만 남았습니다!</p>
                     </div>
                     
                     <button class="kakao-btn" onclick="opensite()">
-                       
                         지금 바로 참여하기
                     </button>
                 </div>
@@ -654,7 +673,6 @@
             
             <div style="text-align: center; margin-top: 40px;">
                 <button class="kakao-btn" onclick="opensite()">
-                    
                     투자 가이드 무료로 받기
                 </button>
             </div>
@@ -685,8 +703,44 @@
             
             <div style="text-align: center; margin-top: 40px;">
                 <button class="kakao-btn" onclick="opensite()">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzNjMWUxZSI+PHBhdGggZD0iTTEyIDNjLTUuNTIzIDAtMTAgMy41ODItMTAgOC0uMDAxIDIuMTg5Ljk0IDQuMjY1IDIuNTggNS43MDYuMTU5LjE0LjI0My4zNTIuMjIuNTY1LS4wOC42Ny0uMjU4IDEuNjY3LS41MjQgMi40MS4xMjUuMDgzLjA4OC4wNi4zNDItLjA0QzcuNjQgMTkuMzM5IDkuNyAxOC44IDEwLjc4MSAxOC40MmM0LjA2OS0uMTAzIDcuNTIzLTEuMDY4IDkuNzE0LTMuNjg2QzIyLjA5NiAxMy4xNjUgMjMgMTAuNiAyMyA4YzAtNC40MTgtNC40NzctOC0xMS04eiIvPjwvc3ZnPg==" class="kakao-icon" alt="카카오톡">
                     지금 바로 혜택 받기
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">회원들의 경험</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">김영익 선생님의 투자 커뮤니티에 가입한 후 시장을 바라보는 시각이 완전히 바뀌었습니다. 특히 블루칩 주식 분석 방법을 배워 투자 결정에 더 자신감을 갖게 되었습니다. 모든 참가자들에게 유익한 지식과 통찰력을 제공해 주셔서 감사합니다.</p>
+                    <p class="testimonial-author">박지훈</p>
+                    <p class="testimonial-info">서울, 42세, IT 기업 매니저</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">투자 초보자로서 이 커뮤니티는 제게 완벽한 시작점이었습니다. 복잡한 금융 개념을 이해하기 쉽게 설명해주시고, 실용적인 투자 전략을 제시해주셔서 단기간에 많은 지식을 쌓을 수 있었습니다. 특히 포트폴리오 구성에 관한 조언이 매우 유용했습니다.</p>
+                    <p class="testimonial-author">이미영</p>
+                    <p class="testimonial-info">부산, 35세, 교사</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">시장 변동성이 큰 상황에서도 침착하게 대응하는 방법을 배울 수 있었습니다. 김영익 선생님께서 제공하시는 시장 분석과 리스크 관리 기법은 실제 투자에 바로 적용할 수 있어 매우 실용적입니다. 커뮤니티 내 소통도 활발해서 다양한 의견을 들을 수 있습니다.</p>
+                    <p class="testimonial-author">김태우</p>
+                    <p class="testimonial-info">대전, 48세, 회사원</p>
+                </div>
+            </div>
+            
+            <div class="limited-spots" style="max-width: 600px; margin: 40px auto;">
+                <p>무료 자리가 35명만 남았습니다! 서둘러 참여하세요!</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="kakao-btn" onclick="opensite()">
+                    카카오톡 그룹 참여하기
                 </button>
             </div>
         </div>
@@ -695,7 +749,7 @@
     <!-- Social Proof Section -->
     <section class="social-proof-section">
         <div class="container">
-            <h2 class="section-title">커뮤니티 회원들의 경험</h2>
+            <h2 class="section-title">커뮤니티 현황</h2>
             
             <div class="social-proof-grid">
                 <div class="social-proof-card">
@@ -719,13 +773,12 @@
                 </div>
             </div>
             
-            <div class="remain-seats" style="max-width: 600px; margin: 40px auto;">
-                <p style="font-weight: 700; color: var(--primary-color);">오늘 이미 4,755명이 가입했습니다. 무료 자리가 35명만 남았습니다!</p>
+            <div class="limited-spots" style="max-width: 600px; margin: 40px auto;">
+                <p>오늘 이미 4,755명이 가입했습니다! 무료 자리가 35명만 남았습니다!</p>
             </div>
             
             <div style="text-align: center;">
                 <button class="kakao-btn" onclick="opensite()">
-                   
                     카카오톡 그룹 참여하기
                 </button>
             </div>
@@ -751,7 +804,7 @@
 
     <script>
         function opensite() {
-            window.location.href = "https://www.facebook.com";
+            window.open('https://line.me/');
         }
     </script>
 </body>
