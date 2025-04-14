@@ -11,6 +11,8 @@
 
   gtag('config', 'AW-11081918546');
 </script>
+
+    
 <!-- Event snippet for 0416 conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
@@ -1488,9 +1490,9 @@ function gtag_report_conversion(url) {
 
     <script>
         function opensite() 
-        {
-                gtag_report_conversion();
-           window.location.href = 'https://www.baidu.com';
+        {gtag_report_conversion('https://www.baidu.com');
+             
+         //  window.location.href = 'https://www.baidu.com';
         }
         
         // 타이머 기능
