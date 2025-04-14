@@ -1,1 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>박순혁의 투자 가이드 - 전문가의 주식 시장 분석</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #FF4C4C;
+            --accent-color: #000080;
+            --dark-blue: #0A1640;
+            --light-blue: #1A3A8F;
+            --light-red: #FF7676;
+            --kakao-yellow: #FEE500;
+            --kakao-brown: #3C1E1E;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --gradient-blue: linear-gradient(135deg, #000080 0%, #0047AB 100%);
+            --gradient-red: linear-gradient(135deg, #FF4C4C 0%, #FF7676 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            background-color: #f7f7f7;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #13294B 100%);
+            position: relative;
+        }
+        
+        .hero-gradient::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000080' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 76, 76, 0.4);
+        }
+        
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.5);
+        }
+        
+        .primary-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .primary-btn:hover::after {
+            left: 100%;
+        }
+        
+        .kakao-btn {
+            background: var(--kakao-yellow);
+            color: var(--kakao-brown);
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(254, 229, 0, 0.4);
+        }
+        
+        .kakao-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(254, 229, 0, 0.5);
+        }
+        
+        .kakao-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .kakao-btn:hover::after {
+            left: 100%;
+        }
+        
+        .gradient-box {
+            background: linear-gradient(135deg, #13294B 0%, #21416F 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            background: var(--gradient-red);
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 8px 20px rgba(255, 76, 76, 0.3);
+        }
+        
+        .testimonial {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .section-title {
+            position: relative;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .floating-kakao {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--kakao-yellow);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-kakao:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 22px;
+            height: 22px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 76, 76, 0);
+                transform: scale(1.1);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0);
+                transform: scale(1);
+            }
+        }
+        
+        .community-stat {
+            background: rgba(0, 0, 128, 0.05);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .community-stat i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        
+        .limited-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+            margin-left: 0.5rem;
+        }
+        
+        .disclaimer {
+            background-color: rgba(0, 0, 128, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+        
+        .highlight-text {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .quote-box {
+            position: relative;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-box::before {
+            content: """;
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 4rem;
+            color: rgba(255, 76, 76, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            width: 80%;
+            max-width: 320px;
+            margin: 0 auto;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-kakao {
+                width: 50px;
+                height: 50px;
+                right: 15px;
+            }
+            
+            .floating-btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- KakaoTalk Floating Icon -->
+    <div class="floating-kakao" onclick="opensite()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/KakaoTalk_logo.svg" alt="KakaoTalk" width="34" height="34">
+        <span class="notification-badge">1</span>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16 md:py-24 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+                    <span class="inline-block bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">무료 투자 가이드</span>
+                    <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight text-white">무료 <span class="text-gradient">블루칩 주식</span>과 <br>전문가의 투자 지침 받기</h1>
+                    <p class="text-xl mb-6 text-white">변화하는 시장 환경에서 주식 선택 전략과 투자 타이밍은 매우 중요한 과제입니다. 저희가 자산 배분 프레임워크와 다양화 전략을 제공해 드리겠습니다.</p>
+                    
+                    <div class="mb-6 bg-white bg-opacity-10 p-4 rounded-xl">
+                        <p class="text-white font-medium">저는 <span class="highlight-text">박순혁</span>입니다. 카카오 커뮤니티에 가입하시면 전문 팀의 지원을 받으실 수 있습니다.</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="opensite()" class="kakao-btn text-lg">
+                            <i class="fab fa-kickstarter mr-2"></i>카카오 커뮤니티 가입하기
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6 flex flex-wrap">
+                        <div class="community-stat bg-white bg-opacity-20 text-white">
+                            <i class="fas fa-users"></i>
+                            <span>오늘 3,492명 가입</span>
+                        </div>
+                        <div class="community-stat bg-white bg-opacity-20 text-white">
+                            <i class="fas fa-star"></i>
+                            <span>무료 자리 <span class="limited-badge">30명만</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center md:justify-end relative z-10">
+                    <img src="http://goodmja.online/hanguogu/img/a3.png" alt="투자 가이드" class="rounded-xl shadow-2xl max-w-full md:max-w-lg relative">
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Recent Activities Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2 order-2 md:order-1">
+                        <h2 class="section-title text-3xl md:text-4xl mb-8">최근 활동에 <span class="highlight-text">투자자들의 큰 관심</span></h2>
+                        
+                        <p class="text-lg mb-6">
+                            금융 전문가 박순혁이 공유하는 시장 분석 방법론은 참가자들에게 투자 전략 참고 자료를 제공합니다. 블루칩 주식 분석 문서와 투자 가이드가 계속해서 배포되고 있으며, 현재 진행 상황은 다음과 같습니다.
+                        </p>
+                        
+                        <div class="quote-box mb-8">
+                            <p class="font-medium">"성공적인 투자는 올바른 주식을 선택하는 것뿐만 아니라, 그것을 얼마나 오래 보유하는지에 달려 있습니다."</p>
+                            <p class="text-right mt-2 text-gray-600">- 박순혁</p>
+                        </div>
+                        
+                        <div class="bg-red-50 p-4 rounded-xl mb-6 border border-red-100">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-exclamation-circle text-red-500 mr-2"></i>
+                                <h3 class="font-bold text-lg text-gray-800">카카오 커뮤니티 모집 마감 임박</h3>
+                            </div>
+                            <p>전문적인 투자 인사이트와 분석 자료를 받을 수 있는 기회를 놓치지 마세요. 무료 블루칩 주식 리스트와 투자 가이드를 받으세요.</p>
+                        </div>
+                        
+                        <button onclick="opensite()" class="kakao-btn text-lg">
+                            <i class="fab fa-kickstarter mr-2"></i>지금 카카오 커뮤니티 가입하기
+                        </button>
+                    </div>
+                    
+                    <div class="md:w-1/2 order-1 md:order-2">
+                        <img src="http://goodmja.online/hanguogu/img/a7.jpg" alt="최근 활동" class="rounded-xl shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Guide Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">투자 가이드 <span class="highlight-text">3대 핵심 영역</span></h2>
+                <p class="text-xl max-w-3xl mx-auto">체계적인 접근 방식으로 투자 결정을 내리는 데 도움이 되는 전문 가이드</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">블루칩 주식 기본 분석 방법</h3>
+                    <p class="mb-4">본 가이드는 산업 연구 및 기업 재무 분석의 기본 방법론을 분석하여 상장 기업의 장기 가치 평가 요소를 이해하는 데 도움을 줍니다.</p>
+                    <img src="http://goodmja.online/hanguogu/img/a4.jpg" alt="블루칩 분석" class="w-full h-40 object-cover rounded-lg mt-4">
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">시장 주기 대응 전략</h3>
+                    <p class="mb-4">다양한 시장 환경에서의 자산 배분 아이디어를 공유합니다. 변동성 시장에서의 위험 관리 기본 원칙을 포함합니다.</p>
+                    <img src="http://goodmja.online/hanguogu/img/a5.jpg" alt="시장 주기" class="w-full h-40 object-cover rounded-lg mt-4">
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">포트폴리오 구성 및 리스크 관리</h3>
+                    <p class="mb-4">다양화된 투자 포트폴리오 구축 로직을 설명하며, 다양한 자산 클래스의 배분 비율 제안을 다룹니다.</p>
+                    <img src="http://goodmja.online/hanguogu/img/a6.jpg" alt="포트폴리오 구성" class="w-full h-40 object-cover rounded-lg mt-4">
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="opensite()" class="kakao-btn text-lg px-8 py-4">
+                    <i class="fab fa-kickstarter mr-2"></i>전체 투자 가이드 받기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Benefits Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="section-title text-3xl md:text-4xl mb-12">커뮤니티 <span class="highlight-text">전용 혜택</span></h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="gradient-box text-white">
+                        <h3 class="text-2xl font-bold mb-4">블루칩 주식 연구 요약</h3>
+                        <p class="mb-4">다년간의 경험을 가진 박순혁 팀이 정리한 블루칩 주식 기본 분석 요약을 받아보세요. 장기 투자 가치가 있는 회사 연구를 포함합니다.</p>
+                        <div class="flex items-center mt-6">
+                            <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                            <span>상세한 기업 분석과 산업 동향</span>
+                        </div>
+                        <div class="flex items-center mt-3">
+                            <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                            <span>재무제표 해석 및 주요 지표 분석</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gradient-box text-white">
+                        <h3 class="text-2xl font-bold mb-4">투자 전략 핸드북</h3>
+                        <p class="mb-4">다년간의 시장 경험을 바탕으로 요약된 투자 방법론 프레임워크를 제공합니다. 기본 분석부터 포트폴리오 관리까지의 지식 체계를 다룹니다.</p>
+                        <div class="flex items-center mt-6">
+                            <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                            <span>체계적인 투자 의사결정 프로세스</span>
+                        </div>
+                        <div class="flex items-center mt-3">
+                            <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                            <span>다양한 시장 환경별 대응 방안</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gradient-box text-white md:col-span-2">
+                        <h3 class="text-2xl font-bold mb-4">시장 동향 업데이트</h3>
+                        <p class="mb-4">커뮤니티에 가입하면 정기적으로 시장 뉴스 브리핑과 투자 지식 공유를 받을 수 있으며, 다른 투자자들과 규정을 준수하는 교류를 할 수 있습니다.</p>
+                        <div class="grid md:grid-cols-3 gap-4 mt-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                                <span>주간 시장 분석 리포트</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                                <span>실시간 중요 뉴스 알림</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3 text-xl"></i>
+                                <span>전문가 Q&A 세션</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <button onclick="opensite()" class="kakao-btn text-lg px-8 py-4">
+                        <i class="fab fa-kickstarter mr-2"></i>지금 무료로 가입하기
+                    </button>
+                    <p class="mt-4 text-gray-600">
+                        <i class="fas fa-lock mr-2"></i>개인정보는 안전하게 보호됩니다
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">커뮤니티 <span class="highlight-text">회원들의 소리</span></h2>
+                    <p class="text-xl">우리 커뮤니티에 참여한 회원들의 경험을 들어보세요</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=11" alt="김상우" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">김상우 님</h3>
+                                <p class="text-sm text-gray-600">회사원 | 커뮤니티 회원 6개월</p>
+                            </div>
+                        </div>
+                        <p>"박순혁님의 투자 커뮤니티는 정말 유익합니다. 특히 블루칩 주식 분석 자료가 체계적이고 이해하기 쉽게 정리되어 있어서 많은 도움이 되었습니다. 시장 상황에 대한 정기적인 업데이트도 큰 장점입니다."</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=32" alt="이지연" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">이지연 님</h3>
+                                <p class="text-sm text-gray-600">자영업 | 커뮤니티 회원 3개월</p>
+                            </div>
+                        </div>
+                        <p>"투자를 시작한 지 얼마 안 된 초보자로서, 이 커뮤니티는 정말 좋은 출발점이 되었습니다. 기본적인 투자 개념부터 실제 적용 방법까지 단계별로 배울 수 있어서 좋았습니다. 다른 회원들과의 교류도 많은 도움이 됩니다."</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=23" alt="박지훈" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">박지훈 님</h3>
+                                <p class="text-sm text-gray-600">프리랜서 | 커뮤니티 회원 4개월</p>
+                            </div>
+                        </div>
+                        <p>"시장 분석과 포트폴리오 구성에 관한 가이드가 특히 인상적입니다. 이론적인 내용뿐만 아니라 실제 적용 사례를 통해 배울 수 있어서 매우 유익합니다. 커뮤니티의 친절한 분위기도 큰 장점입니다."</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=45" alt="최민지" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">최민지 님</h3>
+                                <p class="text-sm text-gray-600">회사원 | 커뮤니티 회원 2개월</p>
+                            </div>
+                        </div>
+                        <p>"처음에는 반신반의했지만, 가입 후 제공되는 자료의 퀄리티에 놀랐습니다. 특히 시장 주기에 따른 투자 전략이 실제 투자에 많은 도움이 되었습니다. 커뮤니티 분위기도 좋고 정보 공유가 활발해서 매우 만족스럽습니다."</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                    <h3 class="text-2xl font-bold mb-6">지금 바로 커뮤니티에 참여하세요</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-accent-color mb-2">3,492</div>
+                            <div class="text-sm text-gray-600">오늘 가입한 회원</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-accent-color mb-2">15,000+</div>
+                            <div class="text-sm text-gray-600">총 커뮤니티 회원</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-accent-color mb-2">4.9/5</div>
+                            <div class="text-sm text-gray-600">회원 만족도</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-red-500 mb-2">30</div>
+                            <div class="text-sm text-gray-600">남은 무료 자리</div>
+                        </div>
+                    </div>
+                    <button onclick="opensite()" class="kakao-btn text-lg px-8 py-4">
+                        <i class="fab fa-kickstarter mr-2"></i>무료로 가입하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Button -->
+    <div class="floating-btn">
+        <button onclick="opensite()" class="kakao-btn w-full text-lg py-4">
+            <i class="fab fa-kickstarter mr-2"></i>카카오 커뮤니티 가입하기
+        </button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold">박순혁의 투자 커뮤니티</h2>
+                    <p class="text-gray-400 mt-2">체계적인 투자 교육과 정보 공유의 장</p>
+                </div>
+                
+                <div class="disclaimer mb-8 text-gray-300">
+                    <h3 class="font-bold text-lg mb-3 text-white">면책 사항</h3>
+                    <p class="mb-3">본 플랫폼의 모든 내용은 교육 목적으로만 제공되며, 특정 투자 결과를 보장하지 않습니다. 투자자는 자신의 상황에 따라 독립적으로 의사 결정을 해야 합니다.</p>
+                    <p class="mb-3">본 사이트에서 제공하는 정보는 투자 권유가 아니며, 투자 판단의 참고 자료로만 활용하시기 바랍니다. 모든 투자는 원금 손실의 위험이 있으며, 과거의 수익률이 미래의 수익률을 보장하지 않습니다.</p>
+                    <p class="mb-3">본 플랫폼은 한국 금융감독원 및 금융 관련 법규를 준수하며, 정보 제공 서비스로서 투자 자문업 또는 투자일임업 등록 없이 제공 가능한 교육 콘텐츠만을 제공합니다.</p>
+                    <p>각 투자자는 자신의 투자 목표, 위험 성향, 재정 상황 등을 고려하여 투자 결정을 내려야 하며, 필요한 경우 전문 투자 자문가의 조언을 구하시기 바랍니다. 본 사이트는 투자로 인한 손실에 대해 어떠한 책임도 지지 않습니다.</p>
+                </div>
+                
+                <div class="text-center text-gray-500 text-sm">
+                    <p>© 2024 박순혁의 투자 커뮤니티. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function opensite() {
+            window.open('https://line.me/your_line_link', '_blank');
+        }
+    </script>
+</body>
+</html>
