@@ -15,9 +15,12 @@
             --dark-blue: #001F54;
             --light-blue: #034694;
             --light-red: #FF7676;
-            --bg-dark: #0A1128;
-            --bg-light: #F5F5F5;
+            --bg-dark: #0F172A;
+            --bg-darker: #0A1128;
+            --bg-medium: #1E293B;
+            --bg-light: #334155;
             --text-light: #FFFFFF;
+            --text-gray: #CBD5E1;
             --text-dark: #1A1A1A;
         }
         
@@ -29,8 +32,8 @@
         }
         
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
         
@@ -101,7 +104,7 @@
             display: inline-block;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: var(--accent-color);
+            color: var(--primary-color);
         }
         
         .section-title::after {
@@ -115,17 +118,19 @@
         }
         
         .feature-card {
-            background: white;
+            background: var(--bg-medium);
             border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             height: 100%;
+            border: 1px solid rgba(255, 76, 76, 0.1);
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 76, 76, 0.3);
         }
         
         .red-gradient-bg {
@@ -137,10 +142,10 @@
         }
         
         .advantage-card {
-            background: white;
+            background: var(--bg-medium);
             border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             border-left: 4px solid var(--primary-color);
             transition: all 0.3s ease;
             height: 100%;
@@ -148,7 +153,7 @@
         
         .advantage-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
         
         .benefit-icon {
@@ -193,19 +198,20 @@
         }
         
         .social-proof {
-            background: rgba(255, 76, 76, 0.1);
+            background: rgba(255, 76, 76, 0.15);
             border-radius: 8px;
             padding: 15px;
             margin-top: 2rem;
         }
         
         .testimonial-card {
-            background: white;
+            background: var(--bg-medium);
             border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
             margin-top: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .testimonial-avatar {
@@ -215,8 +221,8 @@
             position: absolute;
             top: -25px;
             left: 20px;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--bg-medium);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         
         .count-item {
@@ -234,7 +240,7 @@
         
         .count-label {
             font-size: 1rem;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
         
         .limited-spots {
@@ -249,12 +255,25 @@
         }
         
         .disclaimer {
-            background-color: rgba(0, 0, 128, 0.05);
+            background-color: rgba(0, 0, 128, 0.2);
             border-radius: 10px;
             padding: 1.5rem;
             font-size: 0.9rem;
-            color: var(--text-dark);
+            color: var(--text-light);
             margin-top: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-dark {
+            background-color: var(--bg-darker);
+        }
+        
+        .section-medium {
+            background-color: var(--bg-medium);
+        }
+        
+        .footer-text {
+            color: var(--text-gray);
         }
         
         @media (max-width: 768px) {
@@ -295,7 +314,7 @@
     </section>
 
     <!-- About Ryan Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 section-medium">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <h2 class="section-title text-2xl md:text-3xl">股票市場教育導師：Ryan老師</h2>
@@ -339,7 +358,7 @@
     </section>
 
     <!-- What is 集合竞价 Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 section-dark">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center gap-10">
                 <div class="md:w-1/2 order-2 md:order-1">
@@ -350,22 +369,22 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                         <div class="advantage-card">
-                            <h3 class="text-xl font-bold mb-2 text-accent-color">初步反映市場供需情況</h3>
+                            <h3 class="text-xl font-bold mb-2 text-red-400">初步反映市場供需情況</h3>
                             <p>集合競價顯示買賣雙方的力量對比，為投資者提供對市場情緒的初步判斷。</p>
                         </div>
                         
                         <div class="advantage-card">
-                            <h3 class="text-xl font-bold mb-2 text-accent-color">幫助確定開盤價</h3>
+                            <h3 class="text-xl font-bold mb-2 text-red-400">幫助確定開盤價</h3>
                             <p>集合競價通過集中撮合形成一個平衡價格，作為市場開盤時的重要參考點。</p>
                         </div>
                         
                         <div class="advantage-card">
-                            <h3 class="text-xl font-bold mb-2 text-accent-color">降低市場波動風險</h3>
+                            <h3 class="text-xl font-bold mb-2 text-red-400">降低市場波動風險</h3>
                             <p>集合競價通過集中撮合的方式，有助於減少開盤時的價格波動，提供更平穩的開盤環境。</p>
                         </div>
                         
                         <div class="advantage-card">
-                            <h3 class="text-xl font-bold mb-2 text-accent-color">為交易決策提供參考</h3>
+                            <h3 class="text-xl font-bold mb-2 text-red-400">為交易決策提供參考</h3>
                             <p>投資者可以通過集合競價的數據，結合其他信息，分析股票可能的走勢，從而輔助交易決策。</p>
                         </div>
                     </div>
@@ -385,7 +404,7 @@
     </section>
 
     <!-- Community Benefits Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 section-medium">
         <div class="container mx-auto px-4">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-12">
@@ -453,7 +472,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-gray-50 p-6 md:p-10 rounded-xl shadow-sm">
+                <div class="bg-gray-900 p-6 md:p-10 rounded-xl shadow-sm">
                     <div class="text-center mb-8">
                         <h3 class="text-2xl font-bold mb-4">社區成員的真實評價</h3>
                         <p class="text-lg">聽聽已加入社區的投資者怎麼說</p>
@@ -464,7 +483,7 @@
                             <img src="https://i.pravatar.cc/120?img=1" class="testimonial-avatar" alt="用戶頭像">
                             <div class="pt-4">
                                 <h4 class="font-bold text-lg mt-3">王先生</h4>
-                                <p class="text-gray-600 text-sm mb-3">社區成員 · 6個月</p>
+                                <p class="text-gray-400 text-sm mb-3">社區成員 · 6個月</p>
                                 <p>"社區的集合競價分析教程非常實用，讓我對開盤前的市場有了更清晰的認識，不再盲目跟風。"</p>
                             </div>
                         </div>
@@ -473,7 +492,7 @@
                             <img src="https://i.pravatar.cc/120?img=5" class="testimonial-avatar" alt="用戶頭像">
                             <div class="pt-4">
                                 <h4 class="font-bold text-lg mt-3">李女士</h4>
-                                <p class="text-gray-600 text-sm mb-3">社區成員 · 3個月</p>
+                                <p class="text-gray-400 text-sm mb-3">社區成員 · 3個月</p>
                                 <p>"作為新手，我從社區獲得了很多寶貴的學習資源和實戰技巧，Ryan老師的講解通俗易懂。"</p>
                             </div>
                         </div>
@@ -482,7 +501,7 @@
                             <img src="https://i.pravatar.cc/120?img=3" class="testimonial-avatar" alt="用戶頭像">
                             <div class="pt-4">
                                 <h4 class="font-bold text-lg mt-3">張先生</h4>
-                                <p class="text-gray-600 text-sm mb-3">社區成員 · 8個月</p>
+                                <p class="text-gray-400 text-sm mb-3">社區成員 · 8個月</p>
                                 <p>"每天的市場資訊和案例分析讓我更好地把握市場動向，社區氛圍也很好，成員間互相學習和交流。"</p>
                             </div>
                         </div>
@@ -503,18 +522,18 @@
         <div class="container mx-auto px-4">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-8">
-                    <h2 class="text-2xl font-bold">Ryan老師股票市場教育</h2>
-                    <p class="text-gray-400 mt-2">專注於股票市場教育和集合競價分析技巧</p>
+                    <h2 class="text-2xl font-bold text-white">Ryan老師股票市場教育</h2>
+                    <p class="text-gray-300 mt-2">專注於股票市場教育和集合競價分析技巧</p>
                 </div>
                 
-                <div class="disclaimer mb-8">
-                    <h3 class="font-bold text-lg mb-3">免責聲明</h3>
+                <div class="disclaimer mb-8 text-gray-200">
+                    <h3 class="font-bold text-lg mb-3 text-white">免責聲明</h3>
                     <p class="mb-2">本社區僅為教育和學習目的，不提供任何投資建議或收益承諾。所有交易決策須基於您的獨立判斷，並承擔相關風險。</p>
                     <p class="mb-2">根據證券及期貨事務監察委員會（SFC）的規定，我們不提供任何具體股票推薦或交易信號。社區內容僅為教育目的，旨在提高您對市場的理解和分析能力。</p>
                     <p>股票市場具有波動性，投資需謹慎。建議您在做出任何投資決定前，諮詢合資格的專業人士意見。</p>
                 </div>
                 
-                <div class="text-center text-gray-500 text-sm">
+                <div class="text-center text-gray-400 text-sm">
                     <p>© 2024 Ryan老師股票市場教育. 版權所有.</p>
                 </div>
             </div>
@@ -524,13 +543,15 @@
     <!-- Floating Button -->
     <div class="floating-btn">
         <button onclick="opensite()" class="primary-btn w-full text-lg py-4">
-            <i class="fab fa-whatsapp mr-2"></i>免費加入WhatsApp社區
+            <i class="fab fa-whatsapp mr-2"></i>免費加入社區
         </button>
     </div>
 
     <script>
         function opensite() {
-            window.open('https://line.me/your_line_link', '_blank');
+             fbq('track', 'AddToCart');
+      fbq('track', 'Purchase');
+          window.location.href = "https://www.facebook.com";
         }
     </script>
 </body>
