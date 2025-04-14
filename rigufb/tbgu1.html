@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script>
+!function(f,b,e,v,n,t,s) {
+    if(f.fbq) return;
+    n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+    };
+    if(!f._fbq) f._fbq=n;
+    n.push=n;
+    n.loaded=!0;
+    n.version='2.0';
+    n.queue=[];
+
+    t=b.createElement(e);
+    t.async=!0;
+    t.src=v;
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+// 提取 URL 中的 fbid 参数
+function getQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+var fbid = getQueryParam('fbid');
+if (fbid) {
+    fbq('init', fbid);
+    fbq('track', 'PageView');
+}
+</script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>株式投資の学習コミュニティ - 知識を深め、より良い意思決定を</title>
@@ -763,7 +795,9 @@
 
     <script>
         function opensite() {
-            window.open('https://line.me/');
+               fbq('track', 'AddToCart');
+      fbq('track', 'Purchase');
+          window.location.href = "https://www.facebook.com";
         }
     </script>
 </body>
