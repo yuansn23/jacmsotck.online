@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>テスタの投資戦略 - 2025年の株式市場に備える</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #FF4C4C;
+            --accent-color: #000080;
+            --dark-blue: #0A1640;
+            --light-blue: #1A3A8F;
+            --light-red: #FF7676;
+            --bg-dark: #0F172A;
+            --bg-darker: #0A1128;
+            --bg-medium: #1E293B;
+            --text-light: #FFFFFF;
+            --text-gray: #CBD5E1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(130deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            position: relative;
+        }
+        
+        .gradient-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000080' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 76, 76, 0.4);
+        }
+        
+        .primary-btn:hover {
+            background: #FF3333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.5);
+        }
+        
+        .primary-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .primary-btn:hover::after {
+            left: 100%;
+        }
+        
+        .secondary-btn {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 128, 0.3);
+        }
+        
+        .secondary-btn:hover {
+            background: #000066;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 128, 0.4);
+        }
+        
+        .section-title {
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .card {
+            background: linear-gradient(145deg, #162040, #0c1223);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 76, 76, 0.2);
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            width: 80%;
+            max-width: 360px;
+            margin: 0 auto;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 76, 76, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0);
+                transform: scale(1);
+            }
+        }
+        
+        .testimonial {
+            background: rgba(0, 0, 128, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .icon-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--light-red) 100%);
+            color: white;
+            font-size: 24px;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(255, 76, 76, 0.3);
+        }
+        
+        .feature-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .limited-badge {
+            background: linear-gradient(135deg, #FF4C4C 0%, #FF7676 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .disclaimer {
+            background-color: rgba(0, 0, 128, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .highlight-text {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="gradient-bg py-16 md:py-24 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+                    <span class="feature-badge mb-4">テスタの戦略公開</span>
+                    <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight">2025年の<span class="highlight-text">投資目標</span>を明らかにし、<br>個人投資家に向けたアドバイスを提供</h1>
+                    <p class="text-xl mb-6">これは テスタ の唯一の個人LINEアカウントです。必要としている方々のお役に立てれば幸いです。一切費用はかかりません。</p>
+                    
+                    <ul class="mb-8 space-y-3">
+                        <li class="flex items-start">
+                            <div class="text-red-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></div>
+                            <span>新しい投資手法とテクニックを活用</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="text-red-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></div>
+                            <span>投資の基本的な考え方を理解する</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="text-red-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></div>
+                            <span>自分の将来をコントロールする</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 items-center">
+                        <button onclick="opensite()" class="primary-btn text-lg">
+                            <i class="fab fa-line mr-2"></i>LINEに追加する
+                        </button>
+                        <span class="text-sm bg-white bg-opacity-10 p-2 rounded-full">
+                            <span class="limited-badge mr-2">残り40名限定</span>
+                            <span>ブルーチップ株リスト無料配布中</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center md:justify-end relative z-10">
+                    <div class="relative">
+                        <img src="https://www.jacmsotck.online/rigu414-l/img/1.jpg" alt="テスタ" class="rounded-xl shadow-2xl max-w-full w-full md:max-w-md">
+                        <div class="absolute -bottom-4 -right-4 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg transform rotate-3">
+                            投資アナリスト
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="absolute top-20 left-10 w-20 h-20 bg-red-500 rounded-full filter blur-3xl opacity-20"></div>
+            <div class="absolute bottom-20 right-10 w-40 h-40 bg-blue-800 rounded-full filter blur-3xl opacity-10"></div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-20 bg-gradient-to-b from-bg-darker to-bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2 order-2 md:order-1">
+                        <span class="feature-badge">株式市場の真実</span>
+                        <h2 class="section-title text-3xl md:text-4xl mb-6">経験だけでは<span class="highlight-text">成功の鍵</span>とは限らない</h2>
+                        
+                        <p class="text-lg mb-6">
+                            株式市場では、時間の経過とともに多くの経験を積むことができますが、経験だけが成功の鍵とは限りません。私の友人は損失を出している株をどのように利益に転換できるか学びたいと思っていましたが、現在の経済環境にどう対応すべきか分からなかったため、私は無料の株式知識講座を開催することにしました。
+                        </p>
+                        
+                        <div class="card mb-8">
+                            <div class="flex items-start mb-4">
+                                <div class="icon-circle mr-4 flex-shrink-0">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">知識が力になる理由</h3>
+                                    <p>市場の動きを理解するためには、単なる経験だけでなく、体系的な知識と分析スキルが必要です。私たちの講座では、これらのスキルを身につけるためのステップバイステップのガイダンスを提供します。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="icon-circle mr-4 flex-shrink-0">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">市場環境への適応</h3>
+                                    <p>現代の経済環境は常に変化しています。私たちの講座では、これらの変化に適応し、あらゆる市場環境で機能する投資戦略を開発する方法を学びます。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button onclick="opensite()" class="secondary-btn text-lg">
+                                <i class="fab fa-line mr-2"></i>無料講座に申し込む
+                            </button>
+                            <p class="mt-4 text-gray-400">
+                                <i class="fas fa-users mr-2"></i>既に1200人以上が参加 · 
+                                <span class="text-red-400 font-bold">残り40名限定</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 order-1 md:order-2">
+                        <img src="https://www.jacmsotck.online/rigu414-l/img/2.jpg" alt="株式市場での経験" class="rounded-xl shadow-2xl w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 gradient-bg relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="feature-badge">受講者の声</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">講座受講後の<span class="highlight-text">効果</span></h2>
+                    <p class="text-xl max-w-3xl mx-auto">多くの方々が投資への理解を深め、より効果的な投資判断ができるようになりました</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=11" alt="田中さん" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">田中さん（42歳）</h3>
+                                <p class="text-sm text-gray-400">会社員 - 講座受講後6ヶ月</p>
+                            </div>
+                        </div>
+                        <p>「テスタさんの講座を受けるまで、株式投資は単なる運任せだと思っていました。しかし講座を通じて、市場分析や企業評価の方法を学び、より自信を持って投資判断ができるようになりました。特に市場環境の読み方が大きく変わりました。」</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=32" alt="佐藤さん" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">佐藤さん（35歳）</h3>
+                                <p class="text-sm text-gray-400">自営業 - 講座受講後3ヶ月</p>
+                            </div>
+                        </div>
+                        <p>「以前は投資情報の海に溺れていました。テスタさんの講座では、重要な情報と関係ない情報を区別する方法を学べたのが大きいです。今では情報の取捨選択ができるようになり、より明確な投資戦略を立てられるようになりました。」</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=20" alt="鈴木さん" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">鈴木さん（28歳）</h3>
+                                <p class="text-sm text-gray-400">会社員 - 講座受講後1ヶ月</p>
+                            </div>
+                        </div>
+                        <p>「投資の初心者でしたが、テスタさんの講座は非常に分かりやすく、基礎から段階的に学ぶことができました。特に株式を評価する際の基本的な考え方が身についたことで、投資への不安が大きく減りました。もっと早く受講していればよかったです。」</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pravatar.cc/60?img=33" alt="山田さん" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">山田さん（45歳）</h3>
+                                <p class="text-sm text-gray-400">経営者 - 講座受講後4ヶ月</p>
+                            </div>
+                        </div>
+                        <p>「以前から株式投資はしていましたが、テスタさんの講座で学んだ市場分析の手法は目から鱗でした。特に現在の経済環境を冷静に分析し、それに合わせた投資戦略を立てる方法は非常に実践的です。学んだことを実践して、より計画的な投資ができるようになりました。」</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mb-8">
+                    <img src="https://www.jacmsotck.online/rigu414-l/img/3.jpg" alt="講座の様子" class="rounded-xl shadow-xl max-w-full md:max-w-lg">
+                </div>
+                
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded-xl text-center">
+                    <h3 class="text-2xl font-bold mb-4">無料講座への参加枠は残りわずか</h3>
+                    <p class="text-lg mb-6">テスタの市場分析と投資戦略を学び、より賢明な投資判断をしましょう</p>
+                    <button onclick="opensite()" class="primary-btn text-lg px-8 py-4">
+                        <i class="fab fa-line mr-2"></i>今すぐ無料講座に参加する
+                    </button>
+                    <p class="mt-4 text-red-400 font-bold">
+                        <i class="fas fa-exclamation-circle mr-2"></i>残り40名限定の特別枠
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold">テスタの投資アカデミー</h2>
+                    <p class="text-gray-400 mt-2">市場を理解し、より賢明な投資判断をするためのコミュニティ</p>
+                </div>
+                
+                <div class="disclaimer mb-8">
+                    <h3 class="font-bold text-lg mb-3">免責事項</h3>
+                    <p class="mb-3">当サイトで提供される情報は、教育目的のみで提供されており、特定の投資アドバイスや収益の保証を行うものではありません。すべての投資判断はご自身の責任で行ってください。</p>
+                    <p class="mb-3">金融商品取引法および関連法規に従い、当サイトでは特定の証券や金融商品の購入・売却の推奨を行いません。提供される情報は一般的な教育目的であり、市場理解と分析能力向上を目的としています。</p>
+                    <p>投資には元本割れのリスクがあります。投資を行う前に、必ず専門家のアドバイスを求めることをお勧めします。当サイトは、日本の金融規制および広告に関するガイドラインに準拠しています。</p>
+                </div>
+                
+                <div class="text-center text-gray-500 text-sm">
+                    <p>© 2024 テスタの投資アカデミー. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <div class="floating-btn">
+        <button onclick="opensite()" class="primary-btn w-full text-lg py-4">
+            <i class="fab fa-line mr-2"></i>無料講座に今すぐ参加
+        </button>
+    </div>
+
+    <script>
+        function opensite() {
+            window.open('https://line.me/your_line_link', '_blank');
+        }
+    </script>
+</body>
+</html>
