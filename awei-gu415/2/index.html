@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>池上彰の投資コミュニティ - 理性的な投資の知恵</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #FF6F61;
+            --accent-color: #1A237E;
+            --light-primary: #FFA69E;
+            --dark-primary: #E94F3D;
+            --light-accent: #303F9F;
+            --dark-accent: #0D1642;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --background-light: #F9F9F9;
+            --background-dark: #EEEEEE;
+            --line-color: #06C755;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--background-light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: -0.03em;
+            font-weight: 900;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 60px;
+            background: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Layout components */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .hero {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--light-accent) 100%);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .pattern-bg {
+            background-color: var(--background-light);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF6F61' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .blue-bg {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--light-accent) 100%);
+            color: var(--text-light);
+        }
+        
+        .coral-bg {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--light-primary) 100%);
+            color: var(--text-light);
+        }
+        
+        /* Cards and Layouts */
+        .grid {
+            display: grid;
+            grid-gap: 2rem;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-border-top {
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .card-border-accent {
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: white;
+            font-size: 28px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(255, 111, 97, 0.3);
+        }
+        
+        .feature-icon.accent {
+            background: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(26, 35, 126, 0.3);
+        }
+        
+        .stat-card {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blue-bg .stat-number {
+            color: white;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: -30px;
+            left: 25px;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 111, 97, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 111, 97, 0.4);
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 10px 20px rgba(26, 35, 126, 0.3);
+        }
+        
+        .btn-accent:hover {
+            background: var(--dark-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 35, 126, 0.4);
+        }
+        
+        .btn-line {
+            background: var(--line-color);
+            color: white;
+            box-shadow: 0 10px 20px rgba(6, 199, 85, 0.3);
+        }
+        
+        .btn-line:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(6, 199, 85, 0.4);
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .limited-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+            margin-top: 1rem;
+        }
+        
+        /* Community Stats */
+        .community-stat {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 111, 97, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .community-stat i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+        
+        .community-stat.accent {
+            background: rgba(26, 35, 126, 0.1);
+        }
+        
+        .community-stat.accent i {
+            color: var(--accent-color);
+        }
+        
+        /* Helper classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-4 {
+            margin-top: 2rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+        
+        .p-relative {
+            position: relative;
+        }
+        
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .rounded {
+            border-radius: 16px;
+        }
+        
+        .shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Floating button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            width: 80%;
+            max-width: 360px;
+            margin: 0 auto;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 111, 97, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 111, 97, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 111, 97, 0);
+                transform: scale(1);
+            }
+        }
+        
+        /* Disclaimer */
+        .disclaimer {
+            background-color: rgba(26, 35, 126, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-top: 2rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .floating-btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h1>投資の本質を見極め、<br>市場の波に揺るがない</h1>
+                    <p>こんにちは、池上彰です。過去30年の投資経験を通して、私は常に市場分析とリスク管理に焦点を当ててきました。投資戦略を継続的に調整・最適化することで、2024年6月には前向きな成果を得ることができました。</p>
+                    <p>この経験から、投資理念を共有することの重要性を認識しました。私は自分の経験を通じて、より多くの人々が理性的な投資の意義と価値を理解できるよう手助けしたいと考えています。</p>
+                    
+                    <div class="flex items-center mt-4">
+                        <button onclick="opensite()" class="btn btn-line">
+                            <i class="fab fa-line mr-2"></i>LINEコミュニティに参加する
+                        </button>
+                    </div>
+                    <div class="limited-badge">
+                        <i class="fas fa-fire-alt mr-1"></i>残り30名限定の無料枠
+                    </div>
+                </div>
+                <div>
+                    <img src="https://www.jacmsotck.online/awei-gu415/2/img/1.jpg" alt="池上彰" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Purpose Section -->
+    <section class="pattern-bg section">
+        <div class="container">
+            <h2>より多くの投資家を支援するために</h2>
+            <p>今年、私は無料のLINEコミュニティを設立することを決めました。このコミュニティの主旨は以下の通りです：</p>
+            
+            <div class="grid grid-3 mb-4">
+                <div class="card card-border-top">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>知識共有</h3>
+                    <p>このプラットフォームを通じて、私は長年にわたる投資知識と経験を共有し、メンバーが基本的な投資原則と戦略を習得できるよう支援したいと考えています。</p>
+                </div>
+                
+                <div class="card card-border-top">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>交流とインタラクション</h3>
+                    <p>コミュニティでは、メンバーが自由に交流し、それぞれの投資の洞察や市場観察を共有することができます。このような交流は理解を深め、新しい投資のアイデアを生み出すのに役立ちます。</p>
+                </div>
+                
+                <div class="card card-border-top">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>リスク管理</h3>
+                    <p>成功した投資には、適切なリスク管理が不可欠だと私は常に考えています。コミュニティでは定期的に講座やディスカッションを開催し、メンバーが投資リスクを評価・管理する方法を学ぶお手伝いをします。</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-2">
+                <div class="card card-border-accent">
+                    <div class="feature-icon accent">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>認知能力の向上</h3>
+                    <p>市場動向や経済情勢を分析するディスカッションを定期的に開催し、メンバーが市場背後のロジックをより深く理解できるよう支援します。この認知能力の向上は、より賢明な投資判断につながります。</p>
+                </div>
+                
+                <div class="card card-border-accent">
+                    <div class="feature-icon accent">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>データ分析</h3>
+                    <p>財務諸表や市場データを分析する方法を共有し、メンバーが株式の本質的な価値を評価する方法を理解できるようサポートします。これにより、投資判断の科学的根拠が強化されます。</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <img src="https://www.jacmsotck.online/awei-gu415/2/img/4.jpg" alt="LINEコミュニティ" class="img-fluid rounded shadow mb-4" style="margin: 0 auto; max-width: 800px;">
+                <button onclick="opensite()" class="btn btn-primary">
+                    <i class="fab fa-line mr-2"></i>今すぐコミュニティに参加する
+                </button>
+                <div class="limited-badge">最後の30名限定無料枠</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Value Section -->
+    <section class="blue-bg section">
+        <div class="container">
+            <h2 style="color: white;">LINEコミュニティの価値</h2>
+            
+            <div class="grid grid-2 mb-4">
+                <div class="stat-card">
+                    <div class="stat-number">9,221</div>
+                    <h3>アクティブメンバー</h3>
+                    <p>初心者から経験豊富な投資家まで、さまざまなバックグラウンドを持つメンバーが集まり、知識と経験を共有しています。</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">423</div>
+                    <h3>ライブ配信実績</h3>
+                    <p>株式分析、市場トレンド分析、投資戦略など多岐にわたるテーマで、メンバーに実用的な知識と洞察を提供しています。</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-2">
+                <div class="card p-relative">
+                    <h3>豊富な経験の蓄積</h3>
+                    <p>私たちのコミュニティは長年にわたり、投資家に専門的な交流プラットフォームを提供してきました。私たちは貴重な運営経験を蓄積し、投資家同士の交流と学習をサポートする安定した信頼できる環境を作り上げています。</p>
+                    <div style="position: absolute; top: -15px; right: -15px; background: var(--primary-color); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                        <i class="fas fa-history"></i>
+                    </div>
+                </div>
+                
+                <div class="card p-relative">
+                    <h3>多様な学習リソース</h3>
+                    <p>300以上の記事や動画を提供しており、様々な投資テーマをカバーしています。これらのリソースは、投資理論と実践の深い理解を助け、あなたの投資スキルを向上させます。継続的な学習のための包括的なライブラリを目指しています。</p>
+                    <div style="position: absolute; top: -15px; right: -15px; background: var(--primary-color); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button onclick="opensite()" class="btn btn-primary">
+                    <i class="fab fa-line mr-2"></i>今すぐ無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials & Social Proof Section -->
+    <section class="section">
+        <div class="container">
+            <h2>コミュニティメンバーの声</h2>
+            
+            <div class="grid grid-3 mb-4">
+                <div class="testimonial">
+                    <img src="https://i.pravatar.cc/100?img=70" alt="佐藤健太" class="testimonial-avatar">
+                    <div style="margin-top: 25px;">
+                        <h3>佐藤健太</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem;">会社員 | メンバー歴：7ヶ月</p>
+                        <p>「池上さんのコミュニティに参加して、投資に対する考え方が根本から変わりました。特に市場分析の方法論は非常に実践的で、すぐに自分の投資判断に活かすことができました。」</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <img src="https://i.pravatar.cc/100?img=32" alt="田中美咲" class="testimonial-avatar">
+                    <div style="margin-top: 25px;">
+                        <h3>田中美咲</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem;">自営業 | メンバー歴：5ヶ月</p>
+                        <p>「投資の初心者として参加しましたが、基礎からステップバイステップで学ぶことができ、今では自信を持って投資判断ができるようになりました。コミュニティの温かいサポートにも感謝しています。」</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <img src="https://i.pravatar.cc/100?img=55" alt="山本大輔" class="testimonial-avatar">
+                    <div style="margin-top: 25px;">
+                        <h3>山本大輔</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem;">エンジニア | メンバー歴：9ヶ月</p>
+                        <p>「定期的なライブ配信と質の高いコンテンツが、私の投資スキル向上に大きく貢献しています。特にリスク管理の考え方は、市場の不確実性に対処する上で非常に役立っています。」</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4" style="background: #f8f8f8;">
+                <h3 class="text-center mb-4">コミュニティの現状</h3>
+                <div class="grid grid-3">
+                    <div class="community-stat">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">活発な交流</h4>
+                            <p style="margin-bottom: 0; font-size: 0.9rem;">メンバー同士の日々の対話と情報交換</p>
+                        </div>
+                    </div>
+                    
+                    <div class="community-stat accent">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">学びの環境</h4>
+                            <p style="margin-bottom: 0; font-size: 0.9rem;">体系的なカリキュラムと質疑応答</p>
+                        </div>
+                    </div>
+                    
+                    <div class="community-stat">
+                        <i class="fas fa-medal"></i>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">高い満足度</h4>
+                            <p style="margin-bottom: 0; font-size: 0.9rem;">メンバー満足度98%を達成</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4" style="font-size: 1.1rem; font-weight: 700; color: var(--accent-color);">
+                    今日だけで187人が新たに参加しました
+                    <span class="limited-badge" style="margin-left: 0.5rem;">残り30名限定</span>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="opensite()" class="btn btn-accent" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
+                    <i class="fab fa-line mr-2"></i>無料でコミュニティに参加する
+                </button>
+            </div>
+            
+            <div class="disclaimer">
+                <h3 style="color: var(--accent-color); font-size: 1.2rem;">免責事項</h3>
+                <p>本サイトで提供される情報は、教育目的のみであり、投資アドバイスや特定の投資結果を保証するものではありません。投資家は自身の状況に応じて独自の判断を下す必要があります。</p>
+                <p>金融商品取引法および関連法規に基づき、当サイトでは特定の証券や金融商品の購入・売却の推奨を行いません。提供される情報は一般的な教育目的であり、市場理解と分析能力向上を目的としています。</p>
+                <p>投資には元本割れのリスクがあります。投資を行う前に、必ず専門家のアドバイスを求めることをお勧めします。当サイトは、日本の金融規制および広告に関するガイドラインに準拠しています。</p>
+                <p style="margin-bottom: 0;">© 2024 池上彰の投資コミュニティ. All Rights Reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Button -->
+    <div class="floating-btn">
+        <button onclick="opensite()" class="btn btn-line" style="width: 100%;">
+            <i class="fab fa-line mr-2"></i>LINEコミュニティに参加する
+        </button>
+    </div>
+
+    <script>
+        function opensite() {
+            window.open('https://line.me/your_line_link', '_blank');
+        }
+    </script>
+</body>
+</html>
