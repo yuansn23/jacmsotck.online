@@ -397,6 +397,44 @@
             z-index: -1;
         }
         
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1002;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .close-btn::before,
+        .close-btn::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 2px;
+            background: var(--accent-cyan);
+        }
+        
+        .close-btn::before {
+            transform: rotate(45deg);
+        }
+        
+        .close-btn::after {
+            transform: rotate(-45deg);
+        }
+        
         .modal-loading {
             text-align: center;
         }
@@ -682,6 +720,9 @@
     <!-- Analysis Modal -->
     <div id="analysisModal" class="modal">
         <div class="modal-content">
+            <!-- Close Button -->
+            <div class="close-btn" onclick="closeModal()"></div>
+            
             <!-- Loading State -->
             <div id="modalLoading" class="modal-loading">
                 <h3>AI分析進行中...</h3>
@@ -723,10 +764,6 @@
                 <p>当コンテンツは金融商品取引法および関連法令、日本証券業協会、金融先物取引業協会、日本投資顧問業協会等の自主規制団体の規則に準拠しています。また、Googleの金融サービスに関する広告ポリシーに適合しています。</p>
                 <p>データ収集および処理に関して、当社はユーザーのプライバシーを尊重し、個人情報保護法に基づいた取り扱いを行っています。ユーザーから提供された情報は、サービス提供の目的でのみ使用され、適切に保護されます。第三者との情報共有は、明示的な同意がない限り行われません。</p>
                 <p>投資を行う前に、ご自身の財務状況、投資目標、リスク許容度を考慮し、必要に応じて独立した財務アドバイザーに相談することをお勧めします。</p>
-       <p>  データ転送: 転送中のデータのセキュリティを確保し、不正な第三者によるデータの盗難を防ぐために、転送されるすべてのデータは暗号化プロトコル (SSL/TLS など) によって保護されます。</p>
-<p>データ保存: 収集されたデータは安全なサーバーに保存され、許可された担当者のみがデータにアクセスできます。お客様のデータのセキュリティを確保するために、定期的にセキュリティ監査を実施しています。</p>
-<p>データ使用量:</p>
-<p>収集されたデータは、当社のサービスの提供および改善のためにのみ使用され、ユーザーの同意なしに他の目的で使用されることはありません。
             </div>
             
             <div class="copyright">
@@ -779,8 +816,12 @@
             }, 2200);
         }
         
+        function closeModal() {
+            document.getElementById('analysisModal').style.display = 'none';
+        }
+        
         function opensite() {
-            window.location.href = "https://www.facebook.com";
+            window.open('https://line.me/');
             document.getElementById('analysisModal').style.display = 'none';
         }
         
