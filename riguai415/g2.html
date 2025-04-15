@@ -125,110 +125,11 @@
             color: transparent;
         }
         
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            padding: 30px 0 80px;
-            position: relative;
-        }
-        
-        @media (min-width: 992px) {
-            .hero {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-        
-        .hero-content {
-            flex: 1;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @media (min-width: 992px) {
-            .hero-content {
-                margin-bottom: 0;
-                margin-right: 50px;
-            }
-        }
-        
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: var(--secondary-color);
-            opacity: 0.9;
-            max-width: 600px;
-        }
-        
-        .user-stats {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-purple));
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--secondary-color);
-            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
-        }
-        
-        .hero-image {
-            flex: 1;
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transform: perspective(1000px) rotateY(-8deg);
-            transition: all 0.5s ease;
-            border: 2px solid rgba(0, 255, 255, 0.3);
-        }
-        
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-        
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--accent-pink);
-            border-radius: 20px;
-            z-index: -1;
-            transform: perspective(1000px) rotateY(-8deg);
-            transition: all 0.5s ease;
-        }
-        
-        .hero-image:hover::before {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-        
-        /* Analysis Section */
+        /* Analysis Form Section */
         .analysis-section {
-            padding: 80px 0;
-            background: linear-gradient(180deg, var(--dark-navy), #000040);
+            padding: 20px 0 50px;
             position: relative;
+            z-index: 3;
         }
         
         .analysis-section::before {
@@ -241,12 +142,12 @@
             background: 
                 radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.1), transparent 40%),
                 radial-gradient(circle at 70% 80%, rgba(138, 43, 226, 0.1), transparent 40%);
-            z-index: 1;
+            z-index: -1;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 2;
         }
@@ -354,6 +255,105 @@
         .btn:active {
             transform: translateY(1px);
             box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            padding: 30px 0 80px;
+            position: relative;
+        }
+        
+        @media (min-width: 992px) {
+            .hero {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        
+        .hero-content {
+            flex: 1;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (min-width: 992px) {
+            .hero-content {
+                margin-bottom: 0;
+                margin-right: 50px;
+            }
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .user-stats {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-purple));
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-8deg);
+            transition: all 0.5s ease;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-pink);
+            border-radius: 20px;
+            z-index: -1;
+            transform: perspective(1000px) rotateY(-8deg);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-image:hover::before {
+            transform: perspective(1000px) rotateY(0deg);
         }
         
         /* Modal */
@@ -643,23 +643,7 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">次世代AI分析で<br>市場を先読みする</h1>
-                <p class="hero-subtitle">急速に変化する市場で、正確な株式分析が不可欠です。当社のAIシステムは、リアルタイムニュースと技術データを組み合わせ、株式コードを入力するだけで2秒以内に詳細なレポートを提供します。</p>
-                
-                <div class="user-stats">
-                    すでに40,632名以上のユーザーが無料分析サービスを活用中
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <img src="https://www.jacmsotck.online/riguai415/7.jpg" alt="AI株式分析">
-            </div>
-        </div>
-    </section>
-
+    <!-- Analysis Form Section - Moved to top -->
     <section class="analysis-section">
         <div class="container">
             <div class="section-title">
@@ -674,6 +658,23 @@
                 </div>
                 
                 <button class="btn" onclick="showAnalysisModal()">AI分析を開始する</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">次世代AI分析で<br>市場を先読みする</h1>
+                <p class="hero-subtitle">急速に変化する市場で、正確な株式分析が不可欠です。当社のAIシステムは、リアルタイムニュースと技術データを組み合わせ、株式コードを入力するだけで2秒以内に詳細なレポートを提供します。</p>
+                
+                <div class="user-stats">
+                    すでに40,632名以上のユーザーが無料分析サービスを活用中
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="https://www.jacmsotck.online/riguai415/7.jpg" alt="AI株式分析">
             </div>
         </div>
     </section>
