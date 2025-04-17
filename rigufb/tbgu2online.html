@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>株市洞察Pro - 専門的な投資知識を共有するコミュニティ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF4C4C;
+            --accent-color: #000080;
+            --dark-bg: #0A1525;
+            --light-text: #FFFFFF;
+            --gray-text: #CCCCCC;
+            --card-bg: rgba(10, 21, 37, 0.8);
+            --card-border: rgba(255, 76, 76, 0.2);
+            --gradient-dark: linear-gradient(135deg, #050A15 0%, #0F1A2E 100%);
+            --gradient-accent: linear-gradient(135deg, #FF4C4C 0%, #CC3939 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><circle cx="2" cy="2" r="0.3" fill="%23334" /></svg>'), var(--gradient-dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--gradient-dark);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="1" height="1" fill="%23FF4C4C22" /></svg>');
+            opacity: 0.05;
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        @media (min-width: 992px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .header-text {
+            flex: 1;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 992px) {
+            .header-text {
+                text-align: left;
+                margin-right: 40px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--light-text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--light-text);
+            line-height: 1.4;
+        }
+        
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 900;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--gray-text);
+            font-weight: 400;
+        }
+        
+        .remain-seats {
+            background-color: rgba(255, 76, 76, 0.1);
+            border: 2px solid rgba(255, 76, 76, 0.3);
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin: 25px 0;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        .header-image {
+            flex: 1;
+            position: relative;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        .header-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 76, 76, 0.2);
+        }
+        
+        /* Pain Points Section */
+        .pain-points-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--light-text);
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .pain-points-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .pain-point-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pain-point-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pain-point-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-accent);
+        }
+        
+        .pain-point-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            padding-left: 15px;
+        }
+        
+        .pain-point-text {
+            color: var(--gray-text);
+            font-size: 1rem;
+        }
+        
+        .pain-points-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 76, 76, 0.2);
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background-color: rgba(0, 0, 128, 0.05);
+            position: relative;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .benefits-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .benefit-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+        }
+        
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 128, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-text {
+            color: var(--gray-text);
+            font-size: 1rem;
+        }
+        
+        .benefits-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 0, 128, 0.2);
+        }
+        
+        /* Social Proof Section */
+        .social-proof-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .social-proof-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .social-proof-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .social-proof-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+        
+        .social-proof-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .social-proof-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .social-proof-text {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+        
+        /* CTA Styles */
+        .cta-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--gradient-accent);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 76, 76, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.4);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, #000080 0%, #0000CC 100%);
+            box-shadow: 0 5px 15px rgba(0, 0, 128, 0.3);
+        }
+        
+        .btn-accent:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 128, 0.4);
+        }
+        
+        /* Line Fixed Button */
+        .line-fixed {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: #06C755;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .line-fixed:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .line-fixed img {
+            width: 35px;
+            height: 35px;
+        }
+        
+        /* Bottom Floating Button */
+        .bottom-float-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .bottom-float-btn .btn {
+            width: 100%;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            animation: breathe 3s infinite ease-in-out;
+        }
+        
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(255, 76, 76, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 30px rgba(255, 76, 76, 0.5);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(10, 20, 40, 0.8);
+            padding: 60px 0 100px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 25px;
+            background-color: rgba(20, 30, 50, 0.6);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: left;
+            border: 1px solid var(--card-border);
+        }
+        
+        .disclaimer h3 {
+            color: var(--light-text);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .disclaimer p {
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+     
+    
+    <!-- Bottom Floating Button -->
+    <div class="bottom-float-btn">
+        <button class="btn" onclick="opensite()">無料でLINEコミュニティに参加する</button>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <div class="logo">
+                        <h1>株市洞察<span>Pro</span></h1>
+                    </div>
+                    <h1 class="main-title">専門的な投資知識を手に入れ、<span class="highlight">賢明な投資決断</span>を実現</h1>
+                    <p class="subtitle">私たちのLINEコミュニティに参加して、21,000名以上のメンバーと共に投資経験を共有し、投資スキルを向上させましょう。定期的な講座や相互交流を通じて、効果的な投資戦略を習得し、安定した投資の道を歩みましょう。</p>
+                    
+                    <div class="remain-seats">
+                        <p style="font-weight: 700; color: var(--primary-color);">現在、残り30席の無料枠があります</p>
+                    </div>
+                    
+                    <div class="cta-container">
+                        <button class="btn" onclick="opensite()">無料でコミュニティに参加する</button>
+                    </div>
+                </div>
+                
+                <div class="header-image">
+                    <img src="https://www.jacmsotck.online/rigufb/1.jpg" alt="株市洞察Pro">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points-section">
+        <div class="container">
+            <h2 class="section-title">投資家が直面する5つの課題</h2>
+            
+            <div class="pain-points-grid">
+                <div class="pain-point-card">
+                    <h3 class="pain-point-title">市場トレンドの判断が困難</h3>
+                    <p class="pain-point-text">投資家は市場トレンドや経済変化を正確に判断することが難しく、十分な分析ツールや方法がないため、好機を逃したり、誤った判断をしたりすることがあります。</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <h3 class="pain-point-title">市場感情の波に影響される</h3>
+                    <p class="pain-point-text">株式市場は変動が大きく、投資家は市場感情に影響されやすいため、パニック売りや追いかけ買いなどの非合理的な判断をしてしまい、最終的に投資収益が損なわれることがあります。</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <h3 class="pain-point-title">リスク管理の不足</h3>
+                    <p class="pain-point-text">多くの投資家は効果的なリスク管理戦略を持っておらず、投資を適切に分散させていないため、市場の下落時に大きな損失を被ることがあります。</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <h3 class="pain-point-title">体系的な学習機会の欠如</h3>
+                    <p class="pain-point-text">投資家はしばしば体系的に学ぶ機会がなく、必要な投資知識やスキルを習得することが難しいため、実践において繰り返し間違いを犯してしまいます。</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <h3 class="pain-point-title">コミュニケーションの不足</h3>
+                    <p class="pain-point-text">多くの投資家は他者と交流する機会がなく、経験を共有したりアドバイスを得たりすることができないため、孤立感を感じ、意思決定の質と自信に影響が出ることがあります。</p>
+                </div>
+            </div>
+            
+            <div class="remain-seats" style="max-width: 500px; margin: 40px auto;">
+                <p style="font-weight: 700; color: var(--primary-color);">現在、残り30席の無料枠があります</p>
+            </div>
+            
+            <img src="https://www.jacmsotck.online/rigufb/c8.jpg" alt="投資の課題" class="pain-points-image">
+            
+            <div class="cta-container">
+                <button class="btn btn-accent" onclick="opensite()">今すぐ無料で参加する</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">LINEコミュニティ参加者特典</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--gray-text);">私たちのLINEコミュニティに参加すると、以下の特典をお楽しみいただけます</p>
+            
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <h3 class="benefit-title">
+                        <div class="benefit-icon">1</div>
+                        専門知識の共有
+                    </h3>
+                    <p class="benefit-text">毎月少なくとも3つの詳細な専門的投資記事を受け取ることができます。これらの記事は市場分析、投資戦略、実用的なヒントを網羅し、あなたの投資能力を全面的に向上させ、強固な知識基盤を構築するのに役立ちます。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3 class="benefit-title">
+                        <div class="benefit-icon">2</div>
+                        リアルタイム市場動向
+                    </h3>
+                    <p class="benefit-text">毎週、最新の市場ニュースと動向に関する2つの情報を送信し、市場の変化をタイムリーに把握し、潜在的な投資機会を迅速に特定して、より賢明な決断を下せるようサポートします。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3 class="benefit-title">
+                        <div class="benefit-icon">3</div>
+                        定期的なオンラインセミナー
+                    </h3>
+                    <p class="benefit-text">毎月1〜2回のオンラインセミナーを開催し、専門家を招いて投資戦略、市場動向、リスク管理技術についての知見を共有します。自宅で快適に学習し、投資スキルを向上させることができます。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3 class="benefit-title">
+                        <div class="benefit-icon">4</div>
+                        専門家のガイダンス
+                    </h3>
+                    <p class="benefit-text">四半期ごとに、個別の投資アドバイザーによるガイダンスを1回受けることができます。これにより、個人の投資ポートフォリオを分析し、投資戦略を最適化するためのカスタマイズされたアドバイスを提供します。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3 class="benefit-title">
+                        <div class="benefit-icon">5</div>
+                        リスク管理トレーニング
+                    </h3>
+                    <p class="benefit-text">四半期ごとに、リスク管理に関する特別トレーニングを1回開催します。投資リスクを識別、評価、管理する方法を教え、リスク意識を高め、投資の安全性を確保します。</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3 class="benefit-title">
+                        <div class="benefit-icon">6</div>
+                        会員限定イベント
+                    </h3>
+                    <p class="benefit-text">年に2〜3回、会員限定イベント（オフライン交流会や投資サロンなど）に参加する機会があります。人脈を広げ、第一手の投資経験を獲得し、コミュニティメンバー間の深い交流を促進します。</p>
+                </div>
+            </div>
+            
+            <img src="https://www.jacmsotck.online/rigufb/c5.jpg" alt="コミュニティの様子" class="benefits-image">
+            
+            <div class="cta-container">
+                <button class="btn" onclick="opensite()">無料でコミュニティに参加する</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+        <div class="container">
+            <h2 class="section-title">投資家たちの声</h2>
+            
+            <div class="social-proof-grid">
+                <div class="social-proof-card">
+                    <div class="social-proof-number">96%</div>
+                    <div class="social-proof-text">のメンバーが投資知識の向上を実感</div>
+                </div>
+                
+                <div class="social-proof-card">
+                    <div class="social-proof-number">21,000+</div>
+                    <div class="social-proof-text">人以上のメンバーが活発に参加</div>
+                </div>
+                
+                <div class="social-proof-card">
+                    <div class="social-proof-number">30</div>
+                    <div class="social-proof-text">席の無料枠が残っています</div>
+                </div>
+            </div>
+            
+            <div class="remain-seats" style="max-width: 500px; margin: 40px auto;">
+                <p style="font-weight: 700; color: var(--primary-color);">今すぐ参加して、投資の知識と技術を高めましょう</p>
+            </div>
+            
+            <div class="cta-container">
+                <button class="btn" onclick="opensite()">LINEコミュニティに無料で参加する</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="disclaimer">
+                <h3>免責事項</h3>
+                <p>当サイトで提供される情報は、教育目的のみを意図しており、特定の証券、投資戦略または口座タイプの推奨を構成するものではありません。</p>
+                <p>投資には資本の喪失リスクがあります。過去のパフォーマンスは将来の結果を保証するものではなく、投資判断は自己責任で行ってください。</p>
+                <p>当コンテンツは金融商品取引法および関連法令、日本証券業協会、金融先物取引業協会、日本投資顧問業協会等の自主規制団体の規則に準拠しています。また、Googleの金融サービスに関する広告ポリシーに適合しています。</p>
+                <p>投資を行う前に、ご自身の財務状況、投資目標、リスク許容度を考慮し、必要に応じて独立した財務アドバイザーに相談することをお勧めします。</p>
+                <p>当サイトは特定の投資成果を保証するものではなく、すべての投資には損失のリスクが伴います。投資家は自身の判断と責任において投資決定を行う必要があります。</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 株市洞察Pro. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      
+        function opensite() {
+                fbq('track', 'AddToCart');
+      fbq('track', 'Purchase');
+          window.location.href = "https://works.do/FTjikHy";
+
+        }
+    </script>
+</body>
+</html>
