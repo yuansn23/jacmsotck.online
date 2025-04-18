@@ -1,0 +1,184 @@
+Uri: https://tr.line.me/tag.gif?c_t=lap&t_id=a6d4f60e-ab0c-4791-b506-21b21bf3d2a0&e=pv&noscript=1
+File Name: C:\DownlFEICUI\www.funv6.com\tag.gif
+Content Type: image/gif
+
+Uri: https://www.facebook.com/tr?id=123456&ev=PageView&noscript=1
+File Name: C:\DownlFEICUI\www.funv6.com\tr
+Content Type: text/plain
+
+Uri: https://www.facebook.com/tr?id=23456&ev=PageView&noscript=1
+File Name: C:\DownlFEICUI\www.funv6.com\tr-1
+Content Type: text/plain
+
+Uri: https://www.funv6.com/?get=6BCAC
+File Name: C:\DownlFEICUI\www.funv6.com\index.htm
+Content Type: text/html
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/1.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\1.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/123456
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\123456
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/2.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\2.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/23456
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\23456
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/275bdaa5e9615de90655357133aa2afa_qvqwv.png
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\275bdaa5e9615de90655357133aa2afa_qvqwv.png
+Content Type: image/png
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/3.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\3.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/clipboard(1).js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\clipboard(1).js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/clipboard.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\clipboard.js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/clipboard.min.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\clipboard.min.js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/fbevents.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\fbevents.js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_01.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_01.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_04.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_04.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_06.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_06.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_08.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_08.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_10.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_10.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_12.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_12.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_13.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_13.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_17.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_17.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_19.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_19.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_20.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_20.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_21.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_21.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_23.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_23.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_26.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_26.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_28.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_28.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_31.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_31.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_34.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_34.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_38.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_38.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_40.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_40.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_43.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_43.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_44.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_44.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_47.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_47.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_49.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_49.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_51.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_51.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_53.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_53.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/index_55.jpg
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\index_55.jpg
+Content Type: image/jpeg
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/jquery.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\jquery.js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/jquery.min(1).js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\jquery.min(1).js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/jquery.min.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\jquery.min.js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/lt.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\lt.js.下载
+Content Type: application/octet-stream
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/sp.htm
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\sp.htm
+Content Type: text/html
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/style.css
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\style.css
+Content Type: text/css
+
+Uri: https://www.funv6.com/indexcss/xingguan/2/static/ytc.js.下载
+File Name: C:\DownlFEICUI\www.funv6.com\indexcss\xingguan\2\static\ytc.js.下载
+Content Type: application/octet-stream
+
