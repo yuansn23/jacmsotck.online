@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2025年台股投資秘訣 - 專業研究團隊精選潛力股</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        twRed: '#fe0000',
+                        twBlue: '#000095',
+                        twGold: '#daa520'
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .cta-button {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(93, 92, 222, 0.4);
+        }
+        
+        .notification-bubble {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .bg-gradient-tw {
+            background: linear-gradient(135deg, #000095 0%, #fe0000 100%);
+        }
+        
+        .notification-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(254, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(254, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(254, 0, 0, 0); }
+        }
+        
+        /* Dark mode support */
+        .dark body {
+            background-color: #181818;
+            color: #ffffff;
+        }
+        
+        /* Prevent iOS clicking behavior */
+        a, button {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- Notification bubble icon - LINE style -->
+    <div class="notification-bubble cursor-pointer" onclick="opensite()">
+        <div class="relative">
+            <div class="w-16 h-16 bg-[#06C755] rounded-full shadow-lg flex items-center justify-center notification-pulse">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path>
+                </svg>
+            </div>
+            <div class="absolute -top-1 -right-1 w-6 h-6 bg-red-600 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
+        </div>
+    </div>
+
+    <!-- Header with Taiwan flag colors -->
+    <header class="bg-gradient-tw py-4 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl md:text-2xl font-bold text-white">台灣股市專業分析</h1>
+                <div class="flex items-center space-x-2">
+                    <span class="hidden md:inline-block text-white font-medium">免費領取專家分析</span>
+                    <button onclick="opensite()" class="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-2 px-4 rounded-lg transition-all">
+                        立即加入
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-8 md:py-12 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:mr-8">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-twBlue dark:text-blue-400">
+                            你是否有這些投資困擾？
+                        </h2>
+                        <ul class="space-y-4 mb-6">
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700 dark:text-gray-300">投資虧損超過預期，不知道該如何改善？</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700 dark:text-gray-300">不熟悉財務報表分析，無法判斷公司真實價值？</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700 dark:text-gray-300">總是追高殺低，情緒化投資帶來損失？</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700 dark:text-gray-300">國際市場變化太快，無法準確判斷趨勢？</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-red-600 text-white py-1 px-3 text-sm font-bold">
+                            限時免費
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-twBlue dark:text-blue-400">
+                            2025年最新10支潛力股票名單
+                        </h2>
+                        <div class="flex items-center mb-4">
+                            <img src="3.jpg" alt="Jeremy Vail" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-primary">
+                            <div>
+                                <h3 class="font-bold text-gray-800 dark:text-gray-200">賴憲政</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">台灣知名的財經評論家、股票分析師與金融教育家</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">今日已有人領取</span>
+                                <span class="font-bold text-red-600 dark:text-red-400">3,922</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2.5">
+                                <div class="bg-red-600 h-2.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                            <div class="mt-2 text-right">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">今日剩餘名額：</span>
+                                <span class="text-sm font-bold text-red-600 dark:text-red-400">20</span>
+                            </div>
+                        </div>
+                        <button onclick="opensite()" class="cta-button w-full bg-twRed hover:bg-red-700 text-white font-bold py-4 px-6 rounded-lg text-lg mb-4 animate-pulse-fast">
+                            免費領取潛力股名單
+                        </button>
+                        <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+                            點擊按鈕，立即通過LINE獲取專家分析
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Analysis Section -->
+    <section class="py-12 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-twBlue dark:text-blue-400">為什麼選擇我們的專業分析？</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">專業研究團隊</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-center">
+                        由擁有超過20年投資經驗的專業分析師組成，曾成功預測多次市場轉折點
+                    </p>
+                </div>
+                
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">深度產業分析</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-center">
+                        專注台灣科技、金融、綠能等優勢產業，發掘被低估的高成長股票
+                    </p>
+                </div>
+                
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">實績證明</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-center">
+                        多年來持續提供專業市場洞察，幫助投資者做出明智的投資決策
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button onclick="opensite()" class="cta-button inline-block bg-twBlue hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-xl float-animation">
+                    立即獲取10支潛力股名單
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image with insights section -->
+    <section class="py-12 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="1.jpg" alt="台灣股市分析" class="rounded-xl shadow-lg max-w-full h-auto">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-twBlue dark:text-blue-400">
+                        專業洞察，成功投資的關鍵
+                    </h2>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-twGold mr-3">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <strong>資金流向分析：</strong>掌握外資、投信動向，提前佈局熱門產業
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-twGold mr-3">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <strong>技術面與基本面結合：</strong>運用多維度分析，精準把握買賣時機
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-twGold mr-3">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <strong>全球宏觀視角：</strong>分析國際市場變化對台股影響，規避系統性風險
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-twGold mr-3">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <strong>投資組合配置：</strong>根據風險偏好提供最佳資產配置建議
+                            </p>
+                        </div>
+                    </div>
+                    <button onclick="opensite()" class="cta-button bg-twGold hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-md">
+                        立即獲取投資秘訣
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-12 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-twBlue dark:text-blue-400">
+                投資者見證
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-twBlue text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            CH
+                        </div>
+                        <div>
+                            <h4 class="font-bold">陳先生</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">台北、科技業</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        「跟著專家的分析，我終於能夠理解股市的運作邏輯了！分析報告非常專業且容易理解，讓我從投資新手變成有信心的投資者。」
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-twRed text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            LY
+                        </div>
+                        <div>
+                            <h4 class="font-bold">林小姐</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">台中、教師</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        「身為投資新手，一直對股市感到害怕。專家團隊的分析報告非常詳細，讓我能夠理性判斷並做出更有信心的投資決策，減少了很多焦慮。」
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-twGold text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            WH
+                        </div>
+                        <div>
+                            <h4 class="font-bold">王先生</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">高雄、退休人士</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        「跟隨專家推薦的潛力股名單進行投資，讓我的退休生活更有保障。專家團隊提供的分析清晰易懂，風險評估詳細，讓我能夠安心決策。」
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 flex justify-center">
+                <img src="2.jpg" alt="台灣股市走勢" class="rounded-xl shadow-lg max-w-full h-auto md:max-w-lg">
+            </div>
+            
+            <div class="mt-10 text-center">
+                <button onclick="opensite()" class="cta-button bg-gradient-tw text-white font-bold py-4 px-8 rounded-lg text-lg shadow-xl hover:shadow-2xl transition-all animate-pulse-fast">
+                    立即領取2025年10支潛力股名單
+                </button>
+                <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    <span class="font-semibold text-red-600 dark:text-red-400">今日僅剩20個名額！</span> 已有3,922人成功領取
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Expert -->
+    <section class="py-12 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <img src="3.jpg" alt="賴憲政 Vail" class="rounded-xl shadow-lg max-w-full h-auto">
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-twBlue dark:text-blue-400">
+                        關於專家：賴憲政
+                    </h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        擁有超過30年證券、期貨及衍生性商品市場分析經驗，擅長技術分析、趨勢判斷與風險管理，曾任職於多家金融機構，擔任首席分析師與投資顧問
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                持有台灣證券、期貨等金融相關執照，並長期擔任金融從業人員培訓講師
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                頻繁受邀參與台灣主流財經媒體節目（如東森財經、非凡新聞），解析台股大盤走勢、產業動態與個股操作策略
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                               出版多本投資書籍，如《股市憲政講堂》、《技術分析實戰心法》
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                專注亞洲市場研究20年，對台灣股市有獨到見解
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
+                        <p class="text-gray-700 dark:text-gray-300 italic">
+                            "我對台灣市場的發展充滿信心。台灣擁有全球領先的科技產業和高素質人才，是亞洲最具潛力的投資市場之一。我們的研究團隊已經發現了2025年最具成長性的10支台股，現在正是佈局的最佳時機。"
+                        </p>
+                        <p class="mt-2 text-right font-semibold text-twBlue dark:text-blue-400">— 賴憲政</p>
+                    </div>
+                    <div class="mt-6">
+                        <button onclick="opensite()" class="cta-button bg-twBlue hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg shadow-md">
+                            獲取賴憲政的最新投資建議
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-12 bg-gradient-tw">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-4xl font-bold mb-6 text-white">
+                準備好提升您的投資績效了嗎？
+            </h2>
+            <p class="text-white text-lg mb-8 max-w-2xl mx-auto">
+                立即領取2025年最新10支潛力股名單，把握台灣股市的增長機會！
+            </p>
+            <button onclick="opensite()" class="cta-button bg-white text-twBlue font-bold py-4 px-8 rounded-lg text-xl shadow-xl animate-bounce-slow">
+                <span class="flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    立即免費領取
+                </span>
+            </button>
+            <p class="mt-4 text-white text-sm">
+                <span class="font-semibold">僅剩20個名額！</span> 今日已有3,922人成功領取
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer with Disclaimer -->
+    <footer class="py-8 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="border-t border-gray-300 dark:border-gray-700 pt-6 mb-6"></div>
+            
+            <div class="mb-6">
+                <h3 class="text-lg font-bold mb-4 text-gray-800 dark:text-gray-200">重要聲明</h3>
+                <div class="text-xs text-gray-600 dark:text-gray-400 space-y-2">
+                    <p>
+                        本網站內容僅供教育和資訊目的，不構成投資建議、財務建議或任何專業建議。投資股票涉及風險，包括損失部分或全部投資資金的可能性。過去的表現不代表未來的結果。
+                    </p>
+                    <p>
+                        在做出任何投資決定之前，建議您諮詢合格的財務顧問或投資專業人士。我們不保證任何投資回報，所有投資決策應基於您自己的研究和判斷。
+                    </p>
+                    <p>
+                        本網站遵循Google和Facebook的廣告政策，提供透明、準確的投資相關資訊，不提供與證券、投資或金融服務相關的誤導性廣告。我們不提供股票交易服務，也不直接銷售任何金融產品。
+                    </p>
+                    <p>
+                        本網站不收集用戶的財務資訊或進行金融交易，僅提供教育性內容和市場分析。使用本網站即表示您同意自行承擔所有投資風險。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center text-xs text-gray-600 dark:text-gray-400">
+                <p>© 2024 台灣股市專業分析. 版權所有.</p>
+                <p class="mt-2">本網站提供的信息僅用於教育目的，不構成投資建議。投資有風險，入市須謹慎。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Function to open LINE or other destination
+        function opensite() {
+            // Replace with your LINE URL or other destination
+            window.location.href = "https://www.baidu.com/"; 
+        }
+    </script>
+</body>
+</html>
