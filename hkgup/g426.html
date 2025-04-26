@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ryan老师股票知识分享教育 </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #FF4C4C;
+            --accent-color: #000080;
+            --dark-blue: #001F54;
+            --light-blue: #034694;
+            --light-red: #FF7676;
+            --bg-dark: #0F172A;
+            --bg-darker: #0A1128;
+            --bg-medium: #1E293B;
+            --bg-light: #334155;
+            --text-light: #FFFFFF;
+            --text-gray: #CBD5E1;
+            --text-dark: #1A1A1A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--dark-blue) 100%);
+            color: var(--text-light);
+        }
+        
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 76, 76, 0.4);
+        }
+        
+        .primary-btn:hover {
+            background: #FF3333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.5);
+        }
+        
+        .primary-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .primary-btn:hover::after {
+            left: 100%;
+        }
+        
+        .secondary-btn {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 128, 0.3);
+        }
+        
+        .secondary-btn:hover {
+            background: #000066;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 128, 0.4);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .feature-card {
+            background: var(--bg-medium);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 76, 76, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 76, 76, 0.3);
+        }
+        
+        .red-gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--light-red) 100%);
+        }
+        
+        .blue-gradient-bg {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--light-blue) 100%);
+        }
+        
+        .advantage-card {
+            background: var(--bg-medium);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .benefit-icon {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--light-red) 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(255, 76, 76, 0.3);
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            width: 80%;
+            max-width: 360px;
+            margin: 0 auto;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 76, 76, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0);
+                transform: scale(1);
+            }
+        }
+        
+        .social-proof {
+            background: rgba(255, 76, 76, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background: var(--bg-medium);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin-top: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            top: -25px;
+            left: 20px;
+            border: 3px solid var(--bg-medium);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .count-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .count-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        .count-label {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        
+        .limited-spots {
+            background: linear-gradient(135deg, #FF4C4C 0%, #FF7676 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        .disclaimer {
+            background-color: rgba(0, 0, 128, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-dark {
+            background-color: var(--bg-darker);
+        }
+        
+        .section-medium {
+            background-color: var(--bg-medium);
+        }
+        
+        .footer-text {
+            color: var(--text-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .floating-btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-bg py-12 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4 leading-tight">停止在股市中<span class="text-red-400">盲目操作</span>，掌握集合竞价分析技巧</h1>
+                    <p class="text-xl mb-6">由拥有15年专业经验的Ryan老师亲自教授，帮助您更精准地把握市场趋势和开盘机会</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="opensite()" class="primary-btn text-lg">
+                            <i class="fab fa-whatsapp mr-2"></i>立即加入免费社区
+                        </button>
+                        <p class="text-sm mt-2 bg-white bg-opacity-20 p-2 rounded">
+                            <i class="fas fa-users mr-1"></i> 已有8,232人加入 
+                            <span class="limited-spots">仅剩30个免费名额</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://www.jacmsotck.online/hkgup/1.jpg" alt="Ryan老師股票教學" class="rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Ryan Section -->
+    <section class="py-16 section-medium">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="section-title text-2xl md:text-3xl">股票市场教育导师：Ryan老师</h2>
+                <div class="mb-10">
+                    <p class="text-lg mb-6">
+                        <span class="font-bold">从业背景：</span>Ryan老师拥有超过15年的股票市场研究和教学经验，专注于短线交易、集合竞价分析以及市场趋势判断。他曾为多家投资机构提供培训服务，帮助数千名投资者提升市场分析能力
+                    </p>
+                    <p class="text-lg mb-8">
+                        <span class="font-bold">初心与愿景：</span>在长期的从业经验中，Ryan老师发现许多投资者在市场中缺乏系统的学习资源，对集合竞价等关键交易环节的理解不足，容易错失机会或盲目跟风。因此，他创立了一个免费的WhatsApp社区，希望为普通投资者提供一个便捷的学习和交流平台，让大家一起学习，共同成长。
+                    </p>
+                </div>
+                
+                <div class="social-proof p-6 rounded-lg">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="count-item">
+                            <div class="count-number">8,232</div>
+                            <div class="count-label">社区成员</div>
+                        </div>
+                        <div class="count-item">
+                            <div class="count-number">15+</div>
+                            <div class="count-label">行业经验</div>
+                        </div>
+                        <div class="count-item">
+                            <div class="count-number">1,200+</div>
+                            <div class="count-label">市场分析案例</div>
+                        </div>
+                        <div class="count-item">
+                            <div class="count-number">30</div>
+                            <div class="count-label">剩余免费名额</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 text-center">
+                    <button onclick="opensite()" class="primary-btn text-lg">
+                        <i class="fab fa-whatsapp mr-2"></i>立即加入免费社区
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is 集合竞价 Section -->
+    <section class="py-16 section-dark">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2 order-2 md:order-1">
+                    <h2 class="section-title text-2xl md:text-3xl">什么是集合竞价？</h2>
+                    <p class="text-lg mb-6">
+                        集合竞价是股票市场中一种特殊的交易机制，投资者可以在开盘前提交买卖订单，系统会在规定时间内集中撮合所有订单，生成一个开盘价。这一过程反映了市场供需的初步情况，是分析股票走势的一个重要环节
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="advantage-card">
+                            <h3 class="text-xl font-bold mb-2 text-red-400">初步反映市场供需情况</h3>
+                            <p>集合竞价显示买卖双方的力量对比，为投资者提供对市场情绪的初步判断。</p>
+                        </div>
+                        
+                        <div class="advantage-card">
+                            <h3 class="text-xl font-bold mb-2 text-red-400">帮助确定开盘价</h3>
+                            <p>集合竞价通过集中撮合形成一个平衡价格，作为市场开盘时的重要参考点</p>
+                        </div>
+                        
+                        <div class="advantage-card">
+                            <h3 class="text-xl font-bold mb-2 text-red-400">降低市场波动风险</h3>
+                            <p>集合竞价通过集中撮合的方式，有助于减少开盘时的价格波动，提供更平稳的开盘环境</p>
+                        </div>
+                        
+                        <div class="advantage-card">
+                            <h3 class="text-xl font-bold mb-2 text-red-400">为交易决策提供参考</h3>
+                            <p>投资者可以通过集合竞价的数据，结合其他信息，分析股票可能的走势，从而辅助交易决策</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button onclick="opensite()" class="primary-btn text-lg">
+                            <i class="fab fa-whatsapp mr-2"></i>学习集合竞价技巧
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 order-1 md:order-2">
+                    <img src="https://www.jacmsotck.online/hkgup/2.jpg" alt="集合競價分析" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Benefits Section -->
+    <section class="py-16 section-medium">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4">加入WhatsApp社区的好处</h2>
+                    <p class="text-lg max-w-3xl mx-auto">专业知识、实用技巧和活跃交流，帮助您在股票市场中更有信心地操作</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center gap-10 mb-16">
+                    <div class="md:w-1/2">
+                        <img src="https://www.jacmsotck.online/hkgup/3.jpg" alt="WhatsApp社區好處" class="rounded-lg shadow-xl">
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="flex items-start">
+                                <div class="benefit-icon mr-4 flex-shrink-0">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">每天实时获取7+条市场动态</h3>
+                                    <p>社区内每日更新超过7条最新市场资讯，帮助你了解市场热点和主力资金走势。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="benefit-icon mr-4 flex-shrink-0">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">每月分享10+个案例分析</h3>
+                                    <p>每月通过10个以上精选案例教学，手把手教你如何通过集合竞价判断市场趋势，提升实战能力</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="benefit-icon mr-4 flex-shrink-0">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">与500+位投资者交流</h3>
+                                    <p>社区已有超过500位活跃成员，涵盖新手和资深投资者，随时交流经验，共同成长</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="benefit-icon mr-4 flex-shrink-0">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">每周参与2场免费在线分享</h3>
+                                    <p>每周举办2场在线分享会，包括市场分析和集合竞价技巧，让你系统学习专业知识</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="benefit-icon mr-4 flex-shrink-0">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">获取3大免费学习资源</h3>
+                                    <p>加入即免费领取3大核心学习资料，包括集合竞价基础教程、市场分析指南和投资工具使用手册</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 p-6 md:p-10 rounded-xl shadow-sm">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">社区成员的真实评价</h3>
+                        <p class="text-lg">听听已加入社区的投资者怎么说</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="testimonial-card">
+                            <img src="https://i.pravatar.cc/120?img=1" class="testimonial-avatar" alt="用戶頭像">
+                            <div class="pt-4">
+                                <h4 class="font-bold text-lg mt-3">王先生</h4>
+                                <p class="text-gray-400 text-sm mb-3">社区成员· 5個月</p>
+                                <p>"社区的集合竞价分析教程非常实用，让我对开盘前的市场有了更清晰的认识，不再盲目跟风"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <img src="https://i.pravatar.cc/120?img=5" class="testimonial-avatar" alt="用戶頭像">
+                            <div class="pt-4">
+                                <h4 class="font-bold text-lg mt-3">李女士</h4>
+                                <p class="text-gray-400 text-sm mb-3">社区成员 · 4個月</p>
+                                <p>"作为新手，我从社区获得了很多宝贵的学习资源和实战技巧，Ryan老师的讲解通俗易懂"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <img src="https://i.pravatar.cc/120?img=3" class="testimonial-avatar" alt="用戶頭像">
+                            <div class="pt-4">
+                                <h4 class="font-bold text-lg mt-3">张先生</h4>
+                                <p class="text-gray-400 text-sm mb-3">社区成员 · 7個月</p>
+                                <p>"每天的市场资讯和案例分析让我更好地把握市场动向，社区氛围也很好，成员间互相学习和交流"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 text-center">
+                    <button onclick="opensite()" class="primary-btn text-lg px-8 py-4">
+                        <i class="fab fa-whatsapp mr-2"></i>免费加入社区 <span class="limited-spots">仅剩30个免费名额</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-white">Ryan老师股票市场教育</h2>
+                    <p class="text-gray-300 mt-2">专注于股票市场教育和集合竞价分析技巧</p>
+                </div>
+                
+                <div class="disclaimer mb-8 text-gray-200">
+                    <h3 class="font-bold text-lg mb-3 text-white">免责声明</h3>
+                    <p class="mb-2">本社区仅为教育和学习目的，不提供任何投资建议或收益承诺。所有交易决策须基于您的独立判断，并承担相关风险</p>
+                    <p class="mb-2">根据证券及期货事务监察委员会（SFC）的规定，我们不提供任何具体股票推荐或交易信号。社区内容仅为教育目的，旨在提高您对市场的理解和分析能力</p>
+                    <p>股票市场具有波动性，投资需谨慎。建议您在做出任何投资决定前，咨询合资格的专业人士意见</p>
+                </div>
+                
+                <div class="text-center text-gray-400 text-sm">
+                    <p>© 2024 Ryan股票教育. 版权所有.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <div class="floating-btn">
+        <button onclick="opensite()" class="primary-btn w-full text-lg py-4">
+            <i class="fab fa-whatsapp mr-2"></i>免费加入社区
+        </button>
+    </div>
+
+    <script>
+        function opensite() {
+            // fbq('track', 'AddToCart');
+    //  fbq('track', 'Purchase');
+          window.location.href = "https://www.facebook.com";
+        }
+    </script>
+</body>
+</html>
