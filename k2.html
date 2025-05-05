@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvia Private Companions</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff3b9a;
+            --primary-light: #ff85c7;
+            --primary-dark: #d10075;
+            --secondary: #9d00ff;
+            --secondary-light: #bc6fff;
+            --secondary-dark: #6a00aa;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --bg-dark: #1a0033;
+            --bg-darker: #120022;
+            --card-bg: #23004d;
+            --text-light: #ffffff;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --badge-bg: #ff3b9a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            min-height: 90vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-light);
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            padding: 10px;
+            z-index: 0;
+        }
+        
+        .bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 59, 154, 0.7), rgba(157, 0, 255, 0.7));
+            z-index: 1;
+        }
+        
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .hero-content {
+            background-color: rgba(18, 0, 34, 0.6);
+            padding: 1.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            max-width: 90%;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+            letter-spacing: 1px;
+            position: relative;
+            line-height: 1.1;
+        }
+        
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+            margin-top: 1.2rem;
+        }
+        
+        .hero-tagline {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 400;
+        }
+        
+        .instant-match {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: white;
+        }
+        
+        .instant-match:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .profiles-section {
+            padding: 3rem 2rem;
+            background: var(--bg-darker);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-light);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .profiles-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 59, 154, 0.3);
+        }
+        
+        .profile-image-container {
+            width: 180px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            object-position: center top;
+        }
+        
+        .profile-card:hover .profile-image {
+            transform: scale(1.05);
+        }
+        
+        .heart-icon {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: white;
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+            z-index: 2;
+        }
+        
+        .elite-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--badge-bg);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+        }
+        
+        .elite-badge i {
+            font-size: 0.9rem;
+        }
+        
+        .profile-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .profile-detail {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .profile-detail i {
+            color: var(--primary-light);
+            font-size: 1rem;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .contact-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .tg-btn {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .tg-btn:hover {
+            background: #0077b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+        }
+        
+        .wa-btn {
+            background: #25d366;
+            color: white;
+        }
+        
+        .wa-btn:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom right, var(--card-bg), var(--bg-darker));
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .cta-section .hero-content {
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: 100%;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 240px;
+        }
+        
+        .cta-tg-btn {
+            background: #0088cc;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.5);
+        }
+        
+        .cta-tg-btn:hover {
+            background: #0077b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.7);
+        }
+        
+        .cta-wa-btn {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+        }
+        
+        .cta-wa-btn:hover {
+            background: #128c7e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.7);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                min-height: 80vh;
+            }
+            
+            .hero-background {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+            
+            .hero-content {
+                max-width: 95%;
+                padding: 1.2rem;
+                background-color: rgba(18, 0, 34, 0.5);
+            }
+            
+            .hero-title {
+                font-size: 2.6rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-top: 1rem;
+            }
+            
+            .hero-tagline {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .instant-match {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.5rem;
+                margin-top: 0.8rem;
+            }
+            
+            .cta-btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                min-width: 200px;
+            }
+            
+            .profile-card {
+                flex-direction: column;
+            }
+            
+            .profile-image-container {
+                width: 100%;
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0.5rem;
+                min-height: 70vh;
+            }
+            
+            .hero-background {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                gap: 4px;
+                padding: 5px;
+            }
+            
+            .hero-overlay {
+                background: linear-gradient(135deg, rgba(255, 59, 154, 0.6), rgba(157, 0, 255, 0.6));
+            }
+            
+            .hero-content {
+                padding: 1rem;
+                background-color: rgba(18, 0, 34, 0.4);
+                max-width: 90%;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .hero-title::after {
+                width: 50px;
+                height: 2px;
+                bottom: -5px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-top: 0.8rem;
+            }
+            
+            .hero-tagline {
+                font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .instant-match {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .profiles-section, .cta-section {
+                padding: 2rem 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="https://www.jacmsotck.online/kongimg/1-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/2-1.jpg" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/3-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/4-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/5-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/6-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/7-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/8-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/9-1.png" alt="" class="bg-img">
+            <img src="https://www.jacmsotck.online/kongimg/10-1.png" alt="" class="bg-img">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content-wrapper">
+            <div class="hero-content">
+                <h1 class="hero-title">Velvia Private Companions</h1>
+                <h2 class="hero-subtitle">Ride Together · Stay Together · Play Together</h2>
+                <p class="hero-tagline">Wherever fun takes you, we're right by your side</p>
+                <div class="instant-match">Real connections. Instant matches</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Profiles Section -->
+    <section class="profiles-section">
+        <h2 class="section-title">Meet Our Companions</h2>
+        <div class="profiles-list">
+            <!-- Profile 1: Adela -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/1-1.png" alt="Adela" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Adela</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 1km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 25</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 168cm</span>
+                            <span class="profile-detail"><i class="ri-golf-line"></i> Interests & Hobbies: Golf</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Adela')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Adela')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 2: Cherry -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/2-1.jpg" alt="Cherry" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Cherry</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 2.3km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 26</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 170cm</span>
+                            <span class="profile-detail"><i class="ri-sailing-line"></i> Interests & Hobbies: Diving</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Cherry')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Cherry')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 3: Clara -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/3-1.png" alt="Clara" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Clara</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 2.1km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 23</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 166cm</span>
+                            <span class="profile-detail"><i class="ri-sailing-line"></i> Interests & Hobbies: Diving</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Clara')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Clara')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 4: Diana -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/4-1.png" alt="Diana" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Diana</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 1.5km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 26</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 168cm</span>
+                            <span class="profile-detail"><i class="ri-ball-pen-line"></i> Interests & Hobbies: Tennis</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Diana')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Diana')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 5: Emma -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/5-1.png" alt="Emma" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Emma</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 1.8km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 27</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 163cm</span>
+                            <span class="profile-detail"><i class="ri-snowy-line"></i> Interests & Hobbies: Skiing</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Emma')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Emma')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 6: Harriet -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/6-1.png" alt="Harriet" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Harriet</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 3.2km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 25</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 166cm</span>
+                            <span class="profile-detail"><i class="ri-parachute-line"></i> Interests & Hobbies: Skydiving</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Harriet')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Harriet')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 7: Harriet (second one with same name) -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/7-1.png" alt="Harriet" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Harriet</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 1.2km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 26</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 165cm</span>
+                            <span class="profile-detail"><i class="ri-riding-line"></i> Interests & Hobbies: Horseback Riding</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Harriet2')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Harriet2')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 8: Lara -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/8-1.png" alt="Lara" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Lara</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 1.7km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 27</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 166cm</span>
+                            <span class="profile-detail"><i class="ri-golf-line"></i> Interests & Hobbies: Golf</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Lara')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Lara')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 9: Melissa -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/9-1.png" alt="Melissa" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Melissa</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 1.7km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 25</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 165cm</span>
+                            <span class="profile-detail"><i class="ri-parachute-line"></i> Interests & Hobbies: Skydiving</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Melissa')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Melissa')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile 10: Poppy -->
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <i class="ri-heart-fill heart-icon"></i>
+                    <img src="https://www.jacmsotck.online/kongimg/10-1.png" alt="Poppy" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h3 class="profile-name">Poppy</h3>
+                        <div class="profile-details">
+                            <span class="profile-detail"><i class="ri-verified-badge-fill"></i> Velvia Elite Badge</span>
+                            <span class="profile-detail"><i class="ri-map-pin-line"></i> Near Me: 2.5km</span>
+                            <span class="profile-detail"><i class="ri-user-line"></i> Age: 28</span>
+                            <span class="profile-detail"><i class="ri-ruler-line"></i> Height: 168cm</span>
+                            <span class="profile-detail"><i class="ri-ball-pen-line"></i> Interests & Hobbies: Tennis</span>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn tg-btn" onclick="opentg('Poppy')"><i class="ri-telegram-fill"></i> Telegram</button>
+                        <button class="contact-btn wa-btn" onclick="openws('Poppy')"><i class="ri-whatsapp-fill"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section (repeating hero content) -->
+    <section class="cta-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Velvia Private Companions</h1>
+            <h2 class="hero-subtitle">Ride Together · Stay Together · Play Together</h2>
+            <p class="hero-tagline">Wherever fun takes you, we're right by your side</p>
+        </div>
+        <div class="cta-buttons">
+            <button class="cta-btn cta-tg-btn" onclick="opentg('Contact')"><i class="ri-telegram-fill"></i> Contact on Telegram</button>
+            <button class="cta-btn cta-wa-btn" onclick="openws('Contact')"><i class="ri-whatsapp-fill"></i> Contact on WhatsApp</button>
+        </div>
+    </section>
+    
+    <script>
+        // Function to open Telegram
+        function opentg(profile) {
+            window.open("https://t.me/velviacompanions", "_blank");
+        }
+        
+        // Function to open WhatsApp
+        function openws(profile) {
+            window.open("https://wa.me/1234567890", "_blank");
+        }
+        
+        // Add scroll animation for the cards
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.profile-card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (cardTop < windowHeight - 50) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Initialize cards with opacity 0 and translateY for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.profile-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.4s ease ${index * 0.1}s`;
+            });
+            
+            // Trigger initial scroll event to show visible cards
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
