@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>投資コミュニティ - 無料 Line グループにご参加ください</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-navy: #0a1930;
+            --mid-navy: #172a45;
+            --light-navy: #203354;
+            --accent-teal: #00adb5;
+            --bright-teal: #13d8e3;
+            --light-teal: #65e7ee;
+            --accent-orange: #ff5722;
+            --bright-orange: #ff8a65;
+            --dark-orange: #e64a19;
+            --pure-white: #ffffff;
+            --light-gray: #f5f5f5;
+            --mid-gray: #e0e0e0;
+            --dark-gray: #616161;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.18);
+            --teal-gradient: linear-gradient(135deg, var(--accent-teal), var(--bright-teal));
+            --orange-gradient: linear-gradient(135deg, var(--accent-orange), var(--bright-orange));
+            --navy-gradient: linear-gradient(135deg, var(--deep-navy), var(--light-navy));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            background-color: var(--mid-navy);
+            color: var(--pure-white);
+            overflow-x: hidden;
+        }
+        
+        .page-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .content-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-block {
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .title-large {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            color: var(--pure-white);
+        }
+        
+        .title-medium {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+        
+        .title-small {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .text-regular {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+        
+        .text-highlight {
+            color: var(--accent-teal);
+            font-weight: 700;
+        }
+        
+        .text-accent {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-space {
+            margin-top: 32px;
+        }
+        
+        .mb-space {
+            margin-bottom: 32px;
+        }
+        
+        /* Action Button */
+        .action-button {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--orange-gradient);
+            color: var(--pure-white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: pulse-animation 2s infinite;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .action-button:active {
+            transform: translateY(1px);
+        }
+        
+        .action-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.4s;
+            z-index: -1;
+        }
+        
+        .action-button:hover::after {
+            left: 100%;
+        }
+        
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 87, 34, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 87, 34, 0);
+            }
+        }
+        
+        /* Secondary Button */
+        .secondary-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--teal-gradient);
+            color: var(--pure-white);
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .secondary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Hero Section */
+        .hero-area {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--navy-gradient);
+            overflow: hidden;
+        }
+        
+        .hero-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(var(--mid-navy) 1px, transparent 1px),
+                linear-gradient(90deg, var(--mid-navy) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 10;
+            padding: 40px 0;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-visual {
+            position: relative;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 173, 181, 0.2);
+            border: 1px solid var(--accent-teal);
+            color: var(--pure-white);
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            backdrop-filter: blur(4px);
+        }
+        
+        .membership-count {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            padding: 8px 16px;
+            background: rgba(255, 87, 34, 0.2);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-orange);
+        }
+        
+        .membership-count svg {
+            margin-right: 8px;
+            fill: var(--accent-orange);
+        }
+        
+        /* Challenges Section */
+        .challenges-section {
+            background-color: var(--light-navy);
+            padding: 80px 0;
+        }
+        
+        .challenges-list {
+            margin-top: 40px;
+        }
+        
+        .challenge-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .challenge-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .challenge-icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            background: var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--deep-navy);
+        }
+        
+        .challenge-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--accent-teal);
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            background: var(--deep-navy);
+            padding: 80px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid var(--accent-teal);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 173, 181, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--accent-teal);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--pure-white);
+        }
+        
+        /* Social Proof Section */
+        .social-proof {
+            background: var(--mid-navy);
+            padding: 80px 0;
+        }
+        
+        .testimonial-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .testimonial-quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .testimonial-quote::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 3rem;
+            color: var(--accent-teal);
+            opacity: 0.4;
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--deep-navy);
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--navy-gradient);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--mid-navy) 1px, transparent 1px),
+                linear-gradient(90deg, var(--mid-navy) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        .page-footer {
+            background-color: var(--deep-navy);
+            padding: 60px 0 120px;
+            color: var(--mid-gray);
+        }
+        
+        .disclaimer-block {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .disclaimer-heading {
+            color: var(--accent-orange);
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        }
+        
+        .disclaimer-text {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .disclaimer-text:last-child {
+            margin-bottom: 0;
+        }
+        
+        .disclaimer-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .disclaimer-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .disclaimer-subtitle {
+            color: var(--accent-teal);
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .disclaimer-list {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .disclaimer-list li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .copyright-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        /* Floating Button */
+        .float-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(90%, 500px);
+            z-index: 1000;
+            animation: float-breathing 4s infinite;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+        }
+        
+        @keyframes float-breathing {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+                box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+            }
+            
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+                box-shadow: 0 15px 25px rgba(255, 87, 34, 0.4);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .title-large {
+                font-size: 2.4rem;
+            }
+            
+            .title-medium {
+                font-size: 2rem;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-visual {
+                margin-top: -200px;
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-block {
+                padding: 50px 0;
+            }
+            
+            .title-large {
+                font-size: 2rem;
+            }
+            
+            .title-medium {
+                font-size: 1.8rem;
+            }
+            
+            .title-small {
+                font-size: 1.3rem;
+            }
+            
+            .benefits-grid, .testimonial-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .challenge-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .challenge-icon {
+                margin-bottom: 16px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .title-large {
+                font-size: 1.8rem;
+            }
+            
+            .action-button, .secondary-button {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+            
+            .float-button {
+                font-size: 0.9rem;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-area section-block">
+            <div class="content-container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="membership-count">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" fill="currentColor"/>
+                                <path d="M8.5 11C10.7091 11 12.5 9.20914 12.5 7C12.5 4.79086 10.7091 3 8.5 3C6.29086 3 4.5 4.79086 4.5 7C4.5 9.20914 6.29086 11 8.5 11Z" fill="currentColor"/>
+                                <path d="M20 8V14M17 11H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            現在 9,232 人が参加
+                        </div>
+                        
+                        <h1 class="title-large">投資の知識を高め、<span class="text-highlight">仲間と共に成長</span>しましょう！</h1>
+                        <p class="text-regular">今日残り<span class="text-accent">40名限定</span>の無料 Line グループにご参加ください。</p>
+                        
+                        <div class="mt-space">
+                            <span class="hero-badge">学習コミュニティ</span>
+                            <span class="hero-badge">無料参加</span>
+                            <span class="hero-badge">経験共有</span>
+                        </div>
+                        
+                        <p class="text-regular mt-space">このグループは学習と情報交換のためのプラットフォームであり、投資アドバイスを提供するものではありません。</p>
+                        
+                        <div class="mt-space">
+                            <button class="action-button" onclick="opent()">無料で参加する</button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <svg width="100%" height="500" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="chart-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#00adb5" />
+                                    <stop offset="100%" stop-color="#13d8e3" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- グリッド線 -->
+                            <line x1="50" y1="50" x2="50" y2="550" stroke="#203354" stroke-width="1" />
+                            <line x1="50" y1="550" x2="750" y2="550" stroke="#203354" stroke-width="1" />
+                            
+                            <!-- グリッド補助線 -->
+                            <line x1="50" y1="150" x2="750" y2="150" stroke="#203354" stroke-width="0.5" stroke-dasharray="5,5" />
+                            <line x1="50" y1="250" x2="750" y2="250" stroke="#203354" stroke-width="0.5" stroke-dasharray="5,5" />
+                            <line x1="50" y1="350" x2="750" y2="350" stroke="#203354" stroke-width="0.5" stroke-dasharray="5,5" />
+                            <line x1="50" y1="450" x2="750" y2="450" stroke="#203354" stroke-width="0.5" stroke-dasharray="5,5" />
+                            
+                            <!-- チャートライン -->
+                            <polyline points="100,480 200,400 300,420 400,320 500,280 600,180 700,120" 
+                                    fill="none" stroke="url(#chart-gradient)" stroke-width="4" />
+                            
+                            <!-- チャートポイント -->
+                            <circle cx="100" cy="480" r="8" fill="#00adb5" />
+                            <circle cx="200" cy="400" r="8" fill="#00adb5" />
+                            <circle cx="300" cy="420" r="8" fill="#00adb5" />
+                            <circle cx="400" cy="320" r="8" fill="#00adb5" />
+                            <circle cx="500" cy="280" r="8" fill="#00adb5" />
+                            <circle cx="600" cy="180" r="8" fill="#00adb5" />
+                            <circle cx="700" cy="120" r="8" fill="#00adb5" />
+                            
+                            <!-- 成長バー -->
+                            <rect x="100" y="350" width="40" height="200" rx="5" fill="#ff5722" opacity="0.7" />
+                            <rect x="200" y="300" width="40" height="250" rx="5" fill="#ff5722" opacity="0.7" />
+                            <rect x="300" y="250" width="40" height="300" rx="5" fill="#ff5722" opacity="0.7" />
+                            <rect x="400" y="200" width="40" height="350" rx="5" fill="#ff5722" opacity="0.7" />
+                            <rect x="500" y="150" width="40" height="400" rx="5" fill="#ff5722" opacity="0.7" />
+                            <rect x="600" y="100" width="40" height="450" rx="5" fill="#ff5722" opacity="0.7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Challenges Section -->
+        <section class="challenges-section section-block">
+            <div class="content-container">
+                <h2 class="title-medium text-center">株式投資で、こんな悩みを抱えていませんか？</h2>
+                
+                <div class="challenges-list">
+                    <div class="challenge-item">
+                        <div class="challenge-icon">1</div>
+                        <div class="challenge-content">
+                            <h3>市場の情報が複雑すぎて、うまく取捨選択できない</h3>
+                            <p>膨大な情報の中から真偽を見極められず、賢明な投資判断を下すのが難しいと感じていませんか？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">2</div>
+                        <div class="challenge-content">
+                            <h3>投資知識体系が不完全で、系統的な学習が不足</h3>
+                            <p>投資能力を高めたいと思っていても、体系的な学習方法やリソースが足りないと感じていませんか？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">3</div>
+                        <div class="challenge-content">
+                            <h3>交流が少なく、投資アイデアの検証が難しい</h3>
+                            <p>より多くの投資愛好家と交流し、自分の投資考えを検証し、共に成長したいと思っていませんか？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">4</div>
+                        <div class="challenge-content">
+                            <h3>より多くの市場見解を求め、投資視野を広げたい</h3>
+                            <p>さまざまな投資見解を理解し、投資視野を広げ、より包括的な判断を下したいと思っていませんか？</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-space">
+                    <button class="action-button" onclick="opent()">無料で参加する</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Benefits Section -->
+        <section class="benefits-section section-block">
+            <div class="content-container">
+                <h2 class="title-medium text-center">私たちの <span class="text-highlight">Line</span> グループに参加すると、次のことができます：</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💬</div>
+                        <h3>無料の学習ディスカッション</h3>
+                        <p>他の投資愛好家と学習経験を交換し、市場情報を共有し、共に投資知識を向上させることができます。</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔍</div>
+                        <h3>多様な市場見解</h3>
+                        <p>様々な投資戦略と分析方法を学び、投資視野を広げ、独立思考能力を高めることができます。</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤝</div>
+                        <h3>人脈リソースの拡大</h3>
+                        <p>志を同じくする多くの投資家と知り合い、良好な人間関係を構築できます。</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h3>精選された情報</h3>
+                        <p>グループ内では、参考学習のために厳選された市場情報や研究レポートが共有されます。</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-space">
+                    <button class="action-button" onclick="opent()">今すぐ参加する</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Social Proof Section -->
+        <section class="social-proof section-block">
+            <div class="content-container">
+                <h2 class="title-medium text-center">メンバーからの<span class="text-highlight">声</span></h2>
+                
+                <div class="testimonial-list">
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">このグループに参加してから、投資に対する理解が深まりました。様々な意見を聞くことで、投資判断がより客観的になりました。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">T</div>
+                            <div class="author-info">
+                                <h4>田中さん</h4>
+                                <p>グループ参加歴：6ヶ月</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">毎日の情報交換が非常に有益です。メンバーの皆さんと一緒に学ぶことで、新しい視点を得ることができています。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">S</div>
+                            <div class="author-info">
+                                <h4>佐藤さん</h4>
+                                <p>グループ参加歴：3ヶ月</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">投資の知識を学ぶための素晴らしいコミュニティです。メンバー同士で知識を共有する文化が根付いていて、毎日新しい発見があります。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">Y</div>
+                            <div class="author-info">
+                                <h4>山本さん</h4>
+                                <p>グループ参加歴：1年</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">経験豊富なメンバーからの分析を読むことで、自分の投資スキルも向上しています。多様な視点から市場を見ることの重要性を学びました。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">K</div>
+                            <div class="author-info">
+                                <h4>鈴木さん</h4>
+                                <p>グループ参加歴：8ヶ月</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section section-block">
+            <div class="content-container">
+                <div class="cta-content">
+                    <h2 class="title-medium">枠が限られています。今すぐ参加しましょう！</h2>
+                    <p class="text-regular">Line グループに参加して、メンバーと一緒に学び、成長しましょう！</p>
+                    <div class="mt-space">
+                        <button class="action-button" onclick="opent()">Line グループに無料で参加する</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Section -->
+        <footer class="page-footer">
+            <div class="content-container">
+                <div class="disclaimer-block">
+                    <h4 class="disclaimer-heading">重要な免責事項：</h4>
+                    
+                    <div class="disclaimer-section">
+                        <h5 class="disclaimer-subtitle">投資リスクに関する警告</h5>
+                        <p class="disclaimer-text">このグループは学習交流のためのプラットフォームであり、いかなる投資アドバイスも提供していません。グループ内のすべての情報は参考目的のみであり、投資根拠を構成するものではありません。</p>
+                        <p class="disclaimer-text">投資にはリスクが伴います。独自に考え、慎重に決断することが重要です。投資の成功は保証されておらず、価格は上下する可能性があります。各参加者は、個人的な財務状況、投資目標、リスク許容度に基づいて、独立した投資判断を行う必要があります。</p>
+                        <p class="disclaimer-text">投資判断を行う前に、必要に応じて認可された投資アドバイザーや金融専門家に相談することを強くお勧めします。市場環境は常に変化しており、過去のパフォーマンスは将来の結果を保証するものではありません。</p>
+                        <ul class="disclaimer-list">
+                            <li>株式投資は元本保証ではなく、投資した金額を失う可能性があります。</li>
+                            <li>市場価格の変動により、投資価値が下がることがあります。</li>
+                            <li>投資決定は個人の責任において行ってください。</li>
+                            <li>取引手数料や税金などのコストも投資収益に影響を与えることがあります。</li>
+                            <li>金融商品の取引には高いリスクが伴い、すべての投資家に適しているわけではありません。</li>
+                        </ul>
+                    </div>
+                     
+                     
+                    
+                    <div class="disclaimer-section">
+                        <h5 class="disclaimer-subtitle">コンプライアンスと規制</h5>
+                        <p class="disclaimer-text">このコミュニティは、日本の金融商品取引法および関連規制に準拠することを目指しています。私たちは投資アドバイスを提供するものではなく、単なる情報交換と教育目的のプラットフォームです。</p>
+                        <p class="disclaimer-text">参加者は、自国の証券法および投資規制を遵守する責任があります。インサイダー取引や市場操作など、違法行為に関与するための場としてこのコミュニティを使用することは固く禁じられています。</p>
+                    </div>
+                    
+                    <div class="disclaimer-section">
+                        <h5 class="disclaimer-subtitle">免責および責任の制限</h5>
+                        <p class="disclaimer-text">このコミュニティの主催者、管理者、および活発なメンバーは、共有される情報の使用に起因する損失や損害について一切の責任を負いません。投資決定は完全にご自身の責任で行ってください。</p>
+                        <p class="disclaimer-text">コミュニティへの参加は、これらの条件への同意を意味します。法的紛争が生じた場合は、日本の法律が適用され、東京の裁判所が専属管轄権を持ちます。</p>
+                    </div>
+                    
+                    <p class="disclaimer-text">このコミュニティに参加することで、あなたは上記の条件に同意し、理解したものとみなされます。株式、債券、その他の金融商品の購入または売却の勧誘として解釈されるべきではありません。投資決定は、ご自身の責任において行ってください。</p>
+                </div>
+                
+                <p class="copyright-text">&copy; 2023 投資コミュニティ. All Rights Reserved.</p>
+            </div>
+        </footer>
+        
+        <!-- Floating Button -->
+        <button class="action-button float-button" onclick="opent()">今すぐLineグループに参加して、投資の知識を高めましょう！</button>
+    </div>
+    
+    <script>
+        function opent() {
+            window.open('https://www.baidu.com', '_blank');
+        }
+    </script>
+</body>
+</html>
