@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>株式知識共有コミュニティ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary: #033F63; /* 深海ブルー */
+            --primary-light: #05567D;
+            --primary-dark: #022B45;
+            --primary-transparent: rgba(3, 63, 99, 0.9);
+            
+            --secondary: #FBBF24; /* アンバーゴールド */
+            --secondary-light: #FCD34D;
+            --secondary-dark: #F59E0B;
+            
+            --text-light: #F8F9FA;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            
+            --bg-white: #FFFFFF;
+            --bg-light: #F1F5F9;
+            --bg-dark: #0F172A;
+            
+            --success: #10B981;
+            --info: #3B82F6;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* アニメーション */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes shine {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        
+        /* レイアウト */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        /* ヘッダーセクション */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 40%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .hero-text {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        
+        .hero-title span {
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--secondary);
+            opacity: 0.3;
+            border-radius: 4px;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        /* 目的セクション */
+        .purpose {
+            background-color: var(--bg-white);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .purpose-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: var(--bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            line-height: 1.8;
+        }
+        
+        .purpose-content p {
+            margin-bottom: 15px;
+        }
+        
+        /* 問題点セクション */
+        .problems {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .problems::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 40%);
+            z-index: 0;
+        }
+        
+        .problems .section-title {
+            color: var(--text-light);
+        }
+        
+        .problems-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .problems-text {
+            padding-right: 20px;
+        }
+        
+        .problem-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .problem-item i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--secondary);
+        }
+        
+        .problem-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .problems-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .problems-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* ソリューションセクション */
+        .solutions {
+            background-color: var(--bg-white);
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .solution-card {
+            padding: 30px;
+            background-color: var(--bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--secondary);
+        }
+        
+        .solution-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .solution-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .solution-description {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .solution-stat {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* 価値セクション */
+        .values {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .values::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 70% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 30% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 40%);
+            z-index: 0;
+        }
+        
+        .values .section-title {
+            color: var(--text-light);
+        }
+        
+        .values-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .values-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .values-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .values-text {
+            padding-left: 20px;
+        }
+        
+        .value-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .value-item i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--secondary);
+        }
+        
+        .value-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .value-description {
+            opacity: 0.9;
+        }
+        
+        .value-highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        /* ユーザー証言セクション */
+        .testimonials {
+            background-color: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--bg-white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--secondary);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .testimonial-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .testimonial-content {
+            flex-grow: 1;
+            position: relative;
+            padding-top: 20px;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.2;
+            line-height: 1;
+        }
+        
+        .testimonial-quote {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        /* フッター */
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 60px 0 120px;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+        }
+        
+        .disclaimer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        /* ボタン */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            gap: 10px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: 1;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--secondary-dark), var(--secondary), var(--secondary-dark));
+            background-size: 200% auto;
+            color: var(--primary-dark);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+            animation: shine 3s linear infinite;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* フローティングボタン */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .floating-btn .btn {
+            width: 100%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text {
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+                margin-bottom: 30px;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .problems-content, .values-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .problems-image, .values-image {
+                max-width: 500px;
+                margin: 0 auto 30px;
+            }
+            
+            .problems-text {
+                padding-right: 0;
+                order: 2;
+            }
+            
+            .values-text {
+                padding-left: 0;
+                order: 2;
+            }
+            
+            .problem-item, .value-item {
+                padding-left: 0;
+                text-align: left;
+            }
+            
+            .problem-item i, .value-item i {
+                position: static;
+                margin-right: 10px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .solution-card, .purpose-content, .testimonial-card {
+                padding: 20px;
+            }
+            
+            .solution-title, .problem-title, .value-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダーセクション -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">新規オープン</div>
+                    <h1 class="hero-title">株式知識共有<span>LINEコミュニティ</span>が正式にオープン！</h1>
+                    <p class="hero-description">株式投資の世界で孤独を感じていませんか？専門知識が不足していて、市場の変動に振り回されていませんか？私たちのコミュニティで、投資の旅を一緒に歩みましょう。</p>
+                    <button class="btn btn-primary" onclick="opensite()">
+                        <i class="fab fa-line"></i> 無料で参加する
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <img src="img/1.jpg" alt="株式投資コミュニティ">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 目的セクション -->
+    <section class="purpose">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">コミュニティ設立の目的</h2>
+            </div>
+            
+            <div class="purpose-content">
+                <p>株式投資の世界では、多くの方が専門知識の不足や情報の非対称性によって、チャンスを逃したり、損失を被ったりしています。私たちは、オープンでアクティブなコミュニティを構築することで、すべての投資家が自分の投資能力を高められるよう支援したいと考えています。</p>
+                <p>複雑に見える投資の世界を、誰もが理解しやすい形で提供することで、より多くの方が自信を持って投資判断ができるようになることを目指しています。</p>
+                <div class="text-center" style="margin-top: 30px;">
+                    <button class="btn btn-primary" onclick="opensite()">
+                        <i class="fab fa-line"></i> 無料で参加する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 問題点セクション -->
+    <section class="problems">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">よくある問題</h2>
+            </div>
+            
+            <div class="problems-content">
+                <div class="problems-text">
+                    <div class="problem-item">
+                        <i class="fas fa-book"></i>
+                        <h3 class="problem-title">投資知識の不足</h3>
+                        <p>投資知識が不足しており、どこから学び始めればよいか分からない状態。正しい情報源を見つけることが難しく、学習の道筋が見えません。</p>
+                    </div>
+                    
+                    <div class="problem-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3 class="problem-title">市場変動への対応</h3>
+                        <p>市場の急激な変動に対して、冷静な判断ができず、感情的な決断をしてしまうことがあります。変動時に何をすべきか、適切な判断基準がありません。</p>
+                    </div>
+                    
+                    <div class="problem-item">
+                        <i class="fas fa-language"></i>
+                        <h3 class="problem-title">専門用語の壁</h3>
+                        <p>複雑な専門用語や膨大な情報量に圧倒され、何から手をつければいいのかわからない状態。基本的な概念の理解が不足しています。</p>
+                    </div>
+                    
+                    <div class="problem-item">
+                        <i class="fas fa-users"></i>
+                        <h3 class="problem-title">孤独な投資の旅</h3>
+                        <p>同じ目標を持つ仲間がいないため、経験を共有したり、助言を求めたりする機会がなく、一人で苦戦しています。</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <button class="btn btn-outline" onclick="opensite()">
+                            <i class="fab fa-line"></i> 無料で参加する
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="problems-image">
+                    <img src="img/3.jpg" alt="投資の問題点">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ソリューションセクション -->
+    <section class="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">私たちのソリューション</h2>
+            </div>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="solution-title">体系的な知識共有</h3>
+                    <p class="solution-description">毎日簡潔でわかりやすい株式の基礎知識、テクニック、市場分析を配信し、初心者でも素早く理解できるようサポートします。</p>
+                    <p class="solution-stat">コミュニティメンバーの93%が投資理解力の向上を実感</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="solution-title">専門家によるガイダンス</h3>
+                    <p class="solution-description">定期的にベテラン投資家をゲストに招き、ライブセミナーやインタラクティブQ&Aを行い、実践的な知識を提供します。</p>
+                    <p class="solution-stat">参加者の85%以上がより明確な投資判断ができると回答</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="solution-title">リアルタイム交流</h3>
+                    <p class="solution-description">2,000人以上のアクティブメンバーが集まり、毎日500件以上の投資に関するディスカッションが行われています。</p>
+                    <p class="solution-stat">初心者の質問から高度な市場分析まで幅広くカバー</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="solution-title">精選された情報配信</h3>
+                    <p class="solution-description">厳選された市場動向とトレンド分析を日々提供し、重要な情報を見逃さないようサポートします。</p>
+                    <p class="solution-stat">ユーザーの約70%が盲目的な判断のリスク減少を実感</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <button class="btn btn-primary" onclick="opensite()">
+                    <i class="fab fa-line"></i> 無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 価値セクション -->
+    <section class="values">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">コミュニティの価値</h2>
+            </div>
+            
+            <div class="values-content">
+                <div class="values-image">
+                    <img src="img/1.jpg" alt="コミュニティの価値">
+                </div>
+                
+                <div class="values-text">
+                    <div class="value-item">
+                        <i class="fas fa-brain"></i>
+                        <h3 class="value-title">学習と成長</h3>
+                        <p class="value-description">コミュニティに参加した新規メンバーの<span class="value-highlight">90%</span>が1ヶ月以内に少なくとも<span class="value-highlight">3つ</span>の投資分析手法を習得しています。</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3 class="value-title">リスク低減</h3>
+                        <p class="value-description">専門家のガイダンスとメンバー共有により、コミュニティ内での損失率が<span class="value-highlight">35%</span>減少しました。</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3 class="value-title">投資理解力の向上</h3>
+                        <p class="value-description">内部調査によると、メンバーの<span class="value-highlight">60%以上</span>がコミュニティに参加して<span class="value-highlight">3ヶ月後</span>に投資理解度の大幅な向上を報告しています。</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <i class="fas fa-clock"></i>
+                        <h3 class="value-title">時間効率の最適化</h3>
+                        <p class="value-description">毎日たった<span class="value-highlight">15分間</span>の精選されたコンテンツを閲覧するだけで、市場動向を把握し、投資能力を向上させることができます。</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <button class="btn btn-outline" onclick="opensite()">
+                            <i class="fab fa-line"></i> 無料で参加する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ユーザー証言セクション -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">メンバーの声</h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3>田中 健太</h3>
+                            <p>会社員 / 投資歴2年</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">このコミュニティに参加する前は、投資に対する不安が大きく、常に感情的な判断をしていました。しかし、共有される知識とメンバーからのサポートのおかげで、より体系的に投資を考えられるようになりました。特に毎日の市場分析が非常に役立っています。</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3>佐藤 美咲</h3>
+                            <p>フリーランス / 投資初心者</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">投資の専門用語が全く分からない状態で参加しましたが、基礎からわかりやすく解説してくれるコンテンツのおかげで、今では自分で情報を調べて判断できるようになりました。特に他のメンバーの質問と回答から学ぶことが多いです。コミュニティの雰囲気も温かく、質問しやすい環境です。</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3>山田 誠</h3>
+                            <p>自営業 / 投資歴5年</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">長年投資をしてきましたが、このコミュニティに参加してから新しい視点を得ることができました。特に専門家のセミナーは非常に洞察に富んでおり、市場の見方が変わりました。また、同じ志を持つ仲間と意見交換できることで、自分の投資判断に自信を持てるようになりました。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <button class="btn btn-primary" onclick="opensite()">
+                    <i class="fab fa-line"></i> 無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <h3 class="disclaimer-title">免責事項</h3>
+                <p>当コミュニティは教育目的のみで運営されており、投資アドバイスの提供を目的としていません。すべての情報は一般的な情報提供を目的としており、特定の投資結果を保証するものではありません。</p>
+                <p>投資には元本割れのリスクが伴います。過去のパフォーマンスは将来の結果を保証するものではありません。投資判断を行う前に、ご自身の財務状況、投資目標、リスク許容度を考慮し、必要に応じて専門家のアドバイスを求めてください。</p>
+                <p>当コミュニティでは特定の証券の売買を推奨せず、日本の金融商品取引法及び関連法規を遵守しています。コミュニティ内で共有される情報は、メンバー自身の経験や見解に基づくものであり、投資判断の根拠として利用する場合は、ご自身の責任において行ってください。</p>
+                <p>本コミュニティはGoogle Japanの金融広告ポリシーに準拠しています。</p>
+                <p>© 2023 株式投資知識共有コミュニティ. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- フローティングボタン -->
+    <div class="floating-btn">
+        <button class="btn btn-primary" onclick="opensite()">
+            <i class="fab fa-line"></i> 今すぐ無料でコミュニティに参加する
+        </button>
+    </div>
+    
+    <script>
+        function opensite() {
+            window.open('https://line.me/your_line_link', '_blank');
+        }
+    </script>
+</body>
+</html>
