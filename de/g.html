@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Anja Kohl's Investmentgruppe | Markteinblicke & Finanzwissen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepblue: '#0D2B56',
+                        navyblue: '#0F3468',
+                        brightblue: '#0065B3',
+                        gold: '#FFD700',
+                        amber: '#FFC107',
+                        accent: '#FF5722'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(255, 215, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.5)' },
+                            '100%': { boxShadow: '0 0 10px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.7)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0D2B56;
+            color: #FFFFFF;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0D2B56 0%, #0F3468 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #0F3468 0%, #0D2B56 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .whatsapp-fixed {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF5722;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid #0F3468;
+            box-shadow: 0 0 10px rgba(255, 87, 34, 0.7);
+        }
+        
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #0D2B56;
+            font-weight: bold; 
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            width: 350px;
+            white-space: nowrap;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #0D2B56;
+            font-weight: bold;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .cta-button:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(15, 52, 104, 0.8) 0%, rgba(13, 43, 86, 0.9) 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(15, 52, 104, 0.8) 0%, rgba(13, 43, 86, 0.9) 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-icon {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .feature-text {
+            font-size: 1.25rem;
+            color: #FFD700;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .limited-badge {
+            background: linear-gradient(90deg, #FF5722, #FF8A65);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .avatar-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #0065B3;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .spotlight {
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, rgba(13, 43, 86, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+     
+    
+    <!-- Floating Bottom Button -->
+    <div class="floating-button" onclick="openSite()">
+        <i class="fab fa-whatsapp mr-2"></i> Jetzt der WhatsApp-Gruppe beitreten
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20 md:py-24 relative overflow-hidden">
+        <div class="spotlight" style="top: 10%; left: 10%;"></div>
+        <div class="spotlight" style="bottom: 10%; right: 10%;"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Left Content -->
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="limited-badge animate-pulse">NUR NOCH 30 PLÄTZE VERFÜGBAR</div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Treten Sie <span class="gold-gradient">Anja Kohl's</span> Investmentgruppe bei und ergreifen Sie finanzielle Chancen!
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Hallo, ich bin Anja Kohl, Wirtschaftsjournalistin bei der ARD. In den letzten 20 Jahren habe ich die globalen Finanzmärkte eingehend studiert und Anlegern geholfen, wirtschaftliche Trends zu verstehen. Heute bieten die globalen Märkte beispiellose Chancen – sind Sie bereit, diese zu nutzen?
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openSite()" class="cta-button text-lg">
+                            <i class="fab fa-whatsapp mr-2"></i> Jetzt beitreten
+                        </button>
+                        <button onclick="location.href='#benefits'" class="bg-transparent border-2 border-amber hover:border-gold text-amber hover:text-gold font-bold py-3 px-6 rounded-lg transition-all duration-300">
+                            Mehr erfahren
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Right Image -->
+                <div class="md:w-1/2 relative">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <img src="img/1.jpg" alt="Anja Kohl's Investmentgruppe" class="w-full h-auto rounded-2xl transform hover:scale-105 transition-all duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revolution Section -->
+    <section class="section-gradient py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Eine <span class="gold-gradient">Vermögensrevolution</span> ist im Gange!
+                </h2>
+                <p class="text-xl text-gray-300">
+                    2025 befindet sich der Aktienmarkt in einem entscheidenden Moment, den Sie nicht verpassen sollten:
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2 order-2 md:order-1">
+                    <div class="glass-card p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-amber">Die Schlüsseltrends des Marktes:</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold mb-2 text-white">Zukünftige Wachstumsmotoren</h4>
+                            <p class="text-gray-300">
+                                Wie werden Bereiche wie künstliche Intelligenz, Technologie und erneuerbare Energien die Wirtschaft prägen?
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold mb-2 text-white">Umgang mit Marktvolatilität</h4>
+                            <p class="text-gray-300">
+                                Wie sollten Anleger Risiken vermeiden, wenn sich die Marktveränderungen verstärken?
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-2 text-white">Beste Anlagerichtungen</h4>
+                            <p class="text-gray-300">
+                                Deutscher DAX-Index vs. US-Aktientrends – welcher ist für Sie besser geeignet?
+                            </p>
+                        </div>
+                        
+                        <button onclick="openSite()" class="cta-button w-full text-lg py-4">
+                            <i class="fab fa-whatsapp mr-2"></i> Kostenlose WhatsApp-Gruppe beitreten
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 mb-10 md:mb-0 order-1 md:order-2">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <img src="img/3.jpg" alt="Markttrends und Chancen" class="w-full h-auto rounded-2xl transform hover:scale-105 transition-all duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="bg-deepblue py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Was Sie bei uns <span class="gold-gradient">bekommen werden</span></h2>
+                <p class="text-xl text-gray-300">
+                    Unser exklusives Angebot für Mitglieder unserer WhatsApp-Gruppe
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="benefit-card p-8">
+                    <div class="card-icon mb-6">
+                        <svg class="w-8 h-8 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-amber">Markttrend-Analysen</h3>
+                    <p class="text-gray-300">
+                        Lernen Sie, wie man Märkte bewertet, um fundierte Anlageentscheidungen zu treffen. Unsere Experten teilen regelmäßig aktuelle Einschätzungen und Analysen zu den wichtigsten Marktbewegungen.
+                    </p>
+                </div>
+                
+                <div class="benefit-card p-8">
+                    <div class="card-icon mb-6">
+                        <svg class="w-8 h-8 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-amber">Qualitätsaktien-Screening</h3>
+                    <p class="text-gray-300">
+                        Beherrschen Sie die Kunst der präzisen Aktienauswahl und entdecken Sie potenzielle Anlagemöglichkeiten. Wir zeigen Ihnen, worauf Sie bei der Analyse von Unternehmen achten sollten.
+                    </p>
+                </div>
+                
+                <div class="benefit-card p-8">
+                    <div class="card-icon mb-6">
+                        <svg class="w-8 h-8 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-amber">Praktische Anlagestrategien</h3>
+                    <p class="text-gray-300">
+                        Erfahren Sie, wie Sie Marktchancen nutzen können, um stabile Renditen zu erzielen. Unsere Community teilt bewährte Strategien für verschiedene Marktbedingungen.
+                    </p>
+                </div>
+                
+                <div class="benefit-card p-8">
+                    <div class="card-icon mb-6">
+                        <svg class="w-8 h-8 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-amber">Risikokontrollmethoden</h3>
+                    <p class="text-gray-300">
+                        Lernen Sie, wie Sie Ihre Anlagen diversifizieren können, um die Auswirkungen von Marktschwankungen zu reduzieren. Risikomanagement ist ein wesentlicher Bestandteil erfolgreicher Anlagestrategien.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <div class="limited-badge animate-pulse inline-block mb-6">NUR NOCH 30 KOSTENLOSE PLÄTZE</div>
+                <button onclick="openSite()" class="cta-button text-lg py-4 px-10">
+                    <i class="fab fa-whatsapp mr-2"></i> Jetzt kostenlos beitreten
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="section-gradient py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    <span class="gold-gradient">Kluge Anleger</span> handeln bereits!
+                </h2>
+                <p class="text-xl text-gray-300">
+                    Willkommen in Anja Kohls Anlagegruppe - Ihre ideale Plattform für Markteinblicke, Erfahrungsaustausch und das Erlernen von Anlagestrategien
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <img src="img/4.jpg" alt="Investment Community" class="w-full h-auto rounded-2xl transform hover:scale-105 transition-all duration-700">
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="glass-card p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-amber">Warum unsere Community besonders ist:</h3>
+                        
+                        <div class="mb-4 flex items-start">
+                            <div class="bg-amber rounded-full p-2 mr-3 flex-shrink-0">
+                                <svg class="w-5 h-5 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">
+                                <span class="text-white font-bold">Wissensaustausch auf höchstem Niveau</span> - Profitieren Sie von den Erkenntnissen und Erfahrungen anderer erfolgreicher Anleger
+                            </p>
+                        </div>
+                        
+                        <div class="mb-4 flex items-start">
+                            <div class="bg-amber rounded-full p-2 mr-3 flex-shrink-0">
+                                <svg class="w-5 h-5 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">
+                                <span class="text-white font-bold">Unterstützende Gemeinschaft</span> - Fragen stellen, Antworten erhalten und gemeinsam von der kollektiven Weisheit profitieren
+                            </p>
+                        </div>
+                        
+                        <div class="mb-4 flex items-start">
+                            <div class="bg-amber rounded-full p-2 mr-3 flex-shrink-0">
+                                <svg class="w-5 h-5 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">
+                                <span class="text-white font-bold">Aktuelle Marktinformationen</span> - Bleiben Sie über wichtige Ereignisse und Marktbewegungen informiert
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8 flex items-start">
+                            <div class="bg-amber rounded-full p-2 mr-3 flex-shrink-0">
+                                <svg class="w-5 h-5 text-deepblue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">
+                                <span class="text-white font-bold">Persönliches Wachstum</span> - Erweitern Sie Ihr Wissen und entwickeln Sie Ihre eigene Anlagestrategie
+                            </p>
+                        </div>
+                        
+                        <p class="text-lg text-gray-300 mb-8">
+                            Schließen Sie sich uns jetzt an, ergreifen Sie die Chance und gehen Sie gemeinsam mit uns in eine wohlhabende Zukunft! Klicken Sie unten, um unserer WhatsApp-Gruppe beizutreten.
+                        </p>
+                        
+                        <button onclick="openSite()" class="cta-button w-full text-lg py-4">
+                            <i class="fab fa-whatsapp mr-2"></i> Der Gruppe jetzt beitreten
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="bg-deepblue py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Was unsere <span class="gold-gradient">Mitglieder sagen</span></h2>
+                <p class="text-xl text-gray-300">
+                    Erfahren Sie, wie unsere Community anderen Anlegern geholfen hat
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="testimonial-card p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="avatar-circle mr-4 flex-shrink-0">M</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Michael S.</h4>
+                            <p class="text-gray-400 text-sm">Frankfurt</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Die Gemeinschaft hat mir geholfen, mein Anlagedenken zu erweitern. Die Diskussionen sind immer informativ und führen zu neuen Perspektiven."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="avatar-circle mr-4 flex-shrink-0">L</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Laura K.</h4>
+                            <p class="text-gray-400 text-sm">Berlin</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Als Anfängerin war ich anfangs unsicher, aber die Gruppe hat mir den Einstieg sehr erleichtert. Jetzt fühle ich mich viel sicherer bei meinen Entscheidungen."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="avatar-circle mr-4 flex-shrink-0">T</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Thomas B.</h4>
+                            <p class="text-gray-400 text-sm">München</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Die Marktanalysen sind präzise und hilfreich. Ich schätze besonders den respektvollen Umgang und den konstruktiven Austausch in der Gruppe."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="avatar-circle mr-4 flex-shrink-0">S</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Sarah W.</h4>
+                            <p class="text-gray-400 text-sm">Hamburg</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Die Community hat mir ein neues Verständnis für Marktbewegungen vermittelt. Die regelmäßigen Updates sind Gold wert für meine Anlagestrategie."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <div class="limited-badge inline-block animate-pulse mb-6">LIMITIERTES ANGEBOT</div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-6">Treten Sie unserer WhatsApp-Community noch heute bei</h3>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Verpassen Sie nicht die Gelegenheit zu lernen, zu wachsen und sich mit anderen Anlegern in einer unterstützenden Umgebung zu vernetzen
+                </p>
+                <button onclick="openSite()" class="cta-button text-lg py-4 px-10">
+                    <i class="fab fa-whatsapp mr-2"></i> Jetzt Ihren Platz sichern
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Disclaimer Section -->
+    <footer class="bg-navyblue py-12 text-gray-400">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold mb-6 text-center text-white">Wichtiger Hinweis</h3>
+                
+                <div class="glass-card p-6 mb-8">
+                    <p class="mb-4 text-sm">
+                        Die in dieser Community und in unseren Mitteilungen bereitgestellten Informationen dienen ausschließlich allgemeinen Informations- und Bildungszwecken. Sie sollten nicht als Finanzberatung oder als Empfehlung zum Kauf oder Verkauf von Wertpapieren oder Finanzinstrumenten betrachtet werden.
+                    </p>
+                    
+                    <p class="mb-4 text-sm">
+                        Der Handel und die Anlage an den Finanzmärkten birgt erhebliche Risiken, einschließlich des möglichen Verlusts des Kapitals. Die vergangene Wertentwicklung ist kein Indikator für zukünftige Ergebnisse. Alle Community-Mitglieder sollten ihre eigenen Recherchen durchführen und qualifizierte Finanzberater konsultieren, bevor sie Anlageentscheidungen treffen.
+                    </p>
+                    
+                    <p class="mb-4 text-sm">
+                        Die in unserer Community geteilten Geschäfte, Strategien und Analysen sind persönliche Erkenntnisse und garantieren keine ähnlichen Ergebnisse für andere. Die Marktbedingungen ändern sich schnell, und was in einem Szenario funktioniert, funktioniert möglicherweise nicht in einem anderen.
+                    </p>
+                    
+                    <p class="mb-4 text-sm">
+                        Unsere Community dient ausschließlich Bildungszwecken. Wir verwalten keine Mittel, bieten keine personalisierte Anlageberatung an und fungieren nicht als registrierte Anlageberater. Die Teilnahme ist freiwillig, und die Mitglieder tragen die volle Verantwortung für ihre eigenen finanziellen Entscheidungen.
+                    </p>
+                    
+                    <p class="text-sm">
+                        Mit dem Beitritt zu unserer Community bestätigen Sie, dass Sie diesen Haftungsausschluss gelesen und verstanden haben und sich damit einverstanden erklären, die bereitgestellten Informationen verantwortungsvoll und auf eigenes Risiko zu nutzen.
+                    </p>
+                </div>
+                
+                <div class="text-center text-sm">
+                    <p>© 2023 Anja Kohls Anlagegruppe. Alle Rechte vorbehalten.</p>
+                    <p class="mt-2">Diese Website ist mit keiner Maklerfirma oder Finanzinstitution verbunden.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openSite() {
+            window.open("https://wa.me/message/example", "_blank");
+        }
+    </script>
+</body>
+</html>
