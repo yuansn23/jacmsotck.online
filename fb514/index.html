@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>日本株式投資の専門家 - 村上尚己</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #0b2545;
+            --dark-blue: #13315c;
+            --medium-blue: #134074;
+            --light-blue: #8da9c4;
+            --pale-blue: #eef4ed;
+            --gold: #d4af37;
+            --dark-gold: #b8860b;
+            --charcoal: #2d3142;
+            --light-grey: #f8f9fa;
+            --accent-red: #e63946;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .wrapper {
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        /* Header Section */
+        .jst-header {
+            background: linear-gradient(135deg, var(--navy-blue), var(--dark-blue));
+            color: white;
+            padding: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jst-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSIjMTM0MDc0Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0yOCA2NkwwIDUwTDAgMTZMMjggMEw1NiAxNkw1NiA1MEwyOCA2NkwyOCAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzEzMzE1YyIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+CjxwYXRoIGQ9Ik0yOCAwTDI4IDM0TDAgNTBMMCA4NEwyOCAxMDBMNTYgODRMNTYgNTBMMjggMzQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBiMjU0NSIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==');
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .jst-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .jst-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .jst-logo-icon {
+            color: var(--gold);
+        }
+        
+        /* Hero Section */
+        .jst-hero {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--navy-blue), var(--medium-blue));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jst-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        
+        .jst-hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .jst-hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .jst-hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .jst-hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .jst-hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--light-blue);
+        }
+        
+        .jst-hero-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .jst-hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+        }
+        
+        .jst-hero-img:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+        
+        /* Action Button */
+        .jst-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .jst-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .jst-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .jst-btn:hover::before {
+            left: 100%;
+        }
+        
+        .jst-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Expert Section */
+        .jst-expert {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .jst-section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--navy-blue);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .jst-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .jst-expert-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .jst-expert-image {
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+        }
+        
+        .jst-expert-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .jst-expert-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .jst-expert-name {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .jst-expert-credentials {
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+        }
+        
+        .jst-credential {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .jst-credential i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+        
+        /* Problem Section */
+        .jst-problem {
+            padding: 3rem 0;
+            background-color: var(--pale-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jst-problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0ibm9uZSI+PC9yZWN0Pgo8cGF0aCBkPSJNMzYgMzR2LTRoLTJ2NGgtNHYyaDR2NGgydi00aDR2LTJoLTR6bTAgLTMwVjBoLTJ2NGgtNHYyaDR2NGgyVjZoNFY0aC00ek02IDM0di00SDR2NGgwdjJoNHY0aDJ2LTRoNHYtMkg2ek02IDRWMEg0djRIMHYyaDR2NGgyVjZoNFY0SDZ6IiBmaWxsPSIjOGRhOWM0IiBmaWxsLW9wYWNpdHk9IjAuMSI+PC9wYXRoPgo8L3N2Zz4=');
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .jst-problem-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .jst-problem-title {
+            font-size: 1.8rem;
+            color: var(--navy-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .jst-problem-desc {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            color: var(--charcoal);
+        }
+        
+        .jst-benefits {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .jst-benefit-title {
+            color: var(--navy-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .jst-benefit-title i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+        
+        .jst-benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .jst-benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .jst-benefit-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .jst-limited {
+            background-color: var(--navy-blue);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jst-limited::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        
+        .jst-limited-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .jst-limited-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .jst-limited-highlight {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        /* Features Section */
+        .jst-features {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .jst-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .jst-feature-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .jst-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .jst-feature-card::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--gold), var(--dark-gold));
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .jst-feature-icon {
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .jst-feature-title {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .jst-feature-text {
+            color: var(--charcoal);
+        }
+        
+        .jst-feature-highlight {
+            color: var(--dark-blue);
+            font-weight: 700;
+        }
+        
+        /* Testimonials Section */
+        .jst-testimonials {
+            padding: 3rem 0;
+            background-color: var(--pale-blue);
+        }
+        
+        .jst-testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .jst-testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .jst-testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: rgba(19, 49, 92, 0.1);
+            line-height: 1;
+        }
+        
+        .jst-testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+        }
+        
+        .jst-testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .jst-testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .jst-testimonial-info {
+            flex: 1;
+        }
+        
+        .jst-testimonial-name {
+            font-weight: 700;
+            color: var(--navy-blue);
+        }
+        
+        .jst-testimonial-role {
+            font-size: 0.9rem;
+            color: var(--medium-blue);
+        }
+        
+        /* Disclosure Section */
+        .jst-disclosure {
+            padding: 2rem 0;
+            background-color: var(--navy-blue);
+            color: white;
+        }
+        
+        .jst-disclosure-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .jst-disclosure-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        /* Floating Button */
+        .jst-float-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            animation: breathe 2s infinite ease-in-out;
+            width: 450px; /* Increased from 280px to 450px for easier clicking */
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+        
+        @keyframes breathe {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+            }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .wrapper {
+                width: 90%;
+            }
+            
+            .jst-hero-title {
+                font-size: 2rem;
+            }
+            
+            .jst-hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .jst-section-title {
+                font-size: 1.8rem;
+            }
+            
+            .jst-expert-name {
+                font-size: 1.5rem;
+            }
+            
+            .jst-problem-title {
+                font-size: 1.5rem;
+            }
+            
+            .jst-float-btn {
+                width: 320px; /* Increased from 240px to 320px for mobile */
+                font-size: 1rem;
+                padding: 0.9rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="jst-header">
+        <div class="wrapper">
+            <nav class="jst-nav">
+                <a href="#" class="jst-logo">
+                    <i class="fas fa-chart-line jst-logo-icon"></i>
+                    <span>日本株式投資</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="jst-hero">
+        <div class="wrapper">
+            <div class="jst-hero-content">
+                <div class="jst-hero-text">
+                    <h1 class="jst-hero-title">株式市場で成功するための専門家の洞察</h1>
+                    <p class="jst-hero-subtitle">市場の波動が激しい今、確かな知識と戦略が成功への鍵です</p>
+                    <a href="#" class="jst-btn" onclick="openlink()">
+                        <i class="fab fa-line"></i>今すぐLINEで繋がる
+                    </a>
+                </div>
+                <div class="jst-hero-image">
+                    <img src="img/2.jpg" alt="日本株式投資のプロフェッショナル" class="jst-hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="jst-expert">
+        <div class="wrapper">
+            <h2 class="jst-section-title">プロフェッショナルからのご案内</h2>
+            <div class="jst-expert-content">
+                <div class="jst-expert-image">
+                    <img src="img/1.png" alt="村上尚己" class="jst-expert-img">
+                </div>
+                <div class="jst-expert-text">
+                    <h3 class="jst-expert-name">村上尚己です</h3>
+                    <div class="jst-expert-credentials">
+                        <div class="jst-credential">
+                            <i class="fas fa-certificate"></i>
+                            <span>日本証券分析師協会認証会員</span>
+                        </div>
+                        <div class="jst-credential">
+                            <i class="fas fa-university"></i>
+                            <span>日本金融経済学会会員</span>
+                        </div>
+                    </div>
+                    <p>誠意を持ってLINEを通じて、日本の金融株式の投資機会について一緒に探究していきましょう。定期的に日本株式市場に関する分析、投資戦略、そして市場から得た教訓を共有いたします。何よりも大切なのは、皆さまからも学び、投資の考え方や手法を理解することです。LINEでの交流を通じて、共に成長し、投資スキルを向上させていきましょう。</p>
+                    <a href="#" class="jst-btn" style="margin-top: 1.5rem;" onclick="openlink()">
+                        <i class="fab fa-line"></i>LINEに追加する
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="jst-problem">
+        <div class="wrapper">
+            <div class="jst-problem-content">
+                <h2 class="jst-problem-title">現在の低迷市場でどのように安定した優良株を見つけますか？</h2>
+                <p class="jst-problem-desc">市場の変動が激しくなると、多くの投資家が方向性を見失います。しかし、私たちの専門家チームは、安定したパフォーマンスと成長可能性を持つ10の優良株をすでに厳選しています。逆境の中でも投資機会を見出す手助けをします。</p>
+                
+                <div class="jst-benefits">
+                    <h3 class="jst-benefit-title">
+                        <i class="fas fa-plus-circle"></i>
+                        LINEを追加すると、以下の情報を入手できます：
+                    </h3>
+                    <div class="jst-benefit-list">
+                        <div class="jst-benefit-item">
+                            <div class="jst-benefit-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <strong>詳細な分析：</strong>各銘柄はチームによって詳細に分析され、ファンダメンタルズ、業界の見通し、将来の成長可能性について解説します。
+                            </div>
+                        </div>
+                        <div class="jst-benefit-item">
+                            <div class="jst-benefit-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div>
+                                <strong>疑問の解決：</strong>市場に関するどんな質問でも、私たちのチームが一つ一つ回答し、投資プロセスにおいて自信を持っていただけるようサポートします。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="jst-limited">
+                    <div class="jst-limited-content">
+                        <p class="jst-limited-text">現在、残りわずか<span class="jst-limited-highlight">40名様</span>のみ！この貴重な機会をお見逃しなく！</p>
+                        <p>下のLINEリンクをクリックして、必要な情報と分析をすぐに入手し、株式市場での安定した前進をサポートします。</p>
+                        <a href="#" class="jst-btn" style="margin-top: 1rem;" onclick="openlink()">
+                            <i class="fab fa-line"></i>チャンスを掴む - 今すぐLINEで追加
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="jst-features">
+        <div class="wrapper">
+            <h2 class="jst-section-title">LINEを追加すると得られる特典</h2>
+            <div class="jst-features-grid">
+                <div class="jst-feature-card">
+                    <div class="jst-feature-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="jst-feature-title">厳選された市場情報</h3>
+                    <p class="jst-feature-text">毎日<span class="jst-feature-highlight">10件以上</span>の日本株式市場の重要ニュースや業界動向をまとめ、効率的に市場の動きを把握できるようサポートします。</p>
+                </div>
+                
+                <div class="jst-feature-card">
+                    <div class="jst-feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="jst-feature-title">活発な投資家コミュニティ</h3>
+                    <p class="jst-feature-text"><span class="jst-feature-highlight">200人以上</span>の日本株式愛好家と経験を共有し、意見を交換し、共に学び成長することができます。平均して1日に<span class="jst-feature-highlight">1000件以上</span>の議論が生まれています。</p>
+                </div>
+                
+                <div class="jst-feature-card">
+                    <div class="jst-feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="jst-feature-title">体系的な学習リソース</h3>
+                    <p class="jst-feature-text">テクニカル分析、ファンダメンタル研究などに関する<span class="jst-feature-highlight">10以上</span>の学習パッケージを無料で入手でき、包括的な知識体系の構築をサポートします。</p>
+                </div>
+                
+                <div class="jst-feature-card">
+                    <div class="jst-feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="jst-feature-title">ホットトピックディスカッション</h3>
+                    <p class="jst-feature-text">毎週<span class="jst-feature-highlight">少なくとも3回</span>のホットトピックディスカッション、Q&A、ケーススタディなどのイベントを開催し、市場の焦点について共に探求し、認識を深めます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+    <section class="jst-testimonials">
+        <div class="wrapper">
+            <h2 class="jst-section-title">メンバーの声</h2>
+            <div class="jst-testimonials-grid">
+                <div class="jst-testimonial-card">
+                    <p class="jst-testimonial-content">村上さんのLINEグループに参加して3ヶ月になります。分析が鋭く、初心者にも分かりやすい説明が非常に役立っています。特に週間の市場概況レポートは私の投資判断の貴重な参考資料となっています。</p>
+                    <div class="jst-testimonial-author">
+                        <div class="jst-testimonial-avatar">T</div>
+                        <div class="jst-testimonial-info">
+                            <div class="jst-testimonial-name">田中雄一</div>
+                            <div class="jst-testimonial-role">IT企業勤務 / 投資歴2年</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="jst-testimonial-card">
+                    <p class="jst-testimonial-content">投資初心者として参加しましたが、基礎から丁寧に教えていただき、今では自信を持って投資判断ができるようになりました。コミュニティのメンバーも親切で、質問にいつも詳しく回答してくれます。</p>
+                    <div class="jst-testimonial-author">
+                        <div class="jst-testimonial-avatar">S</div>
+                        <div class="jst-testimonial-info">
+                            <div class="jst-testimonial-name">佐藤美咲</div>
+                            <div class="jst-testimonial-role">会社員 / 投資歴6ヶ月</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="jst-testimonial-card">
+                    <p class="jst-testimonial-content">最初は半信半疑でしたが、提供される情報の質の高さに驚きました。特に業界分析レポートは他では得られない洞察に満ちています。グループディスカッションも刺激的で、多様な視点から学べる点が素晴らしいです。</p>
+                    <div class="jst-testimonial-author">
+                        <div class="jst-testimonial-avatar">K</div>
+                        <div class="jst-testimonial-info">
+                            <div class="jst-testimonial-name">木村健太</div>
+                            <div class="jst-testimonial-role">自営業 / 投資歴3年</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="jst-testimonial-card">
+                    <p class="jst-testimonial-content">村上さんの推奨銘柄リストに基づいて投資を始め、市場が不安定な時期にも安定したリターンを得ることができました。リスク管理に関するアドバイスは特に参考になり、投資ポートフォリオの質が向上しました。</p>
+                    <div class="jst-testimonial-author">
+                        <div class="jst-testimonial-avatar">Y</div>
+                        <div class="jst-testimonial-info">
+                            <div class="jst-testimonial-name">山本直子</div>
+                            <div class="jst-testimonial-role">教師 / 投資歴1年半</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <section class="jst-disclosure">
+        <div class="wrapper">
+            <div class="jst-disclosure-content">
+                <h3 class="jst-disclosure-title">重要な開示事項</h3>
+                <p>本ウェブサイトは、日本の金融株式に関心のある投資家に学習と交流の場を提供することを目的としています。グループ内のメンバーが共有する市場の見解、投資経験、関連情報は参考および議論のためのものであり、投資アドバイスや保証を構成するものではありません。</p>
+                <p>当交流グループは純粋に共有を目的としており、いかなる形式の財務または投資アドバイスを構成するものではありません。投資判断を行う前に、個人の財務状況、投資目標、リスク許容度を考慮し、必要に応じて独立した専門家のアドバイスを求めることをお勧めします。</p>
+                <p>株式投資には資本損失のリスクが伴い、過去のパフォーマンスは将来の結果を保証するものではありません。市場状況は常に変化し、特定の投資結果を保証することはできません。グループ内で共有される情報の正確性と完全性を確保するよう努めていますが、エラーや脱落が発生する可能性があります。</p>
+                <p>すべての投資決定は最終的に投資家自身の責任で行われるべきであり、当グループはそのような決定から生じるいかなる損失や損害についても責任を負いません。このグループへの参加は、これらの条件と開示事項の理解と受諾を意味します。</p>
+            </div>
+        </div>
+    </section>
+    
+    <a href="#" class="jst-btn jst-float-btn" onclick="openlink()">
+        <i class="fab fa-line"></i>専門家の分析と投資戦略にアクセスする
+    </a>
+    
+    <script>
+        function openlink() {
+            window.open("https://line.me/ti/p/YOUR_LINE_ID", "_blank");
+        }
+    </script>
+</body>
+</html>
