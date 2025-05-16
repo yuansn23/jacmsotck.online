@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Opportunità di Recensione Film IMDB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E50914',
+                        secondary: '#5643CC',
+                        dark: '#121212',
+                        light: '#F5F5F5',
+                        accent: '#FFD700'
+                    },
+                }
+            }
+        }
+
+        function opensite() {
+            window.open("https://t.me/YOUR_TELEGRAM_LINK", "_blank");
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            color: #F5F5F5;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 90px; /* Space for floating button */
+        }
+        
+        .container-custom {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .container-custom {
+                width: 70%;
+                max-width: 1200px;
+            }
+        }
+        
+        .grid-bg {
+            background-color: rgba(0, 0, 0, 0.7);
+            background-image: 
+                linear-gradient(rgba(86, 67, 204, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(86, 67, 204, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: relative;
+        }
+        
+        .grid-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.7));
+            z-index: 1;
+        }
+        
+        .grid-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #E50914, #FF3E30);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: strongBreathing 2s infinite;
+        }
+        
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(30deg);
+            transition: all 0.6s ease;
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+        
+        @keyframes strongBreathing {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(229, 9, 20, 0.5);
+                background: linear-gradient(90deg, #E50914, #FF3E30);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 30px rgba(229, 9, 20, 0.8);
+                background: linear-gradient(90deg, #FF3E30, #FF5A4D);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(229, 9, 20, 0.5);
+                background: linear-gradient(90deg, #E50914, #FF3E30);
+            }
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+            animation: strongBreathing 2s infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .notification-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5643CC, #8776FF);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            z-index: 9998;
+            box-shadow: 0 0 20px rgba(86, 67, 204, 0.5);
+            cursor: pointer;
+            animation: iconPulse 2s infinite;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #E50914;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+            animation: badgePulse 2s infinite;
+        }
+        
+        @keyframes iconPulse {
+            0% {
+                transform: translateY(-50%) scale(1);
+                box-shadow: 0 0 0 rgba(86, 67, 204, 0.5);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 0 20px rgba(86, 67, 204, 0.8);
+            }
+            100% {
+                transform: translateY(-50%) scale(1);
+                box-shadow: 0 0 0 rgba(86, 67, 204, 0.5);
+            }
+        }
+        
+        @keyframes badgePulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(229, 9, 20, 0.5);
+            }
+            50% {
+                transform: scale(1.2);
+                box-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(229, 9, 20, 0.5);
+            }
+        }
+        
+        .number-circle {
+            background: linear-gradient(135deg, #E50914, #FF3E30);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5643CC, #8776FF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .highlight {
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        .badge {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            color: #121212;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+            }
+        }
+        
+        .image-shadow {
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.3);
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #5643CC, transparent);
+            margin: 2rem 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Icon - Changed from envelope to comment/message -->
+    <div class="notification-icon" onclick="opensite()">
+        <i class="fas fa-comment-dots"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="grid-bg py-12 px-4">
+        <div class="container-custom">
+            <div class="flex flex-col items-center">
+                <div class="w-full mb-8">
+                    <div class="relative">
+                        <div class="absolute -top-4 -right-4 bg-primary text-white py-2 px-4 rounded-lg font-bold shadow-lg z-10">
+                            Ultimi 50 posti!
+                        </div>
+                        <img src="img/1.jpg" alt="Recensori di Film" class="rounded-xl shadow-2xl w-full image-shadow">
+                    </div>
+                </div>
+                <div class="w-full text-center">
+                    <span class="badge mb-4">Collaborazione Ufficiale IMDB</span>
+                    <h1 class="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+                        Cercasi recensori appassionati di <span class="highlight">cinema</span>!
+                    </h1>
+                    <p class="text-lg mb-6 text-gray-300">
+                        Come nostro recensore, avrai l'opportunità di guadagnare un reddito stabile attraverso recensioni quotidiane. Ogni giorno avrai a disposizione oltre 20 film fantastici tra cui scegliere, aiutandoti a esprimere le tue opinioni nell'industria dell'intrattenimento.
+                    </p>
+                    <p class="text-lg mb-8 text-gray-300">
+                        Bastano uno smartphone e del tempo libero per completare facilmente le recensioni. Unisciti a noi ora!
+                    </p>
+                    <button onclick="opensite()" class="btn-primary text-lg font-semibold py-4 px-10 rounded-lg text-white">
+                        <i class="fab fa-telegram mr-2"></i> Unisciti Ora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Opportunity Section -->
+    <section class="py-12 px-4 bg-dark">
+        <div class="container-custom">
+            <div class="flex flex-col items-center">
+                <div class="w-full mb-8">
+                    <img src="img/2.jpg" alt="Guadagna con Film" class="rounded-xl shadow-xl w-full image-shadow">
+                </div>
+                <div class="w-full text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">
+                        Un'opportunità eccezionale per <span class="highlight">guadagnare guardando film</span>
+                    </h2>
+                    <div class="bg-secondary inline-block py-2 px-4 rounded-lg text-white font-bold mb-6">
+                        Ultimi 50 posti disponibili!
+                    </div>
+                    <p class="text-lg mb-6 text-gray-300">
+                        Ti senti sottopagato e desideri un reddito extra? Ora un'opportunità entusiasmante ti sta aspettando! Guadagna euro semplicemente recensendo film, trasformando il tuo tempo di intrattenimento in una fonte di reddito.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="card p-6 rounded-xl">
+                    <h3 class="font-bold text-xl mb-4 text-accent">Ovunque, Senza Limitazioni</h3>
+                    <p class="text-gray-300">
+                        Su questa piattaforma non hai bisogno di alcuna esperienza. Vieni pagato semplicemente per condividere le tue impressioni autentiche sui film che guardi. Che tu sia a casa, al bar o in viaggio, puoi iniziare ovunque ci sia una connessione internet.
+                    </p>
+                </div>
+                
+                <div class="card p-6 rounded-xl">
+                    <h3 class="font-bold text-xl mb-4 text-accent">Posti Limitati, Agisci Ora!</h3>
+                    <p class="text-gray-300">
+                        Già 232 utenti italiani hanno ricevuto con successo i loro premi, guadagnando facilmente un reddito extra mentre si godono i film. I posti sono limitati, le opportunità svaniscono rapidamente!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button onclick="opensite()" class="btn-primary text-lg font-semibold py-4 px-10 rounded-lg text-white">
+                    <i class="fab fa-telegram mr-2"></i> Unisciti Ora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- How It Works Section -->
+    <section class="py-12 px-4 bg-gradient-to-b from-dark to-[#1a1a1a]">
+        <div class="container-custom">
+            <div class="w-full mb-10">
+                <img src="img/4.jpg" alt="Film Rewards" class="rounded-xl shadow-xl w-full image-shadow mx-auto md:max-w-2xl">
+            </div>
+            
+            <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-center">
+                Come <span class="highlight">Partecipare?</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="number-circle mx-auto mb-4">1</div>
+                    <h3 class="font-bold text-lg mb-3">Contattaci</h3>
+                    <p class="text-gray-300">
+                        Compila semplicemente le tue informazioni di base.
+                    </p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="number-circle mx-auto mb-4">2</div>
+                    <h3 class="font-bold text-lg mb-3">Guarda Film</h3>
+                    <p class="text-gray-300">
+                        Scegli i film che ti interessano e goditi l'esperienza di visione.
+                    </p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="number-circle mx-auto mb-4">3</div>
+                    <h3 class="font-bold text-lg mb-3">Scrivi Recensioni</h3>
+                    <p class="text-gray-300">
+                        Dopo la visione, condividi la tua recensione e valutazione, esprimi le tue opinioni.
+                    </p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="number-circle mx-auto mb-4">4</div>
+                    <h3 class="font-bold text-lg mb-3">Guadagna Premi</h3>
+                    <p class="text-gray-300">
+                        Ogni recensione ti porterà un guadagno.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mb-8">
+                <p class="text-xl font-semibold mb-6">
+                    Non esitare più, unisciti a noi ora!
+                </p>
+                <p class="text-lg mb-8 text-gray-300">
+                    Questa è un'opportunità unica per chi ama i film e vuole condividere le proprie opinioni. Agisci ora!
+                </p>
+                <button onclick="opensite()" class="btn-primary text-lg font-semibold py-4 px-10 rounded-lg text-white">
+                    <i class="fab fa-telegram mr-2"></i> Unisciti a Noi
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 px-4 bg-dark">
+        <div class="container-custom">
+            <h2 class="text-3xl font-bold mb-10 text-center">
+                Cosa Dicono i Nostri <span class="highlight">Recensori</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="testimonial-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Marco B.</h3>
+                    <p class="text-sm text-gray-400 mb-4">Milano</p>
+                    <p class="text-gray-300">
+                        "Adoro guardare film, e poter guadagnare mentre lo faccio è fantastico! Il processo è semplice e i pagamenti sono puntuali."
+                    </p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="testimonial-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Giulia V.</h3>
+                    <p class="text-sm text-gray-400 mb-4">Roma</p>
+                    <p class="text-gray-300">
+                        "Questa è un'opportunità perfetta per chi, come me, ama il cinema. Ora posso condividere le mie opinioni ed essere pagata per farlo!"
+                    </p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="testimonial-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Luca M.</h3>
+                    <p class="text-sm text-gray-400 mb-4">Napoli</p>
+                    <p class="text-gray-300">
+                        "Ho iniziato tre mesi fa e sono molto soddisfatto. Posso completare le recensioni nel mio tempo libero e il guadagno extra è un ottimo bonus."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-xl font-semibold mb-6">
+                    Unisciti a noi e goditi i film mentre guadagni!
+                </p>
+                <div class="bg-secondary inline-block py-2 px-4 rounded-lg text-white font-bold mb-6">
+                    Ultimi 50 posti disponibili!
+                </div>
+                <div class="mt-4">
+                    <button onclick="opensite()" class="btn-primary text-lg font-semibold py-4 px-10 rounded-lg text-white">
+                        <i class="fab fa-telegram mr-2"></i> Unisciti Ora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-[#0a0a0a] mt-10">
+        <div class="container-custom">
+            <div class="text-center mb-6">
+                <p class="text-sm text-gray-400 mb-4">
+                    <strong>Dichiarazione di non responsabilità:</strong> Il contenuto di questa pagina è solo a scopo informativo. Non garantiamo alcun reddito specifico o risultati finanziari dalla partecipazione al programma di recensione. I guadagni possono variare in base alla qualità e alla frequenza delle recensioni fornite.
+                </p>
+                <p class="text-sm text-gray-400 mb-4">
+                    Nessuna affiliazione o endorsement ufficiale da parte di IMDB o dei suoi proprietari è implicito, a meno che non sia espressamente dichiarato. La partecipazione a questo programma è interamente volontaria e tutte le recensioni devono rappresentare opinioni oneste e imparziali.
+                </p>
+                <p class="text-sm text-gray-400">
+                    Rispettiamo la tua privacy. I dati forniti saranno utilizzati esclusivamente per facilitare la comunicazione relativa al programma di recensione e non saranno condivisi con terze parti non correlate. In qualsiasi momento, puoi richiedere la rimozione delle tue informazioni dal nostro database.
+                </p>
+            </div>
+            <div class="text-center">
+                <p class="text-sm text-gray-500">
+                    &copy; 2023 Film Review Program. Tutti i diritti riservati.
+                </p>
+            </div>
+        </div>
+    </footer>
+ 
+</body>
+</html>
