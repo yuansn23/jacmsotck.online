@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社交邀约策略生成器</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .strategy-box {
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+        }
+        .strategy-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .loading {
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .interest-analysis {
+            font-style: italic;
+            color: #7f8c8d;
+            border-top: 1px dashed #ddd;
+            padding-top: 15px;
+            margin-top: 20px;
+        }
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>社交邀约策略生成器</h1>
+    
+    <div class="form-container">
+        <div class="form-group">
+            <label for="stage">你与对方的关系阶段</label>
+            <select id="stage">
+                <option value="刚认识">刚认识</option>
+                <option value="普通朋友">普通朋友</option>
+                <option value="暧昧期">暧昧期</option>
+                <option value="亲密关系">亲密关系</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="interests">对方的兴趣标签（最多3个，用逗号分隔）</label>
+            <input type="text" id="interests" placeholder="例如: 摄影,脱口秀,烘焙">
+        </div>
+        
+        <div class="form-group">
+            <label for="user_style">你的性格倾向</label>
+            <select id="user_style">
+                <option value="内向">内向</option>
+                <option value="外向">外向</option>
+                <option value="幽默">幽默</option>
+                <option value="务实">务实</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="scenario">邀约场景</label>
+            <select id="scenario">
+                <option value="周末约会">周末约会</option>
+                <option value="生日聚会">生日聚会</option>
+                <option value="旅行">旅行</option>
+                <option value="日常活动">日常活动</option>
+            </select>
+        </div>
+        
+        <button id="generate-btn">生成邀约策略</button>
+    </div>
+    
+    <div class="loading">
+        <div class="spinner"></div>
+        <p>正在生成个性化邀约策略...</p>
+    </div>
+    
+    <div class="error">
+        生成策略时出错，请稍后再试。
+    </div>
+    
+    <div class="result-container" id="result-container">
+        <h2>个性化邀约策略</h2>
+        <div id="strategies"></div>
+        <div class="interest-analysis" id="interest-analysis"></div>
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', async function() {
+            const stage = document.getElementById('stage').value;
+            const interests = document.getElementById('interests').value.trim();
+            const userStyle = document.getElementById('user_style').value;
+            const scenario = document.getElementById('scenario').value;
+            
+            if (!interests) {
+                alert('请输入对方的兴趣标签');
+                return;
+            }
+            
+            // 显示加载中，隐藏其他区域
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.error').style.display = 'none';
+            document.getElementById('result-container').style.display = 'none';
+            document.getElementById('generate-btn').disabled = true;
+            
+            try {
+                const prompt = `
+                【角色设定】
+                你是一位拥有10年经验的社交关系教练，擅长根据人际关系阶段和兴趣匹配度制定精准邀约策略。
+
+                【输入参数】
+                1. 用户与对方的关系阶段 = ${stage}（可选：刚认识/普通朋友/暧昧期/亲密关系）
+                2. 对方的兴趣标签 = ${interests}（最多3个，如：摄影、脱口秀、烘焙）
+                3. 用户性格倾向 = ${userStyle}（可选：内向/外向/幽默/务实）
+                4. 邀约场景 = ${scenario}（可选：周末约会/生日聚会/旅行/日常活动）
+
+                【任务要求】
+                生成3种差异化邀约方案，需包含：
+                1. **话术文本**：符合对方兴趣的自然表达
+                2. **策略解析**：每类话术的心理学依据
+                3. **成功率评估**：基于以下维度计算：
+                   - 兴趣匹配度（0-30分）
+                   - 关系阶段适配度（0-25分）
+                   - 话术攻击性匹配度（0-20分）
+                   - 场景合理性（0-15分）
+                   - 个性契合度（0-10分）
+                4. **风险提示**：可能引发的负面反应及补救方案
+
+                【输出格式】 
+                请严格按JSON格式返回：
+                {
+                  "conservative": {
+                    "text": "保守型话术内容",
+                    "score": 成功率百分比,
+                    "logic": "使用该话术的决策依据",
+                    "risk": "潜在风险及应对"
+                  },
+                  "moderate": {...},
+                  "aggressive": {...},
+                  "interest_analysis": "对方兴趣的深层需求解读"
+                }
+
+                【生成规则】
+                1. 禁止直接出现"约会""喜欢"等敏感词
+                2. 保守型话术需包含第三方理由（如："朋友推荐了新展"）
+                3. 直接型话术可加入限时性（如："这周六最后一天优惠"）
+                `;
+                
+                const apiKey = "sk-7ecf033dcf984fa7b23ab4593478b319";
+                const apiUrl = "https://api.deepseek.com/v1/chat/completions";
+                
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${apiKey}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "deepseek-chat",
+                        messages: [
+                            {"role": "user", "content": prompt}
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 2000
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API请求失败: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const content = data.choices[0].message.content;
+                
+                // 尝试解析JSON内容
+                let result;
+                try {
+                    // 有时API返回的内容可能包含Markdown代码块
+                    const jsonStr = content.replace(/```json/g, '').replace(/```/g, '').trim();
+                    result = JSON.parse(jsonStr);
+                } catch (e) {
+                    // 如果解析失败，直接显示原始内容
+                    console.error("解析JSON失败:", e);
+                    document.getElementById('strategies').innerHTML = `<p>${content}</p>`;
+                    document.getElementById('interest-analysis').innerHTML = "";
+                }
+                
+                if (result) {
+                    // 显示结果
+                    let strategiesHTML = '';
+                    
+                    // 保守型策略
+                    strategiesHTML += `
+                        <div class="strategy-box">
+                            <div class="strategy-title">保守型邀约 <span class="score">${result.conservative.score}% 成功率</span></div>
+                            <p><strong>话术:</strong> ${result.conservative.text}</p>
+                            <p><strong>策略解析:</strong> ${result.conservative.logic}</p>
+                            <p><strong>风险提示:</strong> ${result.conservative.risk}</p>
+                        </div>
+                    `;
+                    
+                    // 适度型策略
+                    strategiesHTML += `
+                        <div class="strategy-box">
+                            <div class="strategy-title">适度型邀约 <span class="score">${result.moderate.score}% 成功率</span></div>
+                            <p><strong>话术:</strong> ${result.moderate.text}</p>
+                            <p><strong>策略解析:</strong> ${result.moderate.logic}</p>
+                            <p><strong>风险提示:</strong> ${result.moderate.risk}</p>
+                        </div>
+                    `;
+                    
+                    // 积极型策略
+                    strategiesHTML += `
+                        <div class="strategy-box">
+                            <div class="strategy-title">积极型邀约 <span class="score">${result.aggressive.score}% 成功率</span></div>
+                            <p><strong>话术:</strong> ${result.aggressive.text}</p>
+                            <p><strong>策略解析:</strong> ${result.aggressive.logic}</p>
+                            <p><strong>风险提示:</strong> ${result.aggressive.risk}</p>
+                        </div>
+                    `;
+                    
+                    document.getElementById('strategies').innerHTML = strategiesHTML;
+                    document.getElementById('interest-analysis').innerHTML = `<strong>兴趣分析:</strong> ${result.interest_analysis}`;
+                }
+                
+                document.getElementById('result-container').style.display = 'block';
+                
+            } catch (error) {
+                console.error('生成策略时出错:', error);
+                document.querySelector('.error').style.display = 'block';
+            } finally {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('generate-btn').disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
