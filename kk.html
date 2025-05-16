@@ -5,112 +5,295 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>社交邀约策略生成器</title>
     <style>
-        /* 保持原有的样式不变 */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .strategy-box {
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+        }
+        .strategy-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .loading {
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .interest-analysis {
+            font-style: italic;
+            color: #7f8c8d;
+            border-top: 1px dashed #ddd;
+            padding-top: 15px;
+            margin-top: 20px;
+        }
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+            padding: 15px;
+            background-color: #fdecea;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
-    <!-- 保持原有的HTML结构不变 -->
+    <h1>社交邀约策略生成器</h1>
     
+    <div class="form-container">
+        <div class="form-group">
+            <label for="stage">你与对方的关系阶段</label>
+            <select id="stage">
+                <option value="刚认识">刚认识</option>
+                <option value="普通朋友">普通朋友</option>
+                <option value="暧昧期">暧昧期</option>
+                <option value="亲密关系">亲密关系</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="interests">对方的兴趣标签（最多3个，用逗号分隔）</label>
+            <input type="text" id="interests" placeholder="例如: 摄影,脱口秀,烘焙">
+        </div>
+        
+        <div class="form-group">
+            <label for="user_style">你的性格倾向</label>
+            <select id="user_style">
+                <option value="内向">内向</option>
+                <option value="外向">外向</option>
+                <option value="幽默">幽默</option>
+                <option value="务实">务实</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="scenario">邀约场景</label>
+            <select id="scenario">
+                <option value="周末约会">周末约会</option>
+                <option value="生日聚会">生日聚会</option>
+                <option value="旅行">旅行</option>
+                <option value="日常活动">日常活动</option>
+            </select>
+        </div>
+        
+        <button id="generate-btn">生成邀约策略</button>
+    </div>
+    
+    <div class="loading">
+        <div class="spinner"></div>
+        <p>正在生成个性化邀约策略...</p>
+    </div>
+    
+    <div class="error">
+        生成策略时出错，请稍后再试。
+    </div>
+    
+    <div class="result-container" id="result-container">
+        <h2>个性化邀约策略</h2>
+        <div id="strategies"></div>
+        <div class="interest-analysis" id="interest-analysis"></div>
+    </div>
+
     <script>
-        document.getElementById('generate-btn').addEventListener('click', async function() {
-            // 获取输入值
-            const stage = document.getElementById('stage').value;
-            const interests = document.getElementById('interests').value.trim();
-            const userStyle = document.getElementById('user_style').value;
-            const scenario = document.getElementById('scenario').value;
+        // 确保DOM完全加载后再执行
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateBtn = document.getElementById('generate-btn');
             
-            if (!interests) {
-                alert('请输入对方的兴趣标签');
+            if (!generateBtn) {
+                console.error('错误：未找到生成按钮');
                 return;
             }
             
-            // 显示加载中，隐藏其他区域
-            document.querySelector('.loading').style.display = 'block';
-            document.querySelector('.error').style.display = 'none';
-            document.getElementById('result-container').style.display = 'none';
-            document.getElementById('generate-btn').disabled = true;
-            
-            try {
-                // 构造符合API要求的messages数组
-                const messages = [
-                    {
-                        "role": "system",
-                        "content": "你是一位拥有10年经验的社交关系教练，擅长根据人际关系阶段和兴趣匹配度制定精准邀约策略。"
-                    },
-                    {
-                        "role": "user",
-                        "content": `请根据以下参数生成3种差异化邀约方案：
-                        1. 关系阶段: ${stage}
-                        2. 对方兴趣: ${interests}
-                        3. 用户性格: ${userStyle}
-                        4. 邀约场景: ${scenario}
-                        
-                        要求:
-                        1. 生成保守型、适度型和积极型三种方案
-                        2. 每种方案包含话术文本、策略解析、成功率评估和风险提示
-                        3. 使用JSON格式返回，包含conservative、moderate、aggressive三个键
-                        4. 保守型话术需包含第三方理由
-                        5. 直接型话术可加入限时性
-                        6. 避免直接使用'约会''喜欢'等敏感词`
-                    }
-                ];
+            generateBtn.addEventListener('click', async function() {
+                const stage = document.getElementById('stage').value;
+                const interests = document.getElementById('interests').value.trim();
+                const userStyle = document.getElementById('user_style').value;
+                const scenario = document.getElementById('scenario').value;
                 
-                const apiKey = "sk-7ecf033dcf984fa7b23ab4593478b319";
-                const apiUrl = "https://api.deepseek.com/chat/completions";
-                
-                // 使用CORS代理解决跨域问题
-                const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-                const fullUrl = proxyUrl + apiUrl;
-                
-                const response = await fetch(fullUrl, {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${apiKey}`,
-                        "Content-Type": "application/json",
-                        "X-Requested-With": "XMLHttpRequest"
-                    },
-                    body: JSON.stringify({
-                        "model": "deepseek-chat",
-                        "messages": messages,
-                        "temperature": 0.7,
-                        "max_tokens": 2000,
-                        "stream": false
-                    })
-                });
-                
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`API请求失败: ${response.status} - ${errorText}`);
+                if (!interests) {
+                    alert('请输入对方的兴趣标签');
+                    return;
                 }
                 
-                const data = await response.json();
-                console.log("API响应:", data);
-                
-                // 提取并处理返回内容
-                const content = data.choices[0].message.content;
-                let result;
+                // 显示加载中，隐藏其他区域
+                document.querySelector('.loading').style.display = 'block';
+                document.querySelector('.error').style.display = 'none';
+                document.getElementById('result-container').style.display = 'none';
+                generateBtn.disabled = true;
                 
                 try {
-                    // 尝试从Markdown代码块中提取JSON
-                    const jsonMatch = content.match(/```json([\s\S]*?)```/);
-                    if (jsonMatch) {
-                        result = JSON.parse(jsonMatch[1].trim());
-                    } else {
-                        // 如果没有代码块，尝试直接解析
-                        result = JSON.parse(content);
-                    }
-                } catch (e) {
-                    console.error("解析JSON失败:", e);
-                    throw new Error("API返回的数据格式不符合预期");
-                }
-                
-                // 显示结果
-                if (result) {
-                    let strategiesHTML = '';
+                    // 构造符合API要求的messages数组
+                    const messages = [
+                        {
+                            "role": "system",
+                            "content": "你是一位拥有10年经验的社交关系教练，擅长根据人际关系阶段和兴趣匹配度制定精准邀约策略。请严格按要求的JSON格式返回数据。"
+                        },
+                        {
+                            "role": "user",
+                            "content": `请根据以下参数生成3种差异化邀约方案：
+                            1. 关系阶段: ${stage}
+                            2. 对方兴趣: ${interests}
+                            3. 用户性格: ${userStyle}
+                            4. 邀约场景: ${scenario}
+                            
+                            要求返回JSON格式:
+                            {
+                              "conservative": {
+                                "text": "话术内容",
+                                "score": 成功率百分比,
+                                "logic": "决策依据",
+                                "risk": "潜在风险及应对"
+                              },
+                              "moderate": {...},
+                              "aggressive": {...},
+                              "interest_analysis": "兴趣需求解读"
+                            }
+                            
+                            规则:
+                            1. 避免直接使用'约会''喜欢'等敏感词
+                            2. 保守型话术需包含第三方理由
+                            3. 直接型话术可加入限时性`
+                        }
+                    ];
                     
-                    // 检查是否包含所有必需的字段
-                    const requiredFields = ['conservative', 'moderate', 'aggressive'];
-                    if (requiredFields.every(field => field in result)) {
+                    const apiKey = "sk-7ecf033dcf984fa7b23ab4593478b319";
+                    const apiUrl = "https://api.deepseek.com/chat/completions";
+                    
+                    // 使用CORS代理解决跨域问题
+                    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+                    const fullUrl = proxyUrl + apiUrl;
+                    
+                    const response = await fetch(fullUrl, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${apiKey}`,
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        body: JSON.stringify({
+                            "model": "deepseek-chat",
+                            "messages": messages,
+                            "temperature": 0.7,
+                            "max_tokens": 2000,
+                            "stream": false
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`API请求失败: ${response.status} - ${errorText}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log("API响应:", data);
+                    
+                    // 提取并处理返回内容
+                    const content = data.choices[0].message.content;
+                    let result;
+                    
+                    try {
+                        // 尝试从Markdown代码块中提取JSON
+                        const jsonMatch = content.match(/```json([\s\S]*?)```/);
+                        if (jsonMatch) {
+                            result = JSON.parse(jsonMatch[1].trim());
+                        } else {
+                            // 如果没有代码块，尝试直接解析
+                            result = JSON.parse(content);
+                        }
+                    } catch (e) {
+                        console.error("解析JSON失败:", e);
+                        throw new Error("API返回的数据格式不符合预期");
+                    }
+                    
+                    // 显示结果
+                    if (result && result.conservative && result.moderate && result.aggressive) {
+                        let strategiesHTML = '';
+                        
                         // 保守型策略
                         strategiesHTML += `
                             <div class="strategy-box">
@@ -145,32 +328,31 @@
                         document.getElementById('interest-analysis').innerHTML = result.interest_analysis 
                             ? `<strong>兴趣分析:</strong> ${result.interest_analysis}` 
                             : '';
+                            
+                        document.getElementById('result-container').style.display = 'block';
                     } else {
-                        // 如果返回的数据不符合预期格式，直接显示原始内容
-                        document.getElementById('strategies').innerHTML = `<pre>${content}</pre>`;
+                        throw new Error("API返回的数据结构不完整");
                     }
                     
-                    document.getElementById('result-container').style.display = 'block';
+                } catch (error) {
+                    console.error('生成策略时出错:', error);
+                    document.querySelector('.error').innerHTML = `
+                        <h3>生成策略时出错</h3>
+                        <p>${error.message}</p>
+                        <p>建议检查:</p>
+                        <ul>
+                            <li>网络连接是否正常</li>
+                            <li>API密钥是否正确</li>
+                            <li>输入参数是否合法</li>
+                        </ul>
+                        <p>详细错误信息请查看浏览器控制台(Console)</p>
+                    `;
+                    document.querySelector('.error').style.display = 'block';
+                } finally {
+                    document.querySelector('.loading').style.display = 'none';
+                    generateBtn.disabled = false;
                 }
-                
-            } catch (error) {
-                console.error('生成策略时出错:', error);
-                document.querySelector('.error').innerHTML = `
-                    <h3>生成策略时出错</h3>
-                    <p>${error.message}</p>
-                    <p>建议检查:</p>
-                    <ul>
-                        <li>网络连接是否正常</li>
-                        <li>API密钥是否正确</li>
-                        <li>输入参数是否合法</li>
-                    </ul>
-                    <p>详细错误信息请查看浏览器控制台(Console)</p>
-                `;
-                document.querySelector('.error').style.display = 'block';
-            } finally {
-                document.querySelector('.loading').style.display = 'none';
-                document.getElementById('generate-btn').disabled = false;
-            }
+            });
         });
     </script>
 </body>
