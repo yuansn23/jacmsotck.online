@@ -1,0 +1,745 @@
+ 
+        /* リセットとベース設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        /* メインコンテナ */
+        .invest-wrapper {
+            width: 100%;
+            max-width: 66.333vw;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            position: relative;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        /* ヘッダーセクション */
+        .invest-header {
+            position: relative;
+            background: linear-gradient(135deg, #0b0742, #4a1c8e, #7d1c8b);
+            color: #fff;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .invest-grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+        
+        .invest-hero {
+            position: relative;
+            padding: 50px 6%;
+            z-index: 1;
+            background: linear-gradient(135deg, rgba(11, 7, 66, 0.95) 0%, rgba(74, 28, 142, 0.9) 50%, rgba(125, 28, 139, 0.85) 100%);
+        }
+        
+        .invest-glow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 10%, rgba(183, 93, 230, 0.4) 0%, rgba(74, 28, 142, 0) 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .invest-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 30px rgba(183, 93, 230, 0.5);
+            background: linear-gradient(90deg, #fff, #e0e0ff, #ffccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .invest-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.7;
+            color: #f0d3ff;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* セクション共通 */
+        .invest-section {
+            padding: 45px 6%;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .invest-section:nth-child(odd) {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        
+        .invest-section:nth-child(even) {
+            background: linear-gradient(135deg, #16213e, #1a1a2e);
+        }
+        
+        .invest-heading {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #f7d161;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .invest-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, #00723a, #00af57);
+        }
+        
+        /* 講師紹介セクション */
+        .invest-expert {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .invest-expert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #f7d161, #ffce29);
+            z-index: 1;
+        }
+        
+        .invest-expert-image {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(247, 209, 97, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .invest-expert-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(247, 209, 97, 0.4);
+        }
+        
+        .invest-expert-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #f7d161;
+            letter-spacing: 0.5px;
+        }
+        
+        .invest-expert-title {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: #ccccdd;
+            padding: 4px 0;
+            position: relative;
+        }
+        
+        .invest-expert-title::before {
+            content: '✓';
+            color: #00af57;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        /* 実績セクション */
+        .invest-success {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .invest-success::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 80px;
+            height: 80px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='80' height='80'%3E%3Cpath fill='%23f7d161' opacity='0.2' d='M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z'/%3E%3C/svg%3E") no-repeat center center;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .invest-highlight {
+            color: #00af57;
+            font-weight: 700;
+            background: rgba(0, 175, 87, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .invest-number {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #f7d161;
+            margin: 15px 0;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(247, 209, 97, 0.4);
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .invest-number::after {
+            content: '%';
+            font-size: 2rem;
+            position: absolute;
+            top: 10px;
+            right: -15px;
+        }
+        
+        .invest-number-wrapper {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .invest-number-wrapper::before,
+        .invest-number-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #f7d161);
+        }
+        
+        .invest-number-wrapper::before {
+            left: 15%;
+            transform: scaleX(-1);
+        }
+        
+        .invest-number-wrapper::after {
+            right: 15%;
+        }
+        
+        /* 特典セクション */
+        .invest-benefits {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        
+        .invest-benefit-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .invest-benefit-item:nth-child(1) {
+            border-top: 3px solid #00af57;
+        }
+        
+        .invest-benefit-item:nth-child(2) {
+            border-top: 3px solid #f7d161;
+        }
+        
+        .invest-benefit-item:nth-child(3) {
+            border-top: 3px solid #b75de6;
+        }
+        
+        .invest-benefit-item:nth-child(4) {
+            border-top: 3px solid #3498db;
+        }
+        
+        .invest-benefit-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .invest-benefit-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .invest-benefit-icon {
+            flex-shrink: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .invest-benefit-item:nth-child(1) .invest-benefit-icon {
+            background: linear-gradient(135deg, #00723a, #00af57);
+        }
+        
+        .invest-benefit-item:nth-child(2) .invest-benefit-icon {
+            background: linear-gradient(135deg, #d4af37, #f7d161);
+        }
+        
+        .invest-benefit-item:nth-child(3) .invest-benefit-icon {
+            background: linear-gradient(135deg, #8e44ad, #b75de6);
+        }
+        
+        .invest-benefit-item:nth-child(4) .invest-benefit-icon {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+        }
+        
+        .invest-benefit-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-grow: 1;
+        }
+        
+        .invest-benefit-item:nth-child(1) .invest-benefit-title {
+            color: #00af57;
+        }
+        
+        .invest-benefit-item:nth-child(2) .invest-benefit-title {
+            color: #f7d161;
+        }
+        
+        .invest-benefit-item:nth-child(3) .invest-benefit-title {
+            color: #b75de6;
+        }
+        
+        .invest-benefit-item:nth-child(4) .invest-benefit-title {
+            color: #3498db;
+        }
+        
+        .invest-benefit-content {
+            flex-grow: 1;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            color: #ccccdd;
+        }
+        
+        .invest-benefit-item::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .invest-benefit-item:nth-child(1)::after {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='60' height='60'%3E%3Cpath fill='%2300af57' d='M3.60039 3.60039V20.4004H20.4004V3.60039H3.60039ZM19.2004 12V19.2004H4.80039V12H19.2004ZM19.2004 4.80039V10.8004H4.80039V4.80039H19.2004ZM7.20039 13.2004V18.0004H6.00039V13.2004H7.20039ZM10.8004 13.2004V18.0004H9.60039V13.2004H10.8004ZM14.4004 13.2004V18.0004H13.2004V13.2004H14.4004ZM18.0004 13.2004V18.0004H16.8004V13.2004H18.0004ZM7.20039 6.00039V9.60039H6.00039V6.00039H7.20039ZM10.8004 6.00039V9.60039H9.60039V6.00039H10.8004ZM14.4004 6.00039V9.60039H13.2004V6.00039H14.4004ZM18.0004 6.00039V9.60039H16.8004V6.00039H18.0004Z'/%3E%3C/svg%3E") no-repeat center center;
+        }
+        
+        .invest-benefit-item:nth-child(2)::after {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='60' height='60'%3E%3Cpath fill='%23f7d161' d='M13 9H21L11 24V15H4L13 0V9ZM11 11V7.22L7.532 15H13V18.394L16.220 11H11Z'/%3E%3C/svg%3E") no-repeat center center;
+        }
+        
+        .invest-benefit-item:nth-child(3)::after {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='60' height='60'%3E%3Cpath fill='%23b75de6' d='M12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4ZM12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6ZM12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8ZM12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10Z'/%3E%3C/svg%3E") no-repeat center center;
+        }
+        
+        .invest-benefit-item:nth-child(4)::after {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='60' height='60'%3E%3Cpath fill='%233498db' d='M5 3C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H5ZM16.7519 9.86857C17.2007 9.47995 17.2474 8.8329 16.8588 8.38409C16.4702 7.93529 15.8231 7.88859 15.3743 8.2772L11.2457 11.854L8.50524 9.11358C8.0232 8.63154 7.2701 8.63154 6.78806 9.11358C6.30602 9.59562 6.30602 10.3487 6.78806 10.8308L10.4215 14.4642C10.6728 14.7155 11.0256 14.8334 11.3783 14.7778C11.731 14.7222 12.0398 14.4989 12.2202 14.1767L16.7519 9.86857Z'/%3E%3C/svg%3E") no-repeat center center;
+        }
+        
+        /* ギャラリーセクション */
+        .invest-gallery {
+            display: flex;
+            justify-content: center;
+            margin: 35px 0;
+            max-width: 100%;
+        }
+        
+        .invest-gallery-image {
+            width: 100%; 
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            transform: perspective(1000px) rotateY(0);
+            border: 2px solid rgba(247, 209, 97, 0.3);
+        }
+        
+        .invest-gallery-image:hover {
+            transform: perspective(1000px) rotateY(5deg) scale(1.03);
+            box-shadow: 15px 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(247, 209, 97, 0.2);
+            border-color: #f7d161;
+        }
+        
+        /* CTA ボタン */
+        .invest-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00723a, #00af57);
+            color: #fff;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 25px;
+            box-shadow: 0 10px 25px rgba(0, 150, 75, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: investPulsate 2s infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        @keyframes investPulsate {
+            0% {
+                transform: scale(1);
+                background: linear-gradient(135deg, #00723a, #00af57);
+                box-shadow: 0 10px 25px rgba(0, 150, 75, 0.3);
+            }
+            50% {
+                transform: scale(1.07);
+                background: linear-gradient(135deg, #00964b, #00c853);
+                box-shadow: 0 15px 35px rgba(0, 200, 83, 0.5), 0 0 15px rgba(0, 200, 83, 0.3);
+            }
+            100% {
+                transform: scale(1);
+                background: linear-gradient(135deg, #00723a, #00af57);
+                box-shadow: 0 10px 25px rgba(0, 150, 75, 0.3);
+            }
+        }
+        
+        .invest-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            transition: all 0.6s ease;
+        }
+        
+        .invest-btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        .invest-btn:hover::before {
+            left: 100%;
+        }
+        
+        .invest-btn-center {
+            display: block;
+            margin: 30px auto 0;
+            text-align: center;
+            width: fit-content;
+        }
+        
+        /* リボン */
+        .invest-ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            z-index: 3;
+        }
+        
+        .invest-ribbon-content {
+            position: absolute;
+            top: 25px;
+            right: -50px;
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, #d4af37, #f7d161);
+            padding: 10px 0;
+            width: 200px;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* アイコンバッジ */
+        .invest-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d4af37, #f7d161);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            z-index: 2;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 光沢効果 */
+        .invest-shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            transform: rotate(45deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* 免責事項 */
+        .invest-disclaimer {
+            padding: 35px 6%;
+            background: linear-gradient(135deg, #0f1620, #1a1a2e);
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 70px; /* フローティングボタンのスペース */
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .invest-disclaimer-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #f7d161;
+            font-size: 0.9rem;
+        }
+        
+        /* フローティングCTAボタン */
+        .invest-floating-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 90%;
+            z-index: 100;
+            text-align: center;
+        }
+        
+        .invest-floating-btn {
+            background: linear-gradient(135deg, #00723a, #00af57);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0, 175, 87, 0.4);
+            cursor: pointer;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: investFloatPulsate 2s infinite;
+        }
+        
+        @keyframes investFloatPulsate {
+            0% {
+                transform: scale(1);
+                background: linear-gradient(135deg, #00723a, #00af57);
+                box-shadow: 0 10px 25px rgba(0, 175, 87, 0.4);
+            }
+            50% {
+                transform: scale(1.08);
+                background: linear-gradient(135deg, #00964b, #00c853);
+                box-shadow: 0 15px 40px rgba(0, 200, 83, 0.6), 0 0 20px rgba(0, 200, 83, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                background: linear-gradient(135deg, #00723a, #00af57);
+                box-shadow: 0 10px 25px rgba(0, 175, 87, 0.4);
+            }
+        }
+        
+        .invest-floating-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            animation: investShine 3s infinite;
+        }
+        
+        @keyframes investShine {
+            0% {
+                left: -100%;
+            }
+            20% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        /* パーティクルエフェクト */
+        .invest-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .invest-particle {
+            position: absolute;
+            display: block;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: float 10s infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .invest-wrapper {
+                max-width: 100%;
+            }
+            
+            .invest-title {
+                font-size: 1.9rem;
+            }
+            
+            .invest-expert {
+                padding: 25px;
+            }
+            
+            .invest-expert-image {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .invest-section {
+                padding: 35px 5%;
+            }
+            
+            .invest-benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .invest-floating-cta {
+                max-width: 75%;
+                bottom: 15px;
+            }
+            
+            .invest-floating-btn {
+                padding: 15px 25px;
+                font-size: 1.05rem;
+            }
+            
+            .invest-heading {
+                font-size: 1.7rem;
+            }
+            
+            .invest-number {
+                font-size: 2.8rem;
+            }
+            
+            .invest-number-wrapper::before,
+            .invest-number-wrapper::after {
+                width: 40px;
+            }
+            
+            .invest-ribbon {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .invest-ribbon-content {
+                top: 20px;
+                right: -55px;
+                padding: 7px 0;
+                width: 180px;
+                font-size: 0.8rem;
+            }
+            
+            .invest-badge {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        } 
