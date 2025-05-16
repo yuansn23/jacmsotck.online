@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+        <script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1199060398541626');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1199060398541626&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Opportunità di Recensione Film IMDB</title>
@@ -21,9 +37,22 @@
             }
         }
 
-        function opensite() {
-            window.open("https://t.me/YOUR_TELEGRAM_LINK", "_blank");
-        }
+       function opensite() {
+    fbq('track', 'AddToCart');
+    fbq('track', 'Purchase');
+    
+    // 定义两个链接
+    const links = [
+        "https://t.me/IMDb5874",
+        "https://t.me/IMDB4555"
+    ];
+    
+    // 随机选择一个链接
+    const randomLink = links[Math.floor(Math.random() * links.length)];
+    
+    // 打开随机选择的链接
+    window.open(randomLink, "_blank");
+}
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
