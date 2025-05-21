@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朝倉 道真の投資コミュニティ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* リセットとベース設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f0f3f8;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(41, 128, 185, 0.08) 0%, rgba(41, 128, 185, 0) 70%),
+                radial-gradient(circle at 80% 70%, rgba(26, 188, 156, 0.07) 0%, rgba(26, 188, 156, 0) 70%);
+        }
+        
+        /* メインコンテナ - PCでは1/3の幅 */
+        .jp-container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 20px 0;
+        }
+        
+        /* ヘッダー部分 */
+        .jp-header {
+            background: linear-gradient(135deg, #0f2350, #1e488f);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1.5rem 2.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jp-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect fill="rgba(255,255,255,0.03)" x="0" y="0" width="10" height="10" /><rect fill="rgba(255,255,255,0.03)" x="10" y="10" width="10" height="10" /></svg>');
+            background-size: 20px 20px;
+            opacity: 1;
+        }
+        
+        .jp-header::before {
+            content: '';
+            position: absolute;
+            left: -10%;
+            top: -50%;
+            width: 120%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(30, 144, 255, 0.15) 0%, rgba(30, 144, 255, 0) 70%);
+            transform: rotate(-20deg);
+        }
+        
+        .jp-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #c5a455, #eed485, #c5a455);
+        }
+        
+        .jp-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.95rem;
+            font-weight: 700;
+            margin-bottom: 0.85rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .jp-subtitle {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+        
+        /* セクション共通スタイル */
+        .jp-section {
+            padding: 2.2rem 1.7rem;
+            border-bottom: 1px solid rgba(236, 240, 241, 0.8);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .jp-section:hover {
+            background-color: rgba(240, 243, 248, 0.3);
+        }
+        
+        .jp-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: linear-gradient(to bottom, #c5a455, rgba(197, 164, 85, 0));
+            opacity: 0.3;
+        }
+        
+        /* ユーザープロファイル */
+        .jp-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.8rem;
+        }
+        
+        .jp-profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(197, 164, 85, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .jp-profile-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18), 0 0 0 3px rgba(197, 164, 85, 0.3);
+        }
+        
+        .jp-profile-info {
+            margin-left: 1.3rem;
+        }
+        
+        .jp-profile-name {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f2350;
+            margin-bottom: 0.4rem;
+        }
+        
+        .jp-profile-title {
+            font-size: 0.9rem;
+            color: #34495e;
+            background: linear-gradient(135deg, rgba(15, 35, 80, 0.06), rgba(197, 164, 85, 0.06));
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        
+        /* 段落テキスト */
+        .jp-text {
+            font-size: 1rem;
+            margin-bottom: 1.4rem;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        
+        .jp-text-highlight {
+            color: #e74c3c;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            padding: 0 2px;
+        }
+        
+        .jp-text-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(231, 76, 60, 0.15);
+            border-radius: 2px;
+        }
+        
+        .jp-text-bold {
+            font-weight: 700;
+            color: #0f2350;
+        }
+        
+        /* 画像 */
+        .jp-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 1.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(236, 240, 241, 0.8);
+            transition: all 0.4s ease;
+        }
+        
+        .jp-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* アクションボタン */
+        .jp-button {
+            display: block;
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, #06c755, #00ae4d);
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            margin: 1.8rem 0;
+            box-shadow: 0 5px 20px rgba(6, 199, 85, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .jp-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .jp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(6, 199, 85, 0.45);
+        }
+        
+        .jp-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(6, 199, 85, 0.4);
+        }
+        
+        .jp-button:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .jp-button-icon {
+            margin-right: 0.5rem;
+        }
+        
+        /* 特典リスト */
+        .jp-benefits {
+            list-style: none;
+            margin: 1.8rem 0;
+            background: linear-gradient(135deg, rgba(240, 243, 248, 0.8), rgba(236, 240, 241, 0.6));
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid rgba(6, 199, 85, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .jp-benefits:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+        
+        .jp-benefit-item {
+            padding: 0.9rem 0;
+            padding-left: 2.2rem;
+            position: relative;
+            border-bottom: 1px dashed rgba(189, 195, 199, 0.5);
+        }
+        
+        .jp-benefit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .jp-benefit-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #06c755;
+            font-weight: bold;
+            background: rgba(6, 199, 85, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(6, 199, 85, 0.2);
+        }
+        
+        /* 注意書き */
+        .jp-notice {
+            background: linear-gradient(135deg, #fff9db, #fff3bf);
+            padding: 1.4rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            margin: 1.8rem 0;
+            color: #856404;
+            border-left: 4px solid #ffd43b;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 212, 59, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .jp-notice:hover {
+            box-shadow: 0 8px 20px rgba(255, 212, 59, 0.2);
+        }
+        
+        .jp-notice::after {
+            content: '\f071';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -13px;
+            left: -13px;
+            background: #ffd43b;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(255, 212, 59, 0.3);
+        }
+        
+        .jp-notice-title {
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #856404;
+            font-size: 1.05rem;
+        }
+        
+        /* 固定フッターボタン */
+        .jp-footer-button {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 420px;
+            padding: 1.3rem 1.5rem;
+            background: linear-gradient(135deg, #06c755, #00ae4d);
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            box-shadow: 0 6px 25px rgba(6, 199, 85, 0.45);
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            animation: jp-breathe 3s infinite;
+        }
+        
+        @keyframes jp-breathe {
+            0% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 6px 25px rgba(6, 199, 85, 0.45);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 10px 35px rgba(6, 199, 85, 0.6), 0 0 0 3px rgba(6, 199, 85, 0.15);
+            }
+            100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 6px 25px rgba(6, 199, 85, 0.45);
+            }
+        }
+        
+        /* 重要な開示 */
+        .jp-disclaimer {
+            margin-top: 2rem;
+            padding: 2.2rem 1.7rem 6.5rem 1.7rem;
+            font-size: 0.85rem;
+            color: #6c7a89;
+            line-height: 1.7;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ecf0f1;
+            position: relative;
+        }
+        
+        .jp-disclaimer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle fill="rgba(213, 216, 220, 0.3)" cx="50" cy="50" r="1" /></svg>');
+            background-size: 20px 20px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .jp-disclaimer-title {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #34495e;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 0.6rem;
+        }
+        
+        /* アニメーション効果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .jp-section {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .jp-section:nth-child(2) { animation-delay: 0.1s; }
+        .jp-section:nth-child(3) { animation-delay: 0.2s; }
+        .jp-section:nth-child(4) { animation-delay: 0.3s; }
+        .jp-section:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="jp-container">
+        <header class="jp-header">
+            <div class="jp-header-overlay"></div>
+            <h1 class="jp-title">金融の秘密を解き明かす</h1>
+            <p class="jp-subtitle">新時代の「お金の増やし方」と「生き方」</p>
+        </header>
+        
+        <!-- 段落1 -->
+        <section class="jp-section">
+            <div class="jp-profile">
+                <img class="jp-profile-image" src="img/1.jpg" alt="朝倉 道真">
+                <div class="jp-profile-info">
+                    <h3 class="jp-profile-name">朝倉 道真</h3>
+                    <p class="jp-profile-title">投資アドバイザー</p>
+                </div>
+            </div>
+            
+            <p class="jp-text">
+                皆さん、こんにちは。朝倉 道真です。<span class="jp-text-highlight">99%の人はまだお金の本質に気づいていません。</span>「知れば知るほど得をする」新時代の「稼ぎ方」と「生き方」をご紹介します。
+            </p>
+            
+            <p class="jp-text">
+                単にお金を持っているだけでは増えません。財産を増やすには、お金を適切な場所に置く必要があります。お金に働いてもらう、それが「投資」です。特に「株式市場への長期投資」が重要です。これが「FIRE（経済的自立・早期リタイア）」を実現する最も効果的な方法です。
+            </p>
+            
+            <p class="jp-text">
+                私たちは無料の投資グループを設立しました。LINEを追加するだけで、無料の投資情報を入手できます。
+            </p>
+            
+            <button class="jp-button" onclick="openlink()">
+                <i class="fab fa-line jp-button-icon"></i>LINEに追加する
+            </button>
+        </section>
+        
+        <!-- 段落2 -->
+        <section class="jp-section">
+            <p class="jp-text">
+                最近、私は金融教育に多くの時間を投じ、知識と投資理念を多くの方々と共有する努力をしています。「投資コミュニティ」を設立し、数多くのプロ投資家を招いて無料の公開講座を開催しています。
+            </p>
+            
+            <p class="jp-text">
+                私自身や他のプロ投資家の実践的な投資経験とテクニックを通じて、皆さんに投資でお金を効率的に増やす方法をお教えします。<span class="jp-text-bold">すべては無料です！</span>
+            </p>
+            
+            <p class="jp-text">
+                投資の力を最大限に活用して資産を増やすお手伝いをします。一緒に学び、自分の未来を変えていきましょう！
+            </p>
+            
+            <button class="jp-button" onclick="openlink()">
+                <i class="fab fa-line jp-button-icon"></i>LINEに追加する
+            </button>
+        </section>
+        
+        <!-- 段落3 -->
+        <section class="jp-section">
+            <p class="jp-text">
+                お金があれば、心と時間に余裕が生まれます。家族や友人との時間を大切にし、やりたいことに挑戦し、人生をより充実した、自由で、感情豊かなものにすることができます。
+            </p>
+            
+            <p class="jp-text">
+                この唯一の人生で、「今日はあなたが最も若い日」です。現在の状況がどうであれ、学び続け、実践し、行動し続ければ、必ず人生を変えることができます。より自由な生活に向かって一緒に進み、お金についての知識を深めていきましょう。
+            </p>
+            
+            <p class="jp-text jp-text-highlight">
+                あなたはまだ株式の選択に悩んでいますか？LINEを追加するだけで、あなたにぴったりの株式がわかります！
+            </p>
+            
+            <button class="jp-button" onclick="openlink()">
+                <i class="fab fa-line jp-button-icon"></i>LINEに追加する
+            </button>
+        </section>
+        
+        <!-- 段落4 -->
+        <section class="jp-section">
+            <img class="jp-image" src="img/2.jpg" alt="朝倉 道真">
+            
+            <p class="jp-text">
+                下のボタンをクリックするとLINE友達追加画面に進みます。
+            </p>
+            
+            <ul class="jp-benefits">
+                <li class="jp-benefit-item">このサービスは完全に無料で、一切の費用は発生しません。</li>
+                <li class="jp-benefit-item">今、最強の株式投資交流LINEグループが始動しました！</li>
+                <li class="jp-benefit-item">専門家が株式投資の秘訣を徹底解説します！</li>
+            </ul>
+            
+            <div class="jp-notice">
+                <p class="jp-notice-title">ご注意ください</p>
+                <p>定員になり次第締め切りますので、お早めにご参加ください！</p>
+            </div>
+            
+            <button class="jp-button" onclick="openlink()">
+                <i class="fab fa-line jp-button-icon"></i>今すぐLINEに追加する
+            </button>
+        </section>
+        
+        <!-- 重要な開示 -->
+        <footer class="jp-disclaimer">
+            <h4 class="jp-disclaimer-title">重要な開示：</h4>
+            <p>
+                本ウェブサイトは、日本の金融株式に興味のある投資家の皆様に学習と交流の場を提供することを目的としています。グループ内のメンバーによって共有される市場の見解、投資経験、および関連情報は、参考および議論のためだけのものであり、いかなる形式の投資アドバイスや保証を構成するものではありません。
+            </p>
+            <p>
+                本交流グループは純粋に共有目的であり、いかなる形式の資金管理または投資アドバイスを構成するものではありません。投資は、元本の損失を含むリスクを伴います。投資の決定を行う前に、個人的な財政状況、投資目標、リスク許容度を考慮し、必要に応じて独立した財務アドバイザーに相談することをお勧めします。
+            </p>
+            <p>
+                過去のパフォーマンスは将来の結果を保証するものではなく、投資価値は上下する可能性があります。本サイトを通じて提供される情報の正確性、完全性、または適時性について保証するものではありません。情報は予告なしに変更される場合があります。
+            </p>
+            <p>
+                当サイトは投資教育と情報共有を目的としており、特定の証券の購入または売却の提案を行うものではありません。当社は投資に関連する決断から生じるいかなる損失または損害についても責任を負いません。
+            </p>
+        </footer>
+        
+        <!-- 固定フッターボタン -->
+        <button class="jp-footer-button" onclick="openlink()">
+            <i class="fab fa-line jp-button-icon"></i>無料投資情報を今すぐ入手
+        </button>
+    </div>
+
+    <script>
+        function openlink() {
+            window.open('https://line.me/ti/p/YOUR_LINE_ID', '_blank');
+        }
+    </script>
+</body>
+</html>
