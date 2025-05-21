@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deutsche Aktien-Gemeinschaft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1E56A0;
+            --secondary-blue: #163172;
+            --light-blue: #D6E4F0;
+            --yellow: #F6D55C;
+            --yellow-dark: #e9ba2f;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2E2E2E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(22, 49, 114, 0.85), rgba(22, 49, 114, 0.85)), url('https://pfst.cf2.poecdn.net/base/image/fedd70cfd7bfd27e883fea91e6f85e5a6f67acdc72dba4c32e1f249d9f306601?w=1224&h=794');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .counter-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-blue);
+            border-radius: 8px;
+            padding: 15px 25px;
+            display: inline-block;
+            margin: 0 auto 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .countdown-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+        }
+        
+        .social-proof {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background-color: var(--yellow);
+            color: var(--dark-gray);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(246, 213, 92, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(246, 213, 92, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        /* Pain Points Section */
+        .pain-points {
+            background-color: var(--light-gray);
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .pain-point-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .pain-point-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pain-point-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .pain-point-image {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 50%;
+            background-color: var(--light-blue);
+        }
+        
+        .pain-point-image svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--primary-blue);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--white);
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-author h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--secondary-blue);
+        }
+        
+        .testimonial-stars {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--dark-gray);
+            line-height: 1.8;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light-blue);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            margin-bottom: 20px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+        }
+        
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--white);
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-image {
+            margin: 40px 0;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            opacity: 0.8;
+        }
+        
+        /* WhatsApp Icon */
+        .whatsapp-icon {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .whatsapp-icon svg {
+            width: 35px;
+            height: 35px;
+            fill: var(--white);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 80%;
+            max-width: 500px;
+            animation: breathe 2s infinite;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes breathe {
+            0% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 5px 15px rgba(246, 213, 92, 0.3);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 10px 25px rgba(246, 213, 92, 0.5);
+            }
+            100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 5px 15px rgba(246, 213, 92, 0.3);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .testimonial-slider {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .countdown-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .whatsapp-icon {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Nutzen Sie die Investitionsmöglichkeiten am deutschen Aktienmarkt!</h1>
+                <p class="hero-subtitle">Gemeinsam mit zahlreichen Investoren können Sie mit unseren professionellen Aktienprognosen attraktive Renditen erzielen.</p>
+                
+                <div class="counter-box">
+                    <p class="counter-title">Der zeitlich begrenzte Zugang zu unseren hochwertigen Aktieneinblicken endet bald:</p>
+                    <div class="countdown">
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="days">02</div>
+                            <div class="countdown-label">Tage</div>
+                        </div>
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="hours">23</div>
+                            <div class="countdown-label">Stunden</div>
+                        </div>
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="minutes">59</div>
+                            <div class="countdown-label">Minuten</div>
+                        </div>
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="seconds">59</div>
+                            <div class="countdown-label">Sekunden</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="opendd()">Jetzt exklusiven Zugang sichern</button>
+                
+                <div class="social-proof">
+                    <p>Diese Woche haben sich bereits 8.271 Personen angeschlossen</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pain Points Section -->
+    <section class="section pain-points">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Warum die meisten Privatanleger kontinuierlich Verluste machen</h2>
+            </div>
+            
+            <div class="pain-points-grid">
+                <div class="pain-point-card">
+                    <div class="pain-point-image">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845c-1.854 1.07-1.854 3.24 0 4.31l7.5 4.33c.9.52 2.01.52 2.91 0l7.5-4.33c1.854-1.07 1.854-3.24 0-4.31l-7.5-4.33z"/>
+                            <path d="M13.5 13.785a3 3 0 0 0 2.91 0l7.5-4.33c1.854-1.07 1.854-3.24 0-4.31l-7.5-4.33a3 3 0 0 0-2.91 0l-7.5 4.33c-1.854 1.07-1.854 3.24 0 4.31l7.5 4.33z"/>
+                        </svg>
+                    </div>
+                    <h3 class="pain-point-title">Fehleinschätzung der Marktlage</h3>
+                    <p>Der ständige Versuch, den "richtigen Zeitpunkt" am Markt zu erwischen, führt oft zu teuren Käufen und günstigen Verkäufen - genau das Gegenteil von dem, was erfolgreiche Investoren tun.</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <div class="pain-point-image">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm4-9H8a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2z"/>
+                            <path d="M12 6a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="pain-point-title">Emotionsgetriebene Entscheidungen</h3>
+                    <p>Emotionen können zu Anlagefehlern führen. In wirtschaftlich schwierigen Zeiten kann Angst übermäßige Verkäufe auslösen, während Gier in Marktspitzen zu impulsiven Käufen führen kann.</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <div class="pain-point-image">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2 3H4V21H2zM6 8H8V21H6zM10 5h2v16h-2zM14 13h2v8h-2zM18 8h2v13h-2z"/>
+                            <path d="M7 3h2v4h8v2h2v-2h2v-2h-10v-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="pain-point-title">Informationsüberflutung</h3>
+                    <p>Mit Tausenden von Aktien und endlosen Finanznachrichten wird es nahezu unmöglich, legitime Gelegenheiten zu finden.</p>
+                </div>
+                
+                <div class="pain-point-card">
+                    <div class="pain-point-image">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 17a1 1 0 0 1-2 0V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h15a1 1 0 0 1 0 2H3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v12zm4-6h-3v3h-2v-3h-3v-2h3V6h2v3h3v2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="pain-point-title">Nachteil gegenüber Algorithmen</h3>
+                    <p>Die KI-Algorithmen und Hochfrequenzhandelssysteme der Wall Street stellen Privatanleger deutlich ins Hintertreffen.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" onclick="opendd()">Lösen Sie diese Probleme jetzt</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Was unsere Gemeinschaft sagt</h2>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Thomas K.">
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Thomas K.</h4>
+                            <p>Privatinvestor</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Die Marktanalysen haben mir geholfen, meine Investitionsstrategie zu überdenken. Seitdem treffe ich wesentlich fundiertere Entscheidungen und fühle mich auf dem Markt deutlich sicherer.</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Sandra M.">
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Sandra M.</h4>
+                            <p>Finanzanalystin</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Als professionelle Analytikerin schätze ich die Tiefe der bereitgestellten Informationen. Die Kombination aus fundamentaler und technischer Analyse ist beeindruckend.</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Martin H.">
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Martin H.</h4>
+                            <p>Langzeitinvestor</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Die Einblicke in Markttrends haben mir geholfen, mein Portfolio zu diversifizieren. Die klaren Ein- und Ausstiegssignale sind besonders hilfreich für langfristige Anlagestrategien.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="section features">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Was unsere Analysen besonders macht</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-2a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-3.5-6h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0 0 1zm0-3h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0 0 1zm0-3h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0 0 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Fortgeschrittene KI-Analyse</h3>
+                    <p>Unsere proprietären Algorithmen analysieren über 10.000 Datenpunkte für jedes Unternehmen, um profitable Möglichkeiten zu identifizieren, die andere übersehen.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13.04 10.13c-3.92 0-7.11 3.18-7.11 7.11 0 3.92 3.18 7.11 7.11 7.11 3.92 0 7.11-3.18 7.11-7.11s-3.19-7.11-7.11-7.11zm0 12.11c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm8.85-11.11l-5.66-5.66.71-.71c.59-.59 1.54-.59 2.12 0l3.54 3.54c.59.59.59 1.54 0 2.12l-.71.71z"/>
+                            <path d="M4.93 10.13a7.08 7.08 0 0 0-2.93 5.73 7.08 7.08 0 0 0 2.93 5.73h2.04a9.01 9.01 0 0 1-2.86-5.73c.01-2.84 1.27-5.51 3.44-7.29L4.93 10.13zm8.7-8.43l5.66 5.66-.35.35-5.66-5.66.35-.35z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Risikobewertung</h3>
+                    <p>Wir liefern klare Risikoindikatoren für jede Empfehlung, um Ihnen bei ausgewogenen Anlageentscheidungen zu helfen.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                            <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Zeitliche Präzision</h3>
+                    <p>Wissen Sie genau, wann Sie eine Position eingehen und verlassen sollten, um das maximale Gewinnpotenzial für jede Empfehlung zu realisieren.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Zeitlich begrenzte Gelegenheit</h3>
+                    <p>Wir öffnen den Zugang zu Premium-Einblicken nur unter bestimmten Marktbedingungen. Sobald die Plätze voll sind, wird die Registrierung geschlossen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Sind Sie bereit, Ihre Anlageergebnisse zu verändern?</h2>
+                <p>Verpassen Sie nicht unsere nächsten Aktienempfehlungen mit hohem Potenzial</p>
+                
+                <img src="https://pfst.cf2.poecdn.net/base/image/fedd70cfd7bfd27e883fea91e6f85e5a6f67acdc72dba4c32e1f249d9f306601?w=1224&h=794" alt="Aktienmarkt" class="cta-image">
+                
+                <button class="btn" onclick="opendd()">Jetzt starten</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <h3>Wichtiger Hinweis:</h3>
+                <p>Die auf dieser Website bereitgestellten Informationen dienen ausschließlich Bildungs- und Informationszwecken und stellen keine Anlageberatung dar. Wir geben keine spezifischen Empfehlungen zum Kauf oder Verkauf bestimmter Wertpapiere.</p>
+                <p>Investitionen in Wertpapiere bergen Risiken, einschließlich des Verlusts des eingesetzten Kapitals. Die Wertentwicklung in der Vergangenheit ist keine Garantie für zukünftige Ergebnisse. Jeder Anleger sollte seine eigene Recherche durchführen oder einen qualifizierten Finanzberater konsultieren, bevor er Anlageentscheidungen trifft.</p>
+                <p>Unsere Gemeinschaft dient dem Austausch von Meinungen und Informationen zwischen Anlegern und stellt keine professionelle Beratung dar. Alle in der Gemeinschaft geteilten Meinungen sind persönlich und spiegeln nicht notwendigerweise die Meinung unserer Plattform wider.</p>
+            </div>
+            <div class="copyright">
+                © 2023 Deutsche Aktien-Gemeinschaft. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- WhatsApp Icon -->
+    <div class="whatsapp-icon" onclick="opendd()">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.5 2 2 6.5 2 12c0 2 .5 3.9 1.5 5.6L2 22l4.4-1.5c1.7.9 3.6 1.5 5.6 1.5 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.8 0-3.5-.5-5-1.4l-.4-.2-3 1 1-3-.2-.4c-.9-1.5-1.4-3.2-1.4-5 0-4.9 4.1-9 9-9s9 4.1 9 9-4.1 9-9 9zm5-7c-.3-.1-1.6-.8-1.8-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.2-.2.3-.3.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.6-.5-.8-.5h-.7c-.2 0-.6.1-.9.5-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.8 4.3 6.8 6 .9.4 1.7.6 2.3.8.9.3 1.8.3 2.5.2.8-.1 2.4-1 2.8-1.9.3-.9.3-1.7.2-1.9-.1-.1-.3-.2-.6-.3z"/>
+        </svg>
+        <div class="notification-badge">1</div>
+    </div>
+    
+    <!-- Floating Button -->
+    <div class="floating-button">
+        <button class="btn" style="width: 100%" onclick="opendd()">Sichern Sie sich jetzt Ihren exklusiven Zugang zu Aktienempfehlungen mit hohem Potenzial</button>
+    </div>
+    
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            
+            // Set end date to 2 days from now
+            const endDate = new Date();
+            endDate.setDate(now.getDate() + 2);
+            endDate.setHours(23, 59, 59, 0);
+            
+            const diffTime = endDate - now;
+            
+            if (diffTime <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // WhatsApp redirect
+        function opendd() {
+            window.open('https://wa.me/123456789', '_blank');
+        }
+    </script>
+</body>
+</html>
