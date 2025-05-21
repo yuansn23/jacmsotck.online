@@ -46,9 +46,14 @@
             background: linear-gradient(135deg, #0f2350, #1e488f);
             color: white;
             text-align: center;
-            padding: 2.5rem 1.5rem 2.2rem;
+            padding: 0 0 2.2rem;
             position: relative;
             overflow: hidden;
+        }
+        
+        .jp-top-image {
+            width: 100%;
+            display: block;
         }
         
         .jp-header-overlay {
@@ -81,6 +86,12 @@
             width: 100%;
             height: 5px;
             background: linear-gradient(90deg, #c5a455, #eed485, #c5a455);
+        }
+        
+        .jp-header-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem 1.5rem 0;
         }
         
         .jp-title {
@@ -172,7 +183,7 @@
         
         /* 段落テキスト */
         .jp-text {
-            font-size: 1rem;
+            font-size: 1.3rem;
             margin-bottom: 1.4rem;
             line-height: 1.8;
             color: #2c3e50;
@@ -221,49 +232,32 @@
         .jp-button {
             display: block;
             width: 100%;
-            padding: 1.2rem 1.5rem;
-            background: linear-gradient(135deg, #06c755, #00ae4d);
-            color: white;
+            height: 64px; /* 適切な高さに調整 */
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            background-image: url('https://www.jacmsotck.online/r521/img/bu.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            margin: 1.8rem 0;
+            position: relative;
             text-align: center;
-            border-radius: 50px;
             font-weight: 700;
             font-size: 1.15rem;
-            text-decoration: none;
-            margin: 1.8rem 0;
-            box-shadow: 0 5px 20px rgba(6, 199, 85, 0.35);
-            border: none;
-            cursor: pointer;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .jp-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: translateX(-100%);
-            transition: all 0.6s ease;
-            z-index: -1;
         }
         
         .jp-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(6, 199, 85, 0.45);
+            filter: brightness(1.05);
         }
         
         .jp-button:active {
             transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(6, 199, 85, 0.4);
-        }
-        
-        .jp-button:hover::before {
-            transform: translateX(100%);
         }
         
         .jp-button-icon {
@@ -365,36 +359,46 @@
             bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
-            max-width: 420px;
-            padding: 1.3rem 1.5rem;
-            background: linear-gradient(135deg, #06c755, #00ae4d);
-            color: white;
-            text-align: center;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.15rem;
-            text-decoration: none;
-            box-shadow: 0 6px 25px rgba(6, 199, 85, 0.45);
+            width: 280px;
+            height: 64px;
+            background-image: url('https://www.jacmsotck.online/r521/img/bu.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
             border: none;
             cursor: pointer;
             z-index: 100;
-            animation: jp-breathe 3s infinite;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            animation: jp-pulse 3s infinite;
         }
         
-        @keyframes jp-breathe {
+        @keyframes jp-pulse {
             0% {
                 transform: translateX(-50%) scale(1);
-                box-shadow: 0 6px 25px rgba(6, 199, 85, 0.45);
+                filter: brightness(1);
             }
             50% {
                 transform: translateX(-50%) scale(1.05);
-                box-shadow: 0 10px 35px rgba(6, 199, 85, 0.6), 0 0 0 3px rgba(6, 199, 85, 0.15);
+                filter: brightness(1.1);
             }
             100% {
                 transform: translateX(-50%) scale(1);
-                box-shadow: 0 6px 25px rgba(6, 199, 85, 0.45);
+                filter: brightness(1);
             }
+        }
+        
+        .jp-button-content, .jp-footer-button-content {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* 重要な開示 */
@@ -452,9 +456,12 @@
 <body>
     <div class="jp-container">
         <header class="jp-header">
+            <img src="https://www.jacmsotck.online/r521/img/3.png" alt="朝倉道真コミュニティ特典" class="jp-top-image">
             <div class="jp-header-overlay"></div>
-            <h1 class="jp-title">金融の秘密を解き明かす</h1>
-            <p class="jp-subtitle">新時代の「お金の増やし方」と「生き方」</p>
+            <div class="jp-header-content">
+                <h2 class="jp2-1">金融の秘密を解き明かす</h2>
+                <p class="jp-subtitle">新時代の「お金の増やし方」と「生き方」</p>
+            </div>
         </header>
         
         <!-- 段落1 -->
@@ -480,7 +487,8 @@
             </p>
             
             <button class="jp-button" onclick="openlink()">
-                <i class="fab fa-line jp-button-icon"></i>LINEに追加する
+                <div class="jp-button-content"> 
+                </div>
             </button>
         </section>
         
@@ -499,7 +507,8 @@
             </p>
             
             <button class="jp-button" onclick="openlink()">
-                <i class="fab fa-line jp-button-icon"></i>LINEに追加する
+                <div class="jp-button-content"> 
+                </div>
             </button>
         </section>
         
@@ -518,7 +527,8 @@
             </p>
             
             <button class="jp-button" onclick="openlink()">
-                <i class="fab fa-line jp-button-icon"></i>LINEに追加する
+                <div class="jp-button-content"> 
+                </div>
             </button>
         </section>
         
@@ -542,31 +552,13 @@
             </div>
             
             <button class="jp-button" onclick="openlink()">
-                <i class="fab fa-line jp-button-icon"></i>今すぐLINEに追加する
+                <div class="jp-button-content"> 
+                </div>
             </button>
         </section>
         
-        <!-- 重要な開示 -->
-        <footer class="jp-disclaimer">
-            <h4 class="jp-disclaimer-title">重要な開示：</h4>
-            <p>
-                本ウェブサイトは、日本の金融株式に興味のある投資家の皆様に学習と交流の場を提供することを目的としています。グループ内のメンバーによって共有される市場の見解、投資経験、および関連情報は、参考および議論のためだけのものであり、いかなる形式の投資アドバイスや保証を構成するものではありません。
-            </p>
-            <p>
-                本交流グループは純粋に共有目的であり、いかなる形式の資金管理または投資アドバイスを構成するものではありません。投資は、元本の損失を含むリスクを伴います。投資の決定を行う前に、個人的な財政状況、投資目標、リスク許容度を考慮し、必要に応じて独立した財務アドバイザーに相談することをお勧めします。
-            </p>
-            <p>
-                過去のパフォーマンスは将来の結果を保証するものではなく、投資価値は上下する可能性があります。本サイトを通じて提供される情報の正確性、完全性、または適時性について保証するものではありません。情報は予告なしに変更される場合があります。
-            </p>
-            <p>
-                当サイトは投資教育と情報共有を目的としており、特定の証券の購入または売却の提案を行うものではありません。当社は投資に関連する決断から生じるいかなる損失または損害についても責任を負いません。
-            </p>
-        </footer>
+    
         
-        <!-- 固定フッターボタン -->
-        <button class="jp-footer-button" onclick="openlink()">
-            <i class="fab fa-line jp-button-icon"></i>無料投資情報を今すぐ入手
-        </button>
     </div>
 
     <script>
