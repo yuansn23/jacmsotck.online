@@ -493,8 +493,9 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     
     <script>
         function opensite() {
-            ttq.track('Contact'); 
-            ttq.track('CompletePayment');
+         twq('event', 'tw-pq6ez-ptofg', {
+    conversion_id: null // use this to pass a unique ID for the conversion event for deduplication (e.g. order id '1a2b3c')
+  }); 
             window.open('https://lihi3.com/bbpRA', '_blank');
         }
     </script>
