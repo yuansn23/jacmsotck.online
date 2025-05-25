@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #FF3366;
-            --secondary: #33CCFF;
-            --accent: #FFCC00;
-            --accent2: #7C4DFF;
-            --line-color: #06C755;
-            --text: #F8F9FA;
-            --dark-bg: #0F111A;
-            --dark-bg-2: #1A1C25;
-            --card-bg: #252836;
-            --card-bg-hover: #2D3142;
-            --gradient-1: linear-gradient(135deg, #FF3366, #FF6B6B);
-            --gradient-2: linear-gradient(135deg, #33CCFF, #4ECDC4);
-            --gradient-3: linear-gradient(135deg, #7C4DFF, #33CCFF);
-            --gradient-4: linear-gradient(45deg, #FF3366, #FF9933);
-            --gradient-dark: linear-gradient(135deg, #1A1C25, #252836);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            --primary: #5DADE2;          /* 清新蓝 */
+            --secondary: #7DCEA0;        /* 清新绿 */
+            --accent: #F7DC6F;           /* 清新黄 */
+            --accent2: #BB8FCE;          /* 清新紫 */
+            --line-color: #48C9B0;       /* 清新青 */
+            --text: #34495E;             /* 深灰蓝文字 */
+            --text-light: #7F8C8D;       /* 浅灰文字 */
+            --bg-light: #F5F8FA;         /* 超浅灰背景 */
+            --bg-gradient-1: linear-gradient(135deg, #E8F8F5, #EBF5FB); /* 浅青到浅蓝渐变 */
+            --bg-gradient-2: linear-gradient(135deg, #E8F6F3, #EAF2F8); /* 类似但更浅的渐变 */
+            --card-bg: #FFFFFF;          /* 白色卡片 */
+            --card-bg-hover: #F8F9F9;    /* 浅灰卡片悬停 */
+            --gradient-1: linear-gradient(135deg, #5DADE2, #48C9B0);
+            --gradient-2: linear-gradient(135deg, #48C9B0, #7DCEA0);
+            --gradient-3: linear-gradient(135deg, #BB8FCE, #5DADE2);
+            --gradient-4: linear-gradient(45deg, #F7DC6F, #F8C471);
+            --pink-gradient: linear-gradient(135deg, #FF9FF3, #FEC5E5);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
@@ -38,11 +40,9 @@
             font-family: 'Noto Sans KR', sans-serif;
             color: var(--text);
             line-height: 1.5;
-            background-color: var(--dark-bg);
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(255, 51, 102, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(51, 204, 255, 0.05) 0%, transparent 50%),
-                linear-gradient(to bottom, var(--dark-bg), var(--dark-bg-2));
+            background-color: var(--bg-light);
+            background-image: radial-gradient(circle at 15% 50%, rgba(93, 173, 226, 0.05) 0%, transparent 50%),
+                             radial-gradient(circle at 85% 30%, rgba(125, 206, 160, 0.05) 0%, transparent 50%);
             overflow-x: hidden;
         }
         
@@ -55,7 +55,7 @@
         
         /* Header */
         .header {
-            background-color: rgba(15, 17, 26, 0.8);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
@@ -63,7 +63,8 @@
             width: 100%;
             z-index: 1000;
             padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(93, 173, 226, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
         
         .nav {
@@ -93,34 +94,130 @@
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 500px;
+            min-height: 600px;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(15, 17, 26, 0.7), rgba(15, 17, 26, 0.7)), url('img/3.jpg');
+            background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('https://www.ewe94a.online/jiaoyou2/img/1.jpg');
             background-size: cover;
             background-position: center;
             color: var(--text);
             overflow: hidden;
             margin-top: 0;
-            padding: 60px 0 40px;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 51, 102, 0.3), rgba(51, 204, 255, 0.3));
-            mix-blend-mode: overlay;
-            z-index: 1;
+            padding: 80px 0 60px;
+            border-bottom: 1px solid rgba(93, 173, 226, 0.1);
         }
         
         .hero-content {
             position: relative;
             z-index: 3;
             max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(93, 173, 226, 0.2);
+        }
+        
+        .hero-title-main {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: var(--text);
+            text-align: center;
+            position: relative;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-title-main span {
+            background: var(--pink-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+        }
+        
+        .hero-origin {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .hero-origin:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+        
+        .hero-description {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        
+        .hero-match-info {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .hero-plans {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            color: var(--text);
+            font-style: italic;
+        }
+        
+        .hero-question {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .hero-list {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+        
+        .hero-list li {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+            font-weight: 500;
+        }
+        
+        .hero-list li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .hero-ending {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 600;
         }
         
         .hero-badge {
@@ -131,45 +228,28 @@
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 700;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
-        }
-        
-        .hero-title {
-            font-size: 2.8rem;
-            font-weight: 900;
             margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(to right, white, #d0d0d0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.15rem;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(93, 173, 226, 0.2);
         }
         
         .hero-btn {
             display: inline-block;
             background: var(--line-color);
             color: white;
-            padding: 14px 30px;
+            padding: 16px 30px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 5px 25px rgba(6, 199, 85, 0.4);
+            box-shadow: 0 8px 25px rgba(72, 201, 176, 0.3);
             transition: var(--transition);
             cursor: pointer;
             border: none;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            width: 100%;
+            text-align: center;
         }
         
         .hero-btn:before {
@@ -190,7 +270,7 @@
         
         .hero-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(6, 199, 85, 0.6);
+            box-shadow: 0 12px 30px rgba(72, 201, 176, 0.4);
         }
         
         .hero-btn i {
@@ -199,8 +279,8 @@
         
         /* Profiles Section */
         .profiles {
-            padding: 50px 0 30px;
-            background: var(--dark-bg-2);
+            padding: 60px 0 40px;
+            background: var(--bg-gradient-2);
             position: relative;
             overflow: hidden;
         }
@@ -212,14 +292,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22.24H0v-1.41zM22.24 37.17l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM22.24 19.41l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM1.41 19.41l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM19.41 5.17l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM1.41 5.17l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.3;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%235DADE2' fill-opacity='0.07'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22.24H0v-1.41zM22.24 37.17l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM22.24 19.41l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM1.41 19.41l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM19.41 5.17l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41zM1.41 5.17l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
             z-index: 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             position: relative;
             z-index: 1;
         }
@@ -246,19 +326,19 @@
         
         .section-title p {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-light);
             max-width: 700px;
             margin: 0 auto;
         }
         
-        /* New Profile Layout */
+        /* Profile Layout with Larger Images */
         .profiles-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 25px;
             position: relative;
             z-index: 1;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
@@ -269,146 +349,111 @@
             box-shadow: var(--card-shadow);
             transition: var(--transition);
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(93, 173, 226, 0.1);
             display: flex;
             flex-direction: row;
+            align-items: center;
+            padding: 20px;
         }
         
         .profile-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             background: var(--card-bg-hover);
-            border-color: rgba(255, 51, 102, 0.2);
+            border-color: rgba(93, 173, 226, 0.2);
         }
         
-        .profile-image-wrapper {
-            width: 35%;
-            position: relative;
+        .profile-image {
+            width: 240px;
+            height: 240px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-right: 25px;
+            flex-shrink: 0;
+            border: 3px solid rgba(93, 173, 226, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
         
-        .profile-image-wrapper img {
+        .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            transition: transform 0.5s ease;
         }
         
-        .profile-status {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(6, 199, 85, 0.9);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            box-shadow: 0 3px 10px rgba(6, 199, 85, 0.3);
-            z-index: 2;
+        .profile-item:hover .profile-image img {
+            transform: scale(1.05);
         }
         
-        .profile-status i {
-            margin-right: 4px;
-            font-size: 0.7rem;
-        }
-        
-        .profile-details {
-            width: 65%;
-            padding: 20px;
+        .profile-content {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-        }
-        
-        .profile-name-age {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-        
-        .profile-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text);
-            background: linear-gradient(to right, white, #d0d0d0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .profile-age {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            background: rgba(255, 51, 102, 0.2);
-            padding: 3px 10px;
-            border-radius: 50px;
+            justify-content: center;
         }
         
         .profile-bio {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 12px;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
-        
-        .profile-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 15px;
-        }
-        
-        .profile-tag {
-            background: var(--gradient-2);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            box-shadow: 0 3px 10px rgba(51, 204, 255, 0.2);
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
         
         .profile-cta {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
         }
         
         .profile-btn {
             background: var(--line-color);
             color: white;
-            padding: 8px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 3px 10px rgba(6, 199, 85, 0.3);
+            box-shadow: 0 5px 15px rgba(72, 201, 176, 0.2);
             transition: var(--transition);
             cursor: pointer;
             border: none;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: strong-pulse 1.5s infinite;
+        }
+        
+        @keyframes strong-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(72, 201, 176, 0.2);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 10px 25px rgba(72, 201, 176, 0.3);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(72, 201, 176, 0.2);
+            }
         }
         
         .profile-btn:hover {
+            animation: none;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(6, 199, 85, 0.4);
+            box-shadow: 0 8px 20px rgba(72, 201, 176, 0.3);
         }
         
         .profile-btn i {
-            margin-right: 6px;
+            margin-right: 8px;
         }
         
-        .profile-popularity {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .profile-popularity i {
-            color: var(--primary);
-            margin-right: 3px;
+        .profile-code {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            text-align: center;
         }
         
         /* See More Button */
@@ -426,7 +471,7 @@
             border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 5px 20px rgba(124, 77, 255, 0.3);
+            box-shadow: 0 5px 20px rgba(187, 143, 206, 0.2);
             transition: var(--transition);
             cursor: pointer;
             border: none;
@@ -442,7 +487,7 @@
         
         .see-more-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(124, 77, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(187, 143, 206, 0.3);
         }
         
         .see-more-btn:hover i {
@@ -451,8 +496,8 @@
         
         /* Community Section */
         .community {
-            padding: 40px 0 50px;
-            background: var(--dark-bg);
+            padding: 60px 0 70px;
+            background: var(--bg-light);
             position: relative;
             overflow: hidden;
         }
@@ -464,7 +509,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(255, 51, 102, 0.05), rgba(51, 204, 255, 0.05));
+            background: linear-gradient(45deg, rgba(93, 173, 226, 0.05), rgba(125, 206, 160, 0.05));
             z-index: 0;
         }
         
@@ -485,27 +530,24 @@
             color: var(--text);
             margin-bottom: 15px;
             line-height: 1.3;
-            background: linear-gradient(to right, white, #d0d0d0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-weight: 700;
         }
         
         .community-description {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-light);
             margin-bottom: 25px;
             line-height: 1.6;
         }
         
         .community-image {
             flex: 1;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
             position: relative;
             z-index: 1;
-            border: 3px solid rgba(255, 255, 255, 0.05);
+            border: 3px solid rgba(93, 173, 226, 0.1);
         }
         
         .community-image img {
@@ -516,8 +558,12 @@
         
         /* Responsive Adjustments */
         @media (max-width: 992px) {
-            .hero-title {
-                font-size: 2.2rem;
+            .hero-title-main {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                padding: 25px;
             }
             
             .community-content {
@@ -532,24 +578,49 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+            
+            .profile-item {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .profile-image {
+                width: 220px;
+                height: 220px;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .profile-content {
+                width: 100%;
+                text-align: center;
+            }
         }
         
         @media (max-width: 768px) {
-            .hero-title {
+            .hero-title-main {
                 font-size: 1.8rem;
             }
             
-            .hero-subtitle {
+            .hero-origin {
+                font-size: 1.1rem;
+            }
+            
+            .hero-description, .hero-match-info, .hero-plans, .hero-question, .hero-ending {
                 font-size: 1rem;
             }
             
+            .hero-list li {
+                font-size: 0.95rem;
+            }
+            
             .hero {
-                padding: 80px 0 30px;
+                padding: 80px 0 40px;
                 min-height: 450px;
             }
             
             .hero-badge {
-                margin-bottom: 10px;
+                margin-bottom: 15px;
             }
             
             .section-title h2 {
@@ -561,28 +632,47 @@
             }
             
             .community {
-                padding: 30px 0 40px;
+                padding: 40px 0 50px;
             }
             
             .community-title {
                 font-size: 1.6rem;
             }
+            
+            .profile-bio {
+                font-size: 1.2rem;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
         }
         
         @media (max-width: 576px) {
-            .hero-title {
-                font-size: 1.6rem;
-                margin-bottom: 15px;
+            .hero-title-main {
+                font-size: 1.5rem;
             }
             
-            .hero-subtitle {
+            .hero-origin {
+                font-size: 1rem;
+            }
+            
+            .hero-description, .hero-match-info, .hero-plans, .hero-question, .hero-ending {
                 font-size: 0.95rem;
-                margin-bottom: 25px;
+            }
+            
+            .hero-list li {
+                font-size: 0.9rem;
             }
             
             .hero {
                 min-height: 400px;
-                padding: 70px 0 30px;
+                padding: 70px 0 40px;
+            }
+            
+            .hero-content {
+                padding: 20px 15px;
             }
             
             .hero-btn {
@@ -598,22 +688,32 @@
                 font-size: 1.5rem;
             }
             
-            .profile-item {
-                flex-direction: column;
-            }
-            
-            .profile-image-wrapper {
-                width: 100%;
-                height: 200px;
-            }
-            
-            .profile-details {
-                width: 100%;
-            }
-            
             .see-more-btn {
                 padding: 10px 25px;
                 font-size: 0.95rem;
+            }
+            
+            .profile-item {
+                padding: 15px;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .profile-bio {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+            
+            .profile-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            
+            .profile-code {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -632,10 +732,25 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge"><i class="fas fa-compass"></i> 최고의 여행 경험</div>
-                <h1 class="hero-title">완벽한 여행 동반자를 찾고, 경험을 공유하며 아름다운 순간을 만들어보세요</h1>
-                <p class="hero-subtitle">우리의 스마트 시스템을 통해 관심사, 여행 스타일 및 예산에 맞는 동반자를 찾아 모든 여행을 즐거움으로 가득 채우세요.</p>
-                <button class="hero-btn" onclick="opensite()"><i class="fab fa-line"></i> 지금 바로 시작하기</button>
+                <h1 class="hero-title-main">🌸「<span>그녀를 만나다・한일 만남 여행</span>」🌸</h1>
+                <p class="hero-origin">일본에서 온 전용 여행 매칭 서비스</p>
+                
+                <p class="hero-description">한국 여행을 꿈꾸는 일본 여성들에게 믿을 수 있는 여행 가이드를 찾아드립니다.</p>
+                
+                <p class="hero-match-info">스마트 시스템이 당신과 90% 이상의 호환성을 가진 3명의 일본인 여행 동반자를 매칭해 드렸습니다.</p>
+                
+                <p class="hero-plans">그들은 서울의 벚꽃 시즌, 제주도의 바닷바람을 계획하고 있습니다...</p>
+                
+                <p class="hero-question">당신은 다음과 같은 것을 해보시겠습니까:</p>
+                <ul class="hero-list">
+                    <li>숨겨진 한국 드라마 촬영지 추천</li>
+                    <li>현지인만 아는 떡볶이 가게 공유</li>
+                    <li>남산타워에서 당신들만의 여행 추억 만들기</li>
+                </ul>
+                
+                <p class="hero-ending">채팅창이 밝아질 때, 해협을 넘는 여행 이야기가 시작됩니다</p>
+                
+                <button class="hero-btn" onclick="opensite()"><i class="fab fa-line"></i> 스마트 시스템 매칭 성공</button>
             </div>
         </div>
     </section>
@@ -644,85 +759,49 @@
     <section class="profiles">
         <div class="container">
             <div class="section-title">
-                <h2>여행 파트너</h2>
-                <p>당신의 다음 여행을 함께할 동반자를 만나보세요</p>
+                <h2>우리는 90% 이상의 호환성을 가진 3명의 일본인 여행 동반자를 귀하에게 매칭해 드렸습니다.</h2>
+                <p>당신은 하나를 선택할 수 있습니다. 그녀는 온라인에서 당신을 기다리고 있습니다.</p>
             </div>
             
             <div class="profiles-grid">
                 <!-- Profile 1 -->
                 <div class="profile-item">
-                    <div class="profile-image-wrapper">
-                        <div class="profile-status"><i class="fas fa-circle"></i> 온라인</div>
-                        <img src="img/1.png" alt="Adela">
+                    <div class="profile-image">
+                        <img src="img/1.jpg" alt="Adela">
                     </div>
-                    <div class="profile-details">
-                        <div class="profile-name-age">
-                            <h3 class="profile-name">아델라</h3>
-                            <span class="profile-age">25세</span>
-                        </div>
-                        <p class="profile-bio">모든 여행에는 이야기가 있습니다. 함께 여행의 즐거움을 나누고 싶어요.</p>
-                        <div class="profile-tags">
-                            <span class="profile-tag">서핑</span>
-                            <span class="profile-tag">미식 여행</span>
-                            <span class="profile-tag">스파 체험</span>
-                        </div>
+                    <div class="profile-content">
+                        <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
                         <div class="profile-cta">
                             <button class="profile-btn" onclick="opensite1()"><i class="fab fa-line"></i> 연락하기</button>
-                            <div class="profile-popularity">
-                                <i class="fas fa-heart"></i> 238명
-                            </div>
+                            <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Profile 2 -->
                 <div class="profile-item">
-                    <div class="profile-image-wrapper">
-                        <div class="profile-status"><i class="fas fa-circle"></i> 온라인</div>
+                    <div class="profile-image">
                         <img src="img/2.jpg" alt="Adele">
                     </div>
-                    <div class="profile-details">
-                        <div class="profile-name-age">
-                            <h3 class="profile-name">아델</h3>
-                            <span class="profile-age">23세</span>
-                        </div>
-                        <p class="profile-bio">새로운 장소를 탐험하는 것을 좋아해요. 당신의 여행 이야기를 나눠주세요.</p>
-                        <div class="profile-tags">
-                            <span class="profile-tag">해변</span>
-                            <span class="profile-tag">캠핑</span>
-                            <span class="profile-tag">음악 축제</span>
-                        </div>
+                    <div class="profile-content">
+                        <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
                         <div class="profile-cta">
                             <button class="profile-btn" onclick="opensite2()"><i class="fab fa-line"></i> 연락하기</button>
-                            <div class="profile-popularity">
-                                <i class="fas fa-heart"></i> 195명
-                            </div>
+                            <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Profile 3 -->
                 <div class="profile-item">
-                    <div class="profile-image-wrapper">
-                        <div class="profile-status"><i class="fas fa-circle"></i> 온라인</div>
+                    <div class="profile-image">
                         <img src="img/3.jpg" alt="Bonnie">
                     </div>
-                    <div class="profile-details">
-                        <div class="profile-name-age">
-                            <h3 class="profile-name">보니</h3>
-                            <span class="profile-age">24세</span>
-                        </div>
-                        <p class="profile-bio">여행을 사랑하며 모험 이야기를 당신과 나누고 싶어요.</p>
-                        <div class="profile-tags">
-                            <span class="profile-tag">온천 여행</span>
-                            <span class="profile-tag">모험</span>
-                            <span class="profile-tag">스쿠버다이빙</span>
-                        </div>
+                    <div class="profile-content">
+                        <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
                         <div class="profile-cta">
                             <button class="profile-btn" onclick="opensite3()"><i class="fab fa-line"></i> 연락하기</button>
-                            <div class="profile-popularity">
-                                <i class="fas fa-heart"></i> 212명
-                            </div>
+                            <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
                         </div>
                     </div>
                 </div>
@@ -744,7 +823,7 @@
                     <button class="hero-btn" onclick="opensite()"><i class="fab fa-line"></i> 커뮤니티 가입하기</button>
                 </div>
                 <div class="community-image">
-                    <img src="img/3.jpg" alt="Travel Community">
+                    <img src="img/d.jpg" alt="Travel Community">
                 </div>
             </div>
         </div>
