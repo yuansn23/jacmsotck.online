@@ -331,14 +331,14 @@
             margin: 0 auto;
         }
         
-        /* Profile Layout with Larger Images */
+        /* Enhanced Profile Layout with Image Gallery */
         .profiles-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
+            gap: 35px;
             position: relative;
             z-index: 1;
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
@@ -350,10 +350,7 @@
             transition: var(--transition);
             position: relative;
             border: 1px solid rgba(93, 173, 226, 0.1);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 20px;
+            padding: 25px;
         }
         
         .profile-item:hover {
@@ -363,7 +360,13 @@
             border-color: rgba(93, 173, 226, 0.2);
         }
         
-        .profile-image {
+        .profile-header {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .profile-main-image {
             width: 240px;
             height: 240px;
             border-radius: 16px;
@@ -372,16 +375,18 @@
             flex-shrink: 0;
             border: 3px solid rgba(93, 173, 226, 0.1);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
         
-        .profile-image img {
+        .profile-main-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
+            object-position: center 15%; /* 调整焦点在脸部 */
         }
         
-        .profile-item:hover .profile-image img {
+        .profile-item:hover .profile-main-image img {
             transform: scale(1.05);
         }
         
@@ -454,6 +459,140 @@
             color: var(--text-light);
             margin-top: 5px;
             text-align: center;
+        }
+        
+        /* Image Gallery */
+        .profile-gallery {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .gallery-title {
+            grid-column: span 3;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .gallery-image {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            border: 2px solid rgba(93, 173, 226, 0.1);
+            transition: var(--transition);
+            aspect-ratio: 1/1; /* 保持1:1的宽高比 */
+        }
+        
+        .gallery-image:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            object-position: center 15%; /* 调整焦点在脸部 */
+        }
+        
+        .gallery-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, transparent 60%);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 15px;
+        }
+        
+        .gallery-image:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-icon {
+            color: white;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        /* 特殊样式调整 - 使照片更专注于脸部 */
+        .face-focus-1 img {
+            object-position: center 10%;
+        }
+        
+        .face-focus-2 img {
+            object-position: center 20%;
+        }
+        
+        .face-focus-3 img {
+            object-position: center 25%;
+        }
+        
+        /* Modal for full image view */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         /* See More Button */
@@ -579,12 +718,12 @@
                 margin-right: auto;
             }
             
-            .profile-item {
+            .profile-header {
                 flex-direction: column;
-                padding: 20px;
+                align-items: center;
             }
             
-            .profile-image {
+            .profile-main-image {
                 width: 220px;
                 height: 220px;
                 margin-right: 0;
@@ -594,6 +733,10 @@
             .profile-content {
                 width: 100%;
                 text-align: center;
+            }
+            
+            .profile-gallery {
+                margin-top: 10px;
             }
         }
         
@@ -641,11 +784,6 @@
             
             .profile-bio {
                 font-size: 1.2rem;
-            }
-            
-            .profile-image {
-                width: 200px;
-                height: 200px;
             }
         }
         
@@ -697,9 +835,9 @@
                 padding: 15px;
             }
             
-            .profile-image {
-                width: 200px;
-                height: 200px;
+            .profile-main-image {
+                width: 180px;
+                height: 180px;
             }
             
             .profile-bio {
@@ -714,6 +852,10 @@
             
             .profile-code {
                 font-size: 0.85rem;
+            }
+            
+            .gallery-title {
+                font-size: 1rem;
             }
         }
     </style>
@@ -766,48 +908,117 @@
             <div class="profiles-grid">
                 <!-- Profile 1 -->
                 <div class="profile-item">
-                    <div class="profile-image">
-                        <img src="img/1.jpg" alt="Adela">
+                    <div class="profile-header">
+                        <div class="profile-main-image face-focus-1">
+                            <img src="img/cr334/1-2.jpg" alt="Adela">
+                        </div>
+                        <div class="profile-content">
+                            <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
+                            <div class="profile-cta">
+                                <button class="profile-btn" onclick="opensite1()"><i class="fab fa-line"></i> 연락하기</button>
+                                <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="profile-content">
-                        <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
-                        <div class="profile-cta">
-                            <button class="profile-btn" onclick="opensite1()"><i class="fab fa-line"></i> 연락하기</button>
-                            <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
+                    <div class="profile-gallery">
+                        <div class="gallery-title">그녀의 여행 사진 더보기</div>
+                        <div class="gallery-image face-focus-1" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/1.jpg')">
+                            <img src="img/cr334/1-3.jpg" alt="Gallery 1">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="gallery-image face-focus-2" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/1.jpg')">
+                            <img src="img/cr334/1-4.jpg" alt="Gallery 2">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="gallery-image face-focus-3" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/1.jpg')">
+                            <img src="img/cr334/1-2.jpg" alt="Gallery 3">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Profile 2 -->
                 <div class="profile-item">
-                    <div class="profile-image">
-                        <img src="img/2.jpg" alt="Adele">
+                    <div class="profile-header">
+                        <div class="profile-main-image face-focus-1">
+                            <img src="img/dzz918/4.jpg" alt="Adele">
+                        </div>
+                        <div class="profile-content">
+                            <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
+                            <div class="profile-cta">
+                                <button class="profile-btn" onclick="opensite2()"><i class="fab fa-line"></i> 연락하기</button>
+                                <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="profile-content">
-                        <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
-                        <div class="profile-cta">
-                            <button class="profile-btn" onclick="opensite2()"><i class="fab fa-line"></i> 연락하기</button>
-                            <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
+                    <div class="profile-gallery">
+                        <div class="gallery-title">그녀의 여행 사진 더보기</div>
+                        <div class="gallery-image face-focus-1" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/2.jpg')">
+                            <img src="img/dzz918/4-1.jpg" alt="Gallery 1">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="gallery-image face-focus-2" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/2.jpg')">
+                            <img src="img/dzz918/4-2.jpg" alt="Gallery 2">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="gallery-image face-focus-3" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/2.jpg')">
+                            <img src="img/dzz918/4.jpg" alt="Gallery 3">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Profile 3 -->
                 <div class="profile-item">
-                    <div class="profile-image">
-                        <img src="img/3.jpg" alt="Bonnie">
+                    <div class="profile-header">
+                        <div class="profile-main-image face-focus-1">
+                            <img src="img/mayme/5.jpg" alt="Bonnie">
+                        </div>
+                        <div class="profile-content">
+                            <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
+                            <div class="profile-cta">
+                                <button class="profile-btn" onclick="opensite3()"><i class="fab fa-line"></i> 연락하기</button>
+                                <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="profile-content">
-                        <p class="profile-bio">당신과 그녀의 호환성은 98%입니다</p>
-                        <div class="profile-cta">
-                            <button class="profile-btn" onclick="opensite3()"><i class="fab fa-line"></i> 연락하기</button>
-                            <div class="profile-code">전용 암호 "888"를 꼭 메모해주세요</div>
+                    <div class="profile-gallery">
+                        <div class="gallery-title">그녀의 여행 사진 더보기</div>
+                        <div class="gallery-image face-focus-1" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/3.jpg')">
+                            <img src="img/mayme/5-2.jpg" alt="Gallery 1">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="gallery-image face-focus-2" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/3.jpg')">
+                            <img src="img/mayme/5-1.jpg" alt="Gallery 2">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="gallery-image face-focus-3" onclick="openModal('https://www.ewe94a.online/jiaoyou2/img/3.jpg')">
+                            <img src="img/mayme/5.jpg" alt="Gallery 3">
+                            <div class="gallery-overlay">
+                                <span class="gallery-icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-             
+            
         </div>
     </section>
     
@@ -827,15 +1038,21 @@
         </div>
     </section>
     
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
     <script>
         // LINE link function
         function opensite() {
-            window.open('https://line.me/ti/p/a_cK5JY9ut', '_blank');
+            window.open('https://line.me/ti/p/your_line_id', '_blank');
         }
         
         // 3 different functions for each profile
         function opensite1() {
-            window.open('https://line.me/ti/p/a_cK5JY9ut', '_blank');
+            window.open('https://line.me/ti/p/RyF_axN9Xm', '_blank');
         }
         
         function opensite2() {
@@ -843,7 +1060,27 @@
         }
         
         function opensite3() {
-            window.open('https://line.me/ti/p/RyF_axN9Xm', '_blank');
+            window.open('https://line.me/ti/p/a_cK5JY9ut', '_blank');
+        }
+        
+        // Modal functions
+        function openModal(imgSrc) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+        }
+        
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        
+        // Close modal when clicking outside of the image
+        window.onclick = function(event) {
+            const modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                closeModal();
+            }
         }
     </script>
 </body>
