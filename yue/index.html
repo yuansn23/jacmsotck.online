@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nền tảng công cụ hợp đồng chuỗi khối</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #e63946;
+            --primary-dark: #1d1e22;
+            --primary-black: #0a0a0a;
+            --accent-gold: #ffd700;
+            --accent-red-light: #ff6b6b;
+            --text-light: #f5f5f5;
+            --text-dark: #333333;
+            --card-bg: #1a1a1a;
+            --card-highlight: #2a2a2a;
+            --border-radius: 12px;
+            --glow-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --section-padding: 30px;
+            --element-spacing: 30px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            background-color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .blockchain-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            padding: var(--section-padding) 0;
+            background: radial-gradient(circle at center, #2d2d2d 0%, var(--primary-black) 70%);
+            overflow: hidden;
+        }
+        
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(230, 57, 70, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(230, 57, 70, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+        
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            display: block;
+            background-color: var(--primary-red);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 20s linear infinite;
+        }
+        
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 40%; top: 40%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 60%; top: 10%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 80%; top: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 30%; top: 30%; animation-delay: 10s; }
+        .particle:nth-child(7) { left: 70%; top: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { left: 90%; top: 90%; animation-delay: 14s; }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(45deg);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-120vh) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150vh) rotate(360deg);
+            }
+        }
+        
+        .content-container {
+            position: relative;
+            z-index: 3;
+            padding: 0 30px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--element-spacing);
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .hero-image-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            transition: var(--transition);
+        }
+        
+        .hero-image-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow-shadow);
+        }
+        
+        .hero-image-frame:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.3) 0%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .hero-image-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .hero-image-frame:hover img {
+            transform: scale(1.05);
+        }
+        
+        .hero-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--accent-gold);
+            color: var(--primary-black);
+            padding: 5px 15px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-red), var(--accent-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(230, 57, 70, 0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        
+        .action-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-red-light));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .action-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(230, 57, 70, 0.5);
+        }
+        
+        .action-btn:hover:before {
+            left: 100%;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: var(--section-padding) 0;
+            background-color: var(--primary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e63946' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-red), transparent);
+            bottom: -10px;
+            left: 20%;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(230, 57, 70, 0.3);
+            border-color: rgba(230, 57, 70, 0.2);
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-gold), var(--primary-red));
+            z-index: 1;
+            background-size: 200% 200%;
+            animation: gradientFlow 3s linear infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(230, 57, 70, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            position: relative;
+        }
+        
+        .feature-icon:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+        
+        .feature-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: var(--section-padding) 0;
+            background-color: var(--primary-black);
+            position: relative;
+        }
+        
+        .benefits-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .benefits-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .benefits-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .benefits-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+        }
+        
+        .benefits-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .benefits-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+        
+        .benefits-items {
+            margin-top: 20px;
+        }
+        
+        .benefit-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(29, 30, 34, 0.6);
+            border-left: 4px solid var(--primary-red);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .benefit-item:nth-child(2) {
+            border-left-color: var(--accent-gold);
+        }
+        
+        .benefit-item:nth-child(3) {
+            border-left-color: var(--accent-red-light);
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+        
+        .benefit-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+        }
+        
+        /* Disclaimer Section */
+        .disclaimer-section {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(to bottom, var(--card-bg), var(--primary-black));
+            color: var(--text-light);
+            position: relative;
+        }
+        
+        .disclaimer-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .disclaimer-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .disclaimer-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .disclaimer-card {
+            background: rgba(26, 26, 26, 0.7);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .disclaimer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .disclaimer-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 50px 50px 0;
+            border-color: transparent var(--primary-red) transparent transparent;
+        }
+        
+        .disclaimer-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+        }
+        
+        .disclaimer-card-title:before {
+            content: '!';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Additional Disclosure Section */
+        .disclosure-section {
+            padding: var(--section-padding) 0;
+            background-color: rgba(10, 10, 10, 0.8);
+            position: relative;
+            border-top: 1px solid rgba(230, 57, 70, 0.2);
+        }
+        
+        .disclosure-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .disclosure-title {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .disclosure-content {
+            background: rgba(29, 30, 34, 0.6);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .disclosure-section-title {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            margin-top: 15px;
+            border-left: 3px solid var(--primary-red);
+            padding-left: 15px;
+        }
+        
+        .disclosure-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .disclosure-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .disclosure-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .disclosure-link:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-gold);
+            bottom: -3px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .disclosure-link:hover {
+            color: var(--primary-red);
+        }
+        
+        .disclosure-link:hover:after {
+            transform: scaleX(1);
+            transform-origin: left;
+            background: var(--primary-red);
+        }
+        
+        /* Footer */
+        .site-footer {
+            background-color: var(--primary-black);
+            padding: 30px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-red-light));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            min-width: 300px;
+            white-space: nowrap;
+            animation: floatPulse 2s infinite;
+            overflow: hidden;
+        }
+        
+        .floating-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+        
+        .floating-button:hover:before {
+            left: 100%;
+        }
+        
+        @keyframes floatPulse {
+            0% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 15px 40px rgba(230, 57, 70, 0.5);
+            }
+            100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+            }
+        }
+        
+        /* Special effects */
+        .glow-text {
+            text-shadow: 0 0 10px var(--primary-red);
+        }
+        
+        .highlight-text {
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature-title {
+                font-size: 1.4rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+            }
+            
+            .benefits-container {
+                flex-direction: column-reverse;
+            }
+            
+            .benefits-content {
+                text-align: center;
+            }
+            
+            .benefit-item {
+                text-align: left;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 50px 0;
+            }
+            
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .action-btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .floating-button {
+                min-width: 250px;
+                padding: 14px 25px;
+                font-size: 1rem;
+            }
+            
+            .feature-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blockchain-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-grid"></div>
+            <div class="hero-particles">
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+            </div>
+            <div class="content-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Khám phá nền tảng công cụ hợp đồng chuỗi khối sáng tạo</h1>
+                        <p class="hero-subtitle">Chào mừng bạn trải nghiệm nền tảng thực thi hợp đồng thông minh của chúng tôi, kết hợp phân tích AI và công nghệ đa chuỗi (TRX/BSC/SOL), mang đến cho bạn trải nghiệm tương tác chuỗi hiệu quả, minh bạch. Dù bạn là người mới bắt đầu hay người dùng chuyên nghiệp, đều có thể dễ dàng sử dụng các công cụ và dịch vụ của chúng tôi.</p>
+                        <button class="action-btn" onclick="openkk()">Tham gia ngay</button>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-frame">
+                            <img src="img/1.jpg" alt="">
+                            <div class="hero-badge">Công nghệ mới</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="features-bg"></div>
+            <div class="content-container">
+                <div class="section-heading">
+                    <h2 class="section-title">Chức năng cốt lõi</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">1</div>
+                        <h3 class="feature-title">Công cụ chiến lược lượng hóa thông minh</h3>
+                        <p class="feature-text">Sử dụng công nghệ AI để phân tích dữ liệu thị trường, hỗ trợ tối ưu hóa quyết định hoạt động trên chuỗi (không cấu thành lời khuyên đầu tư).</p>
+                        <button class="action-btn" onclick="openkk()">Khám phá ngay</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">2</div>
+                        <h3 class="feature-title">Theo dõi dữ liệu chuỗi thời gian thực</h3>
+                        <p class="feature-text">Nhận và phân tích dữ liệu blockchain theo thời gian thực, giúp bạn hiểu sâu hơn về động thái thị trường.</p>
+                        <button class="action-btn" onclick="openkk()">Trải nghiệm ngay</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">3</div>
+                        <h3 class="feature-title">Trải nghiệm hợp đồng thông minh TRX</h3>
+                        <p class="feature-text">Tham gia các hoạt động của nền tảng, khám phá ứng dụng của hợp đồng thông minh TRX, cảm nhận tính minh bạch và bảo mật của công nghệ blockchain.</p>
+                        <button class="action-btn" onclick="openkk()">Bắt đầu ngay</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="content-container">
+                <div class="section-heading">
+                    <h2 class="section-title">Lợi thế nền tảng</h2>
+                </div>
+                <div class="benefits-container">
+                    <div class="benefits-content">
+                        <div class="benefits-items">
+                            <div class="benefit-item">
+                                <h3 class="benefit-title">Khám phá công nghệ hợp đồng thông minh</h3>
+                                <p class="benefit-text">Thông qua các hoạt động tương tác, hiểu sâu hơn về tiềm năng của hợp đồng thông minh, mở rộng kiến thức blockchain.</p>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <h3 class="benefit-title">Hỗ trợ công cụ chuỗi hiệu quả</h3>
+                                <p class="benefit-text">Đăng ký để sử dụng các công cụ hệ sinh thái TRX, giúp bạn quản lý các hoạt động trên chuỗi thuận tiện hơn.</p>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <h3 class="benefit-title">Ưu đãi người dùng mới có thời hạn</h3>
+                                <p class="benefit-text">Đăng ký ngay, mở khóa phần thưởng trải nghiệm tương tác chuỗi độc quyền.</p>
+                            </div>
+                        </div>
+                        <button class="action-btn" onclick="openkk()">Tham gia ngay</button>
+                    </div>
+                    <div class="benefits-image">
+                        <div class="benefits-image-wrapper">
+                            <img src="img/4.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        
+        <!-- Additional Disclosure Section -->
+        <section class="disclosure-section">
+            <div class="disclosure-container">
+                <h2 class="disclosure-title">Tuyên bố miễn trừ trách nhiệm chi tiết</h2>
+                <div class="disclosure-content">
+                    
+                    <h3 class="disclosure-section-title">Tuân thủ quy định</h3>
+                    <p class="disclosure-text">Người dùng nên tự tìm hiểu và tuân thủ tất cả các luật, quy định và nghĩa vụ thuế áp dụng tại quốc gia của họ liên quan đến tài sản kỹ thuật số. Nền tảng này không cung cấp bất kỳ lời khuyên pháp lý, thuế hoặc quy định nào. Chúng tôi khuyến nghị bạn tham khảo ý kiến của chuyên gia tư vấn pháp lý, thuế hoặc tài chính trước khi tham gia vào bất kỳ hoạt động liên quan đến tài sản kỹ thuật số.</p>
+                    
+                    <h3 class="disclosure-section-title">Bảo mật thông tin</h3>
+                    <p class="disclosure-text">Mặc dù chúng tôi nỗ lực bảo vệ thông tin của người dùng, nhưng không có hệ thống bảo mật nào là hoàn hảo. Người dùng nên luôn thực hiện các biện pháp bảo mật thích hợp khi sử dụng nền tảng của chúng tôi, bao gồm việc sử dụng mật khẩu mạnh, bật xác thực hai yếu tố và không chia sẻ thông tin đăng nhập của họ với người khác.</p>
+                    
+                    <div class="disclosure-links">
+                        <a href="" class="disclosure-link">Điều khoản sử dụng</a>
+                        <a href="" class="disclosure-link">Chính sách bảo mật</a>
+                        <a href="" class="disclosure-link">Quy tắc cộng đồng</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="content-container">
+                <p>&copy; 2023 Nền tảng công cụ hợp đồng chuỗi khối. Bảo lưu mọi quyền.</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Floating Button -->
+    <button class="floating-button" onclick="openkk()">Tham gia ngay và khám phá công nghệ blockchain</button>
+    
+    <script>
+        function openkk() {
+            window.open('https://api.whatsapp.com/send?phone=YOUR_NUMBER', '_blank');
+        }
+    </script>
+</body>
+</html>
