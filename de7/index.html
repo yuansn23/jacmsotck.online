@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Frank Thelen Investoren-Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0055a4;
+            --secondary: #0073e6;
+            --accent: #ff4d00;
+            --accent-hover: #ff6b2b;
+            --success: #00c15b;
+            --dark: #111827;
+            --light: #f9fafb;
+            --gray: #4b5563;
+            --gray-light: #9ca3af;
+            --gray-lighter: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f5f8fa;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #0055a4, #0073e6);
+            color: white;
+            padding: 6rem 0 5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(255,255,255,0.05)" x="0" y="0" width="50" height="50" /><rect fill="rgba(255,255,255,0.05)" x="50" y="50" width="50" height="50" /></svg>');
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: var(--accent);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 77, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: buttonBreathe 3s infinite;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 77, 0, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+        }
+        
+        .btn-secondary {
+            background-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 85, 164, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #004c91;
+            box-shadow: 0 6px 15px rgba(0, 85, 164, 0.4);
+        }
+        
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: '\201C';
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: rgba(0, 85, 164, 0.1);
+            font-family: serif;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .testimonial-rating {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .partners {
+            text-align: center;
+            background: #f9fafb;
+        }
+        
+        .partner-logo {
+            max-width: 180px;
+            max-height: 100px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        
+        .handbook-features {
+            background-color: #f9fafb;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .handbook-feature {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .handbook-feature:before {
+            content: '';
+            position: absolute;
+            top: 0.5rem;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .handbook-feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #0055a4, #0073e6);
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(255,255,255,0.05)" x="0" y="0" width="50" height="50" /><rect fill="rgba(255,255,255,0.05)" x="50" y="50" width="50" height="50" /></svg>');
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .whatsapp-button {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-button:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 22px;
+            height: 22px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 400px;
+            padding: 1.2rem 2.5rem;
+            z-index: 99;
+            animation: buttonBreathe 3s infinite;
+        }
+        
+        .blog-section {
+            background: #f9fafb;
+        }
+        
+        .blog-card {
+            height: 100%;
+        }
+        
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .disclaimer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .bg-light {
+            background-color: #f9fafb;
+        }
+        
+        .bg-white {
+            background-color: white;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 4rem;
+        }
+        
+        .p-2 {
+            padding: 2rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 115, 230, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .badge-accent {
+            background: rgba(255, 77, 0, 0.1);
+            color: var(--accent);
+        }
+        
+        /* Enhanced Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes buttonBreathe {
+            0% { transform: translateX(-50%) scale(1); box-shadow: 0 4px 12px rgba(255, 77, 0, 0.3); }
+            50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 12px 24px rgba(255, 77, 0, 0.6); }
+            100% { transform: translateX(-50%) scale(1); box-shadow: 0 4px 12px rgba(255, 77, 0, 0.3); }
+        }
+        
+        /* Button breathing effect */
+        .btn:not(.floating-button) {
+            animation: btnPulse 3s infinite;
+        }
+        
+        @keyframes btnPulse {
+            0% { transform: scale(1); box-shadow: 0 4px 12px rgba(255, 77, 0, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 24px rgba(255, 77, 0, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 12px rgba(255, 77, 0, 0.3); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .floating-button {
+                min-width: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-5 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 5rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .floating-button {
+                min-width: 300px;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-button" onclick="opensite()">
+        <i class="fab fa-whatsapp"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Werden Sie Mitglied der Frank Thelen Investoren-Community</h1>
+                        <p>Treten Sie jetzt der neuen Investoren-Community von Frank Thelen bei - die ersten 500 Mitglieder können kostenlos beitreten! Als besonderes Highlight erhalten Sie ein Investoren-Handbuch, das Frank Thelen persönlich verfasst hat und Ihnen wertvolle Einblicke und Strategien für erfolgreiches Investment bietet. Nutzen Sie diese einzigartige Gelegenheit, von einem der führenden Technologie-Investoren Europas zu lernen und Teil dieser visionären Gemeinschaft zu werden.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Jetzt kostenlos beitreten</button>
+                    </div>
+                </div>
+                <div>
+                    <img src="img/header-img13.png" alt="Frank Thelen Investoren-Community" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunity Section -->
+    <section class="section bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ihre Chance mit der Frank Thelen Investoren-Community</h2>
+            </div>
+            <div class="grid grid-2">
+                <div>
+                    <img src="img/header-img13.png" alt="Frank Thelen" class="hero-img">
+                </div>
+                <div>
+                    <p>Entdecken Sie eine einzigartige Plattform, gegründet von Frank Thelen, einem der erfolgreichsten Serienunternehmer und Technologie-Investoren Europas. Die Investoren-Community bietet Ihnen nicht nur Zugang zu Frank Thelens umfangreichem Wissen, sondern auch die Möglichkeit, sich mit Gleichgesinnten zu vernetzen und von praktischen Erfahrungen zu profitieren.</p>
+                    
+                    <div class="handbook-feature">
+                        <h3>1. Frank Thelens persönliche Einblicke</h3>
+                    </div>
+                    
+                    <div class="handbook-feature">
+                        <h3>2. Die ersten 500 Mitglieder können kostenlos beitreten</h3>
+                    </div>
+                    
+                    <p>Ein inspirierendes Netzwerk für zukunftsorientierte Investoren, kombiniert mit einem einzigartigen Handbuch, verfasst von Frank Thelen selbst, das Ihnen tiefere Einblicke in das Wesen erfolgreicher Investments vermittelt.</p>
+                    
+                    <button class="btn btn-primary mt-4" onclick="opensite()">Reservieren Sie jetzt Ihren Platz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Handbook Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frank Thelens Investoren-Handbuch</h2>
+            </div>
+            <div class="handbook-features">
+                <div class="handbook-feature">
+                    <h3>Die DNA erfolgreicher Startups</h3>
+                    <p>Erfahren Sie die wichtigsten Faktoren bei der Auswahl von Seed-Investments - basierend auf Frank Thelens Erfolgen mit Lilium Aviation und Wunderlist.</p>
+                </div>
+                
+                <div class="handbook-feature">
+                    <h3>10xDNA: Exponentielles Wachstumsdenken</h3>
+                    <p>Lernen Sie die Denkweise kennen, die bahnbrechende Innovationen vorantreibt, inspiriert von Frank Thelens Bestseller "10xDNA".</p>
+                </div>
+                
+                <div class="handbook-feature">
+                    <h3>Risikomanagement für Investoren</h3>
+                    <p>Entdecken Sie, wie Sie Risiken minimieren und Chancen maximieren können - mit Strategien aus Frank Thelens Investmentpraxis.</p>
+                </div>
+                
+                <div class="handbook-feature">
+                    <h3>Von der Idee zum Marktführer</h3>
+                    <p>Erfahren Sie anhand realer Beispiele wie YFood und Ankerkraut, welche Schritte Startups zum Erfolg führen.</p>
+                </div>
+                
+                <div class="handbook-feature">
+                    <h3>Netzwerken wie ein Profi</h3>
+                    <p>Erhalten Sie Tipps zum Aufbau eines starken Investoren-Netzwerks - ein Schlüssel zu Frank Thelens Erfolg.</p>
+                </div>
+                
+                <div class="handbook-feature">
+                    <h3>Zukunftstrends im Tech-Bereich</h3>
+                    <p>Bleiben Sie am Puls der Zeit durch Frank Thelens Analysen zukünftiger bedeutender Entwicklungen in Technologie und Design.</p>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary" onclick="opensite()">Handbuch jetzt kostenlos erhalten</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Warum die Frank Thelen Investoren-Community einzigartig ist</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="card feature-card">
+                    <img src="img/service-img1-h13.png" alt="Frank Thelens direkte Einblicke" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Frank Thelens direkte Einblicke</h3>
+                    </div>
+                </div>
+                
+                <div class="card feature-card">
+                    <img src="img/service-img2-h13.png" alt="Limitierte Plätze für Vorreiter" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Limitierte Plätze für Vorreiter</h3>
+                    </div>
+                </div>
+                
+                <div class="card feature-card">
+                    <img src="img/service-img3-h13.png" alt="Vernetzung mit Gleichgesinnten" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Vernetzung mit Gleichgesinnten</h3>
+                    </div>
+                </div>
+                
+                <div class="card feature-card">
+                    <img src="img/service-img4-h13.png" alt="Strategien aus der Praxis" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Strategien aus der Praxis</h3>
+                    </div>
+                </div>
+                
+                <div class="card feature-card">
+                    <img src="img/service-img5-h13.png" alt="Frühzeitige Trendbewusstein" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Frühzeitige Trendbewusstein</h3>
+                    </div>
+                </div>
+                
+                <div class="card feature-card">
+                    <img src="img/service-img6-h13.png" alt="Von den Besten lernen" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Von den Besten lernen</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="opensite()">Jetzt kostenlos beitreten</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bewertungen der Mitglieder über Frank Thelen</h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Die Einblicke, die ich durch die Community gewonnen habe, haben meine Sichtweise auf Technologie-Investments komplett verändert. Frank Thelens Ansatz ist praktisch und sehr wertvoll für jeden, der in diesem Bereich investieren möchte."</p>
+                        <div class="testimonial-author">
+                            <img src="https://pfst.cf2.poecdn.net/base/image/2644b96eb81bddc3adc4e31597200564911a9a5d96c4f8fa9c60b58f8ee4290d?w=270&h=370" alt="Testimonial Author" class="testimonial-avatar">
+                            <div>
+                                <h4>Michael S.</h4>
+                                <p>Community-Mitglied seit 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Ich bin beeindruckt von der Qualität des Investoren-Handbuchs. Es bietet konkrete Strategien und Tipps, die sofort anwendbar sind. Die Community ist außerdem eine hervorragende Möglichkeit, sich mit anderen ambitionierten Investoren zu vernetzen."</p>
+                        <div class="testimonial-author">
+                            <img src="https://pfst.cf2.poecdn.net/base/image/a65a91eb7149f4ef8b69d4c2c5dfdb80096d8ea0615d17eae579a070d99c0820?w=270&h=370" alt="Testimonial Author" class="testimonial-avatar">
+                            <div>
+                                <h4>Laura K.</h4>
+                                <p>Investorin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Als Anfänger im Bereich der Technologie-Investments war ich anfangs unsicher. Dank der strukturierten Informationen und der klaren Anleitungen im Handbuch fühle ich mich jetzt viel besser vorbereitet, fundierte Entscheidungen zu treffen."</p>
+                        <div class="testimonial-author">
+                            <img src="https://pfst.cf2.poecdn.net/base/image/be6007363b933fe3ef08b3497ee14178e62b97766c75df0845fdc54fc234b067?w=370&h=370" alt="Testimonial Author" class="testimonial-avatar">
+                            <div>
+                                <h4>Thomas W.</h4>
+                                <p>Neueinsteiger</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Die Community bietet einen einzigartigen Mehrwert durch die Kombination aus Expertenwissen und praktischer Anwendung. Die regelmäßigen Updates zu Trends und Entwicklungen helfen mir, immer auf dem neuesten Stand zu bleiben."</p>
+                        <div class="testimonial-author">
+                            <img src="https://pfst.cf2.poecdn.net/base/image/b3f3f7629b27636e7677ce4f5a479c5d6fa5020358403d03554b78656f15fed0?w=800&h=599" alt="Testimonial Author" class="testimonial-avatar">
+                            <div>
+                                <h4>Sabine L.</h4>
+                                <p>Erfahrene Investorin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section partners">
+        <div class="container">
+            <div class="section-title">
+                <h2>Starke Allianzen - Unsere Partner unterstützen Sie zum Erfolg</h2>
+            </div>
+            <div class="grid grid-5">
+                <div class="p-2">
+                    <img src="img/a1.png" alt="KfW" class="partner-logo">
+                </div>
+                <div class="p-2">
+                    <img src="img/a2.png" alt="Partner" class="partner-logo">
+                </div>
+                <div class="p-2">
+                    <img src="img/a3.png" alt="Partner" class="partner-logo">
+                </div>
+                <div class="p-2">
+                    <img src="img/a4.png" alt="Deutsche Bank" class="partner-logo">
+                </div>
+                <div class="p-2">
+                    <img src="img/a5.png" alt="Commerzbank" class="partner-logo">
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="opensite()">Jetzt kostenlos beitreten</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frank Thelens Perspektiven für Investoren</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="card blog-card">
+                    <img src="img/blog-img1-h13.png" alt="Blog" class="blog-img">
+                    <div class="card-body">
+                        <div class="badge badge-accent">Investment Strategie</div>
+                        <h3 class="card-title">Die Kunst, das nächste Einhorn zu finden</h3>
+                        <p>Frank Thelen erläutert, worauf er bei Seed-Investments achtet und wie er Erfolgsgeschichten wie Lilium Aviation und Wunderlist frühzeitig erkannt hat.</p>
+                    </div>
+                </div>
+                
+                <div class="card blog-card">
+                    <img src="img/blog-img2-h13.png" alt="Blog" class="blog-img">
+                    <div class="card-body">
+                        <div class="badge badge-accent">Zukunftsdenken</div>
+                        <h3 class="card-title">10xDNA: Wie exponentielles Denken die Welt verändert</h3>
+                        <p>Tauchen Sie ein in die Prinzipien seines Bestsellers "10xDNA" und erfahren Sie, wie Investoren dieses Mindset für nachhaltiges Wachstum nutzen können.</p>
+                    </div>
+                </div>
+                
+                <div class="card blog-card">
+                    <img src="img/blog-img3-h13.png" alt="Blog" class="blog-img">
+                    <div class="card-body">
+                        <div class="badge badge-accent">Technologie-Trends</div>
+                        <h3 class="card-title">Die Zukunft gestalten: Trends, die Technologie-Investoren nicht ignorieren dürfen</h3>
+                        <p>Frank Thelen analysiert die nächsten großen Entwicklungen in Technologie und Design und zeigt, wie Investoren davon profitieren können.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="opensite()">Jetzt kostenlos beitreten</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Gestalten Sie die Zukunft - Handeln Sie jetzt!</h2>
+            <p>Werden Sie Mitglied der Frank Thelen Investoren-Community und nutzen Sie die Chance, von einem der erfolgreichsten Technologie-Investoren Europas zu lernen. Die ersten 500 Mitglieder erhalten einen einzigartigen kostenlosen Zugang sowie das Investoren-Handbuch, persönlich verfasst von Frank Thelen. Verpassen Sie nicht diese Gelegenheit, Ihr Wissen zu erweitern, Ihr Netzwerk zu stärken und Teil der Gestaltung der nächsten großen Innovationswelle zu werden. Handeln Sie jetzt und sichern Sie sich Ihren Platz in dieser Community, die auf Vision und Erfolg aufbaut!</p>
+            <button class="btn btn-primary" onclick="opensite()">Jetzt kostenlos beitreten</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <h3>Wichtiger Hinweis:</h3>
+                <p>Die auf dieser Website bereitgestellten Informationen dienen ausschließlich zu Bildungs- und Informationszwecken. Sie stellen keine Anlageberatung, Investmentempfehlung oder ein Angebot zum Kauf oder Verkauf von Wertpapieren dar. Alle Investments beinhalten Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Vergangene Erfolge garantieren keine zukünftigen Ergebnisse. Bevor Sie Investitionsentscheidungen treffen, sollten Sie einen qualifizierten Finanzberater konsultieren. Die Frank Thelen Investoren-Community ist eine Bildungsplattform für den Austausch von Wissen und Erfahrungen und bietet keine individuellen Anlageempfehlungen. Jeder Teilnehmer ist für seine eigenen Investitionsentscheidungen selbst verantwortlich.</p>
+            </div>
+            <div class="text-center mt-4">
+                <p>&copy; 2023 Frank Thelen Investoren-Community. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <button class="btn btn-primary floating-button" onclick="opensite()">Jetzt der Community beitreten</button>
+
+    <script>
+        function opensite() {
+            window.open("https://wa.me/YOUR_WHATSAPP_NUMBER?text=Ich%20möchte%20mehr%20über%20die%20Frank%20Thelen%20Investoren-Community%20erfahren", "_blank");
+        }
+    </script>
+</body>
+</html>
