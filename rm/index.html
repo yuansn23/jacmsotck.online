@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>日本株式投資コミュニティ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ベース設定 */
+        :root {
+            --shikkoku: #1a1a2e;
+            --kongo: #16213e;
+            --ruri: #0f3460;
+            --shinku: #e94560;
+            --sakura: #ff9999;
+            --yamabuki: #ffd369;
+            --mizu: #4ecdc4;
+            --gin: #f7f7f7;
+            --hai: #aaaaaa;
+            --sumi: #222831;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--shikkoku);
+            color: var(--gin);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .nihon-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .sakura-container {
+            width: 70%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* アニメーション */
+        @keyframes kouki {
+            0% { box-shadow: 0 0 5px rgba(233, 69, 96, 0.6); }
+            50% { box-shadow: 0 0 20px rgba(233, 69, 96, 0.9); }
+            100% { box-shadow: 0 0 5px rgba(233, 69, 96, 0.6); }
+        }
+        
+        /* セクション共通スタイル */
+        .page-section {
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .section-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--gin);
+            text-align: center;
+        }
+        
+        .section-title span {
+            color: var(--shinku);
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--hai);
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ヘッダーセクション */
+        .ichiban-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--shikkoku), var(--kongo));
+            padding: 50px 0;
+        }
+        
+        .ichiban-section::before {
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(78, 205, 196, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 40%);
+        }
+        
+        .hoshi-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23404' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%234ecdc4'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .ichiban-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .ichiban-title {
+            font-size: 2.6rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            background: linear-gradient(45deg, var(--gin), var(--mizu));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ichiban-title span {
+            display: inline-block;
+            color: var(--shinku);
+            position: relative;
+        }
+        
+        .ichiban-title span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--shinku);
+            border-radius: 10px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .ichiban-title:hover span::after {
+            transform: scaleX(1);
+        }
+        
+        .ichiban-subtitle {
+            font-size: 1.1rem;
+            color: var(--hai);
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        
+        .nagare-image {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--shinku);
+            margin: 30px auto;
+        }
+        
+        .nagare-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .nagare-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .nagare-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .nagare-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--shinku);
+            margin-bottom: 5px;
+        }
+        
+        .nagare-role {
+            font-size: 1rem;
+            color: var(--gin);
+            opacity: 0.8;
+        }
+        
+        .tsumetai-box {
+            background: rgba(15, 52, 96, 0.6);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.1);
+        }
+        
+        .mondai-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--gin);
+            opacity: 0.9;
+            text-align: left;
+        }
+        
+        .mondai-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .mondai-item::before {
+            content: '!';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 18px;
+            height: 18px;
+            background: var(--shinku);
+            color: var(--gin);
+            font-size: 0.8rem;
+            line-height: 18px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        
+        .moushikomi-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--shinku), #ff6b88);
+            color: var(--gin);
+            font-weight: 700;
+            padding: 15px 40px;
+            border-radius: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .moushikomi-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .moushikomi-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(233, 69, 96, 0.4);
+        }
+        
+        .moushikomi-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* 第2セクション */
+        .keiken-section {
+            background: linear-gradient(to bottom, var(--kongo), var(--ruri));
+        }
+        
+        .keiken-section::before {
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(255, 153, 153, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 40%);
+        }
+        
+        .sensei-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--shinku);
+            margin: 0 auto 30px;
+        }
+        
+        .sensei-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sensei-message {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(233, 69, 96, 0.1);
+        }
+        
+        .sensei-text {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* 第3セクション */
+        .mondai-section {
+            background: linear-gradient(to bottom, var(--ruri), var(--kongo));
+        }
+        
+        .mondai-section::before {
+            background-image: 
+                radial-gradient(circle at 30% 30%, rgba(78, 205, 196, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(233, 69, 96, 0.1) 0%, transparent 40%);
+        }
+        
+        .mondai-list {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(78, 205, 196, 0.1);
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .mondai-card {
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: rgba(15, 52, 96, 0.5);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid var(--mizu);
+            text-align: left;
+        }
+        
+        .mondai-card:hover {
+            transform: translateX(10px);
+            background: rgba(15, 52, 96, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mondai-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .mondai-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(233, 69, 96, 0.1);
+            max-width: 350px;
+            margin: 30px auto;
+            display: block;
+        }
+        
+        .mondai-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: all 0.5s ease;
+        }
+        
+        /* 第4セクション */
+        .tokuten-section {
+            background: linear-gradient(to bottom, var(--kongo), var(--shikkoku));
+        }
+        
+        .tokuten-section::before {
+            background-image: 
+                radial-gradient(circle at 70% 30%, rgba(233, 69, 96, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 30% 70%, rgba(78, 205, 196, 0.1) 0%, transparent 40%);
+        }
+        
+        .tokuten-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+        
+        .tokuten-card {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .tokuten-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+        
+        .tokuten-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--mizu);
+        }
+        
+        .tokuten-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--mizu);
+        }
+        
+        .tokuten-card-text {
+            color: var(--hai);
+        }
+        
+        .tokuten-highlight {
+            color: var(--yamabuki);
+            font-weight: 500;
+        }
+        
+        .tokuten-image {
+            max-width: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(233, 69, 96, 0.1);
+            margin: 30px auto;
+            display: block;
+        }
+        
+        .tokuten-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 統計セクション */
+        .tokei-section {
+            margin: 30px 0;
+        }
+        
+        .tokei-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .tokei-card {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tokei-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+        
+        .tokei-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--mizu), var(--yamabuki));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tokei-text {
+            color: var(--hai);
+        }
+        
+        /* 免責事項 */
+        .chuki-section {
+            padding: 40px 0;
+            background: rgba(26, 26, 46, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .chuki-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .chuki-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--yamabuki);
+        }
+        
+        .chuki-text {
+            margin-bottom: 15px;
+            color: var(--hai);
+            font-size: 0.9rem;
+        }
+        
+        .chuki-text:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* フッター */
+        .footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--hai);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* フローティングボタン */
+        .ukiuki-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(45deg, var(--shinku), #ff6b88);
+            color: var(--gin);
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            text-align: center;
+            animation: kouki 2s infinite;
+            box-shadow: 0 -5px 20px rgba(233, 69, 96, 0.3);
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .sakura-container {
+                width: 85%;
+            }
+            
+            .ichiban-title, .section-title {
+                font-size: 2rem;
+            }
+            
+            .tokuten-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sakura-container {
+                width: 90%;
+                padding: 0 15px;
+            }
+            
+            .page-section {
+                padding: 40px 0;
+            }
+            
+            .ichiban-title, .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .ichiban-subtitle, .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .sensei-message, .mondai-list {
+                padding: 20px;
+            }
+            
+            .tokuten-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tokuten-card, .mondai-card {
+                padding: 20px;
+            }
+            
+            .nagare-image {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .sensei-photo {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-section {
+                padding: 30px 0;
+            }
+            
+            .ichiban-title, .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .nagare-name {
+                font-size: 1.5rem;
+            }
+            
+            .nagare-image {
+                width: 180px;
+                height: 180px;
+                margin: 20px auto;
+            }
+            
+            .sensei-photo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .tsumetai-box, .mondai-list, .sensei-message {
+                padding: 15px;
+            }
+            
+            .tokei-number {
+                font-size: 2rem;
+            }
+            
+            .tokuten-icon {
+                font-size: 2rem;
+            }
+            
+            .ukiuki-btn {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nihon-wrapper">
+        <!-- 第一セクション：ヘッダーと問題点 -->
+        <section class="page-section ichiban-section">
+            <div class="hoshi-pattern"></div>
+            <div class="sakura-container">
+                <div class="section-content ichiban-content">
+                    <h1 class="ichiban-title">日本最大の<span>株式投資</span>コミュニティへようこそ！</h1>
+                    <p class="ichiban-subtitle">多くの投資家と市場の見方や投資経験を交換し、市場動向を共に探求し、投資のヒントを共有するコミュニティです</p>
+                    
+                    <div class="nagare-image">
+                        <img src="img/12.png" alt="馬渕 磨理子">
+                    </div>
+                    
+                    <div class="nagare-info">
+                        <h3 class="nagare-name">馬渕 磨理子</h3>
+                        <p class="nagare-role">投資アドバイザー | 15年の経験</p>
+                    </div>
+                    
+                    <div class="tsumetai-box">
+                        <div class="mondai-item">
+                            情報収集のチャネルが限られていて、いつも一歩遅れていませんか？ニュースが出た時には既に株価が上がっていて、最適な投資タイミングを逃してしまう。
+                        </div>
+                        <div class="mondai-item">
+                            様々な噂や内部情報が飛び交う中、情報の真偽を見分けるのが難しく、誤った投資判断をしてしまいがちではありませんか？
+                        </div>
+                        <div class="mondai-item">
+                            価値ある情報を素早く選別し、正確な判断を下すための専門的な分析ツールやデータサポートが不足していませんか？
+                        </div>
+                        <div class="mondai-item">
+                            マクロ経済や業界政策、企業の基本要素の変化に敏感に対応できず、市場に取り残されるリスクを感じていませんか？
+                        </div>
+                        <div class="mondai-item">
+                            情報に対する独立した思考と判断力が不足し、他者の意見に流されたり、流行を追いかけたりして、最終的に損失を被る可能性が高くなっていませんか？
+                        </div>
+                    </div>
+                    
+                    <button class="moushikomi-btn" onclick="openlink()">今すぐLINEに追加する</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 第二セクション：講師紹介 -->
+        <section class="page-section keiken-section">
+            <div class="sakura-container">
+                <div class="section-content">
+                    <h2 class="section-title">こんにちは、<span>馬渕 磨理子</span>です</h2>
+                    
+                    <img src="img/13.jpg" alt="1" class="mondai-image">
+                    
+                    <div class="sensei-message">
+                        <p class="sensei-text">LINEを通じて私とつながり、日本の金融株式の投資機会について一緒に探求しませんか？私は定期的に日本株式市場の分析、私の投資戦略、そして市場から学んだ教訓を共有します。そして、あなたの投資の考え方や方法についても学び、理解したいと思っています。LINEで交流し、共に成長し、投資スキルを向上させましょう。</p>
+                        <p class="sensei-text">このコミュニティでは、さまざまな投資家と市場の見方を交換し、投資経験を共有し、市場の動向を一緒に探索し、互いに役立つ投資情報共有プラットフォームを構築できます。私たちのコミュニティは活発でサポート的な学習環境を提供し、すべてのメンバーがより良い投資決定を下せるようにサポートすることを目指しています。</p>
+                        
+                        <div style="text-align: center;">
+                            <button class="moushikomi-btn" onclick="openlink()">今すぐLINEに追加する</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 第三セクション：問題点 -->
+        <section class="page-section mondai-section">
+            <div class="sakura-container">
+                <div class="section-content">
+                    <h2 class="section-title">投資家が<span>直面する課題</span></h2>
+                    
+                    <div class="mondai-list">
+                        <div class="mondai-card">
+                            情報取得の遅延、意思決定の誤り：情報チャネルが限られているため、常に一歩遅れています。ニュースが出た時にはすでに株価が上昇しており、最良の投資機会を逃していませんか？
+                        </div>
+                        
+                        <div class="mondai-card">
+                            情報の真偽を識別するのが困難：様々な噂や内部情報が飛び交う中、虚偽の情報に惑わされ、誤った投資判断を下しやすくなっています。
+                        </div>
+                        
+                        <div class="mondai-card">
+                            専門的な分析ツールとデータサポートの不足：価値のある情報を迅速にフィルタリングし、正確な判断を下すための専門的なツールとデータサポートが不足しています。
+                        </div>
+                        
+                        <div class="mondai-card">
+                            市場動向の追跡不能：マクロ経済、産業政策、企業の基本要素の変化に敏感に対応できず、市場に置いていかれるリスクがあります。
+                        </div>
+                        
+                        <div class="mondai-card">
+                            情報に対する独立した思考と判断力の不足：他者の意見に盲目的に従ったり、流行を追いかけたりすると、最終的には損失を被る可能性が高くなります。
+                        </div>
+                    </div>
+                    
+                    <img src="img/6.jpg" alt="投資の課題" class="mondai-image">
+                    
+                    <div style="text-align: center;">
+                        <button class="moushikomi-btn" onclick="openlink()">今すぐLINEに追加する</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        <!-- 免責事項 -->
+        <section class="chuki-section">
+            <div class="sakura-container">
+                <div class="chuki-container">
+                    <h3 class="chuki-title">重要な開示事項：</h3>
+                    <p class="chuki-text">本ウェブサイトは、日本の金融株式に関心を持つ投資家に学習と交流のプラットフォームを提供することを目的としています。グループ内のメンバーが共有する市場の見解、投資経験、関連情報は参考および議論のためにのみ提供され、いかなる形の投資アドバイスや保証を構成するものではありません。</p>
+                    <p class="chuki-text">本交流グループは純粋に共有を目的としており、金融投資アドバイス、証券の売買の勧誘、投資商品の販売などの活動は一切行っていません。すべての投資決定は投資家個人の独立した判断に基づいて行われるべきであり、必要に応じて必ず専門の金融アドバイザーに相談してください。</p>
+                    <p class="chuki-text">投資は元本損失の可能性を含む様々なリスクを伴います。株式、債券などすべての種類の投資商品は市場状況に応じて価値が上昇または下落する可能性があり、過去のパフォーマンスは将来のリターンを保証するものではありません。グループ内で共有される情報や意見はメンバーの個人的な見解であり、投資成果を保証するものではありません。</p>
+                    <p class="chuki-text">すべての投資家は自身の財務状況、投資目標、時間範囲、リスク許容度を考慮して慎重に投資判断を下すべきです。特にハイリスク投資の場合、投資前に十分な調査と検討が必要です。</p>
+                    <p class="chuki-text">また、グループ内で共有されるすべての情報は正確性を保証するものではなく、市場状況や企業状況は急速に変化する可能性があります。したがって、実際の投資判断を下す前に追加の調査と検証を推奨します。</p>
+                    <p class="chuki-text">本コミュニティはすべての関連法令および規制を遵守して運営されています。インサイダー情報、未公開の重要情報、市場操作行為などのいかなる形態も厳しく禁止されています。これらの原則に違反するコンテンツは直ちに削除される場合があり、該当するメンバーはグループから除外される可能性があります。</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="sakura-container">
+                <p>© 2023 日本株式投資コミュニティ. All Rights Reserved.</p>
+            </div>
+        </footer>
+        
+        <button class="ukiuki-btn" onclick="openlink()">今すぐLINEに追加する</button>
+    </div>
+    
+    <script>
+        function openlink() {
+            alert("LINEに移動します！");
+            // window.location.href = "LINEのリンク";
+        }
+    </script>
+</body>
+</html>
