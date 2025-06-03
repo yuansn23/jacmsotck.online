@@ -184,6 +184,11 @@
         
         <div class="form-card">
             <div class="form-group">
+                <label for="api-key">API密钥</label>
+                <input type="password" id="api-key" class="form-control" placeholder="输入DeepSeek API密钥">
+            </div>
+            
+            <div class="form-group">
                 <label for="relationship">关系阶段</label>
                 <select id="relationship" class="form-control">
                     <option value="刚认识">刚认识</option>
@@ -365,6 +370,7 @@
             const errorElement = document.getElementById('error-message');
             
             // 获取表单值
+            const apiKey = document.getElementById('api-key').value.trim();
             const relationship = document.getElementById('relationship').value;
             const interests = document.getElementById('interests').value.split(',').map(i => i.trim()).filter(i => i);
             const personality = document.getElementById('personality').value;
@@ -372,6 +378,12 @@
             const scenario = document.getElementById('scenario').value;
             
             // 验证输入
+            if (!apiKey) {
+                errorElement.textContent = '请输入API密钥';
+                errorElement.style.display = 'block';
+                return;
+            }
+            
             if (interests.length === 0) {
                 errorElement.textContent = '请至少输入一个兴趣爱好';
                 errorElement.style.display = 'block';
@@ -386,8 +398,8 @@
             btn.innerHTML = '<div class="spinner"></div> 生成中...';
             
             try {
-                // 调用API获取策略
-                const strategies = await generateStrategies(relationship, interests, personality, mbti, scenario);
+                // 直接调用API获取策略
+                const strategies = await callDeepSeekAPI(apiKey, relationship, interests, personality, mbti, scenario);
                 
                 // 显示结果
                 displayResults(strategies);
@@ -395,8 +407,8 @@
                 // 显示结果区域
                 document.getElementById('results').style.display = 'block';
             } catch (error) {
-                console.error('生成失败:', error);
-                errorElement.textContent = '生成失败，请稍后再试';
+                console.error('API调用失败:', error);
+                errorElement.textContent = 'API调用失败: ' + error.message;
                 errorElement.style.display = 'block';
             } finally {
                 // 恢复按钮状态
@@ -449,100 +461,54 @@
             });
         });
         
-        // 生成策略函数 - 直接返回结果不进行推理
-        async function generateStrategies(relationship, interests, personality, mbti, scenario) {
-            // 这里是模拟API返回的直接结果
-            // 实际应用中应替换为真实的API调用
-            
-            // 模拟API延迟
-            await new Promise(resolve => setTimeout(resolve, 800));
-            
-            // 根据MBTI类型生成详细分析
-            const mbtiAnalysis = mbti ? generateMBTIAnalysis(mbti, relationship) : "未提供MBTI类型，基于通用性格分析";
-            
-            // 生成心理学分析
-            const psychologyAnalysis = generatePsychologyAnalysis(relationship, interests);
-            
-            // 直接返回结果，不包含任何思考过程
-            return {
-                conservative: {
-                    text: `听说最近有个${interests[0] || '不错'}的活动，朋友强烈推荐，要不要一起去看看？`,
-                    score: Math.floor(Math.random() * 30) + 60,
-                    logic: "使用第三方推荐降低邀约压力，适合关系初期建立信任",
-                    risk: "可能显得过于谨慎。如果被拒绝，可以说'没关系，下次有机会再一起'保持轻松氛围",
-                    mbti_analysis: mbtiAnalysis,
-                    psychology_analysis: psychologyAnalysis,
-                    behavior_analysis: "对方可能会礼貌性考虑邀约，需要后续跟进确认意向"
+        // 直接调用DeepSeek API的函数 - 不进行任何推理，直接返回结果
+        async function callDeepSeekAPI(apiKey, relationship, interests, personality, mbti, scenario) {
+            // 构造极简prompt - 直接要求答案
+            const prompt = `直接生成邀约策略JSON，不要任何解释：
+{
+  "relationship": "${relationship}",
+  "interests": "${interests.join(',')}",
+  "personality": "${personality}",
+  "mbti": "${mbti}",
+  "scenario": "${scenario}"
+}`;
+
+            // 实际API调用 - 设置最快响应参数
+            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
                 },
-                moderate: {
-                    text: `我发现一个${interests[0] || '挺有意思'}的${scenario}活动，感觉你会喜欢，要一起参加吗？`,
-                    score: Math.floor(Math.random() * 30) + 65,
-                    logic: "直接表达邀约意图但留有选择空间，平衡主动与尊重",
-                    risk: "可能被误解为普通邀约。可以补充'因为觉得你在这方面很有见解'增加诚意",
-                    mbti_analysis: mbtiAnalysis,
-                    psychology_analysis: psychologyAnalysis,
-                    behavior_analysis: "对方会评估活动是否符合兴趣，可能要求了解更多细节"
-                },
-                aggressive: {
-                    text: `这周六有个${interests[0] || '超棒'}的${scenario}活动，我已经订好票了，我们一起去吧！`,
-                    score: Math.floor(Math.random() * 30) + 50,
-                    logic: "展现自信和决断力，适合关系较亲密阶段",
-                    risk: "可能显得强势。可以补充'如果你没空的话我也可以改期'给对方台阶",
-                    mbti_analysis: mbtiAnalysis,
-                    psychology_analysis: psychologyAnalysis,
-                    behavior_analysis: "对方会直接表达是否接受，需要准备好应对拒绝的方案"
-                }
-            };
-        }
-        
-        // 生成详细的MBTI分析
-        function generateMBTIAnalysis(mbti, relationship) {
-            const analysisMap = {
-                "INTJ": `INTJ型人格(建筑师)偏好有计划的活动。建议提前告知活动细节，${relationship === "刚认识" ? "强调活动的学习价值" : "突出活动的独特性"}。`,
-                "INTP": `INTP型人格(逻辑学家)喜欢智力挑战。邀约应${relationship === "刚认识" ? "保持一定距离感" : "展示你的知识储备"}，避免过于情绪化的表达。`,
-                "ENTJ": `ENTJ型人格(指挥官)欣赏高效直接的沟通。可以${relationship === "亲密关系" ? "使用更亲密的语气" : "保持专业简洁"}，强调活动的目标导向。`,
-                "ENTP": `ENTP型人格(辩论家)喜欢新鲜体验。${relationship === "暧昧期" ? "可以加入一些挑战性元素" : "突出活动的创新性"}，避免常规套路。`,
-                "INFJ": `INFJ型人格(倡导者)重视深层连接。邀约应${relationship === "刚认识" ? "保持适度神秘感" : "表达真诚的欣赏"}，选择有意义的活动。`,
-                "INFP": `INFP型人格(调停者)敏感于价值观契合。${relationship === "普通朋友" ? "强调活动的积极意义" : "表达个人感受"}，避免过于功利的目的。`,
-                "ENFJ": `ENFJ型人格(主人公)喜欢社交互动。可以${relationship === "暧昧期" ? "加入一些浪漫元素" : "突出活动的社交属性"}，表达期待。`,
-                "ENFP": `ENFP型人格(竞选者)热爱自由创意。${relationship === "亲密关系" ? "可以更随性一些" : "保持轻松愉快的氛围"}，避免太多限制。`,
-                "ISTJ": `ISTJ型人格(物流师)偏好传统可靠。邀约应${relationship === "刚认识" ? "提前规划好所有细节" : "展示你的可靠性"}，避免临时变更。`,
-                "ISFJ": `ISFJ型人格(守卫者)重视体贴关怀。${relationship === "普通朋友" ? "强调活动的舒适性" : "表达你的关心"}，选择熟悉的环境。`,
-                "ESTJ": `ESTJ型人格(总经理)喜欢高效务实。可以${relationship === "暧昧期" ? "适当展示你的能力" : "直接说明活动价值"}，避免模糊表达。`,
-                "ESFJ": `ESFJ型人格(执政官)享受和谐关系。邀约应${relationship === "刚认识" ? "保持适度正式" : "表达你的热情"}，强调共同体验。`,
-                "ISTP": `ISTP型人格(鉴赏家)偏好实际行动。${relationship === "亲密关系" ? "可以更随性一些" : "突出活动的实践性"}，避免太多理论。`,
-                "ISFP": `ISFP型人格(探险家)重视感官体验。可以${relationship === "普通朋友" ? "选择艺术或自然相关活动" : "表达对美的欣赏"}，保持轻松氛围。`,
-                "ESTP": `ESTP型人格(企业家)喜欢刺激冒险。邀约应${relationship === "刚认识" ? "保持一定挑战性" : "展示你的活力"}，避免平淡安排。`,
-                "ESFP": `ESFP型人格(表演者)热爱欢乐社交。${relationship === "暧昧期" ? "可以加入一些惊喜元素" : "突出活动的趣味性"}，保持正能量。`
-            };
+                body: JSON.stringify({
+                    model: "deepseek-chat",
+                    messages: [
+                        {
+                            role: "user",
+                            content: prompt
+                        }
+                    ],
+                    temperature: 1.0,  // 最高随机性
+                    max_tokens: 1000,
+                    response_format: { type: "json_object" },
+                    stream: false
+                })
+            });
             
-            return analysisMap[mbti.toUpperCase()] || `MBTI类型${mbti}的分析：基于该性格特点，建议邀约时${relationship === "刚认识" ? "保持适度距离" : "表达真诚态度"}，选择符合双方兴趣的活动。`;
-        }
-        
-        // 生成详细的心理学分析
-        function generatePsychologyAnalysis(relationship, interests) {
-            const theories = [
-                "根据社会交换理论，邀约应让对方感知到足够的回报价值",
-                "相似吸引理论建议强调你们在" + interests[0] + "方面的共同兴趣",
-                "自我表露理论表明，" + (relationship === "暧昧期" ? "适度的个人分享" : "共同经历") + "能增进亲密感",
-                "认知失调理论提示，邀约方式应与对方对你的认知一致",
-                "归因理论建议，将邀约动机归因于" + (interests.length > 1 ? "共同的兴趣爱好" : "自然的机会") + "而非个人意图"
-            ];
-            
-            let analysis = theories.slice(0, 2).join("。") + "。";
-            
-            if (relationship === "刚认识") {
-                analysis += "初次相识阶段，应运用单纯曝光效应，通过多次低强度互动建立熟悉感。";
-            } else if (relationship === "暧昧期") {
-                analysis += "暧昧期可运用吊桥效应，选择能引发适度紧张感的活动环境。";
-            } else if (relationship === "亲密关系") {
-                analysis += "亲密关系中，依恋理论提示应满足对方的情感需求和安全需求。";
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || `HTTP错误: ${response.status}`);
             }
             
-            analysis += "从行为心理学角度，" + interests.join("、") + "等兴趣表明对方可能偏好" + 
-                (interests.some(i => ["摄影", "艺术"].includes(i)) ? "视觉刺激" : "实践体验") + "类活动。";
+            const data = await response.json();
             
-            return analysis;
+            // 直接解析API返回的JSON内容
+            try {
+                return JSON.parse(data.choices[0].message.content);
+            } catch (e) {
+                console.error('JSON解析错误:', e);
+                throw new Error('无效的API响应格式');
+            }
         }
     </script>
 </body>
