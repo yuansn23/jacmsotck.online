@@ -12,6 +12,7 @@
             --text-primary: #333333;
             --text-secondary: #666666;
             --card-bg: #FFFFFF;
+            --highlight: #FFF2CC;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -149,6 +150,19 @@
             margin: 0;
             line-height: 1.5;
         }
+        .risk-highlight {
+            background-color: var(--highlight);
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 3px solid #FF9900;
+            margin: 10px 0;
+        }
+        .item-list {
+            padding-left: 20px;
+        }
+        .item-list li {
+            margin-bottom: 5px;
+        }
         .loading {
             text-align: center;
             padding: 20px 0;
@@ -259,7 +273,7 @@
                         
                         <div class="content-item">
                             <h4>潜在风险</h4>
-                            <p id="conservative-risk"></p>
+                            <div id="conservative-risk" class="risk-highlight"></div>
                         </div>
                         
                         <div class="content-item">
@@ -275,6 +289,16 @@
                         <div class="content-item">
                             <h4>行为预测</h4>
                             <p id="conservative-behavior"></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <h4>情绪设计元素</h4>
+                            <p id="conservative-emotion"></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <h4>建议携带物品</h4>
+                            <ul id="conservative-items" class="item-list"></ul>
                         </div>
                     </div>
                 </div>
@@ -300,7 +324,7 @@
                         
                         <div class="content-item">
                             <h4>潜在风险</h4>
-                            <p id="moderate-risk"></p>
+                            <div id="moderate-risk" class="risk-highlight"></div>
                         </div>
                         
                         <div class="content-item">
@@ -316,6 +340,16 @@
                         <div class="content-item">
                             <h4>行为预测</h4>
                             <p id="moderate-behavior"></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <h4>情绪设计元素</h4>
+                            <p id="moderate-emotion"></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <h4>建议携带物品</h4>
+                            <ul id="moderate-items" class="item-list"></ul>
                         </div>
                     </div>
                 </div>
@@ -341,7 +375,7 @@
                         
                         <div class="content-item">
                             <h4>潜在风险</h4>
-                            <p id="aggressive-risk"></p>
+                            <div id="aggressive-risk" class="risk-highlight"></div>
                         </div>
                         
                         <div class="content-item">
@@ -358,6 +392,16 @@
                             <h4>行为预测</h4>
                             <p id="aggressive-behavior"></p>
                         </div>
+                        
+                        <div class="content-item">
+                            <h4>情绪设计元素</h4>
+                            <p id="aggressive-emotion"></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <h4>建议携带物品</h4>
+                            <ul id="aggressive-items" class="item-list"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -365,6 +409,9 @@
     </div>
 
     <script>
+        // 存储上次生成的策略，确保每次生成不同
+        let lastGeneratedStrategies = null;
+        
         document.getElementById('generate-btn').addEventListener('click', async function() {
             const btn = this;
             const errorElement = document.getElementById('error-message');
@@ -406,6 +453,14 @@
                     throw new Error('API返回的数据格式不正确');
                 }
                 
+                // 检查是否与上次结果相同
+                if (lastGeneratedStrategies && JSON.stringify(strategies) === JSON.stringify(lastGeneratedStrategies)) {
+                    throw new Error('生成结果与上次相同，请调整输入参数或稍后再试');
+                }
+                
+                // 存储本次生成结果
+                lastGeneratedStrategies = strategies;
+                
                 // 显示结果
                 displayResults(strategies);
                 
@@ -428,28 +483,53 @@
             document.getElementById('conservative-text').textContent = strategies.conservative.text || '无数据';
             document.getElementById('conservative-score').textContent = strategies.conservative.score || '0';
             document.getElementById('conservative-logic').textContent = strategies.conservative.logic || '无数据';
-            document.getElementById('conservative-risk').textContent = strategies.conservative.risk || '无数据';
+            document.getElementById('conservative-risk').innerHTML = strategies.conservative.risk || '无数据';
             document.getElementById('conservative-mbti').textContent = strategies.conservative.mbti_analysis || '无数据';
             document.getElementById('conservative-psychology').textContent = strategies.conservative.psychology_analysis || '无数据';
             document.getElementById('conservative-behavior').textContent = strategies.conservative.behavior_analysis || '无数据';
+            document.getElementById('conservative-emotion').textContent = strategies.conservative.emotion_design || '无数据';
+            updateItemList('conservative-items', strategies.conservative.suggested_items);
             
             // 适度型策略
             document.getElementById('moderate-text').textContent = strategies.moderate.text || '无数据';
             document.getElementById('moderate-score').textContent = strategies.moderate.score || '0';
             document.getElementById('moderate-logic').textContent = strategies.moderate.logic || '无数据';
-            document.getElementById('moderate-risk').textContent = strategies.moderate.risk || '无数据';
+            document.getElementById('moderate-risk').innerHTML = strategies.moderate.risk || '无数据';
             document.getElementById('moderate-mbti').textContent = strategies.moderate.mbti_analysis || '无数据';
             document.getElementById('moderate-psychology').textContent = strategies.moderate.psychology_analysis || '无数据';
             document.getElementById('moderate-behavior').textContent = strategies.moderate.behavior_analysis || '无数据';
+            document.getElementById('moderate-emotion').textContent = strategies.moderate.emotion_design || '无数据';
+            updateItemList('moderate-items', strategies.moderate.suggested_items);
             
             // 主动型策略
             document.getElementById('aggressive-text').textContent = strategies.aggressive.text || '无数据';
             document.getElementById('aggressive-score').textContent = strategies.aggressive.score || '0';
             document.getElementById('aggressive-logic').textContent = strategies.aggressive.logic || '无数据';
-            document.getElementById('aggressive-risk').textContent = strategies.aggressive.risk || '无数据';
+            document.getElementById('aggressive-risk').innerHTML = strategies.aggressive.risk || '无数据';
             document.getElementById('aggressive-mbti').textContent = strategies.aggressive.mbti_analysis || '无数据';
             document.getElementById('aggressive-psychology').textContent = strategies.aggressive.psychology_analysis || '无数据';
             document.getElementById('aggressive-behavior').textContent = strategies.aggressive.behavior_analysis || '无数据';
+            document.getElementById('aggressive-emotion').textContent = strategies.aggressive.emotion_design || '无数据';
+            updateItemList('aggressive-items', strategies.aggressive.suggested_items);
+        }
+        
+        // 更新建议物品列表
+        function updateItemList(elementId, items) {
+            const listElement = document.getElementById(elementId);
+            listElement.innerHTML = '';
+            
+            if (!items || !Array.isArray(items)) {
+                const li = document.createElement('li');
+                li.textContent = '无数据';
+                listElement.appendChild(li);
+                return;
+            }
+            
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                listElement.appendChild(li);
+            });
         }
         
         // 标签切换
@@ -469,16 +549,23 @@
         // 直接调用DeepSeek API的函数
         async function callDeepSeekAPI(apiKey, relationship, interests, personality, mbti, scenario) {
             // 构造明确的prompt - 直接要求特定格式的JSON
-            const prompt = `严格按照以下JSON格式生成三种邀约策略，不要任何解释和额外内容：
+            const prompt = `请严格按照以下JSON格式生成三种不同的邀约策略，每次生成内容必须不同，不要任何解释和额外内容。要求：
+1. 策略逻辑、MBTI分析、心理学分析、行为预测需要详细
+2. 潜在风险要高亮显示
+3. 包含建议携带的小物件清单
+4. 包含情绪设计元素（峰值体验理论应用）
+
 {
   "conservative": {
     "text": "邀约话术内容",
     "score": "成功率百分比",
-    "logic": "策略依据",
-    "risk": "潜在风险",
-    "mbti_analysis": "MBTI适配分析内容",
-    "psychology_analysis": "心理学分析内容",
-    "behavior_analysis": "行为预测内容"
+    "logic": "详细策略依据，至少3个要点",
+    "risk": "<strong>高亮显示的潜在风险</strong>，包含风险分析和应对建议",
+    "mbti_analysis": "详细的MBTI适配分析，至少200字",
+    "psychology_analysis": "详细的心理学分析，包含至少2个心理学理论",
+    "behavior_analysis": "详细的行为预测，包含可能反应的应对方案",
+    "emotion_design": "情绪设计元素，应用峰值体验理论",
+    "suggested_items": ["物品1", "物品2", "物品3"]
   },
   "moderate": {
     // 同上
@@ -509,8 +596,8 @@
                             content: prompt
                         }
                     ],
-                    temperature: 0.9,
-                    max_tokens: 1500,
+                    temperature: 1.0, // 使用最高随机性确保每次结果不同
+                    max_tokens: 2500, // 增加token限制以容纳更详细内容
                     response_format: { type: "json_object" }
                 })
             });
