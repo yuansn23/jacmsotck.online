@@ -150,19 +150,27 @@
             border-radius: 4px;
             margin-top: 10px;
         }
+        .api-key-input {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <h1>社交邀约策略生成器</h1>
     
     <div class="form-container">
+        <div class="form-group api-key-input">
+            <label for="api-key">DeepSeek API密钥:</label>
+            <input type="password" id="api-key" placeholder="输入您的DeepSeek API密钥">
+        </div>
+        
         <div class="form-group">
             <label for="relationship">你们的关系阶段:</label>
             <select id="relationship">
-                <option value="just met">刚认识</option>
-                <option value="casual friends" selected>普通朋友</option>
-                <option value="flirting stage">暧昧期</option>
-                <option value="close relationship">亲密关系</option>
+                <option value="刚认识">刚认识</option>
+                <option value="普通朋友" selected>普通朋友</option>
+                <option value="暧昧期">暧昧期</option>
+                <option value="亲密关系">亲密关系</option>
             </select>
         </div>
         
@@ -174,20 +182,20 @@
         <div class="form-group">
             <label for="personality">你的性格倾向:</label>
             <select id="personality">
-                <option value="introverted">内向</option>
-                <option value="extroverted" selected>外向</option>
-                <option value="humorous">幽默</option>
-                <option value="practical">务实</option>
+                <option value="内向">内向</option>
+                <option value="外向" selected>外向</option>
+                <option value="幽默">幽默</option>
+                <option value="务实">务实</option>
             </select>
         </div>
         
         <div class="form-group">
             <label for="scenario">邀约场景:</label>
             <select id="scenario">
-                <option value="weekend date">周末约会</option>
-                <option value="birthday party">生日聚会</option>
-                <option value="travel">旅行</option>
-                <option value="daily activity" selected>日常活动</option>
+                <option value="周末约会">周末约会</option>
+                <option value="生日聚会">生日聚会</option>
+                <option value="旅行">旅行</option>
+                <option value="日常活动" selected>日常活动</option>
             </select>
         </div>
         
@@ -250,12 +258,19 @@
             const errorElement = document.getElementById('error-message');
             
             // 获取表单值
+            const apiKey = document.getElementById('api-key').value.trim();
             const relationship = document.getElementById('relationship').value;
             const interests = document.getElementById('interests').value.split(',').map(i => i.trim()).filter(i => i);
             const personality = document.getElementById('personality').value;
             const scenario = document.getElementById('scenario').value;
             
             // 验证输入
+            if (!apiKey) {
+                errorElement.textContent = '请输入DeepSeek API密钥';
+                errorElement.style.display = 'block';
+                return;
+            }
+            
             if (interests.length === 0) {
                 errorElement.textContent = '请至少输入一个兴趣爱好';
                 errorElement.style.display = 'block';
@@ -271,7 +286,7 @@
             
             try {
                 // 调用DeepSeek API
-                const strategies = await callDeepSeekAPI(relationship, interests, personality, scenario);
+                const strategies = await callDeepSeekAPI(apiKey, relationship, interests, personality, scenario);
                 
                 // 显示结果
                 document.getElementById('conservative-text').textContent = strategies.conservative.text;
@@ -319,13 +334,7 @@
         });
         
         // 调用DeepSeek API的函数
-        async function callDeepSeekAPI(stage, interests, userStyle, scenario) {
-            // 这里应该是实际的API调用代码
-            // 以下是模拟API响应的代码，实际使用时需要替换为真实的API调用
-            
-            // 模拟API延迟
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
+        async function callDeepSeekAPI(apiKey, stage, interests, userStyle, scenario) {
             // 构造请求prompt
             const prompt = `【角色设定】
 你是一位拥有10年经验的社交关系教练，擅长根据人际关系阶段和兴趣匹配度制定精准邀约策略。
@@ -360,49 +369,19 @@
   "moderate": {...},
   "aggressive": {...},
   "interest_analysis": "对方兴趣的深层需求解读"
-}`;
+}
 
-            // 模拟API响应
-            const mockResponse = {
-                "conservative": {
-                    "text": `听说最近有个${interests[0] || '不错'}的活动，朋友强烈推荐，要不要一起去看看？`,
-                    "score": calculateScore(stage, interests, userStyle, scenario, 'conservative'),
-                    "logic": "使用第三方推荐降低邀约压力，适合关系初期建立信任",
-                    "risk": "可能显得过于谨慎。如果被拒绝，可以说'没关系，下次有机会再一起'保持轻松氛围"
-                },
-                "moderate": {
-                    "text": `我发现一个${interests[0] || '挺有意思'}的${scenario}活动，感觉你会喜欢，要一起参加吗？`,
-                    "score": calculateScore(stage, interests, userStyle, scenario, 'moderate'),
-                    "logic": "直接表达邀约意图但留有选择空间，平衡主动与尊重",
-                    "risk": "可能被误解为普通邀约。可以补充'因为觉得你在这方面很有见解'增加诚意"
-                },
-                "aggressive": {
-                    "text": `这周六有个${interests[0] || '超棒'}的${scenario}活动，我已经订好票了，我们一起去吧！`,
-                    "score": calculateScore(stage, interests, userStyle, scenario, 'aggressive'),
-                    "logic": "展现自信和决断力，适合关系较亲密阶段",
-                    "risk": "可能显得强势。可以补充'如果你没空的话我也可以改期'给对方台阶"
-                },
-                "interest_analysis": interests.map(interest => {
-                    const analysisMap = {
-                        '摄影': '喜欢摄影的人通常注重细节和美感，邀约时可选择视觉体验丰富的活动',
-                        '脱口秀': '爱好脱口秀的人往往幽默开朗，适合轻松活泼的邀约方式',
-                        '烘焙': '烘焙爱好者通常享受创作过程，可以邀请一起参加手工体验类活动',
-                        '旅行': '喜欢旅行的人大多乐于接受新事物，适合提出有新鲜感的邀约',
-                        '阅读': '爱好阅读的人可能偏好安静环境，适合咖啡厅、书店等场所'
-                    };
-                    return analysisMap[interest] || `${interest}爱好者通常有特定偏好，邀约时结合这个兴趣会更容易成功`;
-                }).join('。') + '。'
-            };
-            
-            return mockResponse;
-            
-            /* 
-            实际API调用代码示例（需要替换为真实的API端点）：
+【生成规则】
+1. 禁止直接出现"约会""喜欢"等敏感词
+2. 保守型话术需包含第三方理由（如："朋友推荐了新展"）
+3. 直接型话术可加入限时性（如："这周六最后一天优惠"）`;
+
+            // 实际API调用
             const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer YOUR_API_KEY'
+                    'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
                     model: "deepseek-chat",
@@ -412,45 +391,33 @@
                             content: prompt
                         }
                     ],
-                    temperature: 0.7
+                    temperature: 0.7,
+                    response_format: { type: "json_object" }
                 })
             });
             
             if (!response.ok) {
-                throw new Error(`API请求失败: ${response.status}`);
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || `API请求失败: ${response.status}`);
             }
             
             const data = await response.json();
-            // 解析API返回的数据并返回
-            return JSON.parse(data.choices[0].message.content);
-            */
-        }
-        
-        // 模拟评分算法
-        function calculateScore(stage, interests, userStyle, scenario, approach) {
-            // 基础分数
-            let score = 50;
             
-            // 根据关系阶段调整
-            const stageScores = {
-                'just met': {conservative: 20, moderate: 10, aggressive: -10},
-                'casual friends': {conservative: 15, moderate: 20, aggressive: 5},
-                'flirting stage': {conservative: 5, moderate: 15, aggressive: 20},
-                'close relationship': {conservative: 0, moderate: 10, aggressive: 15}
-            };
-            score += stageScores[stage][approach];
-            
-            // 根据兴趣数量调整
-            score += Math.min(interests.length, 3) * 5;
-            
-            // 根据性格匹配调整
-            if ((approach === 'aggressive' && userStyle === 'extroverted') || 
-                (approach === 'conservative' && userStyle === 'introverted')) {
-                score += 10;
+            // 解析API返回的JSON内容
+            try {
+                const content = data.choices[0].message.content;
+                const result = JSON.parse(content);
+                
+                // 验证返回的数据结构
+                if (!result.conservative || !result.moderate || !result.aggressive) {
+                    throw new Error('API返回的数据格式不符合预期');
+                }
+                
+                return result;
+            } catch (e) {
+                console.error('API响应解析错误:', e);
+                throw new Error('解析API响应时出错: ' + e.message);
             }
-            
-            // 确保分数在0-100之间
-            return Math.min(100, Math.max(0, score));
         }
     </script>
 </body>
