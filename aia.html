@@ -90,7 +90,7 @@
             text-align: center;
             padding: 10px 0;
             font-size: 14px;
-            color: var(--text-secondary;
+            color: var(--text-secondary);
             position: relative;
         }
         .tab.active {
@@ -409,8 +409,10 @@
     </div>
 
     <script>
-        // 存储上次生成的策略，确保每次生成不同
+        // 存储上次生成的策略
         let lastGeneratedStrategies = null;
+        // 设置API请求超时为3秒
+        const API_TIMEOUT = 3000;
         
         document.getElementById('generate-btn').addEventListener('click', async function() {
             const btn = this;
@@ -445,21 +447,20 @@
             btn.innerHTML = '<div class="spinner"></div> 生成中...';
             
             try {
+                // 设置超时控制
+                const timeoutPromise = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('请求超时')), API_TIMEOUT)
+                );
+                
                 // 调用API获取策略
-                const strategies = await callDeepSeekAPI(apiKey, relationship, interests, personality, mbti, scenario);
+                const apiPromise = callDeepSeekAPI(apiKey, relationship, interests, personality, mbti, scenario);
+                
+                const strategies = await Promise.race([apiPromise, timeoutPromise]);
                 
                 // 验证API返回的数据结构
                 if (!strategies || !strategies.conservative || !strategies.conservative.text) {
                     throw new Error('API返回的数据格式不正确');
                 }
-                
-                // 检查是否与上次结果相同
-                if (lastGeneratedStrategies && JSON.stringify(strategies) === JSON.stringify(lastGeneratedStrategies)) {
-                    throw new Error('生成结果与上次相同，请调整输入参数或稍后再试');
-                }
-                
-                // 存储本次生成结果
-                lastGeneratedStrategies = strategies;
                 
                 // 显示结果
                 displayResults(strategies);
@@ -546,83 +547,62 @@
             });
         });
         
-        // 直接调用DeepSeek API的函数
+        // 优化后的API调用函数
         async function callDeepSeekAPI(apiKey, relationship, interests, personality, mbti, scenario) {
-            // 构造明确的prompt - 直接要求特定格式的JSON
-            const prompt = `请严格按照以下JSON格式生成三种不同的邀约策略，每次生成内容必须不同，不要任何解释和额外内容。要求：
-1. 策略逻辑、MBTI分析、心理学分析、行为预测需要详细
-2. 潜在风险要高亮显示
-3. 包含建议携带的小物件清单
-4. 包含情绪设计元素（峰值体验理论应用）
-
+            // 构造极简但完整的prompt
+            const prompt = `请生成三种邀约策略(保守/适度/主动)，JSON格式，内容完整但简洁:
 {
   "conservative": {
-    "text": "邀约话术内容",
-    "score": "成功率百分比",
-    "logic": "详细策略依据，至少3个要点",
-    "risk": "<strong>高亮显示的潜在风险</strong>，包含风险分析和应对建议",
-    "mbti_analysis": "详细的MBTI适配分析，至少200字",
-    "psychology_analysis": "详细的心理学分析，包含至少2个心理学理论",
-    "behavior_analysis": "详细的行为预测，包含可能反应的应对方案",
-    "emotion_design": "情绪设计元素，应用峰值体验理论",
+    "text": "邀约话术(30字内)",
+    "score": "成功率",
+    "logic": "3点策略逻辑(每点20字内)",
+    "risk": "主要风险(30字内)",
+    "mbti_analysis": "MBTI适配分析(50字内)",
+    "psychology_analysis": "心理学分析(50字内)",
+    "behavior_analysis": "行为预测(50字内)",
+    "emotion_design": "情绪设计要点(30字内)",
     "suggested_items": ["物品1", "物品2", "物品3"]
   },
-  "moderate": {
-    // 同上
-  },
-  "aggressive": {
-    // 同上
-  }
+  "moderate": { /* 同上 */ },
+  "aggressive": { /* 同上 */ }
 }
 
-输入参数：
-- 关系阶段: ${relationship}
-- 兴趣爱好: ${interests.join(',')}
-- 你的性格: ${personality}
-- MBTI类型: ${mbti || '未知'}
-- 邀约场景: ${scenario}`;
+输入参数:
+关系:${relationship} 兴趣:${interests.join(',')} 性格:${personality} MBTI:${mbti||'未知'} 场景:${scenario}`;
 
-            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: "deepseek-chat",
-                    messages: [
-                        {
-                            role: "user",
-                            content: prompt
-                        }
-                    ],
-                    temperature: 1.0, // 使用最高随机性确保每次结果不同
-                    max_tokens: 2500, // 增加token限制以容纳更详细内容
-                    response_format: { type: "json_object" }
-                })
-            });
+            // 使用AbortController实现请求超时
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
             
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error?.message || `API请求失败: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            
-            // 解析API返回的内容
             try {
-                const content = data.choices[0].message.content;
-                const result = JSON.parse(content);
+                const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "deepseek-chat",
+                        messages: [{ role: "user", content: prompt }],
+                        temperature: 0.7,  // 平衡创造力和响应速度
+                        max_tokens: 1000, // 足够容纳完整内容
+                        response_format: { type: "json_object" }
+                    }),
+                    signal: controller.signal
+                });
                 
-                // 验证基本数据结构
-                if (!result.conservative || !result.moderate || !result.aggressive) {
-                    throw new Error('API返回的数据缺少必要字段');
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`API请求失败: ${response.status}`);
                 }
                 
-                return result;
-            } catch (e) {
-                console.error('API响应解析错误:', e);
-                throw new Error('API返回的数据格式不正确');
+                const data = await response.json();
+                return JSON.parse(data.choices[0].message.content);
+                
+            } catch (error) {
+                clearTimeout(timeoutId);
+                throw error;
             }
         }
     </script>
