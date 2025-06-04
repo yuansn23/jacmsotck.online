@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deutsche Aktien-Gemeinschaft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1E56A0;
+            --secondary-blue: #163172;
+            --light-blue: #D6E4F0;
+            --yellow: #F6D55C;
+            --yellow-dark: #e9ba2f;
+            --accent-red: #ff3a3a;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2E2E2E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        .highlight-red {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+        
+        .highlight-yellow {
+            color: var(--yellow-dark);
+            font-weight: 700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(22, 49, 114, 0.85), rgba(22, 49, 114, 0.85)), url('img/b1.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 2.1rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-title span {
+            color: var(--yellow);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .counter-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-blue);
+            border-radius: 8px;
+            padding: 15px 25px;
+            display: inline-block;
+            margin: 0 auto 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--yellow);
+        }
+        
+        .counter-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+        }
+        
+        .counter-title span {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .countdown-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--accent-red);
+            color: var(--white);
+            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            box-shadow: 0 4px 8px rgba(255, 58, 58, 0.3);
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+        }
+        
+        .social-proof {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--yellow);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background-color: var(--yellow);
+            color: var(--dark-gray);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(246, 213, 92, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(246, 213, 92, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .btn-red {
+            background-color: var(--accent-red);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 58, 58, 0.3);
+        }
+        
+        .btn-red:hover {
+            background-color: #e62222;
+            box-shadow: 0 10px 20px rgba(255, 58, 58, 0.4);
+        }
+        
+        /* Pain Points Section */
+        .pain-points {
+            background-color: var(--light-gray);
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), var(--yellow));
+            border-radius: 3px;
+        }
+        
+        .section-title span {
+            color: var(--accent-red);
+        }
+        
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .pain-point-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent-red);
+        }
+        
+        .pain-point-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pain-point-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .pain-point-title span {
+            color: var(--accent-red);
+        }
+        
+        .pain-point-image {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-red), var(--yellow));
+        }
+        
+        .pain-point-image svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--white);
+        }
+        
+        .pain-point-text {
+            line-height: 1.7;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(246, 213, 92, 0.05) 0%, transparent 70%), 
+                             radial-gradient(circle at 80% 70%, rgba(255, 58, 58, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--yellow);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            border: 3px solid var(--yellow);
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-author h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--secondary-blue);
+        }
+        
+        .testimonial-stars {
+            color: var(--yellow);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--dark-gray);
+            line-height: 1.8;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--yellow);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid var(--yellow);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            margin-bottom: 20px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-red));
+        }
+        
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--white);
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .feature-title span {
+            color: var(--accent-red);
+        }
+        
+        .feature-text {
+            line-height: 1.7;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(246, 213, 92, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 58, 58, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-title span {
+            color: var(--yellow);
+            position: relative;
+        }
+        
+        .cta-title span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 5px;
+            width: 100%;
+            height: 8px;
+            background-color: var(--accent-red);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-image {
+            margin: 40px 0;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border: 5px solid var(--white);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .disclaimer-title {
+            color: var(--yellow);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            opacity: 0.8;
+        }
+        
+        /* WhatsApp Icon - Using image instead of SVG */
+        .whatsapp-icon {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: visible;
+            margin-right: 10px;
+            background-color: white;
+        }
+        
+        .whatsapp-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 28px;
+            height: 28px;
+            background-color: var(--accent-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid white;
+        }
+        
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 80%;
+            max-width: 500px;
+            animation: breathe 2s infinite;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes breathe {
+            0% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 5px 15px rgba(246, 213, 92, 0.3);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 15px 30px rgba(246, 213, 92, 0.6);
+            }
+            100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 5px 15px rgba(246, 213, 92, 0.3);
+            }
+        }
+        
+        /* Ribbon styles */
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 30px;
+            z-index: 1;
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .ribbon-content {
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            transform: rotate(45deg);
+            background: var(--accent-red);
+            color: var(--white);
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 8px 40px;
+            width: 200px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .testimonial-slider {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .countdown-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .whatsapp-icon {
+                right: 20px;
+                width: 65px;
+                height: 65px;
+            }
+            
+            .whatsapp-icon img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div> 
+        <div class="container">
+            <div class="hero-content"> </br>
+                </br></br><p class="hero-subtitle">Gemeinsam mit zahlreichen Investoren können Sie mit unseren professionellen Aktienprognosen attraktive Renditen erzielen.</p>
+                 <img src="img/2.jpg" alt="Aktienmarkt" class="cta-image">
+                <div class="counter-box">
+                    <p class="counter-title">Der zeitlich begrenzte Zugang zu unseren hochwertigen Aktieneinblicken endet <span>sehr bald</span>:</p>
+                    <div class="countdown">
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="days">02</div>
+                            <div class="countdown-label">Tage</div>
+                        </div>
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="hours">23</div>
+                            <div class="countdown-label">Stunden</div>
+                        </div>
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="minutes">59</div>
+                            <div class="countdown-label">Minuten</div>
+                        </div>
+                        <div class="countdown-segment">
+                            <div class="countdown-number" id="seconds">59</div>
+                            <div class="countdown-label">Sekunden</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-red" onclick="opendd()">Jetzt exklusiven Zugang sichern</button>
+                
+                <div class="social-proof">
+                    <p>Diese Woche haben sich bereits 8.271 Personen angeschlossen</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+       
+     
+    </section>
+    
+   
+  
+    <!-- Floating Button -->
+    <div class="floating-button">
+        <button class="btn" style="width: 100%; background: linear-gradient(90deg, var(--yellow), var(--accent-red));" onclick="opendd()">Jetzt beitreten</button>
+    </div>
+    
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            
+            // Set end date to 2 days from now
+            const endDate = new Date();
+            endDate.setDate(now.getDate() + 2);
+            endDate.setHours(23, 59, 59, 0);
+            
+            const diffTime = endDate - now;
+            
+            if (diffTime <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // WhatsApp redirect
+        function opendd() {
+            window.open('https://wa.me/123456789', '_blank');
+        }
+    </script>
+</body>
+</html>
