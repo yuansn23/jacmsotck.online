@@ -1,0 +1,319 @@
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #1e3a5f 50%, #0d1b2a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 120px;
+        }
+
+        .main-wrapper {
+            position: relative;
+            z-index: 5;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+
+        .hero-section {
+            margin-bottom: 45px;
+            padding: 40px 25px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.25);
+            position: relative;
+        }
+
+        .main-title {
+            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            font-weight: 900;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            line-height: 1.3;
+        }
+
+        .sub-title {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 700;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .desc-text {
+            font-size: clamp(1rem, 2.8vw, 1.3rem);
+            line-height: 1.8;
+            color: #e8f4f8;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .highlight-text {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #FFD700;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .strategy-list {
+            list-style: none;
+            margin: 25px 0;
+            padding-left: 0;
+        }
+
+        .strategy-item {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            line-height: 1.9;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .strategy-item::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .showcase-image {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+            border-radius: 20px;
+            margin: 30px auto;
+            display: block;
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .hero-section:first-of-type .showcase-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #FFD700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        .action-btn {
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            border: none;
+            padding: 20px 50px;
+            font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+            font-weight: bold;
+            color: #000000;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+            animation: btnPulse 2.5s infinite;
+            display: block;
+            margin: 30px auto;
+            letter-spacing: 1px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(45deg, #FF8C00, #FFD700);
+        }
+
+        .quota-notice {
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+        }
+
+        .quota-text {
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-icon {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-icon::before {
+            content: "📱";
+            font-size: 30px;
+        }
+
+        .testimonial-section {
+            margin-bottom: 45px;
+            padding: 35px 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 18px;
+            border: 2px solid #FFD700;
+        }
+
+        .testimonial-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .testimonial-text {
+            font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+            color: #e8f4f8;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            color: #FFD700;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .legal-notice {
+            margin-top: 60px;
+            padding: 40px 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 18px;
+            border: 2px solid #333;
+        }
+
+        .legal-title {
+            font-size: clamp(1.4rem, 3.8vw, 1.8rem);
+            color: #FFD700;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .legal-text {
+            font-size: clamp(0.9rem, 2.3vw, 1.05rem);
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .floating-action {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            border: none;
+            padding: 18px 70px;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            color: #000000;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.7);
+            animation: breathEffect 2s ease-in-out infinite;
+            white-space: nowrap;
+            min-width: 320px;
+            letter-spacing: 1px;
+        }
+
+        .floating-action:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.9);
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+
+        @keyframes breathEffect {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.7);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.1);
+                box-shadow: 0 18px 50px rgba(255, 215, 0, 1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 18px;
+            }
+            
+            .hero-section {
+                margin-bottom: 30px;
+                padding: 25px 18px;
+            }
+            
+            .testimonial-section {
+                padding: 25px 18px;
+                margin-bottom: 30px;
+            }
+            
+            .legal-notice {
+                padding: 30px 20px;
+                margin-top: 40px;
+            }
+            
+            .floating-action {
+                min-width: 290px;
+                padding: 15px 50px;
+                bottom: 20px;
+            }
+            
+            .whatsapp-icon {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                margin-bottom: 25px;
+                padding: 20px 15px;
+            }
+            
+            .floating-action {
+                min-width: 270px;
+                padding: 12px 40px;
+            }
+        }
