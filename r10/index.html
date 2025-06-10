@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>髙橋洋一 - 投資哲学セミナー</title>
+    <style>
+        :root {
+            --primary-navy: #1e3a5f;
+            --accent-gold: #d4af37;
+            --highlight-red: #dc143c;
+            --secondary-blue: #4682b4;
+            --neutral-gray: #1e2a3a;
+            --text-light: #f5f5f5;
+            --warning-yellow: #ffd700;
+            --border-silver: #c0c0c0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'MS PGothic', sans-serif;
+            background: linear-gradient(180deg, var(--primary-navy) 0%, var(--neutral-gray) 100%);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 300vh;
+        }
+
+        .page-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .hero-banner-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-blue) 100%);
+            padding: 80px 30px 60px;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+
+        .expert-portrait-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 35px;
+        }
+
+        .expert-photo-circular {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid var(--accent-gold);
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            animation: gentle-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            }
+            50% { 
+                transform: scale(1.03);
+                box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+            }
+        }
+
+        .main-headline-text {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            line-height: 1.3;
+        }
+
+        .quote-highlight {
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .description-paragraph {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        .content-blocks-container {
+            padding: 70px 30px;
+            background: var(--neutral-gray);
+        }
+
+        .info-card-wrapper {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            background: rgba(30, 58, 95, 0.8);
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 3px solid var(--accent-gold);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .section-title-main {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-text-block {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .emphasis-text {
+            color: var(--accent-gold);
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .image-display-block {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .content-illustration {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            border: 4px solid var(--accent-gold);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .cta-button-primary {
+            background: linear-gradient(45deg, var(--highlight-red), #b22222);
+            color: var(--text-light);
+            border: 3px solid var(--accent-gold);
+            padding: 22px 45px;
+            font-size: 20px;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: none;
+            display: block;
+            margin: 30px auto;
+            max-width: 400px;
+            animation: button-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes button-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
+                transform: translateY(0);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(220, 20, 60, 0.8);
+                transform: translateY(-3px);
+            }
+        }
+
+        .cta-button-primary:hover {
+            background: linear-gradient(45deg, #b22222, var(--highlight-red));
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(220, 20, 60, 0.7);
+        }
+
+        .stats-showcase-area {
+            background: var(--primary-navy);
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .achievement-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .metric-display-box {
+            background: rgba(70, 130, 180, 0.2);
+            padding: 25px 30px;
+            border-radius: 15px;
+            border: 2px solid var(--accent-gold);
+            min-width: 150px;
+        }
+
+        .number-highlight {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .metric-label-text {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .curriculum-section {
+            background: var(--secondary-blue);
+            padding: 60px 30px;
+        }
+
+        .feature-grid-layout {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .curriculum-item-card {
+            background: rgba(30, 58, 95, 0.9);
+            padding: 35px;
+            border-radius: 18px;
+            border: 3px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .curriculum-item-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .item-title-header {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 18px;
+        }
+
+        .item-description-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        .floating-cta-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--highlight-red), #8b0000);
+            color: var(--text-light);
+            border: 4px solid var(--accent-gold);
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            animation: breathing-effect 2s ease-in-out infinite;
+            white-space: nowrap;
+            box-shadow: 0 8px 30px rgba(220, 20, 60, 0.6);
+        }
+
+        @keyframes breathing-effect {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 8px 30px rgba(220, 20, 60, 0.6);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.08);
+                box-shadow: 0 12px 40px rgba(220, 20, 60, 0.9);
+            }
+        }
+
+        .legal-disclaimer-section {
+            background: var(--primary-navy);
+            padding: 40px 30px;
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .disclaimer-heading {
+            color: var(--warning-yellow);
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .disclaimer-content-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-light);
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        .footer-navigation-links {
+            background: var(--neutral-gray);
+            padding: 25px;
+            text-align: center;
+            border-top: 2px solid var(--accent-gold);
+        }
+
+        .policy-navigation-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            margin: 0 25px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .policy-navigation-link:hover {
+            color: var(--warning-yellow);
+            text-decoration: underline;
+        }
+
+        .responsive-breakpoint-tablet {
+            @media (max-width: 768px) {
+                .hero-banner-section {
+                    padding: 60px 20px 40px;
+                }
+                
+                .main-headline-text {
+                    font-size: 26px;
+                }
+                
+                .expert-photo-circular {
+                    width: 150px;
+                    height: 150px;
+                }
+                
+                .info-card-wrapper {
+                    padding: 35px 25px;
+                    margin-bottom: 40px;
+                }
+                
+                .achievement-metrics {
+                    gap: 15px;
+                    flex-wrap: nowrap;
+                }
+                
+                .metric-display-box {
+                    padding: 15px 12px;
+                    min-width: 100px;
+                }
+                
+                .number-highlight {
+                    font-size: 24px;
+                    margin-bottom: 5px;
+                }
+                
+                .metric-label-text {
+                    font-size: 11px;
+                }
+                
+                .feature-grid-layout {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+                
+                .floating-cta-button {
+                    font-size: 16px;
+                    padding: 18px 35px;
+                    bottom: 20px;
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner-section {
+                padding: 60px 20px 40px;
+            }
+            
+            .main-headline-text {
+                font-size: 26px;
+            }
+            
+            .expert-photo-circular {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .info-card-wrapper {
+                padding: 35px 25px;
+                margin-bottom: 40px;
+            }
+            
+            .achievement-metrics {
+                gap: 20px;
+            }
+            
+            .feature-grid-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .floating-cta-button {
+                font-size: 16px;
+                padding: 18px 35px;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="hero-banner-section">
+            <div class="expert-portrait-container">
+                <img src="img/t.jpg" class="expert-photo-circular">
+            </div>
+            <h1 class="main-headline-text">
+                前財務官兼経済学者 髙橋洋一<br>
+                <span class="quote-highlight">「数字と事実に基づかない利益話は信じてはいけない」</span>
+            </h1>
+            <p class="description-paragraph">
+                髙橋洋一の「資産を守る投資哲学」は政策立案の分野で培われました。
+            </p>
+        </header>
+
+        <section class="content-blocks-container">
+            <div class="info-card-wrapper">
+                <h2 class="section-title-main">投資の核心理念</h2>
+                <p class="content-text-block">
+                    <span class="emphasis-text">「銘柄選択の鍵は情報と分析にある。注目すべきは構造であり、感情ではない。」</span>
+                    日本経済はかつて世界第2位の地位にありましたが、現在は深刻な財政赤字と人口高齢化の問題に直面しています。
+                </p>
+                <p class="content-text-block">
+                    このような時期において重要なのは、合理的な判断を行うことです。国の経済政策と市場構造を理解することで、個人は理性的に資産を構築することができます。
+                </p>
+                <div class="image-display-block">
+                    <img src="img/1.png" class="content-illustration">
+                </div>
+                <p class="content-text-block">
+                    多年の経験と研究に基づき、<span class="emphasis-text">できるだけ多くの人が「正しい選択」</span>をできるよう、信頼できる情報を無料で提供することを目指しています。
+                </p>
+            </div>
+
+            <div class="info-card-wrapper">
+                <h2 class="section-title-main">特別レポート公開</h2>
+                <p class="content-text-block">
+                    今回の特別レポートでは、髙橋洋一の構造分析における<span class="emphasis-text">「業績良好・財務健全・成長余地大」</span>の3つの条件を満たす、注目すべき5銘柄をご紹介します。
+                </p>
+                <p class="content-text-block">
+                    これらの日本企業は現在、最も「次の成長ポイント」を迎える可能性が高い企業です。間違った情報に左右され、最終的に損失を被る人を減らしたいと考えています。
+                </p>
+                <div class="image-display-block">
+                    <img src="img/2.jpg" class="content-illustration">
+                    <p style="margin-top: 20px; color: var(--accent-gold); font-weight: 700;">無料枠限定、LINEを追加すれば最新の経済・投資分析を無料で入手できます。</p>
+                </div>
+                <button class="cta-button-primary" onclick="yata()">今すぐLINEに追加して無料分析を受け取る</button>
+            </div>
+
+            <div class="info-card-wrapper">
+                <h2 class="section-title-main">無料株式講座のご案内</h2>
+                <p class="content-text-block">
+                    長年の経験よりも重要なのは<span class="emphasis-text">「市場をどう見るか」</span>です。構造的知識と実際のデータを学んで投資判断力を向上させる無料株式講座を提供しています。
+                </p>
+                <p class="content-text-block">
+                    誰でも参加でき、初心者でも理解しやすく、データに基づいた論理的な学習が可能です。
+                </p>
+                <div class="image-display-block">
+                    <img src="img/3.jpg" class="content-illustration">
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-showcase-area">
+            <h2 class="section-title-main">講師実績</h2>
+            <div class="achievement-metrics">
+                <div class="metric-display-box">
+                    <span class="number-highlight">98.8%</span>
+                    <span class="metric-label-text">分析的中率</span>
+                </div>
+                <div class="metric-display-box">
+                    <span class="number-highlight">20+年</span>
+                    <span class="metric-label-text">研究・政策経験</span>
+                </div>
+                <div class="metric-display-box">
+                    <span class="number-highlight">3,609名</span>
+                    <span class="metric-label-text">参加者登録済み</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="curriculum-section">
+            <h2 class="section-title-main">学習内容</h2>
+            <div class="feature-grid-layout">
+                <div class="curriculum-item-card">
+                    <h3 class="item-title-header">分析に基づく投資手法</h3>
+                    <p class="item-description-text">感情ではなく、客観的なデータと構造分析に基づいた投資判断方法を学びます。</p>
+                </div>
+                <div class="curriculum-item-card">
+                    <h3 class="item-title-header">高配当株の選択方法</h3>
+                    <p class="item-description-text">安定した配当収入を得るための銘柄選択基準と評価方法を習得します。</p>
+                </div>
+                <div class="curriculum-item-card">
+                    <h3 class="item-title-header">インフレ環境での資産防御戦略</h3>
+                    <p class="item-description-text">インフレーション時代における資産価値保護のための具体的戦略を学習します。</p>
+                </div>
+                <div class="curriculum-item-card">
+                    <h3 class="item-title-header">経済指標の解読方法</h3>
+                    <p class="item-description-text">重要な経済指標の読み方と投資判断への活用方法を理解します。</p>
+                </div>
+            </div>
+            <div class="image-display-block" style="margin-top: 50px;">
+                <img src="img/3.jpg" class="content-illustration">
+                <p style="margin-top: 30px; font-size: 20px; color: var(--accent-gold); font-weight: 700;">
+                    これは完全無料の情報提供活動です。20年以上の研究・政策経験を持つ髙橋洋一の知識を活用する時が来ました。
+                </p>
+                <button class="cta-button-primary" onclick="yata()">LINE追加で即座に講座・株式情報・経済レポートを受信</button>
+            </div>
+        </section>
+
+        <section class="legal-disclaimer-section">
+            <h3 class="disclaimer-heading">⚠️ 重要リスク提示</h3>
+            <p class="disclaimer-content-text">
+                • 本サービスは一般的な市場情報のみを提供し、いかなる投資アドバイスや推奨も構成しません。<br>
+                • 金融市場にはリスクが存在し、投資元本の一部または全部を失う可能性があります。<br>
+                • 表示されている全ての事例は過去のデータ分析であり、将来の収益を保証するものではありません。<br>
+                • 投資家は自身のリスク許容度に応じて慎重に決定すべきです。<br>
+                • 全ての情報は客観的事実の陳述であり、投資推奨を構成しません。
+            </p>
+        </section>
+
+        <footer class="footer-navigation-links">
+            <a href="privacy.html" target="_blank" class="policy-navigation-link">プライバシーポリシー</a>
+            <a href="use.html" target="_blank" class="policy-navigation-link">利用規約</a>
+        </footer>
+
+        <button class="floating-cta-button" onclick="yata()">
+            今すぐ参加、LINEで枠を確保
+        </button>
+    </div>
+
+    <script>
+        function yata() {
+            window.location.href = "https://www.qq.com";
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const observeElements = document.querySelectorAll('.info-card-wrapper');
+            
+            const intersectionObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            observeElements.forEach(function(element, index) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(40px)';
+                element.style.transition = 'opacity 0.8s ease ' + (index * 0.2) + 's, transform 0.8s ease ' + (index * 0.2) + 's';
+                intersectionObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
