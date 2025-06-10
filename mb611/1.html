@@ -308,6 +308,8 @@
             box-shadow: 
                 0 25px 50px var(--shadow-substantial),
                 inset 0 1px 0 rgba(245, 158, 11, 0.1);
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .content-information-card-premium::before {
@@ -474,6 +476,57 @@
             line-height: 1.7;
             color: var(--quaternary-platinum);
             opacity: 0.9;
+        }
+
+        /* WhatsApp Icon */
+        .whatsapp-icon-container {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .whatsapp-icon-container:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .whatsapp-icon-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: var(--transition-smooth);
+        }
+
+        .whatsapp-notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger-crimson);
+            color: var(--neutral-pearl);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: whatsappBadgeBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes whatsappBadgeBlink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
         }
 
         /* Enhanced Floating Action Button */
@@ -667,6 +720,15 @@
             .footer-navigation-premium {
                 padding: 40px 15px;
             }
+
+            .whatsapp-icon-container {
+                right: 20px;
+            }
+
+            .whatsapp-icon-image {
+                width: 55px;
+                height: 55px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -733,6 +795,21 @@
             .footer-navigation-premium {
                 padding: 30px 10px;
             }
+
+            .whatsapp-icon-container {
+                right: 15px;
+            }
+
+            .whatsapp-icon-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-notification-badge {
+                width: 18px;
+                height: 18px;
+                font-size: 11px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -773,6 +850,10 @@
 
             .footer-navigation-premium {
                 padding: 25px 8px;
+            }
+
+            .whatsapp-icon-container {
+                right: 10px;
             }
         }
     </style>
@@ -937,6 +1018,12 @@
             <a href="https://www.baidu.com" target="_blank" class="footer-link-element-enhanced">Terms of Service</a>
         </footer>
 
+        <!-- WhatsApp Icon -->
+        <div class="whatsapp-icon-container" onclick="oym()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1022px-WhatsApp.svg.png" alt="WhatsApp" class="whatsapp-icon-image">
+            <div class="whatsapp-notification-badge">1</div>
+        </div>
+
         <!-- Enhanced Floating Action Button -->
         <button class="floating-action-button-premium" onclick="oym()">
             Join Now, Unlock Infinite Possibilities
@@ -945,8 +1032,7 @@
 
     <script>
         function oym() {
-            console.log('WhatsApp connection initiated');
-            // WhatsApp connection implementation
+            window.open('https://www.baidu.com', '_blank');
         }
 
         // Dynamic Countdown Timer
@@ -980,30 +1066,6 @@
         // Update countdown every second
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call
-
-        // Smooth scroll animation observer
-        document.addEventListener('DOMContentLoaded', function() {
-            const observeElements = document.querySelectorAll('.content-information-card-premium');
-            
-            const intersectionObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            observeElements.forEach(function(element, index) {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(40px)';
-                element.style.transition = 'opacity 0.8s ease ' + (index * 0.15) + 's, transform 0.8s ease ' + (index * 0.15) + 's';
-                intersectionObserver.observe(element);
-            });
-        });
     </script>
 </body>
 </html>
