@@ -224,7 +224,7 @@
             display: flex;
             justify-content: center;
             gap: 16px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .countdown-unit-container {
@@ -233,6 +233,7 @@
             padding: 8px 12px;
             min-width: 60px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .countdown-number-display {
@@ -584,7 +585,7 @@
 
         @media (max-width: 768px) {
             .content-boundary-container {
-                padding: 0 20px;
+                padding: 0 15px;
             }
 
             .hero-showcase-section {
@@ -601,7 +602,7 @@
             }
 
             .content-information-card-premium {
-                padding: 40px 30px;
+                padding: 40px 20px;
                 margin: 60px auto;
             }
 
@@ -628,20 +629,51 @@
             }
 
             .countdown-display-grid {
-                gap: 12px;
+                gap: 8px;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
             }
 
             .countdown-unit-container {
-                min-width: 50px;
-                padding: 6px 10px;
+                min-width: 65px;
+                padding: 6px 8px;
+                flex: 1;
+                max-width: 75px;
             }
 
             .countdown-number-display {
-                font-size: 20px;
+                font-size: 18px;
+            }
+
+            .countdown-label-text {
+                font-size: 10px;
+            }
+
+            .countdown-timer-showcase {
+                padding: 16px 20px;
+            }
+
+            .countdown-title-text {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .risk-disclosure-section-premium {
+                padding: 60px 15px;
+            }
+
+            .footer-navigation-premium {
+                padding: 40px 15px;
             }
         }
 
         @media (max-width: 480px) {
+            .content-boundary-container {
+                padding: 0 10px;
+            }
+
             .hero-title-masterpiece {
                 font-size: 32px;
             }
@@ -669,6 +701,78 @@
             .floating-action-button-premium {
                 min-width: 260px;
                 padding: 14px 25px;
+            }
+
+            .content-information-card-premium {
+                padding: 30px 15px;
+            }
+
+            .countdown-display-grid {
+                max-width: 300px;
+                gap: 6px;
+            }
+
+            .countdown-unit-container {
+                min-width: 60px;
+                padding: 5px 6px;
+                max-width: 70px;
+            }
+
+            .countdown-number-display {
+                font-size: 16px;
+            }
+
+            .countdown-label-text {
+                font-size: 9px;
+            }
+
+            .risk-disclosure-section-premium {
+                padding: 50px 10px;
+            }
+
+            .footer-navigation-premium {
+                padding: 30px 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .content-boundary-container {
+                padding: 0 8px;
+            }
+
+            .countdown-display-grid {
+                max-width: 280px;
+                gap: 4px;
+            }
+
+            .countdown-unit-container {
+                min-width: 55px;
+                padding: 4px 5px;
+                max-width: 65px;
+            }
+
+            .countdown-number-display {
+                font-size: 15px;
+            }
+
+            .countdown-label-text {
+                font-size: 8px;
+            }
+
+            .countdown-timer-showcase {
+                padding: 14px 16px;
+            }
+
+            .content-information-card-premium {
+                padding: 25px 12px;
+            }
+
+            .risk-disclosure-section-premium {
+                padding: 40px 8px;
+            }
+
+            .footer-navigation-premium {
+                padding: 25px 8px;
             }
         }
     </style>
