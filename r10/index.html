@@ -29,6 +29,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             min-height: 300vh;
+            width: 100%;
         }
 
         .page-wrapper {
@@ -38,10 +39,11 @@
 
         .hero-banner-section {
             background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-blue) 100%);
-            padding: 80px 30px 60px;
+            padding: 80px 20px 60px;
             text-align: center;
             position: relative;
             border-bottom: 4px solid var(--accent-gold);
+            width: 100%;
         }
 
         .expert-portrait-container {
@@ -99,8 +101,9 @@
         }
 
         .content-blocks-container {
-            padding: 70px 30px;
+            padding: 70px 20px;
             background: var(--neutral-gray);
+            width: 100%;
         }
 
         .info-card-wrapper {
@@ -108,10 +111,11 @@
             margin: 0 auto 60px;
             background: rgba(30, 58, 95, 0.8);
             border-radius: 20px;
-            padding: 50px 40px;
+            padding: 50px 30px;
             border: 3px solid var(--accent-gold);
             backdrop-filter: blur(10px);
             position: relative;
+            width: 100%;
         }
 
         .section-title-main {
@@ -157,7 +161,7 @@
             background: linear-gradient(45deg, var(--highlight-red), #b22222);
             color: var(--text-light);
             border: 3px solid var(--accent-gold);
-            padding: 22px 45px;
+            padding: 22px 30px;
             font-size: 20px;
             font-weight: 800;
             border-radius: 12px;
@@ -168,6 +172,7 @@
             margin: 30px auto;
             max-width: 400px;
             animation: button-glow 3s ease-in-out infinite;
+            width: 100%;
         }
 
         @keyframes button-glow {
@@ -189,43 +194,24 @@
 
         .stats-showcase-area {
             background: var(--primary-navy);
-            padding: 50px 30px;
+            padding: 50px 20px;
             text-align: center;
+            width: 100%;
         }
 
-        .achievement-metrics {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .metric-display-box {
-            background: rgba(70, 130, 180, 0.2);
-            padding: 25px 30px;
-            border-radius: 15px;
-            border: 2px solid var(--accent-gold);
-            min-width: 150px;
-        }
-
-        .number-highlight {
-            font-size: 36px;
-            font-weight: 900;
-            color: var(--accent-gold);
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .metric-label-text {
-            font-size: 14px;
+        .stats-content-text {
+            font-size: 18px;
+            line-height: 1.8;
             color: var(--text-light);
-            font-weight: 600;
+            max-width: 900px;
+            margin: 30px auto;
+            text-align: center;
         }
 
         .curriculum-section {
             background: var(--secondary-blue);
-            padding: 60px 30px;
+            padding: 60px 20px;
+            width: 100%;
         }
 
         .feature-grid-layout {
@@ -238,7 +224,7 @@
 
         .curriculum-item-card {
             background: rgba(30, 58, 95, 0.9);
-            padding: 35px;
+            padding: 35px 25px;
             border-radius: 18px;
             border: 3px solid var(--accent-gold);
             transition: all 0.3s ease;
@@ -270,7 +256,7 @@
             background: linear-gradient(45deg, var(--highlight-red), #8b0000);
             color: var(--text-light);
             border: 4px solid var(--accent-gold);
-            padding: 20px 40px;
+            padding: 20px 30px;
             font-size: 18px;
             font-weight: 800;
             border-radius: 50px;
@@ -294,8 +280,9 @@
 
         .legal-disclaimer-section {
             background: var(--primary-navy);
-            padding: 40px 30px;
+            padding: 40px 20px;
             border-top: 4px solid var(--accent-gold);
+            width: 100%;
         }
 
         .disclaimer-heading {
@@ -316,9 +303,10 @@
 
         .footer-navigation-links {
             background: var(--neutral-gray);
-            padding: 25px;
+            padding: 25px 20px;
             text-align: center;
             border-top: 2px solid var(--accent-gold);
+            width: 100%;
         }
 
         .policy-navigation-link {
@@ -335,61 +323,9 @@
             text-decoration: underline;
         }
 
-        .responsive-breakpoint-tablet {
-            @media (max-width: 768px) {
-                .hero-banner-section {
-                    padding: 60px 20px 40px;
-                }
-                
-                .main-headline-text {
-                    font-size: 26px;
-                }
-                
-                .expert-photo-circular {
-                    width: 150px;
-                    height: 150px;
-                }
-                
-                .info-card-wrapper {
-                    padding: 35px 25px;
-                    margin-bottom: 40px;
-                }
-                
-                .achievement-metrics {
-                    gap: 15px;
-                    flex-wrap: nowrap;
-                }
-                
-                .metric-display-box {
-                    padding: 15px 12px;
-                    min-width: 100px;
-                }
-                
-                .number-highlight {
-                    font-size: 24px;
-                    margin-bottom: 5px;
-                }
-                
-                .metric-label-text {
-                    font-size: 11px;
-                }
-                
-                .feature-grid-layout {
-                    grid-template-columns: 1fr;
-                    gap: 20px;
-                }
-                
-                .floating-cta-button {
-                    font-size: 16px;
-                    padding: 18px 35px;
-                    bottom: 20px;
-                }
-            }
-        }
-
         @media (max-width: 768px) {
             .hero-banner-section {
-                padding: 60px 20px 40px;
+                padding: 60px 15px 40px;
             }
             
             .main-headline-text {
@@ -401,13 +337,21 @@
                 height: 150px;
             }
             
+            .content-blocks-container {
+                padding: 70px 15px;
+            }
+            
             .info-card-wrapper {
-                padding: 35px 25px;
+                padding: 35px 20px;
                 margin-bottom: 40px;
             }
             
-            .achievement-metrics {
-                gap: 20px;
+            .stats-showcase-area {
+                padding: 50px 15px;
+            }
+            
+            .curriculum-section {
+                padding: 60px 15px;
             }
             
             .feature-grid-layout {
@@ -415,10 +359,32 @@
                 gap: 20px;
             }
             
+            .curriculum-item-card {
+                padding: 30px 20px;
+            }
+            
             .floating-cta-button {
                 font-size: 16px;
-                padding: 18px 35px;
+                padding: 18px 25px;
                 bottom: 20px;
+            }
+            
+            .legal-disclaimer-section {
+                padding: 40px 15px;
+            }
+            
+            .footer-navigation-links {
+                padding: 25px 15px;
+            }
+            
+            .policy-navigation-link {
+                margin: 0 15px;
+                font-size: 14px;
+            }
+            
+            .cta-button-primary {
+                padding: 20px 25px;
+                font-size: 18px;
             }
         }
     </style>
@@ -427,7 +393,7 @@
     <div class="page-wrapper">
         <header class="hero-banner-section">
             <div class="expert-portrait-container">
-                <img src="img/t.jpg" class="expert-photo-circular">
+                  <img src="img/t.jpg" class="expert-photo-circular">
             </div>
             <h1 class="main-headline-text">
                 前財務官兼経済学者 髙橋洋一<br>
@@ -449,7 +415,7 @@
                     このような時期において重要なのは、合理的な判断を行うことです。国の経済政策と市場構造を理解することで、個人は理性的に資産を構築することができます。
                 </p>
                 <div class="image-display-block">
-                    <img src="img/1.png" class="content-illustration">
+                   <img src="img/1.png" class="content-illustration">
                 </div>
                 <p class="content-text-block">
                     多年の経験と研究に基づき、<span class="emphasis-text">できるだけ多くの人が「正しい選択」</span>をできるよう、信頼できる情報を無料で提供することを目指しています。
@@ -465,7 +431,7 @@
                     これらの日本企業は現在、最も「次の成長ポイント」を迎える可能性が高い企業です。間違った情報に左右され、最終的に損失を被る人を減らしたいと考えています。
                 </p>
                 <div class="image-display-block">
-                    <img src="img/2.jpg" class="content-illustration">
+                   <img src="img/2.jpg" class="content-illustration">
                     <p style="margin-top: 20px; color: var(--accent-gold); font-weight: 700;">無料枠限定、LINEを追加すれば最新の経済・投資分析を無料で入手できます。</p>
                 </div>
                 <button class="cta-button-primary" onclick="yata()">今すぐLINEに追加して無料分析を受け取る</button>
@@ -487,20 +453,9 @@
 
         <section class="stats-showcase-area">
             <h2 class="section-title-main">講師実績</h2>
-            <div class="achievement-metrics">
-                <div class="metric-display-box">
-                    <span class="number-highlight">98.8%</span>
-                    <span class="metric-label-text">分析的中率</span>
-                </div>
-                <div class="metric-display-box">
-                    <span class="number-highlight">20+年</span>
-                    <span class="metric-label-text">研究・政策経験</span>
-                </div>
-                <div class="metric-display-box">
-                    <span class="number-highlight">3,609名</span>
-                    <span class="metric-label-text">参加者登録済み</span>
-                </div>
-            </div>
+            <p class="stats-content-text">
+                講師は経済学と金融学の実践経験を持ち、<span class="emphasis-text">予測的中率は98.8%</span>という極めて高い精度を誇ります（内部統計）。<span class="emphasis-text">20年以上の研究・政策経験</span>を通じて培った専門知識により、既に<span class="emphasis-text">3,609名の参加者</span>が登録し、多くの方が投資判断力の向上を実感されています。この完全無料の情報提供活動を通じて、髙橋洋一の豊富な知識と実績をぜひご活用ください。
+            </p>
         </section>
 
         <section class="curriculum-section">
@@ -524,7 +479,7 @@
                 </div>
             </div>
             <div class="image-display-block" style="margin-top: 50px;">
-                <img src="img/3.jpg" class="content-illustration">
+               <img src="img/3.jpg" class="content-illustration">
                 <p style="margin-top: 30px; font-size: 20px; color: var(--accent-gold); font-weight: 700;">
                     これは完全無料の情報提供活動です。20年以上の研究・政策経験を持つ髙橋洋一の知識を活用する時が来ました。
                 </p>
@@ -555,7 +510,7 @@
 
     <script>
         function yata() {
-            window.location.href = "https://www.qq.com";
+           window.location.href = "https://www.qq.com";
         }
 
         document.addEventListener('DOMContentLoaded', function() {
