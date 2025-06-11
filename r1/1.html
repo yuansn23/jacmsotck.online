@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>堀江貴文の投資洞察 - LINE無料購読</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .primary-container-main-wrapper {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #e94560 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .hero-section-top-display-area {
+            padding: 40px 20px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(233, 69, 96, 0.2) 0%, transparent 100%);
+        }
+
+        .profile-circular-image-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 4px solid #e94560;
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+            animation: subtle-pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(233, 69, 96, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(233, 69, 96, 0.8); }
+        }
+
+        .profile-circular-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .headline-primary-text-banner {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle-description-text-block {
+            font-size: 18px;
+            color: #f0f0f0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .value-proposition-content-section {
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            margin: 20px 20px 20px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .weekly-benefits-list-container {
+            margin: 30px 0;
+        }
+
+        .benefit-item-row-element {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            border-left: 4px solid #e94560;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item-row-element:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
+        }
+
+        .checkmark-icon-symbol {
+            color: #4CAF50;
+            font-size: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        .benefit-text-content-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #f5f5f5;
+        }
+
+        .learning-methodology-info-panel {
+            padding: 20px 20px;
+            text-align: center;
+        }
+
+        .methodology-header-title {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .methodology-description-paragraph {
+            font-size: 16px;
+            color: #e0e0e0;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .call-to-action-primary-button {
+            background: linear-gradient(45deg, #e94560, #ff6b6b);
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+            transition: all 0.3s ease;
+            animation: dynamic-button-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dynamic-button-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6); }
+        }
+
+        .call-to-action-primary-button:hover {
+            background: linear-gradient(45deg, #ff6b6b, #e94560);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
+        }
+
+        .risk-disclosure-footer-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px 20px 100px 20px;
+            margin-top: 20px;
+        }
+
+        .risk-warning-header-text {
+            font-size: 20px;
+            color: #ff9800;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .risk-item-list-element {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.5;
+        }
+
+        .legal-links-footer-container {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-link-navigation-item {
+            color: #87ceeb;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .footer-link-navigation-item:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .floating-sticky-action-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #e94560);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.5);
+            z-index: 9999;
+            animation: intense-breathing-effect 1.5s ease-in-out infinite;
+            max-width: 90%;
+            white-space: nowrap;
+        }
+
+        @keyframes intense-breathing-effect {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(233, 69, 96, 0.5);
+                background: linear-gradient(45deg, #ff6b6b, #e94560);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.1);
+                box-shadow: 0 20px 50px rgba(233, 69, 96, 0.8);
+                background: linear-gradient(45deg, #e94560, #ff3030);
+            }
+        }
+
+        .accent-highlight-text {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .subscription-instruction-banner {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            padding: 25px 20px;
+            margin: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .instruction-primary-heading {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .instruction-detail-text {
+            font-size: 16px;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .primary-container-main-wrapper {
+                font-size: 14px;
+            }
+            
+            .headline-primary-text-banner {
+                font-size: 24px;
+            }
+            
+            .value-proposition-content-section {
+                margin: 10px;
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="primary-container-main-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-section-top-display-area">
+            <div class="profile-circular-image-container">
+                <img src="https://www.jacmsotck.online/415rirenshen/15.jpg" alt="堀江貴文">
+            </div>
+            <h1 class="headline-primary-text-banner">堀江貴文の投資洞察</h1>
+            <p class="subtitle-description-text-block">最新の市場分析と投資戦略を<br>LINEで無料配信中</p>
+        </section>
+
+        <!-- Subscription Instructions -->
+        <section class="subscription-instruction-banner">
+            <h2 class="instruction-primary-heading">【市場洞察、無料購読】</h2>
+            <p class="instruction-detail-text">「<span class="accent-highlight-text">5</span>」を送信するだけで最新の宏観経済解読、業界動向分析、上場企業研究資料を無料で取得。投資機会を逃さずキャッチしましょう。<br><br><strong>※本資料は学習交流目的のみで、投資助言ではございません。</strong></p>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="value-proposition-content-section">
+            <h2 class="methodology-header-title">毎週、独特な学習体験をお届け：</h2>
+            
+            <div class="weekly-benefits-list-container">
+                <div class="benefit-item-row-element">
+                    <span class="checkmark-icon-symbol">✅</span>
+                    <div class="benefit-text-content-description">
+                        <strong>政策透視：</strong>政策動向分析を通じて市場変化を予測し、投資の脈を掴む手助けをします。
+                    </div>
+                </div>
+                
+                <div class="benefit-item-row-element">
+                    <span class="checkmark-icon-symbol">✅</span>
+                    <div class="benefit-text-content-description">
+                        <strong>業界深掘り：</strong>各業界のポテンシャルに注目し、独自の投資眼を養い、価値の洼地を発見します。
+                    </div>
+                </div>
+                
+                <div class="benefit-item-row-element">
+                    <span class="checkmark-icon-symbol">✅</span>
+                    <div class="benefit-text-content-description">
+                        <strong>個別株洞察：</strong>包括的な分析ツールを提供し、複雑な市場で賢明な選択をサポートします。
+                    </div>
+                </div>
+                
+                <div class="benefit-item-row-element">
+                    <span class="checkmark-icon-symbol">✅</span>
+                    <div class="benefit-text-content-description">
+                        <strong>リスク評価：</strong>科学的な投資戦略を策定し、効果的なリスク管理で資産安全を保障します。
+                    </div>
+                </div>
+                
+                <div class="benefit-item-row-element">
+                    <span class="checkmark-icon-symbol">✅</span>
+                    <div class="benefit-text-content-description">
+                        <strong>ケース共有：</strong>成功・失敗の市場事例を通じて、実践的な投資教訓と示唆を提供します。
+                    </div>
+                </div>
+                
+                <div class="benefit-item-row-element">
+                    <span class="checkmark-icon-symbol">✅</span>
+                    <div class="benefit-text-content-description">
+                        <strong>インタラクティブ学習：</strong>ライブ配信で疑問を解決し、専門家と直接対話できます。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Method -->
+        <section class="learning-methodology-info-panel">
+            <h2 class="methodology-header-title">成功投資家の思考を学び、意思決定プロセスを最適化</h2>
+            <p class="methodology-description-paragraph">
+                市場の動きを読み、適切なタイミングで行動する能力を身につけることで、
+                あなたの投資スキルを次のレベルへと押し上げます。
+            </p>
+            
+            <button class="call-to-action-primary-button" onclick="tat()">
+                今すぐLINEを追加して投資洞察を受け取る
+            </button>
+        </section>
+
+        <!-- Risk Disclosure -->
+        <section class="risk-disclosure-footer-section">
+            <h3 class="risk-warning-header-text">⚠️ 重要リスク提示</h3>
+            <ul>
+                <li class="risk-item-list-element">• 本サービスは一般的な市場情報のみを提供し、投資助言や推奨を構成するものではありません。</li>
+                <li class="risk-item-list-element">• 金融市場にはリスクが存在し、投資元本の一部または全部を失う可能性があります。</li>
+                <li class="risk-item-list-element">• 表示されている例はすべて過去のデータ分析であり、将来の収益を保証するものではありません。</li>
+                <li class="risk-item-list-element">• 投資家は自身のリスク許容度に応じて慎重に判断する必要があります。</li>
+                <li class="risk-item-list-element">• すべての情報は客観的事実の陳述であり、投資助言を構成するものではありません。</li>
+            </ul>
+            
+            <div class="legal-links-footer-container">
+                <a href="https://www.baidu.com" class="footer-link-navigation-item">プライバシーポリシー</a>
+                <a href="https://www.baidu.com" class="footer-link-navigation-item">利用規約</a>
+            </div>
+        </section>
+
+        <!-- Floating Button -->
+        <button class="floating-sticky-action-button" onclick="tat()">
+            立即加入，获取更多优质建议
+        </button>
+    </div>
+
+    <script>
+        function tat() {
+            window.open('https://line.me/R/ti/p/@your_line_id', '_blank');
+        }
+
+        // Dark mode detection for better compatibility
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
