@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script>
+
+ function directToWhatsApp() {
+            window.open('https://wa.me/', '_blank');
+        }
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Comunidad de Inversión Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+        
+        .page-container {
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .landing-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 4%;
+            position: relative;
+        }
+        
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1500px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        .text-column {
+            z-index: 2;
+        }
+        
+        .main-heading {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #00d4ff, #ff6b9d, #c471f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .countdown-display {
+            background: linear-gradient(45deg, #00d4ff, #45b7d1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .time-unit {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .time-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .time-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .problem-description {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            color: #f0f0f0;
+        }
+        
+        .scarcity-notice {
+            background: linear-gradient(45deg, #ff4757, #ff6b9d);
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(255, 71, 87, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 71, 87, 0.8); }
+        }
+        
+        .visual-column {
+            position: relative;
+        }
+        
+        .feature-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 25px 80px rgba(0, 212, 255, 0.3);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+        
+        .action-btn-main {
+            background: linear-gradient(135deg, #00d4ff, #c471f5);
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .action-btn-main:hover::before {
+            left: 100%;
+        }
+        
+        .action-btn-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.5);
+        }
+        
+        .community-section {
+            padding: 120px 4%;
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+        }
+        
+        .community-wrapper {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+        
+        .section-heading {
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 70px;
+            background: linear-gradient(135deg, #00d4ff, #c471f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .advantages-section {
+            padding: 120px 4%;
+            background: linear-gradient(135deg, #0f0f23 0%, #16213e 100%);
+        }
+        
+        .advantages-wrapper {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+        
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+            margin-bottom: 70px;
+        }
+        
+        .advantage-item {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .advantage-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #c471f5);
+        }
+        
+        .advantage-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+        
+        .advantage-icon {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .advantage-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #f0f0f0;
+        }
+        
+        .final-push-section {
+            padding: 120px 4%;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+        }
+        
+        .final-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .final-heading {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+        
+        .final-text {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            color: #f0f0f0;
+            line-height: 1.7;
+        }
+        
+        .floating-cta-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00d4ff, #c471f5);
+            border: none;
+            padding: 18px 60px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            border-radius: 60px;
+            cursor: pointer;
+            z-index: 1000;
+            animation: pulse-effect 3s infinite ease-in-out;
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes pulse-effect {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1); 
+                box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.08); 
+                box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6);
+            }
+        }
+        
+        .legal-disclaimer {
+            background: #0a0a1a;
+            padding: 80px 4%;
+            border-top: 2px solid rgba(0, 212, 255, 0.3);
+        }
+        
+        .disclaimer-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .disclaimer-heading {
+            font-size: 1.6rem;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+        }
+        
+        .disclaimer-points {
+            list-style: none;
+            margin-bottom: 50px;
+        }
+        
+        .disclaimer-point {
+            margin-bottom: 15px;
+            color: #d0d0d0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .footer-navigation {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .footer-nav-link {
+            color: #00d4ff;
+            text-decoration: none;
+            margin: 0 30px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-nav-link:hover {
+            color: #c471f5;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .landing-section {
+                padding: 15px 4%;
+            }
+            
+            .content-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .main-heading {
+                font-size: 2.8rem;
+                margin-bottom: 15px;
+            }
+            
+            .countdown-display {
+                margin: 20px 0;
+                padding: 15px;
+            }
+            
+            .problem-description {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+            
+            .scarcity-notice {
+                margin-bottom: 20px;
+            }
+            
+            .feature-image {
+                height: 300px;
+            }
+            
+            .timer-container {
+                gap: 10px;
+            }
+            
+            .time-unit {
+                padding: 8px 12px;
+            }
+            
+            .time-number {
+                font-size: 1.5rem;
+            }
+            
+            .community-section {
+                padding: 60px 4%;
+            }
+            
+            .community-wrapper div {
+                margin-bottom: 40px !important;
+            }
+            
+            .community-wrapper p {
+                margin-bottom: 30px !important;
+            }
+            
+            .advantages-section {
+                padding: 60px 4%;
+            }
+            
+            .advantage-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+            
+            .advantage-item {
+                padding: 25px;
+            }
+            
+            .section-heading {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+            
+            .final-push-section {
+                padding: 60px 4%;
+            }
+            
+            .final-heading {
+                font-size: 2.2rem;
+                margin-bottom: 25px;
+            }
+            
+            .final-text {
+                margin-bottom: 30px;
+            }
+            
+            .floating-cta-btn {
+                padding: 15px 30px;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+            
+            .legal-disclaimer {
+                padding: 40px 4%;
+            }
+        }
+        
+        .highlight-accent {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+        
+        .warning-accent {
+            color: #ff6b9d;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Primera Sección Principal -->
+        <section class="landing-section">
+            <div class="content-layout">
+                <div class="text-column">
+                    <h1 class="main-heading">Deja de Seguir Tendencias, Empieza a Generar Ganancias</h1>
+                    
+                    <div class="countdown-display">
+                        <div class="countdown-title">¡Oferta Limitada - Solo 2 Días Restantes!</div>
+                        <div class="timer-container">
+                            <div class="time-unit">
+                                <span class="time-number" id="timedays">00</span>
+                                <span class="time-label">DÍAS</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="timehours">00</span>
+                                <span class="time-label">HORAS</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="timeminutes">00</span>
+                                <span class="time-label">MIN</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="timeseconds">00</span>
+                                <span class="time-label">SEG</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="problem-description">
+                        <span class="highlight-accent">✅ ¿Sigues comprando acciones solo siguiendo tendencias?</span> Esto podría llevarte a pérdidas.<br><br>
+                        Muchas personas no saben cómo elegir realmente las acciones: comprar cuando los precios suben, vender cuando bajan... al final las pérdidas a menudo superan las ganancias.<br><br>
+                        <span class="warning-accent">❌ Invertir no es apostar</span>, sino una estrategia a largo plazo basada en análisis y lógica.
+                    </p>
+                    
+                    <div class="scarcity-notice">
+                        Últimos 30 Cupos Gratuitos Disponibles
+                    </div>
+                    
+                    <button class="action-btn-main" onclick="directToWhatsApp()">Únete Ahora</button>
+                </div>
+                <div class="visual-column">
+                    <img src="img/1.jpg" alt="Estrategia de Inversión" class="feature-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Comunidad -->
+        <section class="community-section">
+            <div class="community-wrapper">
+                <h2 class="section-heading">Tu Refugio Seguro en el Mundo de las Inversiones</h2>
+                <div style="text-align: center; margin-bottom: 70px;">
+                    <p style="font-size: 1.4rem; line-height: 1.7; color: #f0f0f0; max-width: 900px; margin: 0 auto 50px;">
+                        En este mundo de inversiones lleno de trampas, hemos creado un verdadero refugio para ti. Bienvenido a unirte a nuestra comunidad de inversión en acciones, un espacio activo con miles de inversionistas reales, para que ya no estés solo.
+                    </p>
+                    <img src="img/2.jpg" alt="Comunidad" style="width: 100%; max-width: 700px; border-radius: 20px; margin-bottom: 50px; box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);">
+                    <button class="action-btn-main" onclick="directToWhatsApp()">Únete a Nosotros Ahora</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ventajas -->
+        <section class="advantages-section">
+            <div class="advantages-wrapper">
+                <h2 class="section-heading">💡 ¿Qué Te Ofrecemos?</h2>
+                <h3 style="text-align: center; font-size: 2.2rem; margin-bottom: 60px; color: #00d4ff;">🌟 Ventajas Clave de Nuestra Comunidad:</h3>
+                
+                <div class="advantage-grid">
+                    <div class="advantage-item">
+                        <span class="advantage-icon">95%</span>
+                        <p class="advantage-text">de los miembros ya han construido su propia cartera de acciones de alto dividendo, mejorando significativamente sus ingresos pasivos.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">📊</span>
+                        <p class="advantage-text">Análisis de tendencias diarias para asegurar que siempre estés un paso adelante y aproveches las oportunidades.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">🌅</span>
+                        <p class="advantage-text">Estrategias pre-apertura del mercado para ayudarte a dominar movimientos rentables y construir un sistema exitoso.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">📈</span>
+                        <p class="advantage-text">Actualizaciones constantes con las últimas noticias de corredores, nuevas recomendaciones e información de industrias activas. ¡La información es tu ventaja!</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">👨‍💼</span>
+                        <p class="advantage-text">Consultoría personalizada, expertos listos para resolver tus dudas en cualquier momento.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">🎓</span>
+                        <p class="advantage-text">Recursos educativos exclusivos que te enseñan análisis técnico y estrategias prácticas de alta rentabilidad potencial.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 50px;">
+                    <img src="img/3.jpg" alt="Ventajas" style="width: 100%; max-width: 700px; border-radius: 20px; margin-bottom: 50px; box-shadow: 0 20px 60px rgba(196, 113, 245, 0.3);">
+                    <h3 style="font-size: 2rem; margin-bottom: 30px; color: #ffffff;">📈 Nuestro Objetivo es Claro:</h3>
+                    <p style="font-size: 1.3rem; color: #f0f0f0; margin-bottom: 40px;">Ayudar a todos, sin importar la experiencia, a construir un sistema de inversión rentable y sostenible.</p>
+                    <button class="action-btn-main" onclick="directToWhatsApp()">Únete Ahora</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Final -->
+        <section class="final-push-section">
+            <div class="final-content">
+                <h2 class="final-heading">Tu Oportunidad de Cambio Real</h2>
+                <p class="final-text">
+                    No necesitas conocimientos previos ni experiencia. Esta es una oportunidad abierta para todos los que desean lograr un cambio real.<br><br>
+                    <span class="warning-accent">⏳ Cupos limitados.</span> Únete ahora y comienza tu camino de inversión inteligente y segura.
+                </p>
+                <button class="action-btn-main" onclick="directToWhatsApp()">Comienza Tu Viaje de Inversión</button>
+            </div>
+        </section>
+
+        <!-- Aviso Legal -->
+        <footer class="legal-disclaimer">
+            <div class="disclaimer-wrapper">
+                <h3 class="disclaimer-heading">Advertencia de Riesgo Importante</h3>
+                <ul class="disclaimer-points">
+                    <li class="disclaimer-point">• Este servicio solo proporciona información general del mercado y no constituye ningún consejo o recomendación de inversión.</li>
+                    <li class="disclaimer-point">• Los mercados financieros conllevan riesgos, y puede perder parte o todo su capital de inversión.</li>
+                    <li class="disclaimer-point">• Todos los ejemplos mostrados son análisis de datos históricos y no constituyen ninguna garantía de rendimientos futuros.</li>
+                    <li class="disclaimer-point">• Los inversionistas deben tomar decisiones cautelosas basadas en su propia tolerancia al riesgo.</li>
+                    <li class="disclaimer-point">• Toda la información son declaraciones de hechos objetivos y no constituye consejo de inversión.</li>
+                </ul>
+                
+                <di 
+            </div>
+        </footer>
+
+        <!-- Botón Flotante -->
+        <button class="floating-cta-btn" onclick="directToWhatsApp()">Únete a la Comunidad</button>
+    </div>
+
+    <script>
+       
+        
+        // Cuenta regresiva de 2 días
+        function startCountdownTimer() {
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 2);
+            
+            function updateTimer() {
+                const now = new Date().getTime();
+                const timeLeft = targetDate.getTime() - now;
+                
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('timedays').textContent = days.toString().padStart(2, '0');
+                    document.getElementById('timehours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('timeminutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('timeseconds').textContent = seconds.toString().padStart(2, '0');
+                } else {
+                    document.getElementById('timedays').textContent = '00';
+                    document.getElementById('timehours').textContent = '00';
+                    document.getElementById('timeminutes').textContent = '00';
+                    document.getElementById('timeseconds').textContent = '00';
+                }
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+        
+        // Prevenir zoom en móviles
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('gesturechange', function (e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('gestureend', function (e) {
+            e.preventDefault();
+        });
+        
+        // Inicializar cuenta regresiva al cargar la página
+        window.addEventListener('load', startCountdownTimer);
+    </script>
+</body>
+</html>
