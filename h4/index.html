@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>
+ function addLine() {
+            window.open('https://line.me', '_blank');
+        }
+        
+        function addTelegram() {
+            window.open('https://telegram.com', '_blank');
+        }
+
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고품질 여성과의 만남</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .breathe {
+            animation: breathe 2s infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .carousel {
+            scroll-behavior: smooth;
+        }
+        
+        .status-dot {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .floating-icons {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .floating-icon {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .floating-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .telegram-bg {
+            background: linear-gradient(135deg, #229ED9, #0088cc);
+        }
+        
+        .line-bg {
+            background: linear-gradient(135deg, #00B900, #00C300);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-icons {
+                right: 10px;
+            }
+            .floating-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            #hero-section {
+                min-height: calc(20vh - 8px) !important;
+                margin-top: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Floating Social Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon telegram-bg breathe" onclick="addTelegram()">
+            <i class="fab fa-telegram-plane"></i>
+            <div class="notification-badge breathe">1</div>
+        </div>
+        <div class="floating-icon line-bg breathe" onclick="addLine()">
+            <i class="fab fa-line"></i>
+            <div class="notification-badge breathe">1</div>
+        </div>
+    </div>
+
+    <!-- Section 1: Hero Section with Carousel -->
+    <section class="gradient-bg min-h-screen md:min-h-screen flex items-center justify-center relative overflow-hidden" style="min-height: calc(100vh - 8px); margin-top: 8px;" id="hero-section">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    고품질 여성들과의<br>
+                    <span class="text-yellow-300">특별한 만남</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white opacity-90 max-w-3xl mx-auto">
+                    여기에는 많은 고품질 여성들이 모여 있으며, 당신과의 경험이 어우러져 아름다운 순간을 만들어가기를 기대합니다
+                </p>
+            </div>
+            
+            <!-- Image Carousel -->
+            <div class="relative max-w-4xl mx-auto">
+                <div id="carousel" class="carousel flex overflow-x-auto space-x-4 pb-4 snap-x snap-mandatory">
+                    <div class="flex-none w-64 h-80 snap-center">
+                        <img src="img/8.jpg" alt="Profile 1" class="w-full h-full object-cover rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="flex-none w-64 h-80 snap-center">
+                        <img src="img/7.jpg" alt="Profile 2" class="w-full h-full object-cover rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="flex-none w-64 h-80 snap-center">
+                        <img src="img/3.jpg" alt="Profile 3" class="w-full h-full object-cover rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="flex-none w-64 h-80 snap-center">
+                        <img src="img/4.jpg" alt="Profile 4" class="w-full h-full object-cover rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="flex-none w-64 h-80 snap-center">
+                        <img src="img/5.jpg" alt="Profile 5" class="w-full h-full object-cover rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="flex-none w-64 h-80 snap-center">
+                        <img src="img/6.jpg" alt="Profile 6" class="w-full h-full object-cover rounded-2xl shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Profiles Grid -->
+    <section class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-16">
+                지금 접속 중인 회원들
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Profile 1 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/18.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            6분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">25세, 학생</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 1.2km • 키: 162cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-blue-600 dark:text-blue-400 mb-4">
+                            <i class="fas fa-clock mr-1"></i>
+                            2분 전 누군가와 연락했습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 2 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/19.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            3분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">23세, 은행 매니저</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 2.2km • 키: 171cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                           412명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 3 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/20.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            7분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">24세, 간호사</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 2.3km • 키: 167cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                           842명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 4 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/21.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            1분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">25세, 요가 강사</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 1.8km • 키: 164cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                           1822명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 5 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/6.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            3분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">26세, 교사</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 1.6km • 키: 168cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                            955명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 6 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/24.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            2분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">25세, 학생</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 2.2km • 키: 164cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                            743명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 7 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/25.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            3분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">26세, 승무원</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 1.8km • 키: 162cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                           703명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile 8 -->
+                <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg card-hover overflow-hidden">
+                    <div class="relative">
+                        <img src="img/17.jpg" alt="Profile" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                            <div class="status-dot w-2 h-2 bg-white rounded-full mr-1"></div>
+                            2분 전 온라인
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
+                            고급 인증
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">25세, 직장인</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">거리: 1.2km • 키: 161cm</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-purple-600 dark:text-purple-400 mb-4">
+                            <i class="fas fa-eye mr-1"></i>
+                           844명이 그녀의 프로필을 봤습니다
+                        </p>
+                        <button onclick="goToSection3()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                            프로필 보기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Contact Section -->
+    <section id="section3" class="py-20 gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
+                    더 많은 프로필 보기
+                </h2>
+                <p class="text-xl text-white opacity-90 mb-12">
+                    더 자세한 정보를 확인하려면 아래 버튼을 클릭해주세요
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
+                                <i class="fab fa-line text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Line 추가</h3>
+                            <button onclick="addLine()" class="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-all duration-300">
+                                Line으로 연락하기
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500 rounded-full mb-4">
+                                <i class="fab fa-telegram-plane text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Telegram 추가</h3>
+                            <button onclick="addTelegram()" class="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all duration-300">
+                                Telegram으로 연락하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 bg-yellow-400 text-gray-800 rounded-2xl p-6 inline-block">
+                    <p class="text-lg font-semibold">
+                        <i class="fas fa-star mr-2"></i>
+                        "2025"를 보내면 우선 배정됩니다
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Dark mode support
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Navigation functions
+        function f1() {
+            window.open('https://telegram.com', '_blank');
+        }
+        
+        function f2() {
+            window.open('https://line.me', '_blank');
+        }
+        
+        function goToSection3() {
+            document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+       
+        // Auto-scroll carousel
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const totalImages = 6;
+        
+        function autoScroll() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            const scrollAmount = currentIndex * 272; // 264px width + 8px gap
+            carousel.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Auto-scroll every 3 seconds
+        setInterval(autoScroll, 3000);
+    </script>
+</body>
+</html>
