@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Webinar sulle Tendenze di Mercato e Strategie | Piattaforma di Trading Professionale</title>
+    <style>
+        :root {
+            --navy-primary: #1a365d;
+            --blue-accent: #2563eb;
+            --orange-action: #ea580c;
+            --gold-warning: #fbbf24;
+            --green-success: #059669;
+            --white-base: #ffffff;
+            --gray-light: #f8fafc;
+            --gray-text: #374151;
+            --gray-border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--white-base);
+            color: var(--gray-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .hero {
+            background: var(--navy-primary);
+            color: var(--white-base);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: clamp(16px, 2vw, 20px);
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .countdown-box {
+            background: var(--white-base);
+            color: var(--navy-primary);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            border: 3px solid var(--gold-warning);
+        }
+
+        .countdown-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .time-unit {
+            text-align: center;
+        }
+
+        .time-number {
+            background: var(--navy-primary);
+            color: var(--white-base);
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .time-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            border: 4px solid var(--orange-action);
+            margin: 0 auto;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--orange-action);
+            color: var(--white-base);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .btn-primary:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        .stats-section {
+            background: var(--gray-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            color: var(--blue-accent);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial {
+            background: var(--white-base);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--green-success);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: var(--white-base);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 2px solid var(--gray-border);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--blue-accent);
+            transform: translateY(-5px);
+        }
+
+        .feature-number {
+            background: var(--blue-accent);
+            color: var(--white-base);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0 auto 20px;
+        }
+
+        .strategy-section {
+            background: var(--navy-primary);
+            color: var(--white-base);
+        }
+
+        .exclusive-section {
+            background: var(--gold-warning);
+            color: var(--navy-primary);
+        }
+
+        .exclusive-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .seats-left {
+            background: var(--orange-action);
+            color: var(--white-base);
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 20px 0;
+            animation: shake 2s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .risk-disclosure {
+            background: var(--gray-light);
+            padding: 40px 0;
+            border-top: 4px solid var(--gold-warning);
+        }
+
+        .risk-title {
+            color: var(--gold-warning);
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .risk-title::before {
+            content: '⚠️';
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .footer {
+            background: var(--navy-primary);
+            color: var(--white-base);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--white-base);
+            text-decoration: none;
+            margin: 0 20px;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--orange-action);
+            color: var(--white-base);
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1000;
+            animation: breathe 3s infinite;
+            box-shadow: 0 10px 30px rgba(234, 88, 12, 0.5);
+        }
+
+        @keyframes breathe {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(234, 88, 12, 0.5);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.1);
+                box-shadow: 0 15px 40px rgba(234, 88, 12, 0.7);
+            }
+        }
+
+        .section-title {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+                max-width: 300px;
+            }
+
+            .timer {
+                gap: 10px;
+            }
+
+            .time-number {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .floating-btn {
+                padding: 15px 25px;
+                font-size: 14px;
+                bottom: 20px;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .wrapper {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="wrapper">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Webinar sulle Tendenze di Mercato e Strategie</h1>
+                    <p>Unisciti a migliaia di trader di successo che hanno trasformato le loro vite attraverso le nostre metodologie comprovate.</p>
+                    
+                    <div class="countdown-box">
+                        <div class="countdown-title">Offerta a Tempo Limitato - L'Accesso al Webinar Termina Tra:</div>
+                        <div class="timer">
+                            <div class="time-unit">
+                                <div class="time-number" id="days">02</div>
+                                <div class="time-label">Giorni</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="time-number" id="hours">00</div>
+                                <div class="time-label">Ore</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="time-number" id="minutes">00</div>
+                                <div class="time-label">Minuti</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="time-number" id="seconds">00</div>
+                                <div class="time-label">Secondi</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="ha()">Inizia Ora</button>
+                </div>
+                <div>
+                    <img src="img/4.jpg" alt="Esperto di Trading Professionale" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section">
+        <div class="wrapper">
+            <h2 class="section-title">Di Fiducia di Oltre 20.000 Utenti a Livello Nazionale</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>96%</h3>
+                    <p>Soddisfazione del Cliente</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Anni di Esperienza</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20,000+</h3>
+                    <p>Membri Attivi</p>
+                </div>
+            </div>
+
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"Le risorse educative e la guida esperta hanno significativamente migliorato la mia comprensione delle dinamiche di mercato. La piattaforma fornisce intuizioni preziose senza fare promesse irrealistiche."</p>
+                    <strong>- Sarah M., Analista Finanziaria</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Apprezzo l'attenzione sulla gestione del rischio e sui contenuti educativi. I webinar offrono intuizioni pratiche sulle tecniche di analisi di mercato che posso applicare nella mia ricerca."</p>
+                    <strong>- Michael R., Consulente di Investimenti</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="wrapper">
+            <h2 class="section-title">Perché Sceglierci - Scopri i Nostri Vantaggi Unici</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">1</div>
+                    <h3>Analisi Basata sui Dati</h3>
+                    <p>I nostri algoritmi proprietari analizzano le tendenze di mercato e i dati storici per identificare potenziali opportunità con maggiore probabilità di successo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">2</div>
+                    <h3>Guida Esperta</h3>
+                    <p>Accedi a consigli personalizzati dal nostro team di consulenti finanziari professionali con anni di esperienza nel mercato azionario americano.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">3</div>
+                    <h3>Educazione Completa</h3>
+                    <p>Dai principianti ai trader avanzati, le nostre risorse educative ti aiutano a costruire conoscenza e fiducia al tuo ritmo.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <img src="img/3.jpg" alt="Piattaforma di Analisi di Mercato" style="max-width: 500px; width: 100%; border-radius: 15px;">
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="ha()">Assicurati il Tuo Posto Ora</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section class="section strategy-section">
+        <div class="wrapper">
+            <h2 class="section-title">Il Nostro Approccio Strategico al Successo di Mercato</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white;">
+                    <h3>Gestione del Rischio</h3>
+                    <p>Diamo priorità alla conservazione del capitale attraverso un dimensionamento disciplinato delle posizioni e un posizionamento strategico dello stop-loss.</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white;">
+                    <h3>Analisi Tecnica</h3>
+                    <p>Il nostro approccio combina pattern grafici comprovati, indicatori e strategie di price action.</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white;">
+                    <h3>Ricerca Fondamentale</h3>
+                    <p>Analizziamo i bilanci, le tendenze del settore e il sentiment di mercato per identificare aziende solide.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="ha()">Scopri di Più sulle Nostre Strategie</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Access Section -->
+    <section class="section exclusive-section">
+        <div class="wrapper">
+            <div class="exclusive-content">
+                <h2 class="section-title">Accesso Esclusivo - Solo 50 Posti Rimanenti</h2>
+                <div class="seats-left">🔥 POSTI LIMITATI DISPONIBILI</div>
+                <p class="section-subtitle">Unisciti al nostro prossimo webinar e ricevi gratuitamente un pacchetto di analisi di mercato avanzata del valore di $997</p>
+                
+                <div class="countdown-box" style="background: rgba(26, 54, 93, 0.1); border-color: #1a365d;">
+                    <div class="countdown-title">L'Offerta Esclusiva Scade Tra:</div>
+                    <div class="timer">
+                        <div class="time-unit">
+                            <div class="time-number" id="days2">02</div>
+                            <div class="time-label">Giorni</div>
+                        </div>
+                        <div class="time-unit">
+                            <div class="time-number" id="hours2">00</div>
+                            <div class="time-label">Ore</div>
+                        </div>
+                        <div class="time-unit">
+                            <div class="time-number" id="minutes2">00</div>
+                            <div class="time-label">Minuti</div>
+                        </div>
+                        <div class="time-unit">
+                            <div class="time-number" id="seconds2">00</div>
+                            <div class="time-label">Secondi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="img/2.jpg" alt="Accesso Esclusivo al Webinar" style="max-width: 400px; width: 100%; border-radius: 15px; margin: 30px 0;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Disclosure -->
+    <section class="risk-disclosure">
+        <div class="wrapper">
+            <div class="risk-title">Importante Divulgazione del Rischio</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 10px;">• Questo servizio fornisce solo informazioni generali di mercato e non costituisce alcun consiglio o raccomandazione di investimento.</li>
+                <li style="margin-bottom: 10px;">• I mercati finanziari comportano rischi e potresti perdere parte o tutto il tuo capitale di investimento.</li>
+                <li style="margin-bottom: 10px;">• Tutti gli esempi mostrati sono analisi di dati storici e non costituiscono alcuna garanzia di rendimenti futuri.</li>
+                <li style="margin-bottom: 10px;">• Gli investitori dovrebbero prendere decisioni prudenti basate sulla propria tolleranza al rischio.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="footer-links">
+                <a href="privacy.html">Politica sulla Privacy</a>
+                <a href="terms.html">Termini di Servizio</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <button class="floating-btn" onclick="ha()">Unisciti Ora, Prenota il Tuo Posto Gratuito</button>
+
+    <script>
+        function ha() {
+            window.location.href = "https://wa.me/";
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            let totalSeconds = 2 * 24 * 60 * 60; // 2 days
+            
+            function tick() {
+                const days = Math.floor(totalSeconds / (24 * 60 * 60));
+                const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+                const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+                const seconds = totalSeconds % 60;
+
+                // Update first countdown
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+                // Update second countdown
+                document.getElementById('days2').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours2').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes2').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds2').textContent = seconds.toString().padStart(2, '0');
+
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                } else {
+                    totalSeconds = 2 * 24 * 60 * 60; // Reset
+                }
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        updateCountdown();
+    </script>
+</body>
+</html>
