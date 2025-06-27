@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>長続きする効果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            overflow-x: hidden;
+            background: #f7fafc;
+        }
+
+        .hero-wrapper {
+            min-height: 60vh;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 50%, #2b6cb0 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 4px solid #3182ce;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .main-headline {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fade-in-up 1s ease-out;
+        }
+
+        .sub-description {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            animation: fade-in-up 1s ease-out 0.3s both;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-section {
+            padding: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-section:nth-child(odd) {
+            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+            border-top: 1px solid #cbd5e0;
+            border-bottom: 1px solid #cbd5e0;
+        }
+
+        .story-section:nth-child(even) {
+            background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .narrative-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .narrative-block:nth-child(even) .text-content {
+            order: 2;
+        }
+
+        .narrative-block:nth-child(even) .image-content {
+            order: 1;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .content-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .visual-element {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .visual-element:hover {
+            transform: translateY(-5px);
+        }
+
+        .action-button {
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(49, 130, 206, 0.4);
+            background: linear-gradient(45deg, #2b6cb0, #2c5282);
+        }
+
+        .gallery-section {
+            padding: 20px 0;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #2b6cb0 100%);
+            border-top: 4px solid #3182ce;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+            color: white;
+            padding: 15px 60px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(49, 130, 206, 0.4);
+            animation: pulse-breath 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes pulse-breath {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(49, 130, 206, 0.4);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 15px 40px rgba(49, 130, 206, 0.6);
+            }
+        }
+
+        .floating-cta:hover {
+            animation-play-state: paused;
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .main-headline {
+                font-size: 2.5rem;
+            }
+
+            .narrative-block {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .narrative-block:nth-child(even) .text-content,
+            .narrative-block:nth-child(even) .image-content {
+                order: initial;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .floating-cta {
+                padding: 12px 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-wrapper">
+        <div class="hero-content">
+            <h1 class="main-headline">最高のアメリカ製勃起補助剤、1錠で勃起可能。</h1>
+            <p class="sub-description">36時間持続 / 18cm増加 / 射精なしでも60分持続 / めまいなどの副作用なし</p>
+        </div>
+    </section>
+
+    <!-- Story Sections -->
+    <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">世界で最も強力で持続性のある最高級苗木剤</h2>
+                    <p class="content-text">
+                        カプセル1つで薬物が活性化されるまでわずか3分かかり、効果は36時間持続します
+                        石のように硬いため、毎回完全に挿入可能です。
+
+18cmまで拡大され、尿を漏らさずに60分間持続します。
+
+いつでも彼女の膣を舐めてください。彼女が泣くまで満足させて差し上げます。
+                    </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/1.gif" alt="투자 전략" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">どんな女性でも、あなたを見てよだれを垂らさせるようにしてください。</h2>
+                    <p class="content-text">
+                        エト・バルキジョンは、メカ（Mecha）が「FAD」とも呼ばれる勃起不全の治療のために開発した最新製品です。性欲が不足している中年男性と性生活が活発な若い男性に最も適しています。より長く持続し、陰茎が太く硬くなり、すべての女性の唾液を誘うことができます。</br>
+						この薬は患者の自信回復を支援するだけでなく、いつでもどこでも勃起状態を維持し、望むことを実現できるように支援します。勃起不全、早漏、前立腺疾患など、どのような疾患であっても、この薬の治療効果が臨床試験で証明されています。
+                    </p>
+					
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/2.gif" alt="시장 분석" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">26日に山で撮影した写真を見ていきましょう。</h2>
+                    <p class="content-text">
+                        より頑丈にしたい場合は、厚さは3cm、長さは7cm、バッテリー使用時間は50分長くなります。数日間の夜で妻を「降参」させることができるでしょう。
+                    </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/3.jpg" alt="성공 사례" class="visual-element">
+                </div>
+				<div class="image-content">
+                    <img src="img/4.gif" alt="성공 사례" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">どれだけ多くの金を費やしても、かつてのような「活力」を取り戻すことはできません。.</h2>
+                    <p class="content-text">
+                       10年以上結婚生活を送ってきた妻は、今も変わらず優しく美しいです。年月は顔に全く跡を残していませんが、別の魅力を加えてくれました。男性にとって農業は最も重要な職業であり、それ以外のことは重要ではありません！しかし夜になると、どれだけお金を使っても過去の「活力」を取り戻すことはできません。若い頃は妻と私は勃起力に非常に満足していましたが、今ではどれだけ努力しても、勃起しない男性を勃起させることはできません。どれだけ努力しても、彼は無力に見え、私は何もできません。
+                    </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/4.jpg" alt="투자 기회" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">力を失うと、彼女は完全に消えてしまう。</h2>
+                    <p class="content-text">
+                       ある日、インターネットで勃起不全治療薬に関する記事を見たのですが、そこには多くの患者の本音が詰まっていました。その記事を読んで、再び希望の火花が燃え上がりました。勃起不全治療薬の1袋を購入しました。製品が届いた夜、半錠を服用したところ、まるで幼少期の朝起きた時のように即効性がありました。あまりにも硬すぎて、妻が興奮して手で撫でながら長さを測り、ついに強く握りしめました。妻は笑いを抑えられず、その笑顔があまりにも魅力的だったので、私も結局笑いを抑えられませんでした。妻をベッドに軽く乱暴に押し倒すと、妻は私についてきて次の動きを待っていました。
+
+その夜、妻は寒さに震えながら一気に射精してしまったが、私は射精できないようだった。そこで速度を上げ、30分後、ついに互いに抱き合いながら射精した。こんな爽快な気分は初めてだった。
+                    </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/5.gif" alt="전문가 조언" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">人生はたった20年しかありません。生きている間、楽しんでください。</h2>
+                    <p class="content-text">
+                       終わってから、妻が私がレトゥラという勃起剤を飲んでいたことを知りました。効果がないと言いましたが、妻は本気で「もっと買え」と勧めてくれました。もちろんこの話を聞いて本当に嬉しくなり、どんな男性も反対しないでしょう！1ヶ月間飲み続けています！勃起がより強くなったように感じられ、夜にも何回か勃起する時間を調整できるようになりました。何より重要なのは、勃起不全と早漏が完治したことです！人生はまだまだ20年しか残っていないので、生きている間を楽しんでください。
+                    </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/5.jpg" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">レト勃起剤があなたを助けてくれます。</h2>
+                    <p class="content-text">
+                    私たちの調査対象となったほとんどの女性が実際にこのように考えていました！
+
+「セックスのない結婚生活は未亡人と同じです。この関係がどれだけ続くのか分かりません。」
+
+「ベッドに横たわっていると、長い間起き上がれません。うわあ！」
+
+「まだ刺激を受けていないのに、夫がすぐに射精してしまいます。射精後に気分が良くなったか聞いてくるんです？」私は本当に衝撃を受けました。 </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/6.jpg" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	 <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">勃起不全治療薬『レト』で世界に挑む男</h2>
+                    <p class="content-text">
+                  結婚してまだ2年しか経っていないのに、女性のオーガズムをほとんど感じたことがありません。夫の性器はいつも調子が悪かったのです。少し強く引っ張るだけですぐに漏れてしまうのに、まだ感じられないというのです！本当に不快でした。長い時間が経ち、もう我慢できなくなったので、ワンナイトを共に過ごす相手を探したいと思いました。しかし、夫が『ボクト・ウレット』を着用してから数日後、突然情熱が燃え上がり、前例のない快感を味わいました。汗をびっしょりかいて、何度も大声で叫びました。以前経験したことのないセックスでした。まるで魔法にかかったように、彼の性器は次第に大きくなり、太くなりました。ベッドで荒々しい雄牛に変身したことが信じられません。今や夫は、もはやあの弱い男ではなく、いつでも立ち上がれる男になりました…一度に30分以上耐えられる彼を、私はもう我慢できません  </p>
+                    <a href="#" class="action-button" onclick="openweb()">詳細はこちら</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/6.gif" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	 <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">その夜、妻は服を引き裂き、悲鳴を上げた。</h2>
+                    <p class="content-text">
+                 젊었을 때는 아무렇지 않게 자위를 했지만, 중년이 되어 결혼 후 사정을 여러 번 했고, 아내의 성질이 점점 더 예민해졌습니다. 「브레토」를 발견한 후로는 시도해 볼 용기가 나지 않았지만, 동료들도 먹고 있다는 것을 알고 한 병 사서 먹어보기로 했습니다. 그날 밤, 저는 약간 흥분해서 견딜 수가 없었습니다. 에너지가 넘쳤고, 곧 성기가 발기되어 딱딱해졌습니다. 똑바로 서자 바지가 거의 벗겨질 뻔했습니다. 아내와 저 사이의 격렬한 운동은 50분이 넘게 지속되었습니다. 아내는 두 손으로 제 똥을 움켜쥐고 비명을 질렀습니다. 완전히 정복당한 것 같았습니다. 저는 너무 행복했습니다! 끝나고 아내는 어린 양처럼 제 하체를 꽉 껴안고 달라붙었습니다.   <a href=「#」 class=「action-button」 onclick=「openweb()」>자세히 알아보기</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/7.gif" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	
+	 <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">前立腺炎の治療、レトジンで勃起不全を簡単に治療しましょう</h2>
+                    <p class="content-text">
+                  20년 넘게 전립선염을 앓아 온 키노시타 히로스케 씨는 감사 편지에 이렇게 썼습니다. "저는 올해 69세입니다. 온갖 방법과 약을 다 써보고 돈도 많이 썼지만, 결국 고칠 수 없었습니다. 결국 포기했습니다. 어쨌든 저는 더 이상 젊지 않습니다. 최대한 오래 살겠습니다. 제 딸도 착한 딸입니다. 제게 맞는 치료법을 찾고 있었습니다. 얼마 전, 미국인 쿠라스(Kurasu) 친구에게 레토(Retto)라는 발기부전 치료제를 온라인으로 사달라고 부탁했습니다. 마지막 시도로 복용을 시작했는데, 같은 날 배뇨 횟수가 눈에 띄게 줄었습니다. 일주일도 채 되지 않아 배뇨통, 급박뇨, 통증, 양쪽 발에 소변이 자주 마려운 증상들이 눈에 띄게 호전되었습니다. 한 병을 마시고 나니 기분이 완전히 좋아졌습니다. 병원에 가서 검진을 받았고, 모든 병이 나았습니다.  <a href=「#」 class=「action-button」 onclick=「openweb()」>자세히 알아보기</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/7.jpg" alt="투자 결과" class="visual-element">
+                </div>
+				 <div class="image-content">
+                    <img src="img/8.jpg" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	
+	 <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">勃起不全治療薬であるブラトの効能</h2>
+                    <p class="content-text">
+                 레토는 5형 인산분해효소 억제제(PDE5)를 함유하고 있으며, 이 억제제는 5형 인산분해효소의 활성을 감소시켜 혈관 평활근의 수축을 억제합니다. 혈관이 수축되면 혈류가 감소하고, 혈류가 부족하면 발기 부전이 발생합니다. 수축된 혈관이 이완되고 음경이 혈액으로 가득 차 부풀어 오르면 혈류가 증가하여 음경 발기가 이루어집니다. 이것이 발기 부전 치료에 있어 레토의 작용 ​​원리이며, 수축된 부위로의 혈류를 증가시켜 좋은 발기를 얻는 데 도움을 줍니다.  <a href=「#」 class=「action-button」 onclick=「openweb()」>자세히 알아보기</a>
+                </div>
+                <div class="image-content">
+                    <img src="img/8.gif" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+		 <section class="story-section">
+        <div class="container-fluid">
+            <div class="narrative-block">
+                <div class="text-content">
+                    <h2 class="section-title">直接ご注文いただければ、価格も非常に良心的で、効果も非常に強力です。</h2>
+                    <p class="content-text">
+               服用当日：
+
+射精遅延、性生活の30%~50%延長、性欲増進、陰茎の勃起速度向上、亀頭の温かさと膨張効果、情熱と活力の向上、硬度の増加、活気があり爽快な感覚で、心地よい性的快感を届けます。以前よりもはるかに爽快な気分を感じることができ、射精がより強力になり、射精後の疲労感や眠気がなくなります。
+
+1週間連続使用後：</br>
+ <div class="image-content">
+                    <img src="img/5.gif" alt="투자 결과" class="visual-element">
+                </div>
+勃起不全と早漏が完全に消失し、体が健康で活力に満ちています。性行為時に陰茎が迅速に勃起し、太く硬くなります。勃起時、陰茎は膨張し、亀頭は紫がかった黒色からピンク色に変化し、亀頭の角度は90度以上まで上昇します。最後まで続く快感を体験し、爽快なセックスを楽しんでください。性交時間は40分以上持続可能です。ペニスが短い方は、長さを3~5cm、太さを10~25%まで増やすことができます。
+
+2週間継続使用後：</br>
+
+勃起不全と早漏を完全に解消し、収縮と勃起が人体最高の状態に達します。陰茎海綿体が完全に充血し、勃起が堅固で、動きが強力で、疲れにくく、快感はゆっくりと消え、パワーは持続的に増加し、複数回加速可能です。射精のタイミングを完璧にコントロールし、希望通りに性行為を行うことができます。陰茎が短い方は、長さを5~8cmまで延長し、太さを25~30%まで増やすことができます。肋骨の痙攣や収縮を引き起こしません。 </div>
+                <div class="image-content">
+                    <img src="img/2.gif" alt="투자 결과" class="visual-element">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container-fluid">
+            <div class="image-grid">
+                <div class="gallery-item">
+                    <img src="img/9.jpg" alt="갤러리 1" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/10.jpg" alt="갤러리 2" class="gallery-image">
+                </div>
+                
+            </div>
+            <div style="text-align: center;">
+                <a href="#" class="action-button" onclick="openweb()" style="font-size: 1.2rem; padding: 15px 40px;">詳細はこちら</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating CTA Button -->
+    <button class="floating-cta" onclick="openweb()">詳細はこちら</button>
+
+    <script>
+        function openweb() {
+            // KakaoTalk 그룹 링크로 이동
+            window.open('https://lin.ee/Km2RLwZ', '_blank');
+        }
+
+        // 스크롤 애니메이션
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.narrative-block, .gallery-item');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // 초기 스타일 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.narrative-block, .gallery-item');
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = 'all 0.6s ease-out';
+            });
+            
+            checkVisibility();
+        });
+
+        window.addEventListener('scroll', checkVisibility);
+
+        // 다크 모드 지원
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
