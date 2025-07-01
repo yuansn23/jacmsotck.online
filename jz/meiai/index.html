@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="css/55a.css"> 
+
+<script>
+
+  function redirectToWhatsApp() {
+            window.open('https://wa.me/your-whatsapp-number', '_blank');
+            closeWhatsAppModal();
+        }
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>2025 Analysis System</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="starfield-background"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="system-title">2025 AI Stock Analysis System</h1>
+            
+            <div class="ai-avatar-container">
+                <img src="img/2.jpg" alt="AI Analysis System" class="ai-avatar">
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">98.2%</span>
+                    <div class="stat-label">Analysis Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2s</span>
+                    <div class="stat-label">Processing Time</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">61,551</span>
+                    <div class="stat-label">Active Users</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="input-container">
+                <input type="text" class="stock-input" placeholder="Enter stock symbol (e.g., AAPL, TSLA, MSFT)" id="stockInput">
+                <button class="analyze-button" onclick="startAnalysis()">Analyze Stock</button>
+            </div>
+        </div>
+
+        <div class="rankings-container">
+            <div class="ranking-card">
+                <h3 class="ranking-title">Recent Top Performers</h3>
+                <table class="ranking-table">
+                    <thead class="ranking-header">
+                        <tr>
+                            <th>Rank</th>
+                            <th>Stock Name</th>
+                            <th>Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">1</td>
+                            <td class="stock-symbol" onclick="analyzeStock('CSCO')">CSCO</td>
+                            <td class="stock-score">89.66</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">2</td>
+                            <td class="stock-symbol" onclick="analyzeStock('TSLA')">TSLA</td>
+                            <td class="stock-score">88.92</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">3</td>
+                            <td class="stock-symbol" onclick="analyzeStock('MU')">MU</td>
+                            <td class="stock-score">87.82</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">4</td>
+                            <td class="stock-symbol" onclick="analyzeStock('AEP')">AEP</td>
+                            <td class="stock-score">86.27</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">5</td>
+                            <td class="stock-symbol" onclick="analyzeStock('MNST')">MNST</td>
+                            <td class="stock-score">85.82</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ranking-card">
+                <h3 class="ranking-title">Market Focus</h3>
+                <table class="ranking-table">
+                    <thead class="ranking-header">
+                        <tr>
+                            <th>Rank</th>
+                            <th>Stock Name</th>
+                            <th>Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">1</td>
+                            <td class="stock-symbol" onclick="analyzeStock('CSCO')">MCHP</td>
+                            <td class="stock-score">88.22</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">2</td>
+                            <td class="stock-symbol" onclick="analyzeStock('ADBE')">ADBE</td>
+                            <td class="stock-score">87.92</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">3</td>
+                            <td class="stock-symbol" onclick="analyzeStock('QCOM')">QCOM</td>
+                            <td class="stock-score">86.37</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">4</td>
+                            <td class="stock-symbol" onclick="analyzeStock('WBD')">WBD</td>
+                            <td class="stock-score">85.82</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">5</td>
+                            <td class="stock-symbol" onclick="analyzeStock('AMAT')">AMAT</td>
+                            <td class="stock-score">84.68</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ranking-card">
+                <h3 class="ranking-title">Growth Potential</h3>
+                <table class="ranking-table">
+                    <thead class="ranking-header">
+                        <tr>
+                            <th>Rank</th>
+                            <th>Stock Name</th>
+                            <th>Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">1</td>
+                            <td class="stock-symbol" onclick="analyzeStock('CDNS')">CDNS</td>
+                            <td class="stock-score">89.34</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">2</td>
+                            <td class="stock-symbol" onclick="analyzeStock('MCHP')">MCHP</td>
+                            <td class="stock-score">88.27</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">3</td>
+                            <td class="stock-symbol" onclick="analyzeStock('ISRG')">ISRG</td>
+                            <td class="stock-score">87.29</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">4</td>
+                            <td class="stock-symbol" onclick="analyzeStock('AAPL')">AAPL</td>
+                            <td class="stock-score">86.26</td>
+                        </tr>
+                        <tr class="ranking-row">
+                            <td class="stock-rank">5</td>
+                            <td class="stock-symbol" onclick="analyzeStock('PCAR')">PCAR</td>
+                            <td class="stock-score">85.76</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="risk-disclaimer">
+            <div class="risk-title">⚠️ Important Risk Warning</div>
+            <p>This service provides general market information only and does not constitute any investment advice or recommendations.</p>
+            <p>• Financial markets involve risks, and you may lose part or all of your investment capital. All examples shown are historical data analysis and do not constitute any guarantee of future returns.</p>
+            <p>• Investors should make prudent decisions based on their own risk tolerance. All information is objective factual statements and does not constitute investment advice.</p>
+            <p>• AI analysis tools only provide probability calculations based on historical data and algorithmic models, and do not constitute any form of investment advice.</p>
+            <p>• Past performance does not represent future performance, and actual returns may be lower or higher than AI predictions.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms of Service</a>
+        </div>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay">
+        <div id="progressModal" class="progress-modal" style="display: none;">
+            <h3>AI System Processing</h3>
+            <p>Combining: Market Analysis, Latest News Analysis, Historical Data Analysis</p>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div id="resultModal" class="result-modal" style="display: none;">
+            <h3>Your Stock Analysis Report is Complete</h3> 
+            <p><strong>※ Click to access our official WhatsApp account</strong></p>
+            <p>Click the link below to receive your report</p>
+            <button class="whatsapp-button" onclick="showWhatsAppModal()">Get Report via WhatsApp</button>
+        </div>
+
+        <div id="whatsappModal" class="whatsapp-modal" style="display: none;">
+            <button class="close-button" onclick="closeWhatsAppModal()">&times;</button> 
+            <h3>Redirecting to Official WhatsApp Account</h3>
+            <p>Receive stock analysis report for promising 2025 stock list</p>
+            <div class="check-item">Safe official WhatsApp account</div>
+            <div class="check-item">Personal information protected by our privacy policy</div>
+            <button class="whatsapp-confirm-button" onclick="redirectToWhatsApp()">Confirm</button>
+        </div>
+    </div>
+
+    <script>
+        function startAnalysis() {
+            const stockInput = document.getElementById('stockInput');
+            if (!stockInput.value.trim()) {
+                alert('Please enter a stock symbol');
+                return;
+            }
+
+            runAnalysis();
+        }
+
+        function analyzeStock(symbol) {
+            document.getElementById('stockInput').value = symbol;
+            runAnalysis();
+        }
+
+        function runAnalysis() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const progressModal = document.getElementById('progressModal');
+            const resultModal = document.getElementById('resultModal');
+            const progressBar = document.getElementById('progressBar');
+
+            modalOverlay.style.display = 'block';
+            progressModal.style.display = 'block';
+            resultModal.style.display = 'none';
+
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        progressModal.style.display = 'none';
+                        resultModal.style.display = 'block';
+                    }, 200);
+                }
+            }, 100);
+        }
+
+        function showWhatsAppModal() {
+            document.getElementById('resultModal').style.display = 'none';
+            document.getElementById('whatsappModal').style.display = 'block';
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+      
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.userSelect = 'none';
+            document.body.style.webkitUserSelect = 'none';
+            document.body.style.mozUserSelect = 'none';
+            document.body.style.msUserSelect = 'none';
+        });
+    </script>
+</body>
+</html>
