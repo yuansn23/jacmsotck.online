@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+ function r7() {
+            window.open('https://wa.me/', '_blank');
+        }
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work From Home - Earn Extra Income</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #ffffff;
+        }
+
+        .layout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-wrapper {
+            padding: 60px 0;
+        }
+
+        .section-wrapper--hero {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .section-wrapper--features {
+            background-color: var(--secondary-color);
+        }
+
+        .section-wrapper--benefits {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+        }
+
+        .typography-heading--primary {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .typography-heading--secondary {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .typography-heading--tertiary {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .typography-paragraph--lead {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .typography-paragraph--body {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .grid-layout {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-layout--two-columns {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            align-items: center;
+        }
+
+        .grid-layout--three-columns {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .card-component {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-component:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .card-component--feature {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-component--feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .image-element {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .button-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .button-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .floating-action-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            animation: breathing-pulse 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 220px;
+        }
+
+        .floating-action-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6);
+        }
+
+        @keyframes breathing-pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(16, 185, 129, 0.7);
+            }
+        }
+
+        .list-styled {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-styled li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .list-styled li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .warning-section {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-section h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .warning-section p {
+            color: #78350f;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section {
+            background: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .iframe-container {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .margin-bottom-large {
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-wrapper {
+                padding: 40px 0;
+            }
+            
+            .layout-container {
+                padding: 0 15px;
+            }
+            
+            .floating-action-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section-wrapper section-wrapper--hero">
+        <div class="layout-container">
+            <h1 class="typography-heading--primary">Work From Home, Earn Extra Income</h1>
+            <p class="typography-paragraph--lead">Complete tasks flexibly, earn income, and optimize your time and lifestyle.</p>
+            <img src="img/1.jpg" alt="Work from home opportunity" class="image-element">
+            <div class="margin-bottom-large">
+                <p class="typography-paragraph--body" style="color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto;">
+                    We are a certified mobile app promotion platform, partnering with multiple tech companies to provide users with simple part-time opportunities. By participating in app downloads, surveys and other tasks, you can easily earn extra income in your spare time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section-wrapper section-wrapper--features">
+        <div class="layout-container">
+            <h2 class="typography-heading--secondary" style="color: var(--text-primary);">Our Features</h2>
+            <p class="text-center typography-paragraph--body margin-bottom-large">
+                We are committed to providing flexible, safe and easy-to-learn working methods without complex operations or experience.
+            </p>
+            
+            <div class="grid-layout grid-layout--three-columns">
+                <div class="card-component card-component--feature">
+                    <h3 class="typography-heading--tertiary">Free Training, Quick Skill Mastery</h3>
+                    <p class="typography-paragraph--body">
+                        New members enjoy 4 days of free training, including task operation guidance. During training, you will also receive internship allowances to help you get started easily.
+                    </p>
+                </div>
+                
+                <div class="card-component card-component--feature">
+                    <h3 class="typography-heading--tertiary">Flexible Income Opportunities</h3>
+                    <p class="typography-paragraph--body">
+                        After completing tasks, income varies according to the number and difficulty of tasks, and returns are competitive.
+                    </p>
+                </div>
+                
+                <div class="card-component card-component--feature">
+                    <h3 class="typography-heading--tertiary">Long-term Cooperation Opportunities</h3>
+                    <p class="typography-paragraph--body">
+                        After joining, you will get stable task allocation and have the opportunity to further expand your income sources through long-term cooperation.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <button class="button-primary" onclick="scrollToForm()">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Content Section -->
+    <section class="section-wrapper">
+        <div class="layout-container">
+            <div class="grid-layout grid-layout--two-columns">
+                <div>
+                    <h2 class="typography-heading--secondary" style="text-align: left;">Work Content</h2>
+                    <p class="typography-paragraph--body margin-bottom-large">
+                        Complete the following simple tasks with your smartphone:
+                    </p>
+                    
+                    <ul class="list-styled">
+                        <li>Download specified applications</li>
+                        <li>Participate in questionnaire surveys</li>
+                        <li>Help improve app rankings</li>
+                        <li>All tasks do not involve complex operations and are suitable for most people</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="img/2.jpg" alt="Mobile work tasks" class="image-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section-wrapper section-wrapper--benefits">
+        <div class="layout-container">
+            <h2 class="typography-heading--secondary">Advantages of Joining</h2>
+            
+            <div class="grid-layout grid-layout--two-columns">
+                <div>
+                    <div class="card-component" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                        <h3 class="typography-heading--tertiary" style="color: white;">Flexible Time Arrangement</h3>
+                        <p class="typography-paragraph--body" style="color: rgba(255,255,255,0.9);">
+                            Whether you are at home, in a cafe or on a trip, you can arrange your working hours according to your own schedule.
+                        </p>
+                    </div>
+                    
+                    <div class="card-component" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                        <h3 class="typography-heading--tertiary" style="color: white;">No Location Restrictions</h3>
+                        <p class="typography-paragraph--body" style="color: rgba(255,255,255,0.9);">
+                            You only need a smartphone and a reliable internet connection to start working.
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card-component" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                        <h3 class="typography-heading--tertiary" style="color: white;">Less Time Investment</h3>
+                        <p class="typography-paragraph--body" style="color: rgba(255,255,255,0.9);">
+                            You only need to spend a small amount of time every day to complete tasks and get income, suitable for busy life rhythm.
+                        </p>
+                    </div>
+                    
+                    <div class="card-component" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                        <h3 class="typography-heading--tertiary" style="color: white;">Free Guidance</h3>
+                        <p class="typography-paragraph--body" style="color: rgba(255,255,255,0.9);">
+                            We provide comprehensive support and training to help you quickly adapt to work content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <button class="button-secondary" onclick="scrollToForm()" style="border-color: white; color: white;">Learn How to Start Tasks</button>
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <img src="img/3.jpg" alt="Join our team" class="image-element" style="max-width: 500px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section class="section-wrapper" id="application-form">
+        <div class="layout-container">
+            <h2 class="typography-heading--secondary">Application Requirements</h2>
+            <p class="text-center typography-paragraph--body margin-bottom-large">
+                Joining the program is very simple, just fill out the form below to apply:
+            </p>
+            
+            <div class="iframe-container">
+                <iframe src="https://whatsform.com/fprj5r" width="100%" height="600" frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-wrapper section-wrapper--features">
+        <div class="layout-container">
+            <div class="text-center">
+                <h2 class="typography-heading--secondary" style="color: var(--text-primary);">Contact Us for More Information!</h2>
+                <p class="typography-paragraph--body margin-bottom-large">
+                    Whether you want to increase your income or look for a flexible part-time job, we welcome you to join. Contact us immediately to get detailed information and start working.
+                </p>
+                <button class="button-primary" onclick="scrollToForm()">Contact Us Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Disclaimers -->
+    <section class="section-wrapper">
+        <div class="layout-container">
+            <div class="warning-section">
+                <h4><strong>Service Nature Statement</strong></h4>
+                <p>• This platform is a market research and digital experience project, designed to provide users with opportunities to participate in application testing, questionnaire surveys and product feedback.</p>
+                <p>• All tasks (such as application trials, questionnaire completion) are voluntary participation in market research activities, and do not constitute employment relationships or fixed income sources.</p>
+                <p>• No income is guaranteed, rewards (such as gift cards, points) are only participation rewards, and the amount and distribution time are not fixed.</p>
+                
+                <h4 style="margin-top: 1.5rem;"><strong>🔹 Applicable Laws and Regulations</strong></h4>
+                <p>• Comply with Canada's Competition Act to ensure fair and transparent business practices without false promises.</p>
+                <p>• Comply with Canada's Personal Information Protection and Electronic Documents Act (PIPEDA), user data is only used for research and analysis, and will not be used for commercial promotion or disclosure.</p>
+                <p>• Follow Canadian consumer protection regulations to protect users' right to know and voluntary participation.</p>
+                
+                <h4 style="margin-top: 1.5rem;"><strong>🔹 Important Risk Tips</strong></h4>
+                <p>⚠️ Non-employment relationship: Participation in this project does not constitute a labor contract, and there is no salary, social security or employment guarantee.</p>
+                <p>⚠️ Income uncertainty: Rewards (such as gift cards, points) are voluntary rewards, not fixed income, and the amount may vary.</p>
+                <p>⚠️ Personal responsibility: Users need to evaluate the feasibility of tasks by themselves, and the platform does not bear financial or legal risks.</p>
+                <p>⚠️ Data security: Although encryption measures are adopted, Internet activities still have potential data risks, please submit information carefully.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="layout-container">
+            <p>&copy; 2024 Work From Home Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://www.baidu.com" target="_blank">Privacy Policy</a>
+                <a href="https://www.baidu.com" target="_blank">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button class="floating-action-button" onclick="scrollToForm()">
+        💬 Start Earning Now
+    </button>
+
+    <script>
+       
+
+        function scrollToForm() {
+            const formSection = document.getElementById('application-form');
+            if (formSection) {
+                formSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to floating button
+        window.addEventListener('scroll', function() {
+            const button = document.querySelector('.floating-action-button');
+            if (window.scrollY > 100) {
+                button.style.opacity = '1';
+                button.style.transform = 'translateX(-50%) translateY(0)';
+            } else {
+                button.style.opacity = '0.8';
+            }
+        });
+    </script>
+</body>
+</html>
