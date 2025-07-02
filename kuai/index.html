@@ -8,6 +8,7 @@
         }
 
 </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>资料领取</title>
@@ -36,22 +37,22 @@
 <body class="bg-white dark:bg-gray-900 min-h-screen">
     <div class="container mx-auto px-4 py-6 max-w-md">
         <!-- 第一张图片 -->
-        <div class="mb-6">
+        <div>
             <img src="img/to01.jpg" 
                  alt="宣传图1" 
                  class="w-full rounded-lg shadow-lg">
         </div>
 
         <!-- 第二张图片(GIF) -->
-        <div class="mb-6" onclick="kk2()">
-            <img src="img/to02.gif" 
+        <div>
+            <img onclick="kk2()" src="img/to02.gif" 
                  alt="动态图" 
                  class="w-full rounded-lg shadow-lg">
         </div>
 
         <!-- 领取资料按钮 -->
-        <div class="mb-6 text-center">
-            <button class="bg-primary hover:bg-purple-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-xs">
+        <div class="text-center">
+            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg w-full">
                 点击即可领888 
             </button>
         </div>
@@ -63,17 +64,12 @@
                  class="w-full rounded-lg shadow-lg">
         </div>
 
-        <!-- 最后20点文案 -->
-        <div class="mb-20 text-center">
-            <div class="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full text-lg cursor-pointer breathe transition-colors duration-300 shadow-lg">
-                点击即可领888 
-            </div>
-        </div>
+        
     </div>
 
     <!-- 底部悬浮按钮 -->
     <div class="fixed bottom-6 left-4 right-4 z-50">
-        <button class="bg-primary hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full text-base flex items-center justify-center gap-2 shadow-2xl breathe transition-colors duration-300 w-full">
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full text-base flex items-center justify-center gap-2 shadow-2xl breathe transition-colors duration-300 w-full">
             <!-- QQ图标 -->
             <img src="img/qq.jpg" alt="QQ" width="64" height="64" class="inline-block">
              彩票回血</br>
