@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 <script>
-  function k2() {
-            window.open('https://wa.me/11111', '_blank');
+   function k2() {
+            window.open('https://wa.me/11111111', '_blank');
         }
-
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
@@ -267,10 +266,10 @@
             box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
         }
 
-        .whatsapp-icon::before {
-            content: '💬';
-            font-size: 30px;
-            color: white;
+        .whatsapp-icon-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
 
         .notification-badge {
@@ -306,7 +305,7 @@
             margin: 0 auto;
             display: block;
             padding: 20px 30px;
-            background: var(--gradient-secondary);
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: var(--text-primary);
             text-decoration: none;
             border-radius: var(--border-radius-primary);
@@ -314,7 +313,7 @@
             font-size: 1.2rem;
             text-align: center;
             animation: breathe 2.5s ease-in-out infinite;
-            box-shadow: 0 0 25px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
             border: none;
             cursor: pointer;
             text-transform: uppercase;
@@ -323,7 +322,7 @@
 
         .floating-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0 35px rgba(255, 107, 53, 0.6);
+            box-shadow: 0 0 35px rgba(37, 211, 102, 0.6);
         }
 
         @keyframes breathe {
@@ -574,6 +573,7 @@
     <!-- WhatsApp Float -->
     <div class="whatsapp-float" onclick="k2()">
         <div class="whatsapp-icon">
+            <img src="img/6.png" alt="WhatsApp" class="whatsapp-icon-img">
             <div class="notification-badge">1</div>
         </div>
     </div>
@@ -584,7 +584,8 @@
     </div>
 
     <script>
-      
+     
+
         // Smooth scrolling for better UX
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
