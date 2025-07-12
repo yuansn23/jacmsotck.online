@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  function k2() {
+            window.open('https://wa.me/', '_blank');
+        }
+
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>AlgoSensey - Quantitative Investment Intelligence</title>
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --accent-bright: #00d4ff;
+            --accent-secondary: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            --gradient-secondary: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%);
+            --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+            --shadow-intense: 0 8px 32px rgba(0, 0, 0, 0.8);
+            --border-radius-primary: 12px;
+            --border-radius-secondary: 8px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-weight-bold: 700;
+            --font-weight-medium: 500;
+            --font-weight-regular: 400;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
+            opacity: 0.3;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: var(--font-weight-bold);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: var(--shadow-glow);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .content-text {
+            z-index: 2;
+            position: relative;
+        }
+
+        .content-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 25px;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-description {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: var(--border-radius-primary);
+            overflow: hidden;
+            background: var(--secondary-dark);
+            box-shadow: var(--shadow-intense);
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .content-image:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: var(--border-radius-primary);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-glow);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .mentor-section {
+            background: var(--secondary-dark);
+            position: relative;
+        }
+
+        .mentor-card {
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border-radius: var(--border-radius-primary);
+            padding: 40px;
+            box-shadow: var(--shadow-intense);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .mentor-name {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: var(--font-weight-bold);
+            color: var(--accent-bright);
+            margin-bottom: 15px;
+        }
+
+        .timeline-section {
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--primary-dark) 100%);
+        }
+
+        .timeline-list {
+            list-style: none;
+            padding-left: 30px;
+            border-left: 2px solid var(--accent-bright);
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px 0 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent-bright);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .timeline-year {
+            font-weight: var(--font-weight-bold);
+            color: var(--accent-bright);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .whatsapp-icon {
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            animation: breathe 2s ease-in-out infinite;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-icon::before {
+            content: '💬';
+            font-size: 30px;
+            color: white;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-secondary);
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: var(--font-weight-bold);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 20px;
+            background: linear-gradient(to top, var(--primary-dark), transparent);
+        }
+
+        .floating-button {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            padding: 20px 30px;
+            background: var(--gradient-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: var(--border-radius-primary);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.2rem;
+            text-align: center;
+            animation: breathe 2.5s ease-in-out infinite;
+            box-shadow: 0 0 25px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(255, 107, 53, 0.6);
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: var(--border-radius-primary);
+            overflow: hidden;
+            background: var(--secondary-dark);
+            box-shadow: var(--shadow-intense);
+            max-width: 600px;
+            margin: 40px auto 0;
+        }
+
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .hero-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-content {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .second-section .image-container {
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .second-section .content-image {
+            height: 300px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .content-grid .content-text {
+                order: 1;
+            }
+
+            .content-grid .image-container {
+                order: 2;
+            }
+
+            .second-section .image-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .second-section .content-image {
+                height: 250px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .whatsapp-float {
+                right: 15px;
+            }
+
+            .whatsapp-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .whatsapp-icon::before {
+                font-size: 25px;
+            }
+
+            .mentor-card {
+                padding: 30px 20px;
+            }
+
+            .timeline-list {
+                padding-left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 25px;
+            }
+
+            .floating-cta {
+                padding: 15px;
+            }
+
+            .floating-button {
+                padding: 18px 25px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .content-title {
+                font-size: 1.5rem;
+            }
+
+            .mentor-name {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">AlgoSensey Quantitative Intelligence</h1>
+                <p class="section-subtitle">Revolutionizing Investment Decisions Through Advanced AI Technology</p>
+                <div class="hero-image-container">
+                    <img src="img/1.png" alt="Investment Technology" class="hero-image">
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="content-text">
+                    <h2 class="content-title">Data-Driven Investment Revolution</h2>
+                    <p class="content-description">
+                        In the data-driven era, are your investment decisions still relying on intuition? AlgoSensey Quantitative Intelligence Center and AcuMeta System use scientific methods to unveil market secrets and empower every investment decision you make.
+                    </p>
+                    <button class="cta-button" onclick="k2()">Experience Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AcuMeta System Section -->
+    <section class="section second-section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="image-container">
+                    <img src="img/2.png" alt="AcuMeta System" class="content-image">
+                </div>
+                <div class="content-text">
+                    <h2 class="content-title">AcuMeta Quantitative Center System</h2>
+                    <p class="content-description">
+                        As an expert in blockchain technology and artificial intelligence, Dr. Benjamin personally led the development of AcuMeta. This intelligent investment tool achieves automated investment strategies by combining blockchain technology with quantitative systems.
+                    </p>
+                    <button class="cta-button" onclick="k2()">Join AcuMeta Investor Community</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentor Section -->
+    <section class="section mentor-section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <div class="mentor-card">
+                        <h2 class="mentor-name">Benjamin Ashford, Ph.D.</h2>
+                        <p class="content-description">
+                            Dr. Benjamin Ashford founded AlgoSensey Quantitative Intelligence Center in 2015, a pioneering institution focused on the fusion of blockchain and artificial intelligence for quantitative investment technology.
+                        </p>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <img src="img/3.png" alt="Benjamin Ashford" class="content-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us / Timeline Section -->
+    <section class="section timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About AlgoSensey</h2>
+                <p class="section-subtitle">
+                    AlgoSensey's mission is to integrate technological innovation with market demands, a vision realized in our flagship product AcuMeta, launched in 2017.
+                </p>
+            </div>
+            <div class="content-grid">
+                <div class="content-text">
+                    <h3 class="content-title">AcuMeta Development Journey</h3>
+                    <ul class="timeline-list">
+                        <li class="timeline-item">
+                            <div class="timeline-year">2017</div>
+                            <div class="timeline-description">Started with first-generation core algorithm design, establishing the technical foundation.</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-year">2019</div>
+                            <div class="timeline-description">Comprehensive upgrade, enhanced investment strategy library and data processing capabilities.</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-year">2021</div>
+                            <div class="timeline-description">Core functionality enhancement, supporting global multi-market and multi-asset investments.</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-description">After rigorous internal testing and stress trials, demonstrated exceptional stability and performance.</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-description">Planned official release and sales in September, conducting real-world market testing.</div>
+                        </li>
+                    </ul>
+                    <button class="cta-button" onclick="k2()">Experience Now</button>
+                </div>
+                <div class="image-container">
+                    <img src="img/4.png" alt="Company Development" class="content-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float -->
+    <div class="whatsapp-float" onclick="k2()">
+        <div class="whatsapp-icon">
+            <div class="notification-badge">1</div>
+        </div>
+    </div>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <button class="floating-button" onclick="k2()">Start Your Investment Journey</button>
+    </div>
+
+    <script>
+      
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for animation triggers
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Disable zoom on mobile
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
