@@ -543,27 +543,27 @@
       height: 28px;
     }
 
-    .join-button {
-      position: fixed;
-      bottom: 90px;
-      right: 50%;
-      background-color: #ff8400;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 24px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 9999;
-      transition: background-color 0.3s ease;
-    }
+  .join-button {
+  position: fixed;
+  bottom: 90px;
+  left: 50%; /* 修改为 left: 50% */
+  background-color: #ff8400;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+  transform: translateX(-50%); /* 添加此行以实现居中 */
+}
 
-    .join-button:hover {
-      background-color: #0056b3;
-    }
-
+.join-button:hover {
+  background-color: #0056b3;
+}
         
     </style>
 </head>
