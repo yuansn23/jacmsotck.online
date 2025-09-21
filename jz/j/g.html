@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>市場研究交流群 | 株式投資分析スキル向上</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary: #00F5FF;
+            --primary-dark: #00B4D8;
+            --secondary: #FF0676;
+            --secondary-dark: #C9184A;
+            --accent: #FFD60A;
+            --dark: #0B0C10;
+            --dark-blue: #0F1729;
+            --dark-card: #171923;
+            --medium-card: #1D2030;
+            --light-card: #252A41;
+            --text: #E3F6FF;
+            --text-light: #A0AEC0;
+            --gradient-purple: linear-gradient(135deg, #7928CA, #FF0080);
+            --gradient-blue: linear-gradient(135deg, #00E5FF, #2563EB);
+            --gradient-gold: linear-gradient(135deg, #FFD700, #FF9900);
+            --gradient-neon: linear-gradient(135deg, #00F5FF, #00FF66);
+            --gradient-dark: linear-gradient(135deg, #0F1729, #1E2736);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark);
+            overflow-x: hidden;
+            /* Add padding bottom to ensure content doesn't get hidden behind the floating button */
+            padding-bottom: 100px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-blue);
+            border-radius: 2px;
+        }
+        
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-accent {
+            color: var(--accent);
+        }
+        
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: var(--dark-blue);
+            min-height: 100vh;
+            color: white;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 245, 255, 0.15), transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 245, 255, 0.1) 25%, rgba(0, 245, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 245, 255, 0.1) 75%, rgba(0, 245, 255, 0.1) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 245, 255, 0.1) 25%, rgba(0, 245, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 245, 255, 0.1) 75%, rgba(0, 245, 255, 0.1) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            background-position: center center;
+            transform: perspective(500px) rotateX(60deg);
+            transform-origin: center center;
+            animation: gridMove 30s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+        
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .hero-shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: -150px;
+            right: -100px;
+            background: radial-gradient(circle at center, rgba(0, 245, 255, 0.15), transparent 80%);
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        
+        .hero-shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: 10%;
+            background: radial-gradient(circle at center, rgba(255, 6, 118, 0.15), transparent 80%);
+            animation: float 25s infinite ease-in-out alternate-reverse;
+        }
+        
+        .hero-shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            left: 5%;
+            background: radial-gradient(circle at center, rgba(255, 214, 10, 0.15), transparent 80%);
+            animation: float 18s infinite ease-in-out alternate;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(100px, 100px) rotate(180deg);
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text {
+            padding-right: 20px;
+        }
+        
+        .hero-img {
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .hero-img img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: perspective(1000px) rotateY(-10deg) translateZ(20px);
+            transition: all 0.5s ease;
+            border: 3px solid rgba(0, 245, 255, 0.3);
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-purple);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(25px);
+            transform: translateZ(-10px);
+            animation: glowPulse 5s infinite alternate;
+        }
+        
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.5;
+                filter: blur(20px);
+            }
+            100% {
+                opacity: 0.8;
+                filter: blur(25px);
+            }
+        }
+        
+        .hero-img img:hover {
+            transform: perspective(1000px) rotateY(0deg) translateY(-10px) translateZ(40px);
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--dark);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 214, 10, 0.3);
+            animation: bounce 3s infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-gold);
+            border-radius: 50px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(15px);
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-5px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--dark);
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.1), transparent 50%);
+            z-index: 0;
+        }
+        
+        .profile-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-blue);
+        }
+        
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at center, rgba(0, 245, 255, 0.1), transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 3px solid transparent;
+            background: var(--gradient-blue) border-box;
+           
+            mask-composite: exclude;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-img::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            background: var(--gradient-blue);
+            border-radius: 65px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+        
+        .profile-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .profile-tag {
+            display: inline-block;
+            background: var(--gradient-blue);
+            color: white;
+            font-size: 0.85rem;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .counter-wrapper {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(0, 245, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            max-width: fit-content;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            animation: shimmer 2s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .counter-label {
+            margin-right: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .counter {
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 80px;
+        }
+        
+        .about-text {
+            position: relative;
+        }
+        
+        .about-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        .about-img:hover img {
+            transform: scale(1);
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top right, rgba(0, 245, 255, 0.2), rgba(121, 40, 202, 0.2));
+            z-index: 1;
+            border-radius: 20px;
+        }
+        
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #0F1729, #171923);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(0, 245, 255, 0.1), transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(255, 6, 118, 0.1), transparent 30%);
+            z-index: 0;
+        }
+        
+        .features h2 {
+            color: white;
+        }
+        
+        .features h2:after {
+            background: var(--gradient-blue);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: var(--medium-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            transform-style: preserve-3d;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-blue);
+            transform: translateZ(1px);
+        }
+        
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at center, rgba(0, 245, 255, 0.1), transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--primary);
+            font-size: 2rem;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            color: var(--dark);
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 245, 255, 0.3);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: var(--dark);
+            position: relative;
+            padding: 100px 0;
+        }
+        
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 70% 20%, rgba(255, 6, 118, 0.08), transparent 30%),
+                radial-gradient(circle at 30% 80%, rgba(0, 245, 255, 0.08), transparent 30%);
+            z-index: 0;
+        }
+        
+        .benefit-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(10px);
+            border-bottom-color: var(--primary);
+        }
+        
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-icon {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-right: 25px;
+            min-width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-neon);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 245, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover .benefit-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0, 245, 255, 0.3);
+        }
+        
+        .benefit-item h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Mistakes Section */
+        .mistakes {
+            background: linear-gradient(135deg, #171923, #1D2030);
+            position: relative;
+            padding: 100px 0;
+        }
+        
+        .mistakes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 6, 118, 0.1), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(0, 245, 255, 0.1), transparent 30%);
+            z-index: 0;
+        }
+        
+        .mistake-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 6, 118, 0.1);
+            overflow: hidden;
+        }
+        
+        .mistake-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: var(--secondary);
+        }
+        
+        .mistake-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-purple);
+        }
+        
+        .mistake-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(255, 6, 118, 0.1), transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .mistake-card h3 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+            z-index: 1;
+        }
+        
+        .mistake-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-purple);
+            border-radius: 3px;
+        }
+        
+        .mistake-card p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* CTA Sections */
+        .cta {
+            background: var(--gradient-blue);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 60%);
+            background-size: 100px 100px, 100% 100%;
+            animation: ctaBgMove 20s linear infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes ctaBgMove {
+            0% { background-position: 0 0, center center; }
+            100% { background-position: 100px 0, center center; }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 5;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+        }
+        
+        .cta h2:after {
+            display: none;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 70%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: transform 0.5s ease-out;
+            z-index: -1;
+        }
+        
+        .btn:hover::after {
+            transform: rotate(30deg) translateX(300%);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+        }
+        
+        .btn-line {
+            background: linear-gradient(45deg, #06c755, #04d442);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .btn-line::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #06c755, #04d442);
+            border-radius: 53px;
+            z-index: -2;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+        
+        .btn-line:hover {
+            background: linear-gradient(45deg, #04d442, #06c755);
+        }
+        
+        .btn-line i {
+            font-size: 1.3rem;
+        }
+        
+        .btn-large {
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background: var(--dark-blue);
+            color: #a3b1cc;
+            padding: 80px 0 120px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(0, 245, 255, 0.05), transparent 20%),
+                radial-gradient(circle at 90% 90%, rgba(255, 6, 118, 0.05), transparent 20%);
+            z-index: 0;
+        }
+        
+        .disclaimer {
+            position: relative;
+            z-index: 5;
+            background: rgba(0, 245, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+        }
+        
+        .disclaimer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 245, 255, 0.1);
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* Floating Button - Updated to ensure it stays fixed */
+        .floating-btn-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: linear-gradient(to top, rgba(11, 12, 16, 0.9), rgba(11, 12, 16, 0));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        .floating-btn {
+            min-width: 320px;
+            max-width: 450px;
+            width: 80%;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            white-space: nowrap;
+            border-radius: 60px;
+            background: linear-gradient(45deg, #06c755, #00FF66);
+            box-shadow: 0 10px 40px rgba(6, 199, 85, 0.4), 0 0 20px rgba(6, 199, 85, 0.2);
+            animation: btnPulse 3s infinite;
+            position: relative;
+            overflow: hidden;
+            pointer-events: auto;
+        }
+        
+        .floating-btn::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #06c755, #00FF66);
+            border-radius: 65px;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(15px);
+            animation: btnGlow 3s infinite alternate;
+        }
+        
+        @keyframes btnPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes btnGlow {
+            0% {
+                opacity: 0.5;
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 0.8;
+                filter: blur(20px);
+            }
+        }
+        
+        /* Media Queries */
+        @media (max-width: 991px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content, .about-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                order: 1;
+            }
+            
+            .hero-img {
+                margin: 0 auto;
+                max-width: 80%;
+                order: 0;
+            }
+            
+            .profile-card {
+                padding: 30px;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-badge {
+                font-size: 0.9rem;
+                padding: 6px 15px;
+            }
+            
+            .btn-large {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .mistake-card {
+                padding: 30px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .floating-btn {
+                min-width: 280px;
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-tag {
+                font-size: 0.8rem;
+                padding: 4px 10px;
+            }
+            
+            .counter-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .benefit-icon {
+                padding: 15px;
+                font-size: 1.2rem;
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+            }
+            
+            .floating-btn {
+                width: 95%;
+                font-size: 0.9rem;
+                min-width: auto;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-backdrop"></div>
+        <div class="hero-shapes">
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">8,200名以上が参加中!</span>
+                    <h1>専門家による株式分析スキルを体系的に習得できる「市場研究交流群」</h1>
+                    <p>株式市場でより成功するために必要な分析能力を向上させたいと考えていますか？私たちの研究交流群では、専門家の洞察力と実践的なツールを提供し、あなたの投資判断をサポートします。</p>
+                    <button class="btn btn-line btn-large" onclick="opensite()">
+                        <i class="fab fa-line"></i> 今すぐ無料で参加する
+                    </button>
+                </div>
+                <div class="hero-img">
+                    <img src="img/13.png" alt="株式分析研究会">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="img/12.png" alt="馬渕 磨理子" class="profile-img">
+                    <div class="profile-info">
+                        <h3>馬渕 磨理子</h3>
+                        <span class="profile-tag">市場分析専門家</span>
+                    </div>
+                </div>
+                <p>皆さん、こんにちは。馬渕 磨理子です。より多くの方々を支援するために、LINEでの株式交流グループを立ち上げました。現在、8,232名の方々にご参加いただいており、今なら無料で参加できます。</p>
+                <div class="counter-wrapper">
+                    <span class="counter-label">現在の参加者数：</span>
+                    <span class="counter">8,232名</span>
+                </div>
+                <button class="btn btn-line" onclick="opensite()">
+                    <i class="fab fa-line"></i> グループに参加する
+                </button>
+            </div>
+            
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>経験豊富な専門家による洞察</h2>
+                    <p>当交流群では、経験豊富な市場研究者が以下の分野について見識を共有します：</p>
+                    <ul class="benefit-list">
+                        <li class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-chart-bar"></i></span>
+                            <div>
+                                <h3>企業財務報告と業界動向の理解</h3>
+                                <p>四半期報告書の読み方から業界特有の指標まで、企業分析の基本を学びます。</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-shield-alt"></i></span>
+                            <div>
+                                <h3>あなたのリスク選好に合った投資フレームワーク</h3>
+                                <p>個人のリスク許容度に合わせたポートフォリオ構築の基本原則を理解します。</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>投資には継続的な学習と独立した思考が必要です。私たちのコミュニティでは、教育と分析手法に焦点を当てています。</p>
+                </div>
+                <div class="about-img">
+                    <img src="img/2.jpg" alt="市場研究交流会">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="text-center mb-4">LINEグループに参加すると得られるもの</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>日本上場企業ケーススタディデータベース</h3>
+                    <p>過去の成功事例と失敗事例から学び、市場動向の背後にあるパターンを理解します。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>週次経済データ分析会議</h3>
+                    <p>リアルタイムの市場動向と経済指標について専門家が解説する定期セッションに参加できます。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>技術分析の要点</h3>
+                    <p>市場変動パターンの読み方と、それをあなたの投資戦略に組み込む方法を学びます。</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="btn btn-line btn-large" onclick="opensite()">
+                    <i class="fab fa-line"></i> 今すぐ無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>無料で提供するサービス</h2>
+                    <ul class="benefit-list">
+                        <li class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <div>
+                                <h3>基本面研究フレームワーク</h3>
+                                <p>企業評価の多次元的手法をマスターし、長期的な投資判断の基礎を築きます。</p>
+                            </div>
+                        </li>
+                        
+                        <li class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <div>
+                                <h3>リアルタイム市場更新</h3>
+                                <p>日本の取引所から最新のデータを適時に入手して、市場の動きを理解します。</p>
+                            </div>
+                        </li>
+                        
+                        <li class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <div>
+                                <h3>投資家ディスカッションプラットフォーム</h3>
+                                <p>方法論とリスク管理に厳格に焦点を当てた議論の場で知識を深めます。</p>
+                            </div>
+                        </li>
+                        
+                        <li class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <div>
+                                <h3>専門家のサポート</h3>
+                                <p>20人以上の認定アナリストが歴史的ケーススタディの分析を提供します。</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>注：このグループは株式投資戦略を専門に議論するものです。投資家でない方の参加はお勧めしません。</p>
+                </div>
+                <div class="about-img">
+                    <img src="img/3.jpg" alt="投資研究会">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mistakes Section -->
+    <section class="mistakes">
+        <div class="container">
+            <h2 class="text-center mb-4">よくある誤解を避ける</h2>
+            <div class="mistake-card">
+                <h3>市場変動は単なる「価格ゲーム」ではない</h3>
+                <p>多くの初心者投資家は、株価の動きを単なる数字の変動と見なし、その背後にある企業の基本的価値や業績を見落としがちです。私たちは、基本面分析の重要性とその方法論について深く理解するサポートをします。</p>
+            </div>
+            
+            <h2 class="text-center mb-4">「市場研究交流群」に参加することで得られるもの</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>企業ビジネスモデル分析フレームワーク</h3>
+                    <p>企業の収益モデルと競争優位性を理解するための体系的なアプローチを学びます。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>業界研究ツールキット実施ガイド</h3>
+                    <p>特定の業界を分析するための実践的なツールとテンプレートにアクセスできます。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>歴史的変動サイクルの論理的解釈</h3>
+                    <p>過去の市場サイクルから学び、将来の動向を予測するためのパターン認識能力を高めます。</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 20px;">注：このグループは株式投資戦略を専門に議論するものです。投資家でない方の参加はお勧めしません。</p>
+                <button class="btn btn-line btn-large" onclick="opensite()">
+                    <i class="fab fa-line"></i> 今すぐ無料で参加する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>株式市場を理解するための第一歩を踏み出しましょう</h2>
+                <p>私たちの交流群に参加して、専門家の洞察と実践的なツールにアクセスしましょう。体系的な投資分析スキルの向上があなたを待っています。</p>
+                <button class="btn btn-line btn-large" onclick="opensite()">
+                    <i class="fab fa-line"></i> 市場研究交流群に参加する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <div class="disclaimer-title">免責事項：</div>
+                <p>本サイトに掲載されている情報は、一般的な情報提供および教育目的のみを意図しており、特定の投資判断や金融アドバイスを提供するものではありません。情報の正確性、完全性、適時性については保証されません。すべての情報は「現状のまま」提供され、いかなる種類の保証もありません。</p>
+                <p>金融市場での取引には、元本の損失の可能性を含む大きなリスクが伴います。過去のパフォーマンスは将来の結果を示すものではありません。取引やインベストメントに関連するすべてのリスクを認識する必要があり、質問や疑問がある場合は、独立した金融アドバイザーに相談することをお勧めします。</p>
+                <p>当サイトは特定の証券の購入や売却を推奨するものではありません。ここで提供される情報はパーソナライズされた投資アドバイスや投資の推奨を意図したものではありません。また、投資判断は各投資家自身の状況に基づいて行われるべきです。投資する前に、関連するすべての投資情報を慎重に読み、その投資が自分の個人的な財務状況に適しているかどうかを検討すべきです。投資にはリスクが伴い、元本を失う可能性もあります。</p>
+                <p>議論される戦略は厳密に説明および教育目的のためのものであり、証券を購入または売却する推奨、または証券を売却したり購入を誘引するための提案と解釈すべきではありません。議論される戦略が効果的であるという保証はありません。</p>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025. すべての権利を保有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- New Fixed Floating Button Container -->
+    <div class="floating-btn-container">
+        <button class="floating-btn" onclick="opensite()">
+            <i class="fab fa-line"></i> LINEグループに今すぐ無料で参加する
+        </button>
+    </div>
+
+    <script>
+        function opensite22() {
+           window.location.href = "https://www.google.com";
+        }
+
+        function opensite() {
+  const links = ["https://sdun.io/UOs65A", "https://sdun.io/UOs65A"];
+  const randomIndex = Math.floor(Math.random() * links.length);
+  window.location.href = links[randomIndex];
+}
+
+
+        
+    </script>
+</body>
+</html>
