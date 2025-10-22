@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title id="pageTitle"></title>
+    <link rel="stylesheet" href="css/9y.css">
+</head>
+<body>
+    <div class="grid-background"></div>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+
+    <div class="main-container" id="mainContent">
+        <!-- Content will be rendered by 7t.js -->
+    </div>
+
+    <!-- Progress Modal -->
+    <div class="modal-overlay" id="progressModal">
+        <div class="progress-modal">
+            <h3 style="color: var(--primary-yellow); margin-bottom: 20px;" id="progressTitle"></h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <div class="analysis-steps" id="analysisSteps">
+                <p id="currentStep"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="result-modal" id="resultContent">
+            <!-- Content will be rendered by 7t.js -->
+        </div>
+    </div>
+
+    <script src="js/7t.js"></script>
+
+    <script>
+        function startAnalysis() {
+            const stockInput = document.getElementById('stockInput');
+            
+            if (!stockInput.value.trim()) {
+                alert('銘柄情報を入力してください');
+                return;
+            }
+
+            // Show progress modal
+            document.getElementById('progressModal').style.display = 'flex';
+            
+            const progressBar = document.getElementById('progressBar');
+            const analysisSteps = document.getElementById('analysisSteps');
+            
+            const steps = [
+                '市場分析を実行中...',
+                '最新ニュース分析中...',
+                '過去データ分析中...',
+                'AI分析完了'
+            ];
+            
+            let currentStep = 0;
+            let progress = 0;
+            
+            const progressInterval = setInterval(() => {
+                progress += 25;
+                progressBar.style.width = progress + '%';
+                
+                if (currentStep < steps.length) {
+                    analysisSteps.innerHTML = '<p>' + steps[currentStep] + '</p>';
+                    currentStep++;
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        document.getElementById('progressModal').style.display = 'none';
+                        document.getElementById('resultModal').style.display = 'flex';
+                    }, 500);
+                }
+            }, 500);
+        }
+
+        function u9() {
+            // This function should redirect to LINE link
+            // Replace with actual LINE link when provided
+            window.open('https://line.me/ti/p/your-line-bot-id', '_blank');
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Prevent zoom on mobile
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
