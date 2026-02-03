@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"KjhwtyZwVhXvc9S1",ck:"KjhwtyZwVhXvc9S1"})</script>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16927277125"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16927277125');
+</script>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexWork Pro - Start Your Mobile Part-Time Job Experience</title>
+    <style>
+        :root {
+            --deep-blue: #003366;
+            --ocean-blue: #0066cc;
+            --bright-yellow: #ffcc00;
+            --white: #ffffff;
+            --black: #000000;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333333;
+            --gradient-1: linear-gradient(135deg, #003366, #0066cc);
+            --gradient-2: linear-gradient(135deg, #ffcc00, #ff9900);
+            --gradient-3: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--bright-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+            background: var(--bright-yellow);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--gradient-1);
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            background: rgba(255,204,0,0.1);
+            color: var(--bright-yellow);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,204,0,0.3)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,204,0,0.2)"/><circle cx="40" cy="70" r="1" fill="rgba(255,204,0,0.4)"/><circle cx="90" cy="80" r="2.5" fill="rgba(255,204,0,0.2)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: var(--gradient-2);
+            color: var(--black);
+            padding: clamp(12px, 3vw, 18px) clamp(25px, 6vw, 40px);
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(255, 204, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 204, 0, 0.6);
+        }
+
+        /* Sections */
+        .section {
+            padding: clamp(3rem, 8vw, 5rem) 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--gradient-3);
+        }
+
+        .section:nth-child(odd) {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+            color: var(--deep-blue);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            color: var(--ocean-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* About Section Enhanced */
+        .about-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: center;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+        }
+
+        .about-text {
+            text-align: left;
+            position: relative;
+        }
+
+        .about-intro {
+            background: var(--white);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--bright-yellow);
+            margin-bottom: 2rem;
+        }
+
+        .about-intro h3 {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            color: var(--deep-blue);
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-intro p {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.8;
+            color: var(--dark-gray);
+        }
+
+        .mission-section {
+            background: var(--white);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .mission-section h3 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            color: var(--ocean-blue);
+            text-align: center;
+        }
+
+        .mission-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(255, 204, 0, 0.05));
+            border-radius: 15px;
+            border-left: 4px solid var(--bright-yellow);
+            transition: all 0.3s ease;
+        }
+
+        .mission-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .mission-icon {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-top: 0.2rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            flex-shrink: 0;
+        }
+
+        .mission-item h4 {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue);
+        }
+
+        .mission-item p {
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .professional-image {
+            width: 100%;
+            height: clamp(300px, 50vw, 450px);
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .professional-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            background: rgba(0, 51, 102, 0.95);
+            padding: clamp(1rem, 3vw, 2rem);
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            color: var(--white);
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: bold;
+            color: var(--bright-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-label {
+            display: block;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .about-cta {
+            text-align: center;
+            margin-top: clamp(2rem, 5vw, 4rem);
+        }
+
+        /* Why Choose Us Enhanced */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            margin-top: clamp(2rem, 5vw, 4rem);
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            background: var(--gradient-2);
+            width: clamp(60px, 10vw, 80px);
+            height: clamp(60px, 10vw, 80px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--black);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+        }
+
+        .feature-card p {
+            color: var(--dark-gray);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        /* Work Content Enhanced */
+        .work-section {
+            background: var(--gradient-3);
+            position: relative;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            margin-top: 3rem;
+        }
+
+        .work-item {
+            background: var(--white);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 20px;
+            border-left: 6px solid var(--bright-yellow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .work-item::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--gradient-2);
+            color: var(--black);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+        }
+
+        .work-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .work-item h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+        }
+
+        .work-item p {
+            color: var(--dark-gray);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        /* FAQ Enhanced */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .faq-question {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            font-weight: bold;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '💡';
+            position: absolute;
+            right: clamp(1rem, 3vw, 1.5rem);
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .faq-answer {
+            padding: clamp(1rem, 3vw, 1.5rem);
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            color: var(--dark-gray);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        /* How to Join Enhanced */
+        .join-section {
+            background: linear-gradient(135deg, var(--gradient-3), #ffffff);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,204,0,0.05) 0%, transparent 70%);
+            animation: float 30s infinite linear;
+        }
+
+        .steps-container {
+            background: var(--white);
+            padding: clamp(2rem, 5vw, 3rem);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            margin-top: 3rem;
+            position: relative;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            border-radius: 25px;
+            padding: 3px;
+            z-index: -1;
+            background-clip: border-box;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(2rem, 5vw, 3rem);
+            margin-top: 2rem;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            position: relative;
+            background: linear-gradient(135deg, rgba(0,102,204,0.02), rgba(255,204,0,0.02));
+            border-radius: 20px;
+            border: 2px dashed var(--ocean-blue);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .step-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,204,0,0.1) 50%, transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .step-item:hover::before {
+            opacity: 1;
+        }
+
+        .step-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--bright-yellow);
+            border-style: solid;
+            box-shadow: 0 15px 35px rgba(255,204,0,0.3);
+            background: linear-gradient(135deg, rgba(0,102,204,0.05), rgba(255,204,0,0.05));
+        }
+
+        .step-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid var(--bright-yellow);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            z-index: 3;
+        }
+
+        .step-item:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            background: var(--gradient-2);
+            color: var(--black);
+            width: clamp(60px, 10vw, 80px);
+            height: clamp(60px, 10vw, 80px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: bold;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.5);
+            position: relative;
+            z-index: 2;
+            border: 4px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover .step-number {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 15px 35px rgba(255, 204, 0, 0.7);
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px dashed var(--ocean-blue);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-item h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .step-item p {
+            color: var(--dark-gray);
+            line-height: 1.7;
+            font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+            background: rgba(255,255,255,0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--bright-yellow);
+        }
+
+        .step-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover .step-icon {
+            opacity: 0.8;
+            transform: scale(1.2);
+        }
+
+        .join-cta-container {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0,102,204,0.1), rgba(255,204,0,0.1));
+            border-radius: 20px;
+            border: 2px solid var(--bright-yellow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-cta-container::before {
+            content: '🚀';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 50%;
+            border: 2px solid var(--bright-yellow);
+        }
+
+        .join-cta-container h3 {
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-top: 1rem;
+        }
+
+        .join-cta-container p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        /* Footer Enhanced */
+        footer {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: clamp(3rem, 6vw, 4rem) 0 clamp(1rem, 3vw, 2rem);
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .risk-warning {
+            background: rgba(255, 204, 0, 0.15);
+            border: 2px solid var(--bright-yellow);
+            padding: clamp(1.5rem, 4vw, 2rem);
+            margin: clamp(2rem, 5vw, 3rem) 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .risk-warning h3 {
+            color: var(--bright-yellow);
+            margin-bottom: 1rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        }
+
+        .risk-warning p {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            margin-bottom: 0.8rem;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: clamp(1.5rem, 4vw, 2rem);
+            margin-top: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .copyright p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Image Styling Enhanced */
+        .section-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin: clamp(2rem, 5vw, 3rem) auto;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .section-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive Enhanced */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .image-overlay {
+                position: static;
+                margin-top: 1rem;
+                background: rgba(0, 51, 102, 1);
+            }
+
+            .step-item::after {
+                display: none;
+            }
+
+            .mission-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 5rem 0 2rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .about-intro,
+            .mission-section {
+                padding: 1.5rem;
+            }
+
+            .feature-card,
+            .work-item {
+                padding: 1.5rem;
+            }
+
+            .steps-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">FlexWork Pro</div>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#why-choose">How to Start</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#about" onclick="closeMobileMenu()">About Us</a>
+            <a href="#why-choose" onclick="closeMobileMenu()">How to Start</a>
+            <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Start Your Mobile Part-Time Job Experience</h1>
+            <p>Flexible work, work from home, arrange your time freely, and work hard for your dreams</p>
+            <button class="cta-button" onclick="d2()">Apply Now</button>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-layout">
+                <div class="about-text">
+                    <div class="about-intro">
+                        <h3>Professional Remote Work Platform</h3>
+                        <p>We are a service platform focused on online part-time work, committed to providing users with flexible remote office opportunities. Through mobile phones, you can complete simple tasks without specific experience, allowing everyone to easily earn additional income while improving work skills.</p>
+                    </div>
+                    
+                    <div class="mission-section">
+                        <h3>Our Mission</h3>
+                        <div class="mission-grid">
+                            <div class="mission-item">
+                                <div class="mission-icon">🎯</div>
+                                <div>
+                                    <h4>Time & Income Freedom</h4>
+                                    <p>Help more people achieve time freedom and income freedom</p>
+                                </div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-icon">⚡</div>
+                                <div>
+                                    <h4>Simple Operations</h4>
+                                    <p>Provide simple and easy-to-operate part-time projects</p>
+                                </div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-icon">🏆</div>
+                                <div>
+                                    <h4>Reliable Platform</h4>
+                                    <p>Create an efficient and reliable remote work platform</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="img/2.jpg" alt="Professional team" class="professional-image">
+                    <div class="image-overlay">
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Active Users</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Satisfaction Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-cta">
+                <button class="cta-button" onclick="d2()">Apply to Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose" class="section">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Flexible Working Hours</h3>
+                    <p>Working hours are completely up to you, suitable for any life rhythm, without delaying study or family life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Simple Operation, No Experience Required</h3>
+                    <p>All tasks have detailed guidance, no special skills required, can be completed using mobile phones.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Safe, Reliable, and Guaranteed</h3>
+                    <p>The platform cooperates with regular enterprises, task settlement is transparent, timely payment, no hidden fees.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Remote Work, No Need to Go Out</h3>
+                    <p>All tasks can be completed through mobile phones, no need to commute, work anytime, anywhere.</p>
+                </div>
+            </div>
+            <img src="img/1.jpg" alt="Remote work benefits" class="section-image">
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="d2()">Apply to Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section work-section">
+        <div class="container">
+            <h2>Work Content</h2>
+            <div class="work-grid">
+                <div class="work-item" data-number="1">
+                    <h3>Data Processing</h3>
+                    <p>Complete simple online form entry, data verification and other basic tasks.</p>
+                </div>
+                <div class="work-item" data-number="2">
+                    <h3>Questionnaire Survey</h3>
+                    <p>Participate in brand market research, fill out online questionnaires, and get rewards.</p>
+                </div>
+                <div class="work-item" data-number="3">
+                    <h3>Content Review</h3>
+                    <p>Review image, text or video content according to platform rules, easy to understand operation.</p>
+                </div>
+                <div class="work-item" data-number="4">
+                    <h3>Product Promotion</h3>
+                    <p>Share product information through social media, help brands increase exposure, and earn promotion rewards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Q1: What conditions do I need to meet?</div>
+                    <div class="faq-answer">You only need a mobile phone, good network environment, and responsibility for work. No professional skills required.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q2: Is the work legal and compliant?</div>
+                    <div class="faq-answer">We cooperate with regular enterprises, all tasks comply with relevant laws and regulations, ensuring safety and reliability.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q3: How are earnings settled?</div>
+                    <div class="faq-answer">Earnings are calculated according to task unit price, settled immediately after task completion, supporting multiple withdrawal methods, transparent and efficient.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q4: Is there training or guidance?</div>
+                    <div class="faq-answer">Yes! We provide detailed task operation guides for every joiner to ensure you can complete work smoothly.</div>
+                </div>
+            </div>
+            <img src="img/3.jpg" alt="FAQ support" class="section-image">
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="d2()">Apply to Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>How to Join Us?</h2>
+            <div class="steps-container">
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>Register Account</h3>
+                        <p>Click the "WhatsApp" button on the page and fill in your basic information</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>Complete Registration</h3>
+                        <p>Complete simple identity verification according to platform requirements to ensure account security</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>Start Working</h3>
+                        <p>Complete operations according to task instructions, submit tasks and wait for approval to get earnings</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h3>Withdraw Earnings</h3>
+                        <p>After earnings are approved, you can apply for withdrawal at any time, quick payment, easy monetization</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 4rem;">
+                <button class="cta-button" onclick="d2()">Start Your Journey Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="risk-warning">
+                    <h3>⚠️ Risk Warning & Important Notice</h3>
+                    <p><strong>Investment Risk:</strong> This platform involves work opportunities that may require time investment. Results may vary based on individual effort and market conditions. No guaranteed income is promised.</p>
+                    <p><strong>Compliance Notice:</strong> All work opportunities are provided in compliance with local labor laws and regulations. Users are responsible for reporting income according to local tax requirements.</p>
+                    <p><strong>Data Privacy:</strong> We collect and process personal information in accordance with applicable privacy laws. Your data is protected and never sold to third parties.</p>
+                    <p><strong>Age Requirement:</strong> Users must be 18 years or older to participate in work opportunities on this platform.</p>
+                </div>
+                
+                <div class="copyright">
+                      <p><a href="privacy.html" style="color: white;"><strong>Privacy Policy</strong></a></p>
+<p><a href="terms.html" style="color: white;"><strong>User Terms</strong></a></p>
+                    <p><strong>Legal Compliance:</strong> This platform operates in full compliance with international labor standards, data protection regulations (GDPR), and consumer protection laws.</p>
+                    <p><strong>Terms of Service:</strong> By using this platform, you agree to our Terms of Service and Privacy Policy. All work arrangements are subject to applicable employment laws.</p>
+                    <p><strong>Contact Information:</strong> For support and compliance inquiries, please contact us through official channels.</p>
+                    <p><strong>Regulatory Compliance:</strong> Licensed and regulated according to local business registration requirements. Company registration details available upon request.</p>
+                    <p><strong>Fair Work Practices:</strong> We are committed to fair work practices, equal opportunity employment, and transparent payment systems.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function d2() {
+            window.open('https://link.xinghewa.xyz/n93da76e', '_blank');
+        }
+
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.remove('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
