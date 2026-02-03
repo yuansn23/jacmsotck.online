@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>LA.init({id:"KjhwtyZwVhXvc9S1",ck:"KjhwtyZwVhXvc9S1"})</script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16927277125"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16927277125');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexWork Pro - Start Your Mobile Part-Time Job Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0A2463;
+            --secondary-blue: #1E5BA8;
+            --accent-blue: #3E92CC;
+            --light-blue: #E8F4FD;
+            --gold: #FFB800;
+            --gold-dark: #E6A600;
+            --white: #FFFFFF;
+            --black: #0D1B2A;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Redesign */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-lg);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+            background: var(--light-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--gray-800);
+            padding: 8px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 73px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-xl);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            display: block;
+            max-height: 400px;
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--gray-100);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav a:hover {
+            background: var(--light-blue);
+            color: var(--secondary-blue);
+        }
+
+        /* Hero Section Redesign */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 160px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 184, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(62, 146, 204, 0.15) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 3vw, 22px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            padding: 18px 48px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 24px rgba(255, 184, 0, 0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 184, 0, 0.45);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Section Redesign */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section:nth-child(even) {
+            background: var(--gray-50);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--secondary-blue);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 16px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* About Section Redesign */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 64px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .about-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .about-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+
+        .about-card p {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: var(--light-blue);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .mission-item:hover {
+            background: rgba(62, 146, 204, 0.15);
+        }
+
+        .mission-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .mission-text h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 6px;
+        }
+
+        .mission-text p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .about-image-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .professional-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 36, 99, 0.95), transparent);
+            padding: 48px 32px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* Features Grid Redesign */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-blue);
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--secondary-blue));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(62, 146, 204, 0.25);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Work Grid Redesign */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .work-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .work-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .work-number {
+            position: absolute;
+            top: -16px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--black);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .work-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .work-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* FAQ Redesign */
+        .faq-container {
+            max-width: 900px;
+            margin: 64px auto 0;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 16px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-question {
+            padding: 24px 28px;
+            font-weight: 600;
+            font-size: 17px;
+            color: var(--black);
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '💡';
+            font-size: 24px;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-answer {
+            padding: 0 28px 24px 28px;
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            background: var(--gray-50);
+        }
+
+        /* Steps Redesign */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+            position: relative;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-blue);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--black);
+            box-shadow: 0 8px 20px rgba(255, 184, 0, 0.35);
+            border: 4px solid var(--white);
+        }
+
+        .step-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Section Image Redesign */
+        .section-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            margin: 64px auto;
+            display: block;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 184, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer Redesign */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .risk-warning {
+            background: rgba(255, 184, 0, 0.1);
+            border: 2px solid var(--gold);
+            padding: 32px;
+            margin-bottom: 48px;
+            border-radius: 16px;
+        }
+
+        .risk-warning h3 {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .risk-warning p {
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .risk-warning strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 32px;
+            text-align: center;
+        }
+
+        .copyright p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 140px 0 80px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .features-grid,
+            .work-grid,
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .about-image-container {
+                order: -1;
+            }
+
+            .professional-image {
+                height: 400px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section h2 {
+                font-size: 28px;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+
+            .about-card,
+            .feature-card,
+            .work-card,
+            .step-card {
+                padding: 24px 20px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav class="container">
+            <div class="logo">FlexWork Pro</div>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#why-choose">Why Choose Us</a></li>
+                <li><a href="#how-to-join">How to Join</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#about" onclick="closeMobileMenu()">About Us</a>
+            <a href="#why-choose" onclick="closeMobileMenu()">Why Choose Us</a>
+            <a href="#how-to-join" onclick="closeMobileMenu()">How to Join</a>
+            <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in-up">Start Your Mobile Part-Time Job Experience</h1>
+                <p class="fade-in-up">Flexible work, work from home, arrange your time freely, and work hard for your dreams</p>
+                <button class="cta-button fade-in-up" onclick="d2()">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Us</span>
+                <h2>Professional Remote Work Platform</h2>
+                <p class="section-description">We are a service platform focused on online part-time work, committed to providing users with flexible remote office opportunities.</p>
+            </div>
+
+            <div class="about-layout">
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3>Who We Are</h3>
+                        <p>Through mobile phones, you can complete simple tasks without specific experience, allowing everyone to easily earn additional income while improving work skills.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>Our Mission</h3>
+                        <div class="mission-list">
+                            <div class="mission-item">
+                                <div class="mission-icon">🎯</div>
+                                <div class="mission-text">
+                                    <h4>Time & Income Freedom</h4>
+                                    <p>Help more people achieve time freedom and income freedom</p>
+                                </div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-icon">⚡</div>
+                                <div class="mission-text">
+                                    <h4>Simple Operations</h4>
+                                    <p>Provide simple and easy-to-operate part-time projects</p>
+                                </div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-icon">🏆</div>
+                                <div class="mission-text">
+                                    <h4>Reliable Platform</h4>
+                                    <p>Create an efficient and reliable remote work platform</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image-container">
+                    <img src="img/2.jpg" alt="Professional team" class="professional-image">
+                    <div class="image-overlay">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Active Users</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Satisfaction Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why Choose Us</span>
+                <h2>Your Success is Our Priority</h2>
+                <p class="section-description">Discover the advantages that make us the preferred choice for flexible remote work</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Flexible Working Hours</h3>
+                    <p>Working hours are completely up to you, suitable for any life rhythm, without delaying study or family life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Simple Operation, No Experience Required</h3>
+                    <p>All tasks have detailed guidance, no special skills required, can be completed using mobile phones.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Safe, Reliable, and Guaranteed</h3>
+                    <p>The platform cooperates with regular enterprises, task settlement is transparent, timely payment, no hidden fees.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Remote Work, No Need to Go Out</h3>
+                    <p>All tasks can be completed through mobile phones, no need to commute, work anytime, anywhere.</p>
+                </div>
+            </div>
+
+            <img src="img/1.jpg" alt="Remote work benefits" class="section-image">
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Work Content</span>
+                <h2>Diverse Opportunities</h2>
+                <p class="section-description">Choose from a variety of tasks that match your skills and interests</p>
+            </div>
+
+            <div class="work-grid">
+                <div class="work-card">
+                    <div class="work-number">1</div>
+                    <h3>Data Processing</h3>
+                    <p>Complete simple online form entry, data verification and other basic tasks.</p>
+                </div>
+                <div class="work-card">
+                    <div class="work-number">2</div>
+                    <h3>Questionnaire Survey</h3>
+                    <p>Participate in brand market research, fill out online questionnaires, and get rewards.</p>
+                </div>
+                <div class="work-card">
+                    <div class="work-number">3</div>
+                    <h3>Content Review</h3>
+                    <p>Review image, text or video content according to platform rules, easy to understand operation.</p>
+                </div>
+                <div class="work-card">
+                    <div class="work-number">4</div>
+                    <h3>Product Promotion</h3>
+                    <p>Share product information through social media, help brands increase exposure, and earn promotion rewards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-join" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Getting Started</span>
+                <h2>How to Join Us?</h2>
+                <p class="section-description">Four simple steps to start your remote work journey</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Register Account</h3>
+                    <p>Click the "WhatsApp" button on the page and fill in your basic information</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Complete Registration</h3>
+                    <p>Complete simple identity verification according to platform requirements to ensure account security</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Start Working</h3>
+                    <p>Complete operations according to task instructions, submit tasks and wait for approval to get earnings</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Withdraw Earnings</h3>
+                    <p>After earnings are approved, you can apply for withdrawal at any time, quick payment, easy monetization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+                <p class="section-description">Find answers to common questions about our platform</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Q1: What conditions do I need to meet?</div>
+                    <div class="faq-answer">You only need a mobile phone, good network environment, and responsibility for work. No professional skills required.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q2: Is the work legal and compliant?</div>
+                    <div class="faq-answer">We cooperate with regular enterprises, all tasks comply with relevant laws and regulations, ensuring safety and reliability.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q3: How are earnings settled?</div>
+                    <div class="faq-answer">Earnings are calculated according to task unit price, settled immediately after task completion, supporting multiple withdrawal methods, transparent and efficient.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q4: Is there training or guidance?</div>
+                    <div class="faq-answer">Yes! We provide detailed task operation guides for every joiner to ensure you can complete work smoothly.</div>
+                </div>
+            </div>
+
+            <img src="img/3.jpg" alt="FAQ support" class="section-image">
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Join thousands of users who have already transformed their work-life balance</p>
+                <button class="cta-button" onclick="d2()">Start Your Journey Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="risk-warning">
+                    <h3>⚠️ Risk Warning & Important Notice</h3>
+                    <p><strong>Investment Risk:</strong> This platform involves work opportunities that may require time investment. Results may vary based on individual effort and market conditions. No guaranteed income is promised.</p>
+                    <p><strong>Compliance Notice:</strong> All work opportunities are provided in compliance with local labor laws and regulations. Users are responsible for reporting income according to local tax requirements.</p>
+                    <p><strong>Data Privacy:</strong> We collect and process personal information in accordance with applicable privacy laws. Your data is protected and never sold to third parties.</p>
+                    <p><strong>Age Requirement:</strong> Users must be 18 years or older to participate in work opportunities on this platform.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">User Terms</a>
+                </div>
+
+                <div class="copyright">
+                    <p><strong>Legal Compliance:</strong> This platform operates in full compliance with international labor standards, data protection regulations (GDPR), and consumer protection laws.</p>
+                    <p><strong>Terms of Service:</strong> By using this platform, you agree to our Terms of Service and Privacy Policy. All work arrangements are subject to applicable employment laws.</p>
+                    <p><strong>Contact Information:</strong> For support and compliance inquiries, please contact us through official channels.</p>
+                    <p><strong>Regulatory Compliance:</strong> Licensed and regulated according to local business registration requirements. Company registration details available upon request.</p>
+                    <p><strong>Fair Work Practices:</strong> We are committed to fair work practices, equal opportunity employment, and transparent payment systems.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function d2() {
+            window.open('https://link.xinghewa.xyz/n93da76e', '_blank');
+        }
+
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.remove('active');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .work-card, .step-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
