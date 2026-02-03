@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-     
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlexWork Pro - Začněte svou zkušenost s mobilní brigádou</title>
@@ -227,6 +225,43 @@
 
         .cta-button:active {
             transform: translateY(0);
+        }
+
+        /* Mobile Floating Button */
+        .floating-button {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            padding: 16px 24px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(255, 184, 0, 0.5);
+            z-index: 999;
+            max-width: 90%;
+            text-align: center;
+            line-height: 1.4;
+            animation: floatPulse 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes floatPulse {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .floating-button:active {
+            transform: translateX(-50%) scale(0.95);
         }
 
         /* Section Redesign */
@@ -787,6 +822,16 @@
                 flex-direction: column;
                 gap: 16px;
             }
+
+            /* Show floating button on mobile */
+            .floating-button {
+                display: block;
+            }
+
+            /* Add padding to body to account for floating button */
+            body {
+                padding-bottom: 100px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -808,6 +853,11 @@
             .work-card,
             .step-card {
                 padding: 24px 20px;
+            }
+
+            .floating-button {
+                font-size: 14px;
+                padding: 14px 20px;
             }
         }
 
@@ -852,6 +902,11 @@
             <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
         </div>
     </header>
+
+    <!-- Mobile Floating Button -->
+    <button class="floating-button" onclick="d2()">
+        Přidejte si mě na Telegram<br>a získejte pracovní příležitosti
+    </button>
 
     <section class="hero">
         <div class="container">
@@ -960,7 +1015,6 @@
         </div>
     </section>
 
-     
     <section id="how-to-join" class="section">
         <div class="container">
             <div class="section-header">
@@ -994,8 +1048,6 @@
         </div>
     </section>
 
-  
-
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
@@ -1018,8 +1070,8 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="#">Zásady Ochrany Soukromí</a>
-                    <a href="#">Podmínky Používání</a>
+                    <a href="privacy.html">Zásady Ochrany Soukromí</a>
+                    <a href="terms.html">Podmínky Používání</a>
                 </div>
 
                 <div class="copyright">
